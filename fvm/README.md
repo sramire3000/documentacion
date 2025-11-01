@@ -61,6 +61,9 @@ fvm flutter create mi_proyecto
 # Navegar al directorio del proyecto
 cd mi_proyecto
 
+# Ver versiones instaladas
+fvm list
+
 # Usar version de flutter (Esto creará un archivo .fvm/flutter_sdk con un enlace simbólico)
 fvm use [Version Flutter]
 
