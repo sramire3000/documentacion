@@ -54,26 +54,16 @@ fvm use 3.7.2
 
 ### Crear un nuevo proyecto Flutter
 ```bash
-# Crear proyecto usando FVM
-fvm create mi_proyecto
 
-# O usando el comando tradicional con FVM
+# Crear Proyecto
 fvm flutter create mi_proyecto
-```
 
-### Configurar FVM en el proyecto
-```bash
 # Navegar al directorio del proyecto
 cd mi_proyecto
 
-# Configurar una versión específica de Flutter para este proyecto
-fvm use stable
+# Usar version de flutter (Esto creará un archivo .fvm/flutter_sdk con un enlace simbólico)
+fvm use [Version Flutter]
 
-# Esto creará un archivo .fvm/flutter_sdk con un enlace simbólico
-```
-
-# Ejecutar comandos Flutter en el proyecto
-```
 # Usar FVM para ejecutar comandos Flutter
 fvm flutter pub get
 fvm flutter run
