@@ -28,3 +28,12 @@ fvm install latest
 ```bash
 fvm global stable
 ```
+
+### Crear un nuevo proyecto Flutter
+```
+# Crear proyecto usando FVM
+fvm create mi_proyecto
+
+# O usando el comando tradicional con FVM
+fvm flutter create mi_proyecto
+```
