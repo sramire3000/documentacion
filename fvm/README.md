@@ -3,7 +3,7 @@ FVM simplifica la gestión de versiones de Flutter. Permite versiones del SDK po
 
 
 
-### 1. Instalación de FVM (si no lo tienes) Non-Administrative install
+### Instalación de FVM (si no lo tienes) Non-Administrative install
 ```bash
 1. Save the script below as ChocolateyInstallNonAdmin.ps1.
 2. Use the script below, determine where you might want Chocolatey installed if it is not to C:\ProgramData\chocoportable.
@@ -28,7 +28,7 @@ iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocola
 ```
 
 
-### 2. Configurar una versión de Flutter con FVM
+### Configurar una versión de Flutter con FVM
 ```bash
 # Listar versiones disponibles de Flutter
 fvm releases
@@ -43,7 +43,16 @@ fvm install latest
 fvm global stable
 ```
 
-### 3. Crear un nuevo proyecto Flutter
+### Instalar version de flutter ejemplo
+```bash
+# Instalar versión
+fvm install 3.7.2 --setup
+
+# Usar versión
+fvm use 3.7.2
+```
+
+### Crear un nuevo proyecto Flutter
 ```bash
 # Crear proyecto usando FVM
 fvm create mi_proyecto
@@ -51,3 +60,29 @@ fvm create mi_proyecto
 # O usando el comando tradicional con FVM
 fvm flutter create mi_proyecto
 ```
+
+### Configurar FVM en el proyecto
+```bash
+# Navegar al directorio del proyecto
+cd mi_proyecto
+
+# Configurar una versión específica de Flutter para este proyecto
+fvm use stable
+
+# Esto creará un archivo .fvm/flutter_sdk con un enlace simbólico
+```
+
+# Ejecutar comandos Flutter en el proyecto
+```
+# Usar FVM para ejecutar comandos Flutter
+fvm flutter pub get
+fvm flutter run
+fvm flutter build apk
+
+# O puedes navegar al directorio y usar flutter directamente
+cd mi_proyecto
+flutter pub get  # Usará la versión configurada por FVM
+```
+
+
+
