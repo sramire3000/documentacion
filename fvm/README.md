@@ -3,14 +3,28 @@ FVM simplifica la gestión de versiones de Flutter. Permite versiones del SDK po
 
 
 
-### 1. Instalación de FVM (si no lo tienes)
+### 1. Instalación de FVM (si no lo tienes) Non-Administrative install
 ```bash
-# Installing Chocolatey Doc
-    https://docs.chocolatey.org/en-us/choco/setup/#non-administrative-install
-	
-Run .\ChocolateyInstallNonAdmin.ps1
-# Set directory for installation - Chocolatey does not lock # down the directory if not the default $InstallDir='C:\ProgramData\chocoportable' $env:ChocolateyInstall="$InstallDir" # If your PowerShell Execution policy is restrictive, you may # not be able to get around that. Try setting your session to # Bypass. Set-ExecutionPolicy Bypass -Scope Process -Force; # All install options - offline, proxy, etc at # https://chocolatey.org/install iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))	
-	
+1. Save the script below as ChocolateyInstallNonAdmin.ps1.
+2. Use the script below, determine where you might want Chocolatey installed if it is not to C:\ProgramData\chocoportable.
+3. Open PowerShell.exe.
+4. Run the following Set-ExecutionPolicy Bypass -Scope Process -Force;
+5. Run .\ChocolateyInstallNonAdmin.ps1.
+
+
+# Set directory for installation - Chocolatey does not lock
+# down the directory if not the default
+$InstallDir='C:\ProgramData\chocoportable'
+$env:ChocolateyInstall="$InstallDir"
+
+# If your PowerShell Execution policy is restrictive, you may
+# not be able to get around that. Try setting your session to
+# Bypass.
+Set-ExecutionPolicy Bypass -Scope Process -Force;
+
+# All install options - offline, proxy, etc at
+# https://chocolatey.org/install
+iex ((New-Object System.Net.WebClient).DownloadString('https://community.chocolatey.org/install.ps1'))
 ```
 
 
