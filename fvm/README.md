@@ -74,5 +74,9 @@ cd mi_proyecto
 flutter pub get  # Usará la versión configurada por FVM
 ```
 
+### Ejecutar la app
+```bash
+fvm flutter run
+```
 
 
