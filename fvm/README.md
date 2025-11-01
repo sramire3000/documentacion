@@ -4,33 +4,25 @@
 
 
 
-# Verificar instalación
-```bash
-fvm --version
-```
 
-# Listar versiones disponibles de Flutter
+
+###2. Configurar una versión de Flutter con FVM
 ```bash
+# Listar versiones disponibles de Flutter
 fvm releases
-```
 
 # Instalar una versión específica de Flutter
-```bash
 fvm install stable
-```
 
 # O instalar la última versión
-```bash
 fvm install latest
-```
 
 # Configurar la versión por defecto
-```bash
 fvm global stable
 ```
 
-### Crear un nuevo proyecto Flutter
-```
+### 3. Crear un nuevo proyecto Flutter
+```bash
 # Crear proyecto usando FVM
 fvm create mi_proyecto
 
