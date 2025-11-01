@@ -1,12 +1,12 @@
-# Getting Started
+# Simple Flutter Version Management
+FVM simplifica la gestión de versiones de Flutter. Permite versiones del SDK por proyecto, lo que garantiza compilaciones de aplicaciones consistentes y facilita las pruebas de nuevas versiones, aumentando así la eficiencia de las tareas de tu proyecto Flutter.
 
 
 
 
 
 
-
-###2. Configurar una versión de Flutter con FVM
+### 2. Configurar una versión de Flutter con FVM
 ```bash
 # Listar versiones disponibles de Flutter
 fvm releases
