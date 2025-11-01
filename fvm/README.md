@@ -83,5 +83,3 @@ flutter pub get  # Usará la versión configurada por FVM
 ```bash
 fvm flutter run
 ```
-
-
