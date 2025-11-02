@@ -36,6 +36,11 @@ sudo snap install btop
 btop
 ```
 
+### Install Wget
+```bash
+sudo apt install wget
+```
+
 
 
 
