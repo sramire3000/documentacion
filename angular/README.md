@@ -508,9 +508,10 @@ ng serve --open
 ## Related
 
 Here are some related projects
-[Angular](https://angular.dev/overview)
-[HyperUI](https://hyperui.dev/)
-[Prime Ng](https://primeng.org/)
+- [Angular](https://angular.dev/overview)
+- [HyperUI](https://hyperui.dev/)
+- [Prime Ng](https://primeng.org/)
+
 
 
 
