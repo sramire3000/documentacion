@@ -9,4 +9,8 @@ To install or update nvm, you should run the install script. To do that, you may
 npm install -g @angular/cli
 ```
 
+### Create Proyect
+```bash
+ng new <project-name>
+```
 
