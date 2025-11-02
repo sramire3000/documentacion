@@ -85,6 +85,26 @@ sudo apt install fastfetch
 sudo apt-get install libnss3-tools
 ```
 
+### cmake
+```bash
+sudo apt install cmake
+sudo apt install ninja-build
+sudo apt install pkg-config
+sudo apt install libgtk-3-dev
+Reboot system
+```
+
+### Install dbeaver
+```bash
+sudo snap install dbeaver-ce
+```
+
+### Set Path Chrome
+```bash
+sudo nano /etc/environment.
+CHROME_EXECUTABLE=/snap/bin/chromium
+```
+
 ## SOFTWARE DE DESARROLLO
 
 ### Buscar Jdks
@@ -129,6 +149,20 @@ cd bin/
 
 #sudo nano /etc/environment
 PATH="........:/snap/bin:/home/hector-ramirez/.fvm_flutter/bin"
+```
+
+### Cambiar de Jdk con fvm
+```bash
+fvm flutter config --jdk-dir=/snap/android-studio/current/jbr
+fvm flutter config --jdk-dir=//usr/lib/jvm/java-21-openjdk-amd64
+fvm flutter config --jdk-dir=/usr/lib/jvm/java-17-openjdk-amd64
+```
+
+### Install GitDesktop
+```bash
+wget https://github.com/shiftkey/desktop/releases/download/release-3.1.7-linux1/GitHubDesktop-linux-3.1.7-linux1.deb
+sudo dpkg -i <filename>.deb
+sudo dpkg -i GitHubDesktop-linux-3.1.7-linux1.deb
 ```
 
 
