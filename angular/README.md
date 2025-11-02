@@ -91,6 +91,52 @@ npm install primeng @primeuix/themes
   ng g c components/pruebas --skip-tests
 ```
 
+### Modificar src/app/app.routes.ts
+```bash
+export const routes: Routes = [
+  {
+    path : '',
+    redirectTo: 'pruebas',
+    pathMatch: 'full'
+  },
+  {
+    path: 'pruebas',
+    component: Pruebas
+  }
+];
+```
+
+### edit src/app/components/pruebas/pruebas.html
+```bash
+<div class="card flex justify-center">
+  <p-button label="Check" />
+</div>
+```
+
+### edit src/app/components/pruebas/pruebas.ts
+```bash
+import { ButtonModule } from 'primeng/button';
+
+@Component({
+    imports: [ButtonModule]
+})
+```
+
+### edit src/app/app.html
+```bash
+<router-outlet />
+```
+
+### Subir server
+```bash
+  ng serve -o
+```
+
+### install icons
+```bash
+npm install primeicons
+```
+
 
 
 
