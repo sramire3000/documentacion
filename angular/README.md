@@ -86,6 +86,12 @@ npm install primeng @primeuix/themes
     ]
 ```
 
+### Probar PrimeNg
+```bash
+  ng g c components/pruebas --skip-tests
+```
+
+
 
 
 
