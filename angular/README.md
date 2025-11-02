@@ -169,6 +169,7 @@ npm install tailwindcss-primeui
 ```bash
 @import "tailwindcss";
 @import "tailwindcss-primeui";
+@import "primeicons/primeicons.css";
 ```
 
 ### Add file "/src/app/prime-imports.ts"
@@ -500,6 +501,7 @@ imports: [PrimeImportsModule]
 ```bash
 ng serve --open
 ```
+
 
 
 
