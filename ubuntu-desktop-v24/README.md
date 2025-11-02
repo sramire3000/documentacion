@@ -33,7 +33,7 @@ sudo apt upgrade
 ```
 
 
-## Utilidades
+## UTILIDADES
 
 ### Check Bateria
 ```bash
@@ -62,6 +62,12 @@ sudo apt install stacer
 ```bash
 sudo apt install wget
 ```
+
+### Install curl
+```bash
+sudo apt  install curl 
+```
+
 ### shutter
 ```bash
 sudo apt install shutter
@@ -73,6 +79,12 @@ sudo add-apt-repository ppa:zhangsongcui3371/fastfetch
 sudo apt update
 sudo apt install fastfetch
 ```
+
+### install libnss3
+```bash
+sudo apt-get install libnss3-tools
+```
+
 ## SOFTWARE DE DESARROLLO
 
 ### Buscar Jdks
@@ -93,10 +105,17 @@ java --version
 sudo update-alternatives --config java
 ```
 
+### Install GIT
+```bash
+sudo apt install git
+git config --global user.email "sramire3000@gmail.com"
+git config --global user.name "Hector Ramirez"
+```
 
-
-
-
+### Install Maven
+```bash
+udo apt install maven
+```
 
 
 
