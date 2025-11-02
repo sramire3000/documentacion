@@ -187,10 +187,8 @@ Categories=Development;IDE;
 ```
 
 ### Install DOCKER
-#Docker
 Info URL https://docs.docker.com/engine/install/ubuntu/
-
-# Add Docker's official GPG key:
+Add Docker's official GPG key:
 ```bash
 sudo apt-get update
 sudo apt-get install ca-certificates curl
@@ -215,6 +213,7 @@ sudo usermod -aG docker $USER
 
 newgrp docker
 ```
+
 
 
 
