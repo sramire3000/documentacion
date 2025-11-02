@@ -31,5 +31,11 @@ info:
   Packet Manager	: 10.0.2
 ````
 
+### Create project
+```bash
+ng new angular-primeng
+	  stylesheet format	: Sass
+	  Server Renderin   : no
+```
 
 
