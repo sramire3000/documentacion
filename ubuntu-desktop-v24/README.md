@@ -21,11 +21,17 @@ sudo sysctl vm.swappiness=60
 sudo hostnamectl set-hostname hsr.com.sv
 ```
 
-### Actualizar Ubuntu
+### Actualizar repositorios Ubuntu
 ```bash
 sudo apt update
+
+```
+
+### Actualizar ubuntu
+```bash
 sudo apt upgrade
 ```
+
 
 ## Utilidades
 
@@ -67,6 +73,7 @@ sudo add-apt-repository ppa:zhangsongcui3371/fastfetch
 sudo apt update
 sudo apt install fastfetch
 ```
+
 
 
 
