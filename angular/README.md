@@ -63,7 +63,7 @@ npm install -g @angular/cli@20.3.8
 ### Create project
 ```bash
 ng new angular-primeng
-	  stylesheet format	: Sass (idented)
+	  stylesheet format	: Sass (CSS)
 	  Server Renderin   : no
 ```
 ### Install dependencia en raiz del proyecto
@@ -177,6 +177,7 @@ npm install tailwindcss @tailwindcss/postcss postcss --force
   Hello world!
 </h1>
 ```
+
 
 
 
