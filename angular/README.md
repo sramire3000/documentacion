@@ -43,6 +43,11 @@ Ejemplo:
   npm install -g @angular/cli@16.0.0
 ```
 
+### Politica en Shell Windows
+```bash
+Set-ExecutionPolicy -Scope CurrentUser unrestricted
+```
+
 ### Create Proyect
 ```bash
 ng new <project-name>
@@ -523,6 +528,7 @@ Here are some related projects
 - [Angular](https://angular.dev/overview)
 - [HyperUI](https://hyperui.dev/)
 - [Prime Ng](https://primeng.org/)
+
 
 
 
