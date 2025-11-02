@@ -3,18 +3,13 @@ The framework for building scalable web apps with confidence
 
 ### Versiones comunes y compatibilidad
 ```
-Angular 16: Node.js 18.13+ o 20.9+
-Angular 15: Node.js 14.20+, 16.13+, o 18.10+
-Angular 14: Node.js 14.15+ o 16.10+
-Angular 13: Node.js 12.20+ o 14.15+, o 16.10+
 
-
-Angular	Node.js	TypeScript	npm	Fecha Lanzamiento
-v18	18.19+ / 20.10+	5.2+	8.11+	Mayo 2024
-v17	18.13+ / 20.9+	5.2+	8.11+	Nov 2023
-v16	16.14+ / 18.10+	4.9+	8.11+	Mayo 2023
-v15	14.20+ / 16.13+ / 18.10+	4.8+	8.11+	Nov 2022
-v14	14.15+ / 16.10+	4.6+	8.11+	Jun 2022
+Angular	Node.js	             TypeScript	npm	   Fecha Lanzamiento	Estado
+v20	    18.19+ / 20.10+ / 22.0+	5.6+	8.11+  Mayo 2025	        PRÓXIMA VERSIÓN
+v19	    18.19+ / 20.10+ / 22.0+	5.4+	8.11+  Nov 2024	            ÚLTIMA ESTABLE
+v18	    18.19+ / 20.10+	        5.4+	8.11+  Mayo 2024	        LTS (hasta 2026)
+v17	    18.13+ / 20.9+	        5.2+	8.11+  Nov 2023	            LTS (hasta 2025)
+v16	    16.14+ / 18.10+	        4.9+	8.11+  Mayo 2023	        Fin soporte
 ```
 
 ### Install Angular CLI
@@ -79,6 +74,7 @@ npm install primeng @primeuix/themes
         })
     ]
 ```
+
 
 
 
