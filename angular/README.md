@@ -46,12 +46,16 @@ npm start
 ```
 
 # Angular + PrimeNg + Tailwind
-````bash
+```bash
 info:
   Node Version		: v22.14.0
   Angular CLI 		: 19.2.0
   Packet Manager	: 10.0.2
-````
+```
+### Si se esta usando nvm
+```bash
+nvm use v22.14.0
+```
 
 ### Create project
 ```bash
@@ -170,6 +174,7 @@ npm install tailwindcss @tailwindcss/postcss postcss --force
   Hello world!
 </h1>
 ```
+
 
 
 
