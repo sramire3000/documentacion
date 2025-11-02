@@ -13,7 +13,15 @@ npm install -g @angular/cli
 ```bash
 ng new <project-name>
 ```
+### Install Dependencias
+```bash
+npm install
+```
 
+### Run
+```bash
+npm start
+```
 
 # Angular + PrimeNg + Tailwind
 ````bash
@@ -22,5 +30,6 @@ info:
   Angular CLI 		: 19.2.0
   Packet Manager	: 10.0.2
 ````
+
 
 
