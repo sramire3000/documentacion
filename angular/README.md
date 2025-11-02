@@ -14,8 +14,19 @@ C:\Users\<usuario>\AppData\Roaming\npm\node_modules\@angular
 
 
 ### Versiones comunes y compatibilidad
+
+```bash
+Angular CLI  : 20.0.4
+Node : 24.3.0
+
+Angular CLI :  19.0.2
+Node: 22.5.1
+
+Angular CLI: 15.0.1
+Node: 18.19.1
 ```
 
+```
 Angular	Node.js	             TypeScript	npm	   Fecha Lanzamiento	Estado
 v20	    18.19+ / 20.10+ / 22.0+	5.6+	8.11+  Mayo 2025	        PRÓXIMA VERSIÓN
 v19	    18.19+ / 20.10+ / 22.0+	5.4+	8.11+  Nov 2024	            ÚLTIMA ESTABLE
@@ -528,6 +539,7 @@ Here are some related projects
 - [Angular](https://angular.dev/overview)
 - [HyperUI](https://hyperui.dev/)
 - [Prime Ng](https://primeng.org/)
+
 
 
 
