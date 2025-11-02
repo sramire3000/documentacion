@@ -95,9 +95,11 @@ npm install tailwindcss @tailwindcss/postcss postcss --force
 
 ### Test install ./src/app/app.html
 ```
+<router-outlet />
 <h1 class="text-3xl font-bold underline">
   Hello world!
 </h1>
 ```
+
 
 
