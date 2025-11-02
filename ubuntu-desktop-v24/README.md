@@ -21,6 +21,12 @@ sudo sysctl vm.swappiness=60
 sudo hostnamectl set-hostname hsr.com.sv
 ```
 
+### Actualizar Ubuntu
+```bash
+sudo apt update
+sudo apt upgrade
+```
+
 ## Utilidades
 
 ### Check Bateria
@@ -61,6 +67,7 @@ sudo add-apt-repository ppa:zhangsongcui3371/fastfetch
 sudo apt update
 sudo apt install fastfetch
 ```
+
 
 
 
