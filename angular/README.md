@@ -100,6 +100,10 @@ npm install tailwindcss @tailwindcss/postcss postcss --force
   Hello world!
 </h1>
 ```
+### Test Run
+```bash
+ng serve --open
+```
 
 
 
