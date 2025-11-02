@@ -1,12 +1,20 @@
 # Angular
 The framework for building scalable web apps with confidence
 
+### Versiones comunes y compatibilidad
+```
+Angular 16: Node.js 18.13+ o 20.9+
+Angular 15: Node.js 14.20+, 16.13+, o 18.10+
+Angular 14: Node.js 14.15+ o 16.10+
+Angular 13: Node.js 12.20+ o 14.15+, o 16.10+
+```
 
 ### Install Angular CLI
 To install or update nvm, you should run the install script. To do that, you may either download and run the script manually, or use the following cURL or Wget command:
 
 ```bash
 npm install -g @angular/cli
+ng version
 ```
 
 ### Create Proyect
@@ -63,6 +71,7 @@ npm install primeng @primeuix/themes
         })
     ]
 ```
+
 
 
 
