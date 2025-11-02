@@ -477,7 +477,21 @@ import { KeyFilterModule } from 'primeng/keyfilter';
   providers: [],
 })
 export class PrimeImportsModule {}
+```
 
+### Test Change PrimeNg in /src/app/app.ts
+```bash
+//Remove
+import { ButtonModule } from 'primeng/button'
+
+//Remove
+imports: [ButtonModule]
+
+//Add
+import { PrimeImportsModule } from './prime-imports';
+
+//Add
+imports: [PrimeImportsModule]
 ```
 
 
