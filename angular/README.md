@@ -37,5 +37,35 @@ ng new angular-primeng
 	  stylesheet format	: Sass
 	  Server Renderin   : no
 ```
+### Install dependencia
+```bash
+npm install primeng @primeuix/themes
+```
+
+### Edit "src/app/app.config.ts" add
+```bash
+	import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+	import { providePrimeNG } from 'primeng/config';
+	import Aura from '@primeuix/themes/aura';
+
+    providers: [
+    	provideAnimationsAsync(),
+        providePrimeNG({
+            theme: {
+                preset: Aura,
+                options: {
+                  cssLayer: {
+                      name: 'primeng',
+                      order: 'tailwind-base, primeng, tailwind-utilities'
+                  }
+              }				
+            }
+        })
+    ]
+```
+
+
+
+
 
 
