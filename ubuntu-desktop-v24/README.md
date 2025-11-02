@@ -55,12 +55,13 @@ sudo apt install wget
 sudo apt install shutter
 sudo apt install flameshot
 ```
-# Install fastfetch informacion global
+### Install fastfetch informacion global
 ```bash
 sudo add-apt-repository ppa:zhangsongcui3371/fastfetch
 sudo apt update
 sudo apt install fastfetch
 ```
+
 
 
 
