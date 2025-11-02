@@ -15,9 +15,20 @@ v16	    16.14+ / 18.10+	        4.9+	8.11+  Mayo 2023	        Fin soporte
 ### Install Angular CLI
 To install or update nvm, you should run the install script. To do that, you may either download and run the script manually, or use the following cURL or Wget command:
 
+### Install ultima version
 ```bash
 npm install -g @angular/cli
 ng version
+```
+
+### Install version especifica
+```bash
+npm install -g @angular/cli@<version>
+
+Ejemplo:
+  npm install -g @angular/cli@14.2.0
+  npm install -g @angular/cli@15.1.0
+  npm install -g @angular/cli@16.0.0
 ```
 
 ### Create Proyect
@@ -74,6 +85,7 @@ npm install primeng @primeuix/themes
         })
     ]
 ```
+
 
 
 
