@@ -221,7 +221,23 @@ sudo chmod +x /usr/local/bin/docker-compose
 docker-compose --version
 ```
 
+### Instalar portainer
+```bash
+https://voidnull.es/instalar-portainer-en-ubuntu-24-04/
+docker volume create portainer_data
+docker run -d -p 9000:9000 -v /var/run/docker.sock:/var/run/docker.sock -v portainer_data:/data portainer/portainer-ce:latest --restart=always
+http://localhost:9000/
+```
 
+### Install Node Version Manager
+```bash
+# URL DOC https://github.com/nvm-sh/nvm?tab=readme-ov-file#installing-and-updating
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
+
+nvm --version
+nvm lits
+
+```
 
 
 
