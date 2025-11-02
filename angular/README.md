@@ -494,6 +494,10 @@ import { PrimeImportsModule } from './prime-imports';
 imports: [PrimeImportsModule]
 ```
 
+### Test Run PrimeNg
+```bash
+ng serve --open
+```
 
 
 
