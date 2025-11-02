@@ -154,6 +154,11 @@ imports: [ButtonModule],
 ng serve --open
 ```
 
+### Install Adictional Prime UI
+```bash
+npm install tailwindcss-primeui
+```
+
 
 
 
