@@ -24,11 +24,13 @@ nvm --version
 # Listado de versiones en linea
 ```bash
 nvm ls-remote
+nvm list available 
 ```
 
 # LIstado de versiones en el Sistema
 ```bash
 nvm ls
+nvm list
 ```
 
 # Install version example
@@ -40,4 +42,10 @@ nvm install v18.19.1
 ```bash
 nvm use [version node]
 ```
+
+@ Uninstall version
+```bash
+nvm uninstall v4.9.1
+```
+
 
