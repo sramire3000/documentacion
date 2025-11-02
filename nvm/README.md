@@ -21,9 +21,15 @@ wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
 nvm --version
 ```
 
+# Listado de versiones en linea
+```bash
+nvm ls-remote
+```
+
 # LIstado de versiones en el Sistema
 ```bash
 nvm ls
 ```
+
 
 
