@@ -55,7 +55,9 @@ info:
 ```
 ### Si se esta usando nvm
 ```bash
+nvm install v24.3.0 
 nvm use v24.3.0
+npm install -g @angular/cli@20.3.8
 ```
 
 ### Create project
@@ -175,6 +177,7 @@ npm install tailwindcss @tailwindcss/postcss postcss --force
   Hello world!
 </h1>
 ```
+
 
 
 
