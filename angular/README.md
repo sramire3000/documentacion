@@ -53,141 +53,30 @@ info:
   Package Manager: npm 11.4.2
   OS: linux x64
 ```
-### Si se esta usando nvm
+### Install Node / Angular
 ```bash
+npm unistall -g @angular/cli
+nvm list
 nvm install v24.3.0 
 nvm use v24.3.0
 npm install -g @angular/cli@20.3.8
 ```
-
-### Create project
-```bash
-ng new angular-primeng
-	  stylesheet format	: Sass (CSS)
-	  Server Renderin   : no
-```
-### Install dependencia en raiz del proyecto
-```bash
-npm install primeng @primeuix/themes
-```
-
-### Edit "src/app/app.config.ts" add
-```bash
-	import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-	import { providePrimeNG } from 'primeng/config';
-	import Aura from '@primeuix/themes/aura';
-
-    providers: [
-    	provideAnimationsAsync(),
-        providePrimeNG({
-            theme: {
-                preset: Aura,
-                options: {
-                  cssLayer: {
-                      name: 'primeng',
-                      order: 'tailwind-base, primeng, tailwind-utilities'
-                  }
-              }				
-            }
-        })
-    ]
+## Crear proyecto Angular
+```bash 
+ng new angular20-primeng-tallwind4
+   StyleSheet format : CSS
+   Prerendering          	: No
+   Zoneless                 : Yes
+   Practices					: claude, github copilot, Geminit 
+   
+cd angular20-primeng-tallwind4
+ng serve --open
 ```
 
-### Probar PrimeNg
-```bash
-  ng g c components/pruebas --skip-tests
-```
-
-### Modificar src/app/app.routes.ts
-```bash
-export const routes: Routes = [
-  {
-    path : '',
-    redirectTo: 'pruebas',
-    pathMatch: 'full'
-  },
-  {
-    path: 'pruebas',
-    component: Pruebas
-  }
-];
-```
-
-### edit src/app/components/pruebas/pruebas.html
-```bash
-<div class="card flex justify-center">
-  <p-button label="Check" />
-</div>
-```
-
-### edit src/app/components/pruebas/pruebas.ts
-```bash
-import { ButtonModule } from 'primeng/button';
-
-@Component({
-    imports: [ButtonModule]
-})
-```
-
-### edit src/app/app.html
-```bash
-<router-outlet />
-```
-
-### Subir server
-```bash
-  ng serve -o
-```
-
-### install icons
-```bash
-npm install primeicons
-```
-
-### Install plugin
-```bash
-npm i tailwindcss-primeui
-```
-
-### Install Tailwind css
+## Install Tallwind Css 4
+### Install paquete de TailwindCss4
 ```bash
 npm install tailwindcss @tailwindcss/postcss postcss --force
 ```
-
-### Create .postcssrc.json en raiz del proyecto
-```bash
-{
-  "plugins": {
-    "@tailwindcss/postcss": {}
-  }
-}
-```
-
-### edit src/styles.scss
-```bash
-@use "tailwindcss";
-@use "primeicons/primeicons.css";
-@plugin "tailwindcss-primeui";
-@layer tailwind, primeng;
-```
-
-### edit src/app/components/pruebas/pruebas.html
-```bash
-<h1 class="text-3xl font-bold underline">
-  Hello world!
-</h1>
-```
-
-
-
-
-
-
-
-
-
-
-
-
 
 
