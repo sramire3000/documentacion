@@ -35,7 +35,7 @@ acpi -V
 sudo apt install gparted
 ```
 
-# Install Btop monitor
+### Install Btop monitor
 ```bash
 sudo snap install btop
 btop
@@ -61,6 +61,7 @@ sudo add-apt-repository ppa:zhangsongcui3371/fastfetch
 sudo apt update
 sudo apt install fastfetch
 ```
+
 
 
 
