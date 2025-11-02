@@ -154,10 +154,8 @@ imports: [ButtonModule],
 ### Test PrimeNg in /src/app/app.html
 ```bash
 <p-button label="Check" />
-<i class="pi pi-check"></i>
-<i class="pi pi-times"></i>
-<span class="pi pi-search"></span>
-<span class="pi pi-user"></span>
+<i class="pi pi-spin pi-spinner" style="font-size: 2rem"></i>
+<i class="pi pi-spin pi-cog" style="font-size: 2rem"></i>
 ```
 
 ### Test Run PrimeNg
@@ -505,6 +503,7 @@ imports: [PrimeImportsModule]
 ```bash
 ng serve --open
 ```
+
 
 
 
