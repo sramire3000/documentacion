@@ -16,36 +16,37 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
 wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
 ```
 
-# Version
+### Version
 ```bash
 nvm --version
 ```
 
-# Listado de versiones en linea
+### Listado de versiones en linea
 ```bash
 nvm ls-remote
 nvm list available 
 ```
 
-# LIstado de versiones en el Sistema
+### LIstado de versiones en el Sistema
 ```bash
 nvm ls
 nvm list
 ```
 
-# Install version example
+### Install version example
 ```bash
 nvm install v18.19.1
 ```
 
-# Use
+### Use
 ```bash
 nvm use [version node]
 ```
 
-@ Uninstall version
+### Uninstall version
 ```bash
 nvm uninstall v4.9.1
 ```
+
 
 
