@@ -151,7 +151,7 @@ npm i tailwindcss-primeui
 npm install tailwindcss @tailwindcss/postcss postcss --force
 ```
 
-### Create .postcssrc.json
+### Create .postcssrc.json en raiz del proyecto
 ```bash
 {
   "plugins": {
@@ -174,6 +174,7 @@ npm install tailwindcss @tailwindcss/postcss postcss --force
   Hello world!
 </h1>
 ```
+
 
 
 
