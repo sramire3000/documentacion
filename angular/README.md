@@ -105,6 +105,14 @@ npm install tailwindcss @tailwindcss/postcss postcss --force
 ng serve --open
 ```
 
+## Install PrimeNG
+
+### Install paquete PrimeNg
+```bash
+npm install primeng @primeuix/themes
+```
+
+
 
 
 
