@@ -137,9 +137,39 @@ import { ButtonModule } from 'primeng/button';
 npm install primeicons
 ```
 
+### Install plugin
+```bash
+npm i tailwindcss-primeui
+```
 
+### Install Tailwind css
+```bash
+npm install tailwindcss @tailwindcss/postcss postcss --force
+```
 
+### Create .postcssrc.json
+```bash
+{
+  "plugins": {
+    "@tailwindcss/postcss": {}
+  }
+}
+```
 
+### edit src/styles.scss
+```bash
+@use "tailwindcss";
+@use "primeicons/primeicons.css";
+@plugin "tailwindcss-primeui";
+@layer tailwind, primeng;
+```
+
+### edit src/app/components/pruebas/pruebas.html
+```bash
+<h1 class="text-3xl font-bold underline">
+  Hello world!
+</h1>
+```
 
 
 
