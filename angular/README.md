@@ -134,6 +134,16 @@ export const appConfig: ApplicationConfig = {
 };
 ```
 
+### Test PrimeNg in /src/app/app.ts
+```bash
+//Add
+import { ButtonModule } from 'primeng/button';
+
+//Add
+imports: [ButtonModule],
+
+```
+
 
 
 
