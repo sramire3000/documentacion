@@ -158,6 +158,13 @@ ng serve --open
 ```bash
 npm install tailwindcss-primeui
 ```
+### Add archivo styles.css
+```bash
+@import "tailwindcss";
+@import "tailwindcss-primeui";
+```
+
+
 
 
 
