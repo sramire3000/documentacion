@@ -63,7 +63,7 @@ ng new angular-primeng
 	  stylesheet format	: Sass (idented)
 	  Server Renderin   : no
 ```
-### Install dependencia
+### Install dependencia en raiz del proyecto
 ```bash
 npm install primeng @primeuix/themes
 ```
@@ -174,6 +174,7 @@ npm install tailwindcss @tailwindcss/postcss postcss --force
   Hello world!
 </h1>
 ```
+
 
 
 
