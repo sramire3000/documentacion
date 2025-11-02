@@ -126,7 +126,12 @@ export const appConfig: ApplicationConfig = {
       provideAnimationsAsync(),
       providePrimeNG({
           theme: {
-              preset: Lara
+              preset: Lara,
+              options: {
+                  prefix: 'p',
+                  darkModeSelector: 'system',
+                  cssLayer: false
+              }
           }
       })
       // End Add
@@ -163,6 +168,7 @@ npm install tailwindcss-primeui
 @import "tailwindcss";
 @import "tailwindcss-primeui";
 ```
+
 
 
 
