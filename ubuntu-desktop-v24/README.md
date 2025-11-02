@@ -16,6 +16,11 @@ vm.swappiness=60
 sudo sysctl vm.swappiness=60
 ```
 
+### Cambiar nombre al equipo
+```bash
+sudo hostnamectl set-hostname hsr.com.sv
+```
+
 ## Utilidades
 
 ### Check Bateria
@@ -36,10 +41,27 @@ sudo snap install btop
 btop
 ```
 
+### Install Stacer monitoreo
+```bash
+sudo apt install stacer
+```
+
 ### Install Wget
 ```bash
 sudo apt install wget
 ```
+### shutter
+```bash
+sudo apt install shutter
+sudo apt install flameshot
+```
+# Install fastfetch informacion global
+```bash
+sudo add-apt-repository ppa:zhangsongcui3371/fastfetch
+sudo apt update
+sudo apt install fastfetch
+```
+
 
 
 
