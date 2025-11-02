@@ -110,6 +110,7 @@ ng serve --open
 ### Install paquete PrimeNg
 ```bash
 npm install primeng @primeuix/themes
+npm install quill chart.js --save
 ```
 
 ### Provider
@@ -498,6 +499,7 @@ imports: [PrimeImportsModule]
 ```bash
 ng serve --open
 ```
+
 
 
 
