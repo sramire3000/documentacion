@@ -79,4 +79,25 @@ ng serve --open
 npm install tailwindcss @tailwindcss/postcss postcss --force
 ```
 
+### Crear archivo en raiz  .postcssrc.json
+```bash
+{
+  "plugins": {
+    "@tailwindcss/postcss": {}
+  }
+}
+```
+
+### Add an @import to ./src/styles.css that imports Tailwind CSS.
+```bash
+@import "tailwindcss";
+```
+
+### Test install ./src/app/app.html
+```
+<h1 class="text-3xl font-bold underline">
+  Hello world!
+</h1>
+```
+
 
