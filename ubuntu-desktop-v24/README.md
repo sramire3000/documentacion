@@ -105,6 +105,11 @@ sudo nano /etc/environment.
 CHROME_EXECUTABLE=/snap/bin/chromium
 ```
 
+### Install Zeal Documentacion lenguajes
+```bash
+sudo apt-get install zeal
+```
+
 ## SOFTWARE DE DESARROLLO
 
 ### Buscar Jdks
@@ -236,7 +241,24 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
 
 nvm --version
 nvm lits
+```
 
+### Install Jmeter
+```bash
+java --version
+Download
+https://dlcdn.apache.org//jmeter/binaries/apache-jmeter-5.6.3.tgz
+
+tar -xvzf apache-jmeter-5.6.3.tgz
+sudo mv apache-jmeter-5.6.3  /opt/jmeter
+cd /opt/jmeter
+cd
+pwd
+sudo open .bashrc
+--Add path
+     export PATH=$PATH:/opt/jmeter/bin
+source .bashrc
+jmeter
 ```
 
 
