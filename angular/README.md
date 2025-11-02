@@ -149,6 +149,11 @@ imports: [ButtonModule],
 <p-button label="Check" />
 ```
 
+### Test Run PrimeNg
+```bash
+ng serve --open
+```
+
 
 
 
