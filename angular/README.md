@@ -115,7 +115,6 @@ npm install primeng @primeuix/themes
 ### Provider
 Add providePrimeNG and provideAnimationsAsync to the list of providers in your app.config.ts and use the theme property to configure a theme such as Aura.
 ```bash
-import { ApplicationConfig } from '@angular/core';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { providePrimeNG } from 'primeng/config';
 import Aura from '@primeuix/themes/aura';
@@ -131,6 +130,7 @@ export const appConfig: ApplicationConfig = {
     ]
 };
 ```
+
 
 
 
