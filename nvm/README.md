@@ -15,3 +15,9 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
 ```bash
 wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
 ```
+
+# LIstado de versiones en el Sistema
+```bash
+nvm ls
+```
+
