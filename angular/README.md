@@ -93,17 +93,18 @@ npm install tailwindcss @tailwindcss/postcss postcss --force
 @import "tailwindcss";
 ```
 
-### Test install ./src/app/app.html
+### Test good install tallwind ./src/app/app.html
 ```
 <router-outlet />
 <h1 class="text-3xl font-bold underline">
   Hello world!
 </h1>
 ```
-### Test Run
+### Test Run Tallwind
 ```bash
 ng serve --open
 ```
+
 
 
 
