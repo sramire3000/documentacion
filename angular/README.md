@@ -1,6 +1,18 @@
 # Angular
 The framework for building scalable web apps with confidence
 
+### Uninstall Angular
+```bash
+npm uninstall -g @angular/cli 
+npm uninstall -g angular-cli
+npm cache clean
+npm cache clean --force 
+
+# Eliminar carpeta windows
+C:\Users\<usuario>\AppData\Roaming\npm\node_modules\@angular
+```
+
+
 ### Versiones comunes y compatibilidad
 ```
 
@@ -511,6 +523,7 @@ Here are some related projects
 - [Angular](https://angular.dev/overview)
 - [HyperUI](https://hyperui.dev/)
 - [Prime Ng](https://primeng.org/)
+
 
 
 
