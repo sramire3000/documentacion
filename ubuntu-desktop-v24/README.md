@@ -73,6 +73,15 @@ sudo add-apt-repository ppa:zhangsongcui3371/fastfetch
 sudo apt update
 sudo apt install fastfetch
 ```
+## SOFTWARE DE DESARROLLO
+
+### Install JDK's
+```bash
+sudo apt -y install openjdk-17-jdk
+java --version
+sudo apt install openjdk-21-jdk 
+java --version
+```
 
 
 
