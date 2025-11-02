@@ -121,15 +121,18 @@ import Aura from '@primeuix/themes/aura';
 
 export const appConfig: ApplicationConfig = {
     providers: [
-        provideAnimationsAsync(),
-        providePrimeNG({
-            theme: {
-                preset: Aura
-            }
-        })
+      // Add
+      provideAnimationsAsync(),
+      providePrimeNG({
+          theme: {
+              preset: Aura
+          }
+      })
+      // End Add
     ]
 };
 ```
+
 
 
 
