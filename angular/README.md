@@ -144,6 +144,10 @@ imports: [ButtonModule],
 
 ```
 
+### Test PrimeNg in /src/app/app.html
+```bash
+<p-button label="Check" />
+```
 
 
 
