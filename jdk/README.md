@@ -1,4 +1,4 @@
-# OPEN JDK's
+# OPEN JDK's Ubuntu 24
 
 ### Install OPEN JDK 17
 ```bash
@@ -19,6 +19,7 @@ sudo apt install openjdk-25-jdk
 ```bash
 sudo update-alternatives --config java
 ```
+
 
 
 
