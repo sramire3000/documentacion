@@ -75,14 +75,23 @@ sudo apt install fastfetch
 ```
 ## SOFTWARE DE DESARROLLO
 
+### Buscar Jdks
+```bash
+sudo apt search openjdk | grep -E 'openjdk-.*-jdk/'
+```
+
 ### Install JDK's
 ```bash
 sudo apt -y install openjdk-17-jdk
-java --version
-sudo apt install openjdk-21-jdk 
+sudo apt install openjdk-21-jdk
+sudo apt install openjdk-25-jdk
 java --version
 ```
 
+### Cambiarse de Jdk
+```bash
+sudo update-alternatives --config java
+```
 
 
 
