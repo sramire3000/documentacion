@@ -14,3 +14,5 @@ npm install -g @angular/cli
 ng new <project-name>
 ```
 
+
+# Angular + PrimeNg + Tailwind
