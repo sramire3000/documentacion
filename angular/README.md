@@ -16,7 +16,10 @@ ng new <project-name>
 
 
 # Angular + PrimeNg + Tailwind
+```
 info:
   Node Version		: v22.14.0
   Angular CLI 		: 19.2.0
   Packet Manager	: 10.0.2
+```
+
