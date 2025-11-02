@@ -1,4 +1,4 @@
-# JDK
+# OPEN JDK's
 
 ### Install JDK 7
 ```bash
@@ -15,5 +15,6 @@ java --version
 ```bash
 sudo update-alternatives --config java
 ```
+
 
 
