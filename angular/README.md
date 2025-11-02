@@ -117,7 +117,8 @@ Add providePrimeNG and provideAnimationsAsync to the list of providers in your a
 ```bash
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { providePrimeNG } from 'primeng/config';
-import Aura from '@primeuix/themes/aura';
+//import Aura from '@primeuix/themes/aura';
+import Lara from '@primeuix/themes/lara';
 
 export const appConfig: ApplicationConfig = {
     providers: [
@@ -125,13 +126,14 @@ export const appConfig: ApplicationConfig = {
       provideAnimationsAsync(),
       providePrimeNG({
           theme: {
-              preset: Aura
+              preset: Lara
           }
       })
       // End Add
     ]
 };
 ```
+
 
 
 
