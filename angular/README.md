@@ -60,7 +60,7 @@ nvm use v22.14.0
 ### Create project
 ```bash
 ng new angular-primeng
-	  stylesheet format	: Sass
+	  stylesheet format	: Sass (idented)
 	  Server Renderin   : no
 ```
 ### Install dependencia
@@ -174,6 +174,7 @@ npm install tailwindcss @tailwindcss/postcss postcss --force
   Hello world!
 </h1>
 ```
+
 
 
 
