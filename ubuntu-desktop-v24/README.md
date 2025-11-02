@@ -30,3 +30,12 @@ acpi -V
 sudo apt install gparted
 ```
 
+# Install Btop monitor
+```bash
+sudo snap install btop
+btop
+```
+
+
+
+
