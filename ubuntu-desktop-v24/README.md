@@ -117,5 +117,28 @@ git config --global user.name "Hector Ramirez"
 udo apt install maven
 ```
 
+### Install FVM
+```bash
+wget https://github.com/leoafarias/fvm/releases/download/3.2.1/fvm-3.2.1-linux-x64.tar.gz
+sudo tar -xvf fvm-3.2.1-linux-x64.tar.gz
+mkdir .fvm_flutter
+cd .fvm_flutter/
+mkdir bin
+cd bin/
+#copiar fvm y src en el bin
+
+#sudo nano /etc/environment
+PATH="........:/snap/bin:/home/hector-ramirez/.fvm_flutter/bin"
+```
+
+
+
+
+
+
+
+
+
+
 
 
