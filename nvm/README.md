@@ -31,5 +31,13 @@ nvm ls-remote
 nvm ls
 ```
 
+# Install version example
+```bash
+nvm install v18.19.1
+```
 
+# Use
+```bash
+nvm use [version node]
+```
 
