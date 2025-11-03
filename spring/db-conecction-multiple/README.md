@@ -2169,9 +2169,338 @@ public class DbSybaseJ {
 }
 ```
 
-
 ## Mongo Server
 
+### File application.properties
+```
+# Configuracion MongoDB
+spring.data.mongodb.uri=mongodb://[user_db]:[password_db]@[ip_server]:[port_server]/[database_name]?authSource=admin
+spring.data.mongodb.database=[database_name]
+spring.data.mongodb.auto-index-creation=true
+spring.data.mongodb.write-concern=ACKNOWLEDGED
+spring.data.mongodb.read-preference=PRIMARY
+
+# Configuracion adicional para desarrollo
+spring.data.mongodb.field-naming-strategy=org.springframework.data.mapping.model.SnakeCaseFieldNamingStrategy
+```
+
+### File DbMongo.java
+```
+package com.example.demo.app.configuration;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.TimeUnit;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+//import org.springframework.context.annotation.Primary;
+import org.springframework.core.env.Environment;
+import org.springframework.data.mongodb.MongoDatabaseFactory;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.SimpleMongoClientDatabaseFactory;
+import org.springframework.data.mongodb.core.convert.DbRefResolver;
+import org.springframework.data.mongodb.core.convert.DefaultDbRefResolver;
+import org.springframework.data.mongodb.core.convert.DefaultMongoTypeMapper;
+import org.springframework.data.mongodb.core.convert.MappingMongoConverter;
+import org.springframework.data.mongodb.core.mapping.MongoMappingContext;
+import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
+
+import com.mongodb.ConnectionString;
+import com.mongodb.MongoClientSettings;
+import com.mongodb.client.MongoClient;
+import com.mongodb.client.MongoClients;
+
+/**
+ * Configuración de base de datos para MongoDB.
+ * 
+ * <p>Esta clase proporciona la configuración completa para la conexión a bases de datos
+ * MongoDB, incluyendo configuración del cliente MongoDB, MongoDatabaseFactory,
+ * MappingMongoConverter y MongoTemplate específicamente optimizados para MongoDB.</p>
+ * 
+ * <p><strong>Características principales:</strong></p>
+ * <ul>
+ *   <li>Configuración optimizada del pool de conexiones de MongoDB</li>
+ *   <li>Manejo de timeouts de conexión y socket</li>
+ *   <li>Configuración de heartbeats para monitoreo de cluster</li>
+ *   <li>Eliminación del campo _class para documentos más limpios</li>
+ *   <li>Soporte para réplicas y clusters de MongoDB</li>
+ * </ul>
+ * 
+ * <p><strong>Propiedades requeridas en application.properties:</strong></p>
+ * <pre>
+ * spring.data.mongodb.uri=mongodb://usuario:contraseña@host:puerto/base_datos
+ * spring.data.mongodb.database=nombre_base_datos
+ * </pre>
+ * 
+ * <p><strong>Propiedades opcionales:</strong></p>
+ * <pre>
+ * spring.data.mongodb.auto-index-creation=true
+ * spring.data.mongodb.write-concern=ACKNOWLEDGED
+ * spring.data.mongodb.read-preference=PRIMARY
+ * </pre>
+ * 
+ */
+@SuppressWarnings("unused")
+@Configuration
+@EnableMongoRepositories(
+    basePackages = "com.example.demo.app.repository.mongodb",
+    mongoTemplateRef = "mongoDbTemplate"
+)
+public class DbMongo {
+
+    /** 
+     * Número máximo de conexiones en el pool de MongoDB 
+     */
+    private static final int MAX_CONNECTIONS = 100;
+    
+    /** 
+     * Número mínimo de conexiones en el pool de MongoDB 
+     */
+    private static final int MIN_CONNECTIONS = 5;
+    
+    /** 
+     * Tiempo máximo de vida de una conexión en milisegundos 
+     */
+    private static final long MAX_CONNECTION_LIFETIME = TimeUnit.MINUTES.toMillis(30);
+    
+    /** 
+     * Timeout para establecer conexión en milisegundos 
+     */
+    private static final long CONNECTION_TIMEOUT = TimeUnit.SECONDS.toMillis(30);
+    
+    /** 
+     * Timeout para operaciones de socket en milisegundos 
+     */
+    private static final long SOCKET_TIMEOUT = TimeUnit.SECONDS.toMillis(60);
+    
+    @Autowired
+    private Environment env;
+    
+    /**
+     * Configura y crea el cliente MongoDB.
+     * 
+     * <p>Este bean proporciona una instancia configurada de {@link MongoClient} 
+     * con las siguientes optimizaciones:</p>
+     * 
+     * <ul>
+     *   <li>Pool de conexiones con máximo de {@value #MAX_CONNECTIONS} conexiones</li>
+     *   <li>Mínimo de {@value #MIN_CONNECTIONS} conexiones mantenidas</li>
+     *   <li>Timeout de conexión de {@value #CONNECTION_TIMEOUT} ms</li>
+     *   <li>Timeout de socket de {@value #SOCKET_TIMEOUT} ms</li>
+     *   <li>Configuración de heartbeats para monitoreo del cluster</li>
+     * </ul>
+     * 
+     * @return MongoClient configurado y optimizado
+     * @throws IllegalStateException si las propiedades requeridas no están configuradas
+     * 
+     * @see #configureMongoClientSettings(String)
+     * @see #getRequiredProperty(String)
+     */
+    @Bean
+    //@Primary
+    MongoClient mongoClient() {
+        String connectionString = getRequiredProperty("spring.data.mongodb.uri");
+        String database = getRequiredProperty("spring.data.mongodb.database");
+        
+        MongoClientSettings settings = configureMongoClientSettings(connectionString);
+        
+        return MongoClients.create(settings);
+    }
+    
+    /**
+     * Configura las opciones del cliente MongoDB.
+     * 
+     * <p>Esta configuración incluye optimizaciones específicas para MongoDB:</p>
+     * <ul>
+     *   <li>Configuración del pool de conexiones</li>
+     *   <li>Timeouts de conexión y socket</li>
+     *   <li>Frecuencia de heartbeats para monitoreo del cluster</li>
+     *   <li>Timeout de selección de servidor</li>
+     * </ul>
+     * 
+     * @param connectionString String de conexión a MongoDB
+     * @return MongoClientSettings configurado
+     */
+    private MongoClientSettings configureMongoClientSettings(String connectionString) {
+        ConnectionString connString = new ConnectionString(connectionString);
+        
+        return MongoClientSettings.builder()
+                .applyConnectionString(connString)
+                .applyToConnectionPoolSettings(builder -> 
+                    builder.maxSize(MAX_CONNECTIONS)
+                           .minSize(MIN_CONNECTIONS)
+                           .maxConnectionLifeTime(MAX_CONNECTION_LIFETIME, TimeUnit.MILLISECONDS)
+                           .maxWaitTime(CONNECTION_TIMEOUT, TimeUnit.MILLISECONDS)
+                )
+                .applyToSocketSettings(builder ->
+                    builder.connectTimeout((int) CONNECTION_TIMEOUT, TimeUnit.MILLISECONDS)
+                           .readTimeout((int) SOCKET_TIMEOUT, TimeUnit.MILLISECONDS)
+                )
+                .applyToServerSettings(builder ->
+                    builder.heartbeatFrequency(10000, TimeUnit.MILLISECONDS) // 10 segundos
+                           .minHeartbeatFrequency(500, TimeUnit.MILLISECONDS)
+                )
+                .applyToClusterSettings(builder ->
+                    builder.serverSelectionTimeout(30000, TimeUnit.MILLISECONDS) // 30 segundos
+                )
+                .build();
+    }
+    
+    /**
+     * Configura la fábrica de bases de datos MongoDB.
+     * 
+     * <p>Este bean proporciona un {@link MongoDatabaseFactory} que se utiliza
+     * para crear conexiones a la base de datos MongoDB especificada.</p>
+     * 
+     * @return MongoDatabaseFactory configurado
+     */
+    @Bean
+    //@Primary
+    MongoDatabaseFactory mongoDatabaseFactory() {
+        return new SimpleMongoClientDatabaseFactory(mongoClient(), 
+                getRequiredProperty("spring.data.mongodb.database"));
+    }
+    
+    /**
+     * Configura el conversor de mapeo para MongoDB.
+     * 
+     * <p>Este bean proporciona un {@link MappingMongoConverter} configurado para:</p>
+     * <ul>
+     *   <li>Eliminar el campo _class de los documentos (documentos más limpios)</li>
+     *   <li>Utilizar un resolver de referencias de base de datos</li>
+     *   <li>Mapear entidades Java a documentos MongoDB</li>
+     * </ul>
+     * 
+     * @return MappingMongoConverter configurado
+     * @throws Exception si ocurre un error durante la configuración
+     */
+    @Bean
+    //@Primary
+    MappingMongoConverter mongoConverter() throws Exception {
+        DbRefResolver dbRefResolver = new DefaultDbRefResolver(mongoDatabaseFactory());
+        MappingMongoConverter converter = new MappingMongoConverter(dbRefResolver, new MongoMappingContext());
+        
+        // Remover _class field para documentos más limpios
+        converter.setTypeMapper(new DefaultMongoTypeMapper(null));
+        
+        return converter;
+    }
+    
+    /**
+     * Configura el template principal de MongoDB.
+     * 
+     * <p>Este bean está marcado para ser usado por los repositorios MongoDB y proporciona
+     * un {@link MongoTemplate} configurado con:</p>
+     * 
+     * <ul>
+     *   <li>La fábrica de base de datos configurada</li>
+     *   <li>El conversor de mapeo optimizado</li>
+     *   <li>Configuraciones adicionales específicas de la aplicación</li>
+     * </ul>
+     * 
+     * @return MongoTemplate configurado y listo para usar
+     * @throws Exception si ocurre un error durante la configuración
+     * 
+     * @see #configureMongoTemplate(MongoTemplate)
+     */
+    @Bean
+    //@Primary
+    MongoTemplate mongoDbTemplate() throws Exception {
+        MongoTemplate mongoTemplate = new MongoTemplate(mongoDatabaseFactory(), mongoConverter());
+        
+        // Configuraciones adicionales del template
+        configureMongoTemplate(mongoTemplate);
+        
+        return mongoTemplate;
+    }
+    
+    /**
+     * Aplica configuraciones adicionales al MongoTemplate.
+     * 
+     * <p>Este método puede ser extendido para aplicar configuraciones específicas
+     * del template como políticas de escritura, lecturas, timeouts, etc.</p>
+     * 
+     * @param mongoTemplate Template a configurar
+     */
+    private void configureMongoTemplate(MongoTemplate mongoTemplate) {
+        Map<String, Object> properties = mongoHibernateProperties();
+        
+        // Aquí puedes configurar propiedades específicas del template si es necesario
+        // Por ejemplo, configuraciones de escritura, lectura, etc.
+        
+        // Ejemplo de configuración adicional:
+        // mongoTemplate.setWriteConcern(WriteConcern.MAJORITY);
+        // mongoTemplate.setReadPreference(ReadPreference.primaryPreferred());
+    }
+    
+    /**
+     * Define las propiedades específicas para MongoDB.
+     * 
+     * <p>Incluye configuraciones para:</p>
+     * <ul>
+     *   <li>Creación automática de índices</li>
+     *   <li>Timeouts de conexión y socket</li>
+     *   <li>Políticas de escritura (Write Concern)</li>
+     *   <li>Preferencias de lectura (Read Preference)</li>
+     * </ul>
+     * 
+     * @return Mapa de propiedades específicas de MongoDB
+     */
+    private Map<String, Object> mongoHibernateProperties() {
+        Map<String, Object> properties = new HashMap<>();
+        
+        // Configuraciones específicas de MongoDB
+        properties.put("mongodb.auto.index.creation", 
+            env.getProperty("spring.data.mongodb.auto-index-creation", "true"));
+        
+        // Configuración de timeouts
+        properties.put("mongodb.socket.timeout", SOCKET_TIMEOUT);
+        properties.put("mongodb.connect.timeout", CONNECTION_TIMEOUT);
+        
+        // Configuración de escritura
+        properties.put("mongodb.write.concern", 
+            env.getProperty("spring.data.mongodb.write-concern", "ACKNOWLEDGED"));
+        
+        // Configuración de lectura
+        properties.put("mongodb.read.preference", 
+            env.getProperty("spring.data.mongodb.read-preference", "PRIMARY"));
+        
+        return properties;
+    }
+    
+    /**
+     * Obtiene una propiedad requerida del entorno.
+     * 
+     * @param key Clave de la propiedad a obtener
+     * @return Valor de la propiedad
+     * @throws IllegalStateException si la propiedad no está configurada
+     */
+    private String getRequiredProperty(String key) {
+        String value = env.getProperty(key);
+        if (value == null) {
+            throw new IllegalStateException("Required property '" + key + "' is not set");
+        }
+        return value.trim();
+    }
+    
+    /**
+     * Verifica si el perfil activo es de desarrollo.
+     * 
+     * @return true si el perfil activo es "dev" o "development", false en caso contrario
+     */
+    private boolean isDevelopmentProfile() {
+        String[] activeProfiles = env.getActiveProfiles();
+        for (String profile : activeProfiles) {
+            if ("dev".equals(profile) || "development".equals(profile)) {
+                return true;
+            }
+        }
+        return false;
+    }
+}
+```
 
 
 
