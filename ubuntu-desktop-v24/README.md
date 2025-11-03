@@ -1,6 +1,6 @@
 # Install software Ubuntu 24 Desktop
 
-## Software Administracion
+## SOFTWARE ADMINISTRACION
 
 ### Cambiar Password root
 ```bash
@@ -32,6 +32,10 @@ sudo apt update
 sudo apt upgrade
 ```
 
+### Forzar reinstalación ignorando conflictos
+```bash
+sudo dpkg -i --force-all nombre_del_paquete.deb
+```
 
 ## UTILIDADES
 
@@ -260,6 +264,7 @@ sudo open .bashrc
 source .bashrc
 jmeter
 ```
+
 
 
 
