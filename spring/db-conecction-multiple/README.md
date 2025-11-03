@@ -968,8 +968,321 @@ spring.datasource.mysql.dialect.dialect=org.hibernate.dialect.MySQL8Dialect
 spring.datasource.mysql.ddl=none
 ```
 
+### File DbMysql.java
+```
+package com.example.demo.app.configuration;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.TimeUnit;
+
+import javax.sql.DataSource;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.jdbc.DataSourceBuilder;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+//import org.springframework.context.annotation.Primary;
+import org.springframework.core.env.Environment;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.orm.jpa.JpaTransactionManager;
+import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
+import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
+
+import com.zaxxer.hikari.HikariDataSource;
+
+/**
+ * Configuración de base de datos para MySQL.
+ * 
+ * <p>Esta clase proporciona la configuración completa para la conexión a bases de datos
+ * MySQL, incluyendo configuración del pool de conexiones HikariCP,
+ * EntityManagerFactory y TransactionManager específicamente optimizados para MySQL.</p>
+ * 
+ * <p><strong>Características principales:</strong></p>
+ * <ul>
+ *   <li>Configuración optimizada para el alto rendimiento de MySQL</li>
+ *   <li>Soporte para batch rewriting de statements (mejora significativa de rendimiento)</li>
+ *   <li>Cache extensivo de prepared statements</li>
+ *   <li>Configuraciones específicas del connector JDBC de MySQL</li>
+ *   <li>Manejo eficiente de conexiones concurrentes</li>
+ * </ul>
+ * 
+ * <p><strong>Propiedades requeridas en application.properties:</strong></p>
+ * <pre>
+ * spring.datasource.mysql.username=usuario
+ * spring.datasource.mysql.password=contraseña
+ * spring.datasource.mysql.url=jdbc:mysql://host:puerto/base_datos
+ * spring.datasource.mysql.driver-class-name=com.mysql.cj.jdbc.Driver
+ * spring.datasource.mysql.ddl=none
+ * spring.datasource.mysql.dialect.dialect=org.hibernate.dialect.MySQLDialect
+ * </pre>
+ * 
+ */
+@Configuration
+@EnableTransactionManagement
+@EnableJpaRepositories(
+    basePackages            = "com.example.demo.app.repository.mysql", 
+    entityManagerFactoryRef = "mysqlEntityManager", 
+    transactionManagerRef   = "mysqlTransactionManager"
+)
+public class DbMysql {
+    
+    /** 
+     * Tamaño máximo del pool de conexiones - MySQL Server maneja mejor conexiones concurrentes 
+     */
+    private static final int MAX_POOL_SIZE = 20;
+    
+    /** 
+     * Mínimo de conexiones inactivas en el pool 
+     */
+    private static final int MIN_IDLE = 5;
+    
+    /** 
+     * Tiempo máximo de vida de una conexión en milisegundos 
+     */
+    private static final long MAX_LIFETIME = TimeUnit.MINUTES.toMillis(30);
+    
+    /** 
+     * Timeout para establecer conexión en milisegundos 
+     */
+    private static final long CONNECTION_TIMEOUT = TimeUnit.SECONDS.toMillis(30);
+    
+    /** 
+     * Timeout para conexiones inactivas en milisegundos 
+     */
+    private static final long IDLE_TIMEOUT = TimeUnit.MINUTES.toMillis(10);
+    
+    @Autowired
+    private Environment env;
+    
+    /**
+     * Configura y crea el DataSource para MySQL.
+     * 
+     * <p>Este bean proporciona una instancia configurada de {@link HikariDataSource} 
+     * optimizada para MySQL con las siguientes características:</p>
+     * 
+     * <ul>
+     *   <li>Configuración de pool con tamaño máximo de {@value #MAX_POOL_SIZE} conexiones</li>
+     *   <li>Mínimo de {@value #MIN_IDLE} conexiones inactivas</li>
+     *   <li>SQL de inicialización para validación temprana de conexiones</li>
+     *   <li>Query de prueba de conexión configurada</li>
+     *   <li>Configuraciones específicas del driver MySQL Connector/J</li>
+     * </ul>
+     * 
+     * @return DataSource configurado para MySQL
+     * @throws IllegalStateException si alguna propiedad requerida no está configurada
+     * 
+     * @see #configureConnectionPool(HikariDataSource)
+     * @see #getRequiredProperty(String)
+     */
+    @Bean
+    //@Primary
+    DataSource DataSourceMySql() {
+        String user = getRequiredProperty("spring.datasource.mysql.username");
+        String pass = getRequiredProperty("spring.datasource.mysql.password");
+        String url = getRequiredProperty("spring.datasource.mysql.url");
+        String driver = getRequiredProperty("spring.datasource.mysql.driver-class-name");
+        
+        HikariDataSource dataSource = DataSourceBuilder.create()
+                .type(HikariDataSource.class)
+                .username(user)
+                .password(pass)
+                .url(url)
+                .driverClassName(driver)
+                .build();
+        
+        dataSource.setConnectionInitSql("SELECT 1");
+        dataSource.setConnectionTestQuery("SELECT 1");
+
+        // Configuración optimizada del pool de conexiones
+        configureConnectionPool(dataSource);
+        
+        return dataSource;
+    }
+    
+    /**
+     * Configura las propiedades específicas del pool de conexiones HikariCP para MySQL.
+     * 
+     * <p>Esta configuración incluye optimizaciones específicas para MySQL Connector/J:</p>
+     * <ul>
+     *   <li>Cache de prepared statements para mejor rendimiento</li>
+     *   <li>Batch rewriting de statements (mejora significativa en rendimiento)</li>
+     *   <li>Uso de prepared statements del servidor</li>
+     *   <li>Cache de metadatos y configuración del servidor</li>
+     *   <li>Optimizaciones de sesión local</li>
+     * </ul>
+     * 
+     * @param dataSource DataSource Hikari a configurar
+     */
+    private void configureConnectionPool(HikariDataSource dataSource) {
+        // Configuración del tamaño del pool
+        dataSource.setMaximumPoolSize(MAX_POOL_SIZE);
+        dataSource.setMinimumIdle(MIN_IDLE);
+        
+        // Configuración de timeouts
+        dataSource.setConnectionTimeout(CONNECTION_TIMEOUT);
+        dataSource.setIdleTimeout(IDLE_TIMEOUT);
+        dataSource.setMaxLifetime(MAX_LIFETIME);
+        
+        // Configuración de rendimiento
+        dataSource.setLeakDetectionThreshold(TimeUnit.SECONDS.toMillis(60));
+        dataSource.setConnectionTestQuery("SELECT 1");
+        dataSource.setValidationTimeout(TimeUnit.SECONDS.toMillis(5));
+        
+        // Configuraciones específicas de MySQL
+        dataSource.addDataSourceProperty("cachePrepStmts", "true");
+        dataSource.addDataSourceProperty("prepStmtCacheSize", "250");
+        dataSource.addDataSourceProperty("prepStmtCacheSqlLimit", "2048");
+        dataSource.addDataSourceProperty("useServerPrepStmts", "true");
+        dataSource.addDataSourceProperty("useLocalSessionState", "true");
+        dataSource.addDataSourceProperty("rewriteBatchedStatements", "true");
+        dataSource.addDataSourceProperty("cacheResultSetMetadata", "true");
+        dataSource.addDataSourceProperty("cacheServerConfiguration", "true");
+        dataSource.addDataSourceProperty("elideSetAutoCommits", "true");
+        dataSource.addDataSourceProperty("maintainTimeStats", "false");
+        
+        // Configuración del nombre del pool para monitoreo
+        dataSource.setPoolName("MySQL-HikariPool");
+    }
+    
+    /**
+     * Configura el EntityManagerFactory para MySQL.
+     * 
+     * <p>Este bean proporciona un {@link LocalContainerEntityManagerFactoryBean} configurado para:</p>
+     * <ul>
+     *   <li>Escanear entidades en el paquete {@code com.example.demo.app.entity.mysql}</li>
+     *   <li>Utilizar el adaptador Hibernate JPA</li>
+     *   <li>Aplicar propiedades específicas de Hibernate optimizadas para MySQL</li>
+     *   <li>Configuración de batch processing con tamaño optimizado</li>
+     * </ul>
+     * 
+     * @return EntityManagerFactory configurado para MySQL
+     * 
+     * @see #hibernateProperties()
+     */
+    @Bean
+    //@Primary
+    LocalContainerEntityManagerFactoryBean mysqlEntityManager() {
+        LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
+        em.setDataSource(DataSourceMySql());
+        em.setPackagesToScan("com.example.demo.app.entity.mysql");
+        em.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
+        em.setJpaPropertyMap(hibernateProperties());
+        return em;
+    }
+    
+    /**
+     * Define las propiedades de Hibernate optimizadas para MySQL.
+     * 
+     * <p>Incluye configuraciones específicas para las características de MySQL:</p>
+     * <ul>
+     *   <li>Batch size de 50 para operaciones eficientes</li>
+     *   <li>Soporte completo para datos versionados en batches</li>
+     *   <li>Ordenamiento de inserts y updates para mejor rendimiento</li>
+     *   <li>Manejo optimizado de conexiones y transacciones</li>
+     *   <li>Configuraciones de paginación y cláusulas IN</li>
+     * </ul>
+     * 
+     * @return Mapa de propiedades de Hibernate optimizadas para MySQL
+     */
+    private Map<String, Object> hibernateProperties() {
+        Map<String, Object> properties = new HashMap<>();
+        
+        // Configuración básica
+        properties.put("hibernate.hbm2ddl.auto", getRequiredProperty("spring.datasource.mysql.ddl"));
+        properties.put("hibernate.dialect", getRequiredProperty("spring.datasource.mysql.dialect.dialect"));
+        
+        // Optimizaciones de rendimiento
+        properties.put("hibernate.jdbc.batch_size", "50");
+        properties.put("hibernate.order_inserts", "true");
+        properties.put("hibernate.order_updates", "true");
+        properties.put("hibernate.batch_versioned_data", "true");
+        properties.put("hibernate.jdbc.batch_versioned_data", "true");
+        
+        // Cache de segundo nivel y consultas
+        properties.put("hibernate.cache.use_second_level_cache", "false");
+        properties.put("hibernate.cache.use_query_cache", "false");
+        properties.put("hibernate.generate_statistics", "false");
+        
+        // Manejo de conexiones
+        properties.put("hibernate.connection.provider_disables_autocommit", "true");
+        properties.put("hibernate.connection.handling_mode", "DELAYED_ACQUISITION_AND_HOLD");
+        
+        // Timeouts y configuraciones de sesión
+        properties.put("hibernate.jdbc.time_zone", "UTC");
+        properties.put("hibernate.query.fail_on_pagination_over_collection_fetch", "true");
+        properties.put("hibernate.query.in_clause_parameter_padding", "true");
+        
+        // Logging (solo en desarrollo)
+        if (isDevelopmentProfile()) {
+            properties.put("hibernate.show_sql", "false");
+            properties.put("hibernate.format_sql", "true");
+            properties.put("hibernate.use_sql_comments", "true");
+        } else {
+            properties.put("hibernate.show_sql", "false");
+        }
+        
+        return properties;
+    }
+    
+    /**
+     * Configura el TransactionManager para MySQL.
+     * 
+     * <p>Este bean proporciona un {@link JpaTransactionManager} configurado con:</p>
+     * <ul>
+     *   <li>Transacciones anidadas habilitadas</li>
+     *   <li>Timeout de 30 segundos por defecto</li>
+     *   <li>Configuración estándar para el modelo de transacciones de MySQL</li>
+     * </ul>
+     * 
+     * @return PlatformTransactionManager configurado para MySQL
+     */
+    @Bean
+    //@Primary
+    PlatformTransactionManager mysqlTransactionManager() {
+        JpaTransactionManager transactionManager = new JpaTransactionManager();
+        transactionManager.setEntityManagerFactory(mysqlEntityManager().getObject());
+        transactionManager.setNestedTransactionAllowed(true);
+        transactionManager.setDefaultTimeout(30); // 30 segundos timeout por defecto
+        return transactionManager;
+    }
+    
+    /**
+     * Obtiene una propiedad requerida del entorno.
+     * 
+     * @param key Clave de la propiedad a obtener
+     * @return Valor de la propiedad
+     * @throws IllegalStateException si la propiedad no está configurada
+     */
+    private String getRequiredProperty(String key) {
+        String value = env.getProperty(key);
+        if (value == null) {
+            throw new IllegalStateException("Required property '" + key + "' is not set");
+        }
+        return value.trim();
+    }
+    
+    /**
+     * Verifica si el perfil activo es de desarrollo.
+     * 
+     * @return true si el perfil activo es "dev" o "development", false en caso contrario
+     */
+    private boolean isDevelopmentProfile() {
+        String[] activeProfiles = env.getActiveProfiles();
+        for (String profile : activeProfiles) {
+            if ("dev".equals(profile) || "development".equals(profile)) {
+                return true;
+            }
+        }
+        return false;
+    }
+}
+```
 
 ## Mongo Server
+
 
 
 
