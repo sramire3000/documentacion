@@ -3,8 +3,9 @@
 ## Angular
 
 ### Extensions
-```
-```
+- [Auto Close Tag](https://marketplace.visualstudio.com/items?itemName=formulahendry.auto-close-tag)
+
+
 ### File settings.json
 ```
 {
@@ -40,6 +41,7 @@
     "window.title": "${dirty}${activeEditorLong}${separator}${rootName}${separator}${profileName}${separator}${appName}",
 }
 ```
+
 
 
 
