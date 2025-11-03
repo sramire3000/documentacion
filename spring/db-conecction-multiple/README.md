@@ -1689,6 +1689,9 @@ spring.datasource.sybasej.driver-class-name=com.sybase.jdbc4.jdbc.SybDriver
 spring.datasource.sybasej.ddl=none
 spring.datasource.sybasej.dialect.dialect=org.hibernate.dialect.SybaseDialect
 spring.datasource.sybasej.schema=dbo
+
+# Configuraciones adicionales para jConnect
+spring.datasource.sybasej.connection-properties=CHARSET=utf8;LOGIN_TIMEOUT=30;SOCKET_TIMEOUT=60;CHARSET_CONVERTER=com.sybase.jdbc4.utils.TruncationConverter;BATCHSIZE=100;BUFFER_SIZE=4096
 ```
 ### File DbSybaseJ.java
 ```
@@ -2168,6 +2171,7 @@ public class DbSybaseJ {
 
 
 ## Mongo Server
+
 
 
 
