@@ -1690,8 +1690,485 @@ spring.datasource.sybasej.ddl=none
 spring.datasource.sybasej.dialect.dialect=org.hibernate.dialect.SybaseDialect
 spring.datasource.sybasej.schema=dbo
 ```
+### File DbSybaseJ.java
+```
+package com.example.demo.app.configuration;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.TimeUnit;
+
+import javax.sql.DataSource;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.jdbc.DataSourceBuilder;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+//import org.springframework.context.annotation.Primary;
+import org.springframework.core.env.Environment;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.orm.jpa.JpaTransactionManager;
+import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
+import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
+
+import com.zaxxer.hikari.HikariDataSource;
+
+/**
+ * Configuración de base de datos para Sybase utilizando el driver jConnect.
+ * 
+ * <p>Esta clase proporciona la configuración completa para la conexión a bases de datos
+ * Sybase mediante el driver jConnect, incluyendo configuración del pool de conexiones HikariCP,
+ * EntityManagerFactory y TransactionManager específicos para Sybase.</p>
+ * 
+ * <p><strong>Características principales:</strong></p>
+ * <ul>
+ *   <li>Configuración optimizada del pool de conexiones HikariCP para Sybase jConnect</li>
+ *   <li>Propiedades específicas de Hibernate para mejor rendimiento con jConnect</li>
+ *   <li>Soporte para transacciones JPA con configuraciones específicas para Sybase</li>
+ *   <li>Configuración flexible mediante propiedades de aplicación</li>
+ * </ul>
+ * 
+ * <p><strong>Propiedades requeridas en application.properties:</strong></p>
+ * <pre>
+ * spring.datasource.sybasej.username=usuario
+ * spring.datasource.sybasej.password=contraseña
+ * spring.datasource.sybasej.url=jdbc:sybase:Tds:host:puerto/database
+ * spring.datasource.sybasej.driver-class-name=com.sybase.jdbc4.jdbc.SybDriver
+ * spring.datasource.sybasej.ddl=none
+ * spring.datasource.sybasej.dialect.dialect=org.hibernate.dialect.SybaseDialect
+ * </pre>
+ * 
+ * <p><strong>Propiedades opcionales:</strong></p>
+ * <pre>
+ * spring.datasource.sybasej.schema=esquema
+ * spring.datasource.sybasej.connection-properties=propiedad1=valor1;propiedad2=valor2
+ * </pre>
+ * 
+ */
+@Configuration
+@EnableTransactionManagement
+@EnableJpaRepositories(
+    basePackages            = "com.example.demo.app.repository.sybasej", 
+    entityManagerFactoryRef = "sybasejEntityManager", 
+    transactionManagerRef   = "sybasejTransactionManager"
+)
+public class DbSybaseJ {
+    
+    /** Tamaño máximo del pool de conexiones */
+    private static final int MAX_POOL_SIZE = 15;
+    
+    /** Mínimo número de conexiones inactivas en el pool */
+    private static final int MIN_IDLE = 3;
+    
+    /** Tiempo máximo de vida de una conexión en milisegundos */
+    private static final long MAX_LIFETIME = TimeUnit.MINUTES.toMillis(45);
+    
+    /** Timeout para establecer conexión en milisegundos */
+    private static final long CONNECTION_TIMEOUT = TimeUnit.SECONDS.toMillis(45);
+    
+    /** Timeout para conexiones inactivas en milisegundos */
+    private static final long IDLE_TIMEOUT = TimeUnit.MINUTES.toMillis(15);
+    
+    @Autowired
+    private Environment env;
+    
+    /**
+     * Configura y crea el DataSource para Sybase utilizando jConnect.
+     * 
+     * <p>Este bean proporciona una instancia configurada de {@link HikariDataSource} 
+     * optimizada para Sybase jConnect con las siguientes características:</p>
+     * 
+     * <ul>
+     *   <li>Configuración de pool con tamaño máximo de {@value #MAX_POOL_SIZE} conexiones</li>
+     *   <li>Mínimo de {@value #MIN_IDLE} conexiones inactivas</li>
+     *   <li>Detección de leaks configurada a 90 segundos</li>
+     *   <li>Propiedades específicas para jConnect aplicadas</li>
+     * </ul>
+     * 
+     * @return DataSource configurado para Sybase jConnect
+     * @throws IllegalStateException si alguna propiedad requerida no está configurada
+     * 
+     * @see #configureSybaseJConnectPool(HikariDataSource)
+     * @see #getRequiredProperty(String)
+     */
+    @Bean
+    //@Primary
+    DataSource DataSourceSybaseJ() {
+        String user = getRequiredProperty("spring.datasource.sybasej.username");
+        String pass = getRequiredProperty("spring.datasource.sybasej.password");
+        String url = getRequiredProperty("spring.datasource.sybasej.url");
+        String driver = getRequiredProperty("spring.datasource.sybasej.driver-class-name");
+        
+        HikariDataSource dataSource = DataSourceBuilder.create()
+                .type(HikariDataSource.class)
+                .username(user)
+                .password(pass)
+                .url(url)
+                .driverClassName(driver)
+                .build();
+        
+        dataSource.setLeakDetectionThreshold(90000);
+        
+        // Configuración optimizada del pool de conexiones para Sybase jConnect
+        configureSybaseJConnectPool(dataSource);
+        
+        return dataSource;
+    }
+    
+    /**
+     * Configura las propiedades específicas del pool de conexiones HikariCP para Sybase jConnect.
+     * 
+     * <p>Esta configuración incluye:</p>
+     * <ul>
+     *   <li>Tamaño del pool y conexiones inactivas</li>
+     *   <li>Timeouts de conexión, inactividad y vida máxima</li>
+     *   <li>Propiedades de rendimiento y monitoreo</li>
+     *   <li>Configuraciones específicas de jConnect para transacciones</li>
+     *   <li>Manejo de cursores optimizado para Sybase</li>
+     * </ul>
+     * 
+     * @param dataSource DataSource Hikari a configurar
+     * 
+     * @see #configureConnectionProperties(HikariDataSource)
+     */
+    private void configureSybaseJConnectPool(HikariDataSource dataSource) {
+        // Configuración del tamaño del pool
+        dataSource.setMaximumPoolSize(MAX_POOL_SIZE);
+        dataSource.setMinimumIdle(MIN_IDLE);
+        
+        // Configuración de timeouts
+        dataSource.setConnectionTimeout(CONNECTION_TIMEOUT);
+        dataSource.setIdleTimeout(IDLE_TIMEOUT);
+        dataSource.setMaxLifetime(MAX_LIFETIME);
+        
+        // Configuración de rendimiento y monitoreo
+        dataSource.setLeakDetectionThreshold(TimeUnit.SECONDS.toMillis(90));
+        dataSource.setValidationTimeout(TimeUnit.SECONDS.toMillis(10));
+        
+        // CONFIGURACIÓN DE CONNECTION-PROPERTIES DESDE application.properties
+        configureConnectionProperties(dataSource);
+        
+        // Configuraciones adicionales fijas
+        dataSource.addDataSourceProperty("APPLICATIONNAME", "Spring-Boot-App");
+        dataSource.addDataSourceProperty("PREPARE", "true");
+        dataSource.addDataSourceProperty("CACHE_META_DATA", "true");
+        dataSource.addDataSourceProperty("USE_METADATA", "true");
+        dataSource.addDataSourceProperty("TCP_NODELAY", "true");
+        dataSource.addDataSourceProperty("KEEPALIVE", "true");
+        
+        // Configuraciones específicas de jConnect para transacciones
+        dataSource.addDataSourceProperty("IFX_USE_STRENC", "false");
+        dataSource.addDataSourceProperty("ENABLE_BULK_LOAD", "true");
+        dataSource.addDataSourceProperty("REPEAT_READ", "false");
+        
+        // Manejo de cursores (importante para jConnect)
+        dataSource.addDataSourceProperty("CURSOR_NAME", "SYBASE_CURSOR");
+        dataSource.addDataSourceProperty("CURSOR_TYPE", "DYNAMIC");
+        dataSource.addDataSourceProperty("CURSOR_SENSITIVITY", "INSENSITIVE");
+        
+        // Configuración del nombre del pool para monitoreo
+        dataSource.setPoolName("Sybase-jConnect-HikariPool");
+        
+        // Query de validación específica para Sybase con jConnect
+        dataSource.setConnectionTestQuery("SELECT 1");
+    }
+    
+    /**
+     * Configura las propiedades de conexión específicas para jConnect desde las propiedades de aplicación.
+     * 
+     * <p>Las propiedades se esperan en el formato: {@code propiedad1=valor1;propiedad2=valor2}</p>
+     * 
+     * <p>Si no se especifican propiedades, se aplican configuraciones por defecto optimizadas para jConnect.</p>
+     * 
+     * @param dataSource DataSource al que aplicar las propiedades
+     * 
+     * @see #setDefaultConnectionProperties(HikariDataSource)
+     */
+    private void configureConnectionProperties(HikariDataSource dataSource) {
+        // Obtener la propiedad spring.datasource.sybasej.connection-properties
+        String connectionProperties = env.getProperty("spring.datasource.sybasej.connection-properties");
+        
+        if (connectionProperties != null && !connectionProperties.trim().isEmpty()) {
+            System.out.println("Applying connection properties for SybaseJ: " + connectionProperties);
+            
+            // Separar las propiedades por punto y coma
+            String[] propertiesArray = connectionProperties.split(";");
+            
+            for (String property : propertiesArray) {
+                // Separar clave=valor
+                String[] keyValue = property.split("=", 2);
+                
+                if (keyValue.length == 2) {
+                    String key = keyValue[0].trim();
+                    String value = keyValue[1].trim();
+                    
+                    // Aplicar la propiedad al DataSource
+                    dataSource.addDataSourceProperty(key, value);
+                    System.out.println("Applied connection property: " + key + " = " + value);
+                } else if (keyValue.length == 1 && !keyValue[0].trim().isEmpty()) {
+                    // Propiedad sin valor (solo clave)
+                    String key = keyValue[0].trim();
+                    dataSource.addDataSourceProperty(key, "true");
+                    System.out.println("Applied connection property: " + key + " = true");
+                }
+            }
+        } else {
+            // Valores por defecto si no se especifica la propiedad
+            System.out.println("Using default connection properties for SybaseJ");
+            setDefaultConnectionProperties(dataSource);
+        }
+    }
+    
+    /**
+     * Establece las propiedades de conexión por defecto optimizadas para Sybase jConnect.
+     * 
+     * <p>Incluye configuraciones para:</p>
+     * <ul>
+     *   <li>Charset y conversión de caracteres</li>
+     *   <li>Timeouts de socket y login</li>
+     *   <li>Tamaño de batch y buffer</li>
+     *   <li>Límite de statements</li>
+     * </ul>
+     * 
+     * @param dataSource DataSource al que aplicar las propiedades por defecto
+     */
+    private void setDefaultConnectionProperties(HikariDataSource dataSource) {
+        // Propiedades por defecto para Sybase jConnect
+        dataSource.addDataSourceProperty("CHARSET", "utf8");
+        dataSource.addDataSourceProperty("CHARSET_CONVERTER", "com.sybase.jdbc4.utils.TruncationConverter");
+        dataSource.addDataSourceProperty("SOCKET_TIMEOUT", "60");
+        dataSource.addDataSourceProperty("LOGIN_TIMEOUT", "30");
+        dataSource.addDataSourceProperty("BATCHSIZE", "100");
+        dataSource.addDataSourceProperty("BUFFER_SIZE", "4096");
+        dataSource.addDataSourceProperty("MAX_STATEMENTS", "500");
+    }
+    
+    /**
+     * Configura el EntityManagerFactory para Sybase jConnect.
+     * 
+     * <p>Este bean proporciona un {@link LocalContainerEntityManagerFactoryBean} configurado para:</p>
+     * <ul>
+     *   <li>Escanear entidades en el paquete {@code com.example.demo.app.entity.sybasej}</li>
+     *   <li>Utilizar el adaptador Hibernate JPA</li>
+     *   <li>Aplicar propiedades específicas de Hibernate para jConnect</li>
+     * </ul>
+     * 
+     * @return EntityManagerFactory configurado para Sybase jConnect
+     * 
+     * @see #sybaseJConnectHibernateProperties()
+     */
+    @Bean
+    //@Primary
+    LocalContainerEntityManagerFactoryBean sybasejEntityManager() {
+        LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
+        em.setDataSource(DataSourceSybaseJ());
+        em.setPackagesToScan("com.example.demo.app.entity.sybasej");
+        em.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
+        em.setJpaPropertyMap(sybaseJConnectHibernateProperties());
+        return em;
+    }
+    
+    /**
+     * Define las propiedades de Hibernate optimizadas para Sybase jConnect.
+     * 
+     * <p>Incluye configuraciones para:</p>
+     * <ul>
+     *   <li>Batch processing y optimización de operaciones</li>
+     *   <li>Manejo de transacciones y conexiones</li>
+     *   <li>Cache y estadísticas</li>
+     *   <li>Configuraciones específicas de jConnect</li>
+     *   <li>Logging adaptado al perfil de ejecución</li>
+     * </ul>
+     * 
+     * @return Mapa de propiedades de Hibernate optimizadas para jConnect
+     * 
+     * @see #applyHibernateConnectionProperties(Map)
+     * @see #configureJConnectHibernateLogging(Map)
+     */
+    private Map<String, Object> sybaseJConnectHibernateProperties() {
+        Map<String, Object> properties = new HashMap<>();
+        
+        // Configuración básica
+        properties.put("hibernate.hbm2ddl.auto", getRequiredProperty("spring.datasource.sybasej.ddl"));
+        properties.put("hibernate.dialect", getRequiredProperty("spring.datasource.sybasej.dialect.dialect"));
+        
+        // Optimizaciones específicas para jConnect
+        properties.put("hibernate.jdbc.batch_size", "25"); // jConnect maneja mejor batches medianos
+        properties.put("hibernate.order_inserts", "true");
+        properties.put("hibernate.order_updates", "true");
+        properties.put("hibernate.batch_versioned_data", "true"); // jConnect soporta mejor esta característica
+        properties.put("hibernate.jdbc.batch_versioned_data", "true");
+        
+        // Configuraciones específicas para jConnect
+        properties.put("hibernate.use_sql_comments", "false");
+        properties.put("hibernate.jdbc.use_scrollable_resultset", "true");
+        properties.put("hibernate.jdbc.lob.non_contextual_creation", "true");
+        properties.put("hibernate.jdbc.use_streams_for_binary", "true");
+        
+        // Cache y consultas
+        properties.put("hibernate.cache.use_second_level_cache", "false");
+        properties.put("hibernate.cache.use_query_cache", "false");
+        properties.put("hibernate.generate_statistics", "false");
+        
+        // Manejo de conexiones y transacciones para jConnect
+        properties.put("hibernate.connection.provider_disables_autocommit", "true"); // jConnect maneja mejor el autocommit deshabilitado
+        properties.put("hibernate.connection.handling_mode", "DELAYED_ACQUISITION_AND_HOLD");
+        properties.put("hibernate.temp.use_jdbc_metadata_defaults", "false");
+        
+        // Configuración de isolation level para Sybase con jConnect
+        properties.put("hibernate.connection.isolation", "2"); // READ_COMMITTED
+        
+        // Configuraciones de esquema y database
+        properties.put("hibernate.default_schema", getSchemaProperty());
+        properties.put("hibernate.jdbc.time_zone", "UTC");
+        
+        // Configuración para manejo de identidad en Sybase con jConnect
+        properties.put("hibernate.id.new_generator_mappings", "true"); // jConnect funciona mejor con nuevos generadores
+        properties.put("hibernate.jdbc.fetch_size", "100"); // jConnect tiene mejor rendimiento con fetch size más alto
+        
+        // Configuración específica para tipos de datos Sybase con jConnect
+        properties.put("hibernate.type.descriptor.sql.TimestampType", "UTC");
+        
+        // Propiedades específicas de jConnect para Hibernate
+        properties.put("hibernate.sybase.jconnect.version", "6.0");
+        properties.put("hibernate.sybase.use_jconnect", "true");
+        
+        // Aplicar propiedades de conexión específicas para Hibernate
+        applyHibernateConnectionProperties(properties);
+        
+        // Logging (configuración por ambiente)
+        configureJConnectHibernateLogging(properties);
+        
+        return properties;
+    }
+    
+    /**
+     * Aplica propiedades de conexión específicas de Hibernate desde las propiedades de aplicación.
+     * 
+     * <p>Extrae propiedades que comiencen con "hibernate." de la propiedad 
+     * {@code spring.datasource.sybasej.connection-properties} y las aplica al mapa de propiedades.</p>
+     * 
+     * @param properties Mapa de propiedades donde se agregarán las propiedades de Hibernate
+     */
+    private void applyHibernateConnectionProperties(Map<String, Object> properties) {
+        String connectionProperties = env.getProperty("spring.datasource.sybasej.connection-properties");
+        if (connectionProperties != null && !connectionProperties.trim().isEmpty()) {
+            String[] props = connectionProperties.split(";");
+            for (String prop : props) {
+                String[] keyValue = prop.split("=", 2);
+                if (keyValue.length == 2) {
+                    String key = keyValue[0].trim();
+                    String value = keyValue[1].trim();
+                    // Agregar propiedades relevantes para Hibernate (que empiecen con hibernate.)
+                    if (key.startsWith("hibernate.")) {
+                        properties.put(key, value);
+                    }
+                }
+            }
+        }
+    }
+    
+    /**
+     * Configura el TransactionManager para Sybase jConnect.
+     * 
+     * <p>Este bean proporciona un {@link JpaTransactionManager} configurado con:</p>
+     * <ul>
+     *   <li>Transacciones anidadas habilitadas</li>
+     *   <li>Timeout por defecto de 60 segundos</li>
+     *   <li>Validación de transacciones existentes</li>
+     *   <li>Configuración optimizada para jConnect</li>
+     * </ul>
+     * 
+     * @return PlatformTransactionManager configurado para Sybase jConnect
+     */
+    @Bean
+    //@Primary
+    PlatformTransactionManager sybaseJTransactionManager() {
+        JpaTransactionManager transactionManager = new JpaTransactionManager();
+        transactionManager.setEntityManagerFactory(sybasejEntityManager().getObject());
+        transactionManager.setNestedTransactionAllowed(true); // jConnect soporta mejor transacciones anidadas
+        transactionManager.setDefaultTimeout(60);
+        
+        // Configuración específica para jConnect
+        transactionManager.setValidateExistingTransaction(true);
+        transactionManager.setRollbackOnCommitFailure(false); // jConnect maneja mejor los commit failures
+        
+        return transactionManager;
+    }
+    
+    /**
+     * Obtiene una propiedad requerida del entorno.
+     * 
+     * @param key Clave de la propiedad a obtener
+     * @return Valor de la propiedad
+     * @throws IllegalStateException si la propiedad no está configurada
+     */
+    private String getRequiredProperty(String key) {
+        String value = env.getProperty(key);
+        if (value == null) {
+            throw new IllegalStateException("Required property '" + key + "' is not set");
+        }
+        return value.trim();
+    }
+    
+    /**
+     * Obtiene la propiedad del esquema o retorna "dbo" por defecto.
+     * 
+     * @return Nombre del esquema a utilizar
+     */
+    private String getSchemaProperty() {
+        String schema = env.getProperty("spring.datasource.sybasej.schema");
+        return schema != null ? schema.trim() : "dbo";
+    }
+    
+    /**
+     * Configura el logging de Hibernate basado en el perfil de ejecución.
+     * 
+     * <p>En perfiles de desarrollo ("dev" o "development") habilita logging detallado,
+     * en otros perfiles deshabilita el logging para mejor rendimiento.</p>
+     * 
+     * @param properties Mapa de propiedades donde se configurará el logging
+     * 
+     * @see #isDevelopmentProfile()
+     */
+    private void configureJConnectHibernateLogging(Map<String, Object> properties) {
+        if (isDevelopmentProfile()) {
+            properties.put("hibernate.show_sql", "true");
+            properties.put("hibernate.format_sql", "true");
+            properties.put("hibernate.use_sql_comments", "true");
+            properties.put("hibernate.type", "trace"); // Para ver los tipos de datos que maneja jConnect
+        } else {
+            properties.put("hibernate.show_sql", "false");
+            properties.put("hibernate.format_sql", "false");
+            properties.put("hibernate.use_sql_comments", "false");
+        }
+        
+        // jConnect específico - configuraciones de debug
+        properties.put("hibernate.dialect.storage_engine", "default");
+    }
+    
+    /**
+     * Verifica si el perfil activo es de desarrollo.
+     * 
+     * @return true si el perfil activo es "dev" o "development", false en caso contrario
+     */
+    private boolean isDevelopmentProfile() {
+        String[] activeProfiles = env.getActiveProfiles();
+        for (String profile : activeProfiles) {
+            if ("dev".equals(profile) || "development".equals(profile)) {
+                return true;
+            }
+        }
+        return false;
+    }
+}
+```
+
 
 ## Mongo Server
+
 
 
 
