@@ -1293,8 +1293,393 @@ spring.datasource.sybase.driver-class-name=net.sourceforge.jtds.jdbc.Driver
 spring.datasource.sybase.dialect.dialect=org.hibernate.dialect.SybaseDialect
 spring.datasource.sybase.ddl=none
 ```
+### File DbSybase.java
+```
+package com.example.demo.app.configuration;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.TimeUnit;
+
+import javax.sql.DataSource;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.jdbc.DataSourceBuilder;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+//import org.springframework.context.annotation.Primary;
+import org.springframework.core.env.Environment;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.orm.jpa.JpaTransactionManager;
+import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
+import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
+
+import com.zaxxer.hikari.HikariDataSource;
+
+/**
+ * Configuración de base de datos para Sybase ASE utilizando el driver JTDS.
+ * 
+ * <p>Esta clase proporciona la configuración completa para la conexión a bases de datos
+ * Sybase Adaptive Server Enterprise (ASE), incluyendo configuración del pool de conexiones 
+ * HikariCP, EntityManagerFactory y TransactionManager específicamente optimizados para Sybase.</p>
+ * 
+ * <p><strong>Diferencias con DbSybaseJ (jConnect):</strong></p>
+ * <ul>
+ *   <li>Utiliza el driver JTDS en lugar de jConnect</li>
+ *   <li>Configuración más conservadora de batch processing</li>
+ *   <li>Manejo diferente de transacciones anidadas</li>
+ *   <li>Propiedades específicas del protocolo TDS</li>
+ * </ul>
+ * 
+ * <p><strong>Propiedades requeridas en application.properties:</strong></p>
+ * <pre>
+ * spring.datasource.sybase.username=usuario
+ * spring.datasource.sybase.password=contraseña
+ * spring.datasource.sybase.url=jdbc:jtds:sybase://host:puerto/database
+ * spring.datasource.sybase.driver-class-name=net.sourceforge.jtds.jdbc.Driver
+ * spring.datasource.sybase.ddl=none
+ * spring.datasource.sybase.dialect.dialect=org.hibernate.dialect.SybaseDialect
+ * </pre>
+ * 
+ * <p><strong>Propiedades opcionales:</strong></p>
+ * <pre>
+ * spring.datasource.sybase.schema=esquema
+ * </pre>
+ * 
+ */
+@Configuration
+@EnableTransactionManagement
+@EnableJpaRepositories(
+    basePackages            = "com.example.demo.app.repository.sybase", 
+    entityManagerFactoryRef = "sybaseEntityManager", 
+    transactionManagerRef   = "sybaseTransactionManager"
+)
+public class DbSybase {
+    
+    /** 
+     * Tamaño máximo del pool de conexiones - Sybase suele requerir menos conexiones concurrentes 
+     */
+    private static final int MAX_POOL_SIZE = 15;
+    
+    /** 
+     * Mínimo de conexiones inactivas en el pool 
+     */
+    private static final int MIN_IDLE = 3;
+    
+    /** 
+     * Tiempo máximo de vida de una conexión en milisegundos - Sybase es más estable con conexiones largas 
+     */
+    private static final long MAX_LIFETIME = TimeUnit.MINUTES.toMillis(45);
+    
+    /** 
+     * Timeout para establecer conexión en milisegundos - Sybase puede ser más lento en conexión 
+     */
+    private static final long CONNECTION_TIMEOUT = TimeUnit.SECONDS.toMillis(45);
+    
+    /** 
+     * Timeout para conexiones inactivas en milisegundos 
+     */
+    private static final long IDLE_TIMEOUT = TimeUnit.MINUTES.toMillis(15);
+    
+    @Autowired
+    private Environment env;
+    
+    /**
+     * Configura y crea el DataSource para Sybase ASE utilizando el driver JTDS.
+     * 
+     * <p>Este bean proporciona una instancia configurada de {@link HikariDataSource} 
+     * optimizada para Sybase ASE con las siguientes características:</p>
+     * 
+     * <ul>
+     *   <li>Configuración de pool con tamaño máximo de {@value #MAX_POOL_SIZE} conexiones</li>
+     *   <li>Mínimo de {@value #MIN_IDLE} conexiones inactivas</li>
+     *   <li>Timeouts extendidos para accommodar la latencia típica de Sybase</li>
+     *   <li>Propiedades específicas del protocolo TDS versión 8.0</li>
+     *   <li>Configuración optimizada para Sybase ASE 15+</li>
+     * </ul>
+     * 
+     * @return DataSource configurado para Sybase ASE
+     * @throws IllegalStateException si alguna propiedad requerida no está configurada
+     * 
+     * @see #configureSybaseConnectionPool(HikariDataSource)
+     * @see #getRequiredProperty(String)
+     */
+    @Bean
+    //@Primary
+    DataSource DataSourceSybase() {
+        String user = getRequiredProperty("spring.datasource.sybase.username");
+        String pass = getRequiredProperty("spring.datasource.sybase.password");
+        String url = getRequiredProperty("spring.datasource.sybase.url");
+        String driver = getRequiredProperty("spring.datasource.sybase.driver-class-name");
+        
+        HikariDataSource dataSource = DataSourceBuilder.create()
+                .type(HikariDataSource.class)
+                .username(user)
+                .password(pass)
+                .url(url)
+                .driverClassName(driver)
+                .build();
+        
+        dataSource.setLeakDetectionThreshold(90000);
+        
+        // Configuración optimizada del pool de conexiones para Sybase
+        configureSybaseConnectionPool(dataSource);
+        
+        return dataSource;
+    }
+    
+    /**
+     * Configura las propiedades específicas del pool de conexiones HikariCP para Sybase ASE.
+     * 
+     * <p>Esta configuración incluye optimizaciones específicas para Sybase:</p>
+     * <ul>
+     *   <li>Configuración TDS 8.0 para Sybase 15+</li>
+     *   <li>Soporte para LOBs y cursores</li>
+     *   <li>Optimizaciones de codificación y timeouts</li>
+     *   <li>Configuraciones de red (TCP_NODELAY, KEEPALIVE)</li>
+     *   <li>Parámetros de rendimiento específicos para ASE</li>
+     * </ul>
+     * 
+     * @param dataSource DataSource Hikari a configurar
+     */
+    private void configureSybaseConnectionPool(HikariDataSource dataSource) {
+        // Configuración del tamaño del pool (Sybase suele ser menos concurrente)
+        dataSource.setMaximumPoolSize(MAX_POOL_SIZE);
+        dataSource.setMinimumIdle(MIN_IDLE);
+        
+        // Configuración de timeouts más largos para Sybase
+        dataSource.setConnectionTimeout(CONNECTION_TIMEOUT);
+        dataSource.setIdleTimeout(IDLE_TIMEOUT);
+        dataSource.setMaxLifetime(MAX_LIFETIME);
+        
+        // Configuración de rendimiento y monitoreo
+        dataSource.setLeakDetectionThreshold(TimeUnit.SECONDS.toMillis(90)); // Más tiempo para Sybase
+        dataSource.setValidationTimeout(TimeUnit.SECONDS.toMillis(10));
+        
+        // Configuraciones específicas de Sybase (JTDS Driver)
+        dataSource.addDataSourceProperty("TDS", "8.0"); // Versión TDS para Sybase 15+
+        dataSource.addDataSourceProperty("USE_LOBS", "true");
+        dataSource.addDataSourceProperty("USE_CURSORS", "true");
+        dataSource.addDataSourceProperty("SEND_STRING_PARAMETERS_AS_UNICODE", "false");
+        dataSource.addDataSourceProperty("CHARSET", "utf8");
+        dataSource.addDataSourceProperty("APPLICATIONNAME", "Spring-Boot-App");
+        dataSource.addDataSourceProperty("SOCKET_TIMEOUT", "60");
+        dataSource.addDataSourceProperty("LOGIN_TIMEOUT", "30");
+        dataSource.addDataSourceProperty("NAMED_PIPE", "false");
+        dataSource.addDataSourceProperty("BATCHSIZE", "100");
+        dataSource.addDataSourceProperty("BUFFER_SIZE", "4096");
+        dataSource.addDataSourceProperty("MAX_STATEMENTS", "500");
+        
+        // Optimizaciones específicas para Sybase ASE
+        dataSource.addDataSourceProperty("PREPARE", "true");
+        dataSource.addDataSourceProperty("CACHE_META_DATA", "true");
+        dataSource.addDataSourceProperty("USE_METADATA", "true");
+        dataSource.addDataSourceProperty("TCP_NODELAY", "true");
+        dataSource.addDataSourceProperty("KEEPALIVE", "true");
+        
+        // Configuración del nombre del pool para monitoreo
+        dataSource.setPoolName("Sybase-HikariPool");
+        
+        // Query de validación específica para Sybase
+        dataSource.setConnectionTestQuery("SELECT 1");
+    }
+    
+    /**
+     * Configura el EntityManagerFactory para Sybase ASE.
+     * 
+     * <p>Este bean proporciona un {@link LocalContainerEntityManagerFactoryBean} configurado para:</p>
+     * <ul>
+     *   <li>Escanear entidades en el paquete {@code com.example.demo.app.entity.sybase}</li>
+     *   <li>Utilizar el adaptador Hibernate JPA</li>
+     *   <li>Aplicar propiedades específicas de Hibernate optimizadas para Sybase ASE</li>
+     *   <li>Configuraciones conservadoras de batch processing apropiadas para Sybase</li>
+     * </ul>
+     * 
+     * @return EntityManagerFactory configurado para Sybase ASE
+     * 
+     * @see #sybaseHibernateProperties()
+     */
+    @Bean
+    //@Primary
+    LocalContainerEntityManagerFactoryBean sybaseEntityManager() {
+        LocalContainerEntityManagerFactoryBean em = new LocalContainerEntityManagerFactoryBean();
+        em.setDataSource(DataSourceSybase());
+        em.setPackagesToScan("com.example.demo.app.entity.sybase");
+        em.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
+        em.setJpaPropertyMap(sybaseHibernateProperties());
+        return em;
+    }
+    
+    /**
+     * Define las propiedades de Hibernate optimizadas para Sybase ASE.
+     * 
+     * <p>Incluye configuraciones específicas para las particularidades de Sybase:</p>
+     * <ul>
+     *   <li>Batch size conservador ({@code 20}) debido a limitaciones de Sybase</li>
+     *   <li>Deshabilitación de batch versioned data por compatibilidad</li>
+     *   <li>Uso de generadores de identidad legacy para mejor compatibilidad</li>
+     *   <li>Configuración de isolation level READ_COMMITTED</li>
+     *   <li>Manejo optimizado de transacciones y conexiones</li>
+     * </ul>
+     * 
+     * @return Mapa de propiedades de Hibernate optimizadas para Sybase ASE
+     * 
+     * @see #configureHibernateLogging(Map)
+     */
+    private Map<String, Object> sybaseHibernateProperties() {
+        Map<String, Object> properties = new HashMap<>();
+        
+        // Configuración básica
+        properties.put("hibernate.hbm2ddl.auto", getRequiredProperty("spring.datasource.sybase.ddl"));
+        properties.put("hibernate.dialect", getRequiredProperty("spring.datasource.sybase.dialect.dialect"));
+        
+        // Optimizaciones específicas de Sybase
+        properties.put("hibernate.jdbc.batch_size", "20"); // Sybase tiene límites más conservadores
+        properties.put("hibernate.order_inserts", "true");
+        properties.put("hibernate.order_updates", "true");
+        properties.put("hibernate.batch_versioned_data", "false"); // Sybase puede tener problemas con esto
+        properties.put("hibernate.jdbc.batch_versioned_data", "false");
+        
+        // Configuraciones específicas para Sybase
+        properties.put("hibernate.use_sql_comments", "false");
+        properties.put("hibernate.jdbc.use_scrollable_resultset", "true");
+        properties.put("hibernate.jdbc.lob.non_contextual_creation", "true");
+        properties.put("hibernate.jdbc.use_streams_for_binary", "true");
+        
+        // Cache y consultas (Sybase suele tener su propio cache)
+        properties.put("hibernate.cache.use_second_level_cache", "false");
+        properties.put("hibernate.cache.use_query_cache", "false");
+        properties.put("hibernate.generate_statistics", "false");
+        
+        // Manejo de conexiones y transacciones
+        properties.put("hibernate.connection.provider_disables_autocommit", "false"); // Sybase necesita autocommit management
+        properties.put("hibernate.connection.handling_mode", "DELAYED_ACQUISITION_AND_RELEASE_AFTER_TRANSACTION");
+        properties.put("hibernate.temp.use_jdbc_metadata_defaults", "false");
+        
+        // Configuración de isolation level para Sybase
+        properties.put("hibernate.connection.isolation", "2"); // READ_COMMITTED
+        
+        // Configuraciones de esquema y database
+        properties.put("hibernate.default_schema", getSchemaProperty());
+        properties.put("hibernate.jdbc.time_zone", "UTC");
+        
+        // Configuración para manejo de identidad en Sybase
+        properties.put("hibernate.id.new_generator_mappings", "false"); // Sybase funciona mejor con el viejo
+        properties.put("hibernate.jdbc.fetch_size", "50");
+        
+        // Configuración específica para tipos de datos Sybase
+        properties.put("hibernate.type.descriptor.sql.TimestampType", "UTC");
+        
+        // Logging (configuración por ambiente)
+        configureHibernateLogging(properties);
+        
+        return properties;
+    }
+    
+    /**
+     * Configura el TransactionManager para Sybase ASE.
+     * 
+     * <p>Este bean proporciona un {@link JpaTransactionManager} configurado con 
+     * consideraciones específicas para Sybase:</p>
+     * 
+     * <ul>
+     *   <li>Transacciones anidadas deshabilitadas (Sybase no las soporta bien)</li>
+     *   <li>Timeout extendido a 60 segundos para accommodar operaciones más lentas</li>
+     *   <li>Rollback automático en fallo de commit habilitado</li>
+     *   <li>Validación de transacciones existentes activada</li>
+     * </ul>
+     * 
+     * @return PlatformTransactionManager configurado para Sybase ASE
+     */
+    @Bean
+    //@Primary
+    PlatformTransactionManager sybaseTransactionManager() {
+        JpaTransactionManager transactionManager = new JpaTransactionManager();
+        transactionManager.setEntityManagerFactory(sybaseEntityManager().getObject());
+        transactionManager.setNestedTransactionAllowed(false); // Sybase no soporta bien transacciones anidadas
+        transactionManager.setDefaultTimeout(60); // 60 segundos timeout por defecto (Sybase es más lento)
+        
+        // Configuración específica para Sybase
+        transactionManager.setValidateExistingTransaction(true);
+        transactionManager.setRollbackOnCommitFailure(true); // Sybase puede necesitar rollback explícito
+        
+        return transactionManager;
+    }
+    
+    /**
+     * Obtiene una propiedad requerida del entorno.
+     * 
+     * @param key Clave de la propiedad a obtener
+     * @return Valor de la propiedad
+     * @throws IllegalStateException si la propiedad no está configurada
+     */
+    private String getRequiredProperty(String key) {
+        String value = env.getProperty(key);
+        if (value == null) {
+            throw new IllegalStateException("Required property '" + key + "' is not set");
+        }
+        return value.trim();
+    }
+    
+    /**
+     * Obtiene la propiedad del esquema o retorna "dbo" por defecto.
+     * 
+     * <p>Sybase ASE utiliza típicamente "dbo" (Database Owner) como esquema por defecto.</p>
+     * 
+     * @return Nombre del esquema a utilizar, "dbo" si no está especificado
+     */
+    private String getSchemaProperty() {
+        // Permite schema opcional para Sybase
+        String schema = env.getProperty("spring.datasource.sybase.schema");
+        return schema != null ? schema.trim() : "dbo"; // Sybase usa dbo por defecto
+    }
+    
+    /**
+     * Configura el logging de Hibernate basado en el perfil de ejecución.
+     * 
+     * <p>Para Sybase, el logging es más conservador incluso en desarrollo debido a que
+     * Sybase puede generar logs muy verbosos que impactan el rendimiento.</p>
+     * 
+     * @param properties Mapa de propiedades donde se configurará el logging
+     * 
+     * @see #isDevelopmentProfile()
+     */
+    private void configureHibernateLogging(Map<String, Object> properties) {
+        if (isDevelopmentProfile()) {
+            properties.put("hibernate.show_sql", "false"); // Reducido incluso en dev para Sybase
+            properties.put("hibernate.format_sql", "true");
+            properties.put("hibernate.use_sql_comments", "false"); // Sybase puede ser verbose
+        } else {
+            properties.put("hibernate.show_sql", "false");
+            properties.put("hibernate.format_sql", "false");
+        }
+        
+        // Sybase específico - deshabilitar warnings de dialecto
+        properties.put("hibernate.dialect.storage_engine", "default");
+    }
+    
+    /**
+     * Verifica si el perfil activo es de desarrollo.
+     * 
+     * @return true si el perfil activo es "dev" o "development", false en caso contrario
+     */
+    private boolean isDevelopmentProfile() {
+        String[] activeProfiles = env.getActiveProfiles();
+        for (String profile : activeProfiles) {
+            if ("dev".equals(profile) || "development".equals(profile)) {
+                return true;
+            }
+        }
+        return false;
+    }
+}
+```
+
 
 ## Mongo Server
+
 
 
 
