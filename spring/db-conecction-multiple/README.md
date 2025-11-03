@@ -1281,7 +1281,21 @@ public class DbMysql {
 }
 ```
 
+## Sybase JTDS
+
+### File application.properties
+```
+# Configuracion Sybase
+spring.datasource.sybase.url=jdbc:jtds:sybase://[ip_server]:[port_server];DatabaseName=[database_name]
+spring.datasource.sybase.username=[user_db]
+spring.datasource.sybase.password=[password_db]
+spring.datasource.sybase.driver-class-name=net.sourceforge.jtds.jdbc.Driver
+spring.datasource.sybase.dialect.dialect=org.hibernate.dialect.SybaseDialect
+spring.datasource.sybase.ddl=none
+```
+
 ## Mongo Server
+
 
 
 
