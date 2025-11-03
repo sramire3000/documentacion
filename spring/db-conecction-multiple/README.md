@@ -957,7 +957,20 @@ public class DbPostgres {
 
 ## Mysql Server
 
+### File application.properties
+```
+# Configuracion Mysql
+spring.datasource.mysql.url=jdbc:mysql://[ip_server]:[port_server]/[database_name]?serverTimezone=America/El_Salvador&allowPublicKeyRetrieval=true&useSSL=false
+spring.datasource.mysql.username=[user_db]
+spring.datasource.mysql.password=[password_db]
+spring.datasource.mysql.driver-class-name=com.mysql.cj.jdbc.Driver
+spring.datasource.mysql.dialect.dialect=org.hibernate.dialect.MySQL8Dialect
+spring.datasource.mysql.ddl=none
+```
+
+
 ## Mongo Server
+
 
 
 
