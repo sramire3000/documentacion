@@ -1,6 +1,6 @@
 # Multiple DataBase Conection JDK 21 Spring WebFlux
 
-- SqlServer 2019
+- Mongo Db
 - PostgresSQL
 - Mysql
 - Sybase JTDS
@@ -9,17 +9,166 @@
 
 ## File pom.xml
 ```
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>org.springframework.boot</groupId>
+		<artifactId>spring-boot-starter-parent</artifactId>
+		<version>3.5.7</version>
+		<relativePath/> <!-- lookup parent from repository -->
+	</parent>
+	<groupId>com.example</groupId>
+	<artifactId>demo-config-db-webflux</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<name>demo-config-db-webflux</name>
+	<description>Demo project for Spring Boot</description>
+	<url/>
+	<licenses>
+		<license/>
+	</licenses>
+	<developers>
+		<developer/>
+	</developers>
+	<scm>
+		<connection/>
+		<developerConnection/>
+		<tag/>
+		<url/>
+	</scm>
+	<properties>
+		<java.version>21</java.version>
+	</properties>
+	<dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-webflux</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>io.projectreactor</groupId>
+			<artifactId>reactor-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+	
+	
+		<!-- VALIDACION -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-validation</artifactId>
+		</dependency>
+		
+		<!-- Driver de Mongo -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-data-mongodb-reactive</artifactId>
+		</dependency>
+		
+	</dependencies>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.springframework.boot</groupId>
+				<artifactId>spring-boot-maven-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>
 ```
 
-## SQL Server 2019
+## Mongo Db
 
 ### File applcation.properties
 ```
 # Configuracion SQL Server
-spring.datasource.sqlserver.url=jdbc:sqlserver://[ip_server]:[port_server];databaseName=[database_name];encrypt=false
-spring.datasource.sqlserver.username=[user_db]
-spring.datasource.sqlserver.password=[password_db]
-spring.datasource.sqlserver.driver-class-name=com.microsoft.sqlserver.jdbc.SQLServerDriver
-spring.datasource.sqlserver.dialect.dialect=org.hibernate.dialect.SQLServer2012Dialect
-spring.datasource.sqlserver.ddl=none
 ```
+# ============================================================================
+# CONFIGURACION MONGODB - SPRING WEBFLUX
+# ============================================================================
+
+# URI de conexiOn MongoDB
+spring.data.mongodb.host=localhost
+spring.data.mongodb.port=27017
+spring.data.mongodb.database=migration
+spring.data.mongodb.username=admin
+spring.data.mongodb.password=password
+spring.data.mongodb.authentication-database=admin
+
+# ============================================================================
+# CONFIGURACION OPTIMIZADA DEL CLIENTE REACTIVO MONGODB
+# ============================================================================
+
+# Configuracion del pool de conexiones
+spring.data.mongodb.client.min-pool-size=5
+spring.data.mongodb.client.max-pool-size=20
+spring.data.mongodb.client.max-connection-idle-time=30000
+spring.data.mongodb.client.max-connection-life-time=1800000
+spring.data.mongodb.client.max-acquire-time=30000
+spring.data.mongodb.client.max-size=20
+
+# Timeouts y configuracion de socket
+spring.data.mongodb.client.connect-timeout=5000
+spring.data.mongodb.client.socket-timeout=30000
+spring.data.mongodb.client.heartbeat-socket-timeout=20000
+spring.data.mongodb.client.heartbeat-frequency=10000
+
+# Configuracion de escritura
+spring.data.mongodb.client.retry-writes=true
+spring.data.mongodb.client.retry-reads=true
+
+# ============================================================================
+# CONFIGURACION SPRING DATA MONGODB REACTIVE
+# ============================================================================
+
+# Habilitar repositorios reactivos
+spring.data.mongodb.repositories.type=reactive
+
+# Configuracion de auto-indexacion
+spring.data.mongodb.auto-index-creation=true
+
+# ConfiguraciOn de tipo de escritura
+spring.data.mongodb.write-concern=ACKNOWLEDGED
+
+# ============================================================================
+# CONFIGURACION ADICIONAL PARA MONGODB
+# ============================================================================
+
+# Lectura de preferencias
+spring.data.mongodb.read-preference=primary
+
+# Configuracion de transacciones (si usas replicas)
+spring.data.mongodb.transaction-enabled=false
+
+# ============================================================================
+# CONFIGURACION SPRING WEBFLUX
+# ============================================================================
+
+# ConfiguraciOn del servidor Netty
+server.netty.connection-timeout=30s
+server.netty.idle-timeout=60s
+
+# ============================================================================
+# LOGGING PARA DEBUG (OPCIONAL)
+# ============================================================================
+
+#logging.level.org.springframework.data.mongodb=DEBUG
+#logging.level.org.mongodb.driver=DEBUG
+#logging.level.reactor.netty=DEBUG
+#logging.level.org.springframework.web.reactive=DEBUG
+
+# ============================================================================
+# CONFIGURACION REACTOR (OPCIONAL)
+# ============================================================================
+
+# ConfiguraciOn de Reactor para mejor debugging
+reactor.tools.agent.enabled=true
+```
+
