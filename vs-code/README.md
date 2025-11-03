@@ -1,6 +1,6 @@
 # Visual Studio Code
 
-## Angular
+## ANGULAR
 
 ### Extensions
 - [Angular Language Service](https://marketplace.visualstudio.com/items?itemName=Angular.ng-template)
@@ -17,6 +17,15 @@
 - [GitHub Copilot](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot)
 - [GitHub Copilot Chat](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot-chat)
 - [JavaScript (ES6) code snippets](https://marketplace.visualstudio.com/items?itemName=xabikos.JavaScriptSnippets)
+- [Lorem ipsum](https://marketplace.visualstudio.com/items?itemName=Tyriar.lorem-ipsum)
+- [Material Icon Theme](https://marketplace.visualstudio.com/items?itemName=PKief.material-icon-theme)
+- [Monokai Night Theme](https://marketplace.visualstudio.com/items?itemName=fabiospampinato.vscode-monokai-night)
+- [Paste JSON as Code](https://marketplace.visualstudio.com/items?itemName=quicktype.quicktype)
+- [Prettier - Code formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
+- [Pretty TypeScript Errors](https://marketplace.visualstudio.com/items?itemName=yoavbls.pretty-ts-errors)
+- [Tailwind CSS IntelliSense](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss)
+- [Tokyo Night](https://marketplace.visualstudio.com/items?itemName=enkia.tokyo-night)
+- [TypeScript Importer](https://marketplace.visualstudio.com/items?itemName=pmneo.tsimporter)
 
 
 ### File settings.json
@@ -54,6 +63,7 @@
     "window.title": "${dirty}${activeEditorLong}${separator}${rootName}${separator}${profileName}${separator}${appName}",
 }
 ```
+
 
 
 
