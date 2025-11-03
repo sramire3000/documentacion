@@ -1,10 +1,7 @@
 # Multiple DataBase Conection JDK 21 Spring WebFlux
 
-- Mongo Db
+- SQLServer 2019
 - PostgresSQL
-- Mysql
-- Sybase JTDS
-- Sybase JConect
 - Mongo DB
 
 ## File pom.xml
@@ -84,7 +81,7 @@
 </project>
 ```
 
-## Postgress
+## PostgresSQL
 
 ### pom.xml
 ```
@@ -349,3 +346,4 @@ server.netty.idle-timeout=60s
 # ConfiguraciOn de Reactor para mejor debugging
 
 ```
+
