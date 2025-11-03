@@ -290,15 +290,15 @@ sudo apt install apache2-utils
 ab -v
 ```
 
-
 ### Install Sql Server Using docker run:
 ```bash
 docker run -d -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=Password.1234" --name my-mssql-server -p 1433:1433 rapidfort/microsoft-sql-server-2019-ib:latest
 ```
 
-
-
-
+### Install .net
+```bash
+https://learn.microsoft.com/en-us/dotnet/core/install/linux-ubuntu-install?tabs=dotnet9&pivots=os-linux-ubuntu-2404
+```
 
 
 
