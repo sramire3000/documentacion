@@ -1677,8 +1677,22 @@ public class DbSybase {
 }
 ```
 
+## Sybase JT400
+
+### File application.properties
+```
+# Configuracion SybaseJ
+spring.datasource.sybasej.url=jdbc:sybase:Tds://[ip_server]:[port_server]/[database_name]
+spring.datasource.sybasej.username=[user_db]
+spring.datasource.sybasej.password=[password_db]
+spring.datasource.sybasej.driver-class-name=com.sybase.jdbc4.jdbc.SybDriver
+spring.datasource.sybasej.ddl=none
+spring.datasource.sybasej.dialect.dialect=org.hibernate.dialect.SybaseDialect
+spring.datasource.sybasej.schema=dbo
+```
 
 ## Mongo Server
+
 
 
 
