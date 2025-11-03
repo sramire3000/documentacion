@@ -32,10 +32,17 @@ sudo apt update
 sudo apt upgrade
 ```
 
+### Instalar un .deb
+```bash
+sudo dpkg -i nombre_del_archivo.deb
+```
+
 ### Forzar reinstalación ignorando conflictos
 ```bash
 sudo dpkg -i --force-all nombre_del_paquete.deb
 ```
+
+
 
 ## UTILIDADES
 
@@ -281,6 +288,7 @@ ab -v
 ```bash
 docker run -d -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=Password.1234" --name my-mssql-server -p 1433:1433 rapidfort/microsoft-sql-server-2019-ib:latest
 ```
+
 
 
 
