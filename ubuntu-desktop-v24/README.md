@@ -128,6 +128,15 @@ CHROME_EXECUTABLE=/snap/bin/chromium
 sudo apt-get install zeal
 ```
 
+### Istall Bootles
+```bash
+sudo apt install flatpak -y
+reboot
+sudo flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+flatpak install flathub com.usebottles.bottles -y
+flatpak run com.usebottles.bottles
+```
+
 ## SOFTWARE DE DESARROLLO
 
 ### Buscar Jdks
@@ -299,6 +308,7 @@ docker run -d -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=Password.1234" --name my-
 ```bash
 https://learn.microsoft.com/en-us/dotnet/core/install/linux-ubuntu-install?tabs=dotnet9&pivots=os-linux-ubuntu-2404
 ```
+
 
 
 
