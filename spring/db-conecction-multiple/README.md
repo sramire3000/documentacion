@@ -585,8 +585,8 @@ public class DbSqlServer {
 ```
 # Configuracion PostgreSQL
 spring.datasource.postgres.url=jdbc:postgresql://[ip_server]:[port_server]/[database_name]
-spring.datasource.postgres.username=postgres
-spring.datasource.postgres.password=password
+spring.datasource.postgres.username=[user_db]
+spring.datasource.postgres.password=[password_db]
 spring.datasource.postgres.driver-class-name=org.postgresql.Driver
 spring.datasource.postgres.dialect.dialect=org.hibernate.dialect.PostgreSQLDialect
 spring.datasource.postgres.ddl=none
@@ -595,6 +595,7 @@ spring.datasource.postgres.ddl=none
 ## Mysql Server
 
 ## Mongo Server
+
 
 
 
