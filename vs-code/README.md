@@ -32,38 +32,79 @@
 ### File settings.json
 ```
 {
-    "workbench.colorCustomizations": {
-        "statusBar.background": "#121016",
-        "statusBar.debuggingBackground": "#121016",
-        "statusBar.debuggingForeground": "#525156",
-        "debugToolBar.background": "#121016",
-    },
-    "workbench.startupEditor": "none",
-    "extensions.ignoreRecommendations": true,
-    "window.zoomLevel": 0,
-    "terminal.integrated.defaultProfile.windows": "PowerShell",
-    "workbench.sideBar.location": "left",
-    "workbench.editor.showTabs": "multiple",
-    "workbench.statusBar.visible": true,
-    "workbench.iconTheme": "material-icon-theme",
-    "editor.minimap.enabled": false,
-    "editor.scrollbar.vertical": "hidden",
-    "editor.overviewRulerBorder": false,
-    "editor.hideCursorInOverviewRuler": true,
-    "editor.formatOnSave": false,
-    "editor.guides.indentation": false,
-    "editor.glyphMargin": false,
-    "editor.fontSize": 13,
-    "editor.wordWrap": "on",
-    "editor.mouseWheelZoom": true,
-    "breadcrumbs.enabled": false,
-    "files.autoSave": "afterDelay",
-    "git.openRepositoryInParentFolders": "never",
-    "workbench.colorTheme": "Monokai Night",
-    "editor.tabSize": 3,
-    "window.title": "${dirty}${activeEditorLong}${separator}${rootName}${separator}${profileName}${separator}${appName}",
+  // Angular & TypeScript
+  "typescript.preferences.autoImportFileExcludePatterns": [
+    "@angular/compiler",
+    "rxjs/internal/**"
+  ],
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "typescript.suggest.autoImports": true,
+  
+  // Formato
+  "editor.formatOnSave": true,
+  "editor.formatOnPaste": true,
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": "always",
+    "source.fixAll.eslint": "always"
+  },
+  
+  // Prettier
+  "prettier.singleQuote": true,
+  "prettier.trailingComma": "es5",
+  "prettier.semi": true,
+  "prettier.printWidth": 100,
+  "prettier.tabWidth": 2,
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "[scss]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  
+  // Editor
+  "editor.tabSize": 2,
+  "editor.insertSpaces": true,
+  "editor.detectIndentation": true,
+  "editor.wordWrap": "on",
+  "editor.minimap.enabled": true,
+  "editor.fontSize": 14,
+  "editor.fontFamily": "'Fira Code', 'Cascadia Code', Consolas, 'Courier New', monospace",
+  "editor.fontLigatures": true,
+  "editor.mouseWheelZoom": true,
+  "window.zoomLevel": 0,
+  
+  // Archivos
+  "files.autoSave": "onFocusChange",
+  "files.exclude": {
+    "**/node_modules": true,
+    "**/dist": true,
+    "**/.angular": true
+  },
+  
+  // Terminal
+  "terminal.integrated.shellArgs.windows": ["-NoExit", "-Command", "ng version"],
+  "terminal.integrated.fontSize": 14,
+  
+  // Workbench
+  "workbench.iconTheme": "material-icon-theme",
+  "workbench.colorTheme": "Default Dark Modern",
+  
+  // ESLint
+  "eslint.validate": [
+    "typescript",
+    "javascript"
+  ],
+  
+  // Extensiones específicas
+  "angular.enable-strict-mode-prompt": false,
+  "angular.view-engine": false,
+  "angular.suggest.includeAutocompleteOptionalChain": true
 }
 ```
+
 
 
 
