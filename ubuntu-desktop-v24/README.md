@@ -195,6 +195,11 @@ Type=Application
 Categories=Development;IDE;
 ```
 
+### Install Putty
+```bash
+sudo apt install putty putty-tools 
+```
+
 ### Install DOCKER
 Info URL https://docs.docker.com/engine/install/ubuntu/
 ```bash
@@ -264,6 +269,13 @@ sudo open .bashrc
 source .bashrc
 jmeter
 ```
+
+### Apache Bencmark
+```bash
+sudo apt install apache2-utils
+ab -v
+```
+
 
 
 
