@@ -88,8 +88,6 @@
 
 ### File applcation.properties
 ```
-# Configuracion SQL Server
-```
 # ============================================================================
 # CONFIGURACION MONGODB - SPRING WEBFLUX
 # ============================================================================
@@ -171,4 +169,5 @@ server.netty.idle-timeout=60s
 # ConfiguraciOn de Reactor para mejor debugging
 reactor.tools.agent.enabled=true
 ```
+
 
