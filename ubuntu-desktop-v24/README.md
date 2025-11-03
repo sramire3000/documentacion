@@ -103,6 +103,13 @@ sudo apt install ninja-build
 sudo apt install pkg-config
 sudo apt install libgtk-3-dev
 Reboot system
+
+#Install convert de RPM a DEB
+sudo apt install alien -y
+
+#Convert rpm a deb
+sudo alien [Archivo RPM]
+sudo alien -k archivo.tar.xz
 ```
 
 ### Install dbeaver
@@ -288,6 +295,7 @@ ab -v
 ```bash
 docker run -d -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=Password.1234" --name my-mssql-server -p 1433:1433 rapidfort/microsoft-sql-server-2019-ib:latest
 ```
+
 
 
 
