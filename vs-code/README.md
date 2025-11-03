@@ -1,52 +1,50 @@
-# Node Version Manager
-nvm es un gestor de versiones para Node.js, diseñado para instalarse por usuario e invocarse por shell. nvm funciona en cualquier shell compatible con POSIX (sh, dash, ksh, zsh, bash), en particular en estas plataformas: Unix, macOS y Windows WSL.
+# Visual Studio Code
 
+## Angular
 
-
-### Install & Update Script
-To install or update nvm, you should run the install script. To do that, you may either download and run the script manually, or use the following cURL or Wget command:
-
-
-
-```bash
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
+### Extensions
+```
+```
+### File settings.json
+```
+{
+    "workbench.colorCustomizations": {
+        "statusBar.background": "#121016",
+        "statusBar.debuggingBackground": "#121016",
+        "statusBar.debuggingForeground": "#525156",
+        "debugToolBar.background": "#121016",
+    },
+    "workbench.startupEditor": "none",
+    "extensions.ignoreRecommendations": true,
+    "window.zoomLevel": 0,
+    "terminal.integrated.defaultProfile.windows": "PowerShell",
+    "workbench.sideBar.location": "left",
+    "workbench.editor.showTabs": "multiple",
+    "workbench.statusBar.visible": true,
+    "workbench.iconTheme": "material-icon-theme",
+    "editor.minimap.enabled": false,
+    "editor.scrollbar.vertical": "hidden",
+    "editor.overviewRulerBorder": false,
+    "editor.hideCursorInOverviewRuler": true,
+    "editor.formatOnSave": false,
+    "editor.guides.indentation": false,
+    "editor.glyphMargin": false,
+    "editor.fontSize": 13,
+    "editor.wordWrap": "on",
+    "editor.mouseWheelZoom": true,
+    "breadcrumbs.enabled": false,
+    "files.autoSave": "afterDelay",
+    "git.openRepositoryInParentFolders": "never",
+    "workbench.colorTheme": "Monokai Night",
+    "editor.tabSize": 3,
+    "window.title": "${dirty}${activeEditorLong}${separator}${rootName}${separator}${profileName}${separator}${appName}",
+}
 ```
 
-```bash
-wget -qO- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.3/install.sh | bash
-```
 
-### Version
-```bash
-nvm --version
-```
 
-### Listado de versiones en linea
-```bash
-nvm ls-remote
-nvm list available 
-```
 
-### LIstado de versiones en el Sistema
-```bash
-nvm ls
-nvm list
-```
 
-### Install version example
-```bash
-nvm install v18.19.1
-```
-
-### Use
-```bash
-nvm use [version node]
-```
-
-### Uninstall version
-```bash
-nvm uninstall v4.9.1
-```
 
 
 
