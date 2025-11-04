@@ -28,8 +28,50 @@
 
 ### File settings.json
 ```
-
+{
+    "workbench.colorCustomizations": {
+        "statusBar.background": "#121016",
+        "statusBar.debuggingBackground": "#121016",
+        "statusBar.debuggingForeground": "#525156",
+        "debugToolBar.background": "#121016",
+    },
+    "workbench.startupEditor": "none",
+    "extensions.ignoreRecommendations": true,
+    "window.zoomLevel": 1,
+    "terminal.integrated.defaultProfile.windows": "PowerShell",
+    "workbench.sideBar.location": "left",
+    "workbench.editor.showTabs": "multiple",
+    "workbench.statusBar.visible": true,
+    "workbench.iconTheme": "material-icon-theme",
+    "editor.minimap.enabled": false,
+    "editor.scrollbar.vertical": "hidden",
+    "editor.overviewRulerBorder": false,
+    "editor.hideCursorInOverviewRuler": true,
+    "editor.formatOnSave": true,
+    "editor.guides.indentation": false,
+    "editor.glyphMargin": false,
+    "editor.fontSize": 13,
+    "editor.wordWrap": "on",  
+    "editor.matchBrackets": "never",
+    "editor.mouseWheelZoom": true,
+    "breadcrumbs.enabled": false,
+    "files.autoSave": "afterDelay",
+    "git.openRepositoryInParentFolders": "never",     
+    "dart.debugExternalPackageLibraries": true,
+    "dart.debugSdkLibraries": true,
+    "[dart]": {
+        "editor.formatOnSave": true,
+        "editor.formatOnType": true,
+        "editor.selectionHighlight": false,
+        "editor.suggest.snippetsPreventQuickSuggestions": false,
+        "editor.suggestSelection": "first",
+        "editor.tabCompletion": "onlySnippets",
+        "editor.wordBasedSuggestions": "off"
+    },
+    "workbench.colorTheme": "Monokai Night",
+}
 ```
+
 
 
 
