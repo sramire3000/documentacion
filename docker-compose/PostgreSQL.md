@@ -83,7 +83,7 @@ CREATE TABLE IF NOT EXISTS zipkin_dependencies (
 ) WITH (OIDS=FALSE);
 ```
 
-### File schemazipkin.sql
+### File docker-compose.yaml
 ```
 version: "3"
 
@@ -147,6 +147,7 @@ volumes:
     driver: local  
 
 ```
+
 
 
 
