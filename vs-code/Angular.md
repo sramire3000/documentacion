@@ -70,7 +70,7 @@
   "editor.detectIndentation": true,
   "editor.wordWrap": "on",
   "editor.minimap.enabled": false,
-  "editor.fontSize": 14,
+  "editor.fontSize": 13,
   "editor.fontFamily": "'Fira Code', 'Cascadia Code', Consolas, 'Courier New', monospace",
   "editor.fontLigatures": true,
   "editor.mouseWheelZoom": true,
@@ -104,6 +104,7 @@
   "angular.suggest.includeAutocompleteOptionalChain": true
 }
 ```
+
 
 
 
