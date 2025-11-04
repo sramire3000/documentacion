@@ -2,8 +2,8 @@
 
 ### User
 ```
-Email			:  admin@example.com
-Password	:  changeme
+Email     : admin@example.com
+Password	: changeme
 ```
 
 ### File docker-compose.yaml
@@ -32,5 +32,6 @@ services:
       - ./data:/data
       - ./letsencrypt:/etc/letsencrypt
 ```
+
 
 
