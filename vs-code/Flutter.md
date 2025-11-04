@@ -60,8 +60,10 @@
     "editor.matchBrackets": "never",
     "editor.mouseWheelZoom": true,
     // git
-    "git.openRepositoryInParentFolders": "never",     
+    "git.openRepositoryInParentFolders": "never",
+    // breadcrumbs
     "breadcrumbs.enabled": false,
+    // Files
     "files.autoSave": "afterDelay",
     // Dart
     "dart.debugExternalPackageLibraries": true,
@@ -78,6 +80,7 @@
     "workbench.colorTheme": "Monokai Night",
 }
 ```
+
 
 
 
