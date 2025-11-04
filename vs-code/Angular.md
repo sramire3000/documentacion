@@ -65,16 +65,24 @@
   },
   
   // Editor
+  "editor.minimap.enabled": false,
+  "editor.scrollbar.vertical": "hidden",
+  "editor.overviewRulerBorder": false,
+  "editor.hideCursorInOverviewRuler": true,
+  "editor.formatOnSave": true,
+  "editor.guides.indentation": false,
+  "editor.glyphMargin": false,
+  "editor.fontSize": 13,
+  "editor.wordWrap": "on",  
+  "editor.matchBrackets": "never",
+  "editor.mouseWheelZoom": true,
   "editor.tabSize": 2,
   "editor.insertSpaces": true,
   "editor.detectIndentation": true,
-  "editor.wordWrap": "on",
-  "editor.minimap.enabled": false,
-  "editor.fontSize": 13,
   "editor.fontFamily": "'Fira Code', 'Cascadia Code', Consolas, 'Courier New', monospace",
   "editor.fontLigatures": true,
-  "editor.mouseWheelZoom": true,
-  "window.zoomLevel": 0,
+  // Windows
+  "window.zoomLevel": 1,
   
   // Archivos
   "files.autoSave": "onFocusChange",
@@ -104,6 +112,7 @@
   "angular.suggest.includeAutocompleteOptionalChain": true
 }
 ```
+
 
 
 
