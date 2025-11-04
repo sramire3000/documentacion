@@ -40,14 +40,6 @@
   "typescript.updateImportsOnFileMove.enabled": "always",
   "typescript.suggest.autoImports": true,
   
-  // Formato
-  "editor.formatOnSave": true,
-  "editor.formatOnPaste": true,
-  "editor.codeActionsOnSave": {
-    "source.organizeImports": "always",
-    "source.fixAll.eslint": "always"
-  },
-  
   // Prettier
   "prettier.singleQuote": true,
   "prettier.trailingComma": "es5",
@@ -69,7 +61,6 @@
   "editor.scrollbar.vertical": "hidden",
   "editor.overviewRulerBorder": false,
   "editor.hideCursorInOverviewRuler": true,
-  "editor.formatOnSave": true,
   "editor.guides.indentation": false,
   "editor.glyphMargin": false,
   "editor.fontSize": 13,
@@ -81,6 +72,15 @@
   "editor.detectIndentation": true,
   "editor.fontFamily": "'Fira Code', 'Cascadia Code', Consolas, 'Courier New', monospace",
   "editor.fontLigatures": true,
+
+  // Formato
+  "editor.formatOnSave": true,
+  "editor.formatOnPaste": true,
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": "always",
+    "source.fixAll.eslint": "always"
+  },
+
   // Windows
   "window.zoomLevel": 1,
   
@@ -112,6 +112,7 @@
   "angular.suggest.includeAutocompleteOptionalChain": true
 }
 ```
+
 
 
 
