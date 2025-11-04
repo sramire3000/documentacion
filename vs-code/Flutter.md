@@ -29,6 +29,13 @@
 ### File settings.json
 ```
 {
+    // Windows
+    "window.zoomLevel": 1,
+    // ignore recomendaciones
+    "extensions.ignoreRecommendations": true,
+    // Terminal
+    "terminal.integrated.defaultProfile.windows": "PowerShell",
+    // workbench
     "workbench.colorCustomizations": {
         "statusBar.background": "#121016",
         "statusBar.debuggingBackground": "#121016",
@@ -36,13 +43,11 @@
         "debugToolBar.background": "#121016",
     },
     "workbench.startupEditor": "none",
-    "extensions.ignoreRecommendations": true,
-    "window.zoomLevel": 1,
-    "terminal.integrated.defaultProfile.windows": "PowerShell",
     "workbench.sideBar.location": "left",
     "workbench.editor.showTabs": "multiple",
     "workbench.statusBar.visible": true,
     "workbench.iconTheme": "material-icon-theme",
+    // Editor
     "editor.minimap.enabled": false,
     "editor.scrollbar.vertical": "hidden",
     "editor.overviewRulerBorder": false,
@@ -54,9 +59,11 @@
     "editor.wordWrap": "on",  
     "editor.matchBrackets": "never",
     "editor.mouseWheelZoom": true,
+    // git
+    "git.openRepositoryInParentFolders": "never",     
     "breadcrumbs.enabled": false,
     "files.autoSave": "afterDelay",
-    "git.openRepositoryInParentFolders": "never",     
+    // Dart
     "dart.debugExternalPackageLibraries": true,
     "dart.debugSdkLibraries": true,
     "[dart]": {
@@ -71,6 +78,7 @@
     "workbench.colorTheme": "Monokai Night",
 }
 ```
+
 
 
 
