@@ -2,7 +2,7 @@
 
 ### User
 ```
-Email     : admin@example.com
+Email       : admin@example.com
 Password	: changeme
 ```
 
@@ -32,6 +32,7 @@ services:
       - ./data:/data
       - ./letsencrypt:/etc/letsencrypt
 ```
+
 
 
 
