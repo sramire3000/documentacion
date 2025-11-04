@@ -3,13 +3,14 @@
 ## Flutter
 
 ### Extensions
-- [Angular Language Service](https://marketplace.visualstudio.com/items?itemName=Angular.ng-template)
+- [GitHub Copilot app modernization](https://marketplace.visualstudio.com/items?itemName=vscjava.migrate-java-to-azure)
 
 
 ### File settings.json
 ```
 
 ```
+
 
 
 
