@@ -1,4 +1,4 @@
-# Docker Composer MYSQL
+# Docker Composer MYSQL V. 5.7
 
 ### File .env
 ```
@@ -129,6 +129,7 @@ volumes:
     driver: local  
 
 ```
+
 
 
 
