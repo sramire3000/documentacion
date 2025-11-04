@@ -48,19 +48,34 @@
     "workbench.statusBar.visible": true,
     "workbench.iconTheme": "material-icon-theme",
     // Editor
-    "editor.minimap.enabled": false,
-    "editor.scrollbar.vertical": "hidden",
-    "editor.overviewRulerBorder": false,
-    "editor.hideCursorInOverviewRuler": true,
-    "editor.formatOnSave": true,
-    "editor.guides.indentation": false,
-    "editor.glyphMargin": false,
-    "editor.fontSize": 13,
-    "editor.wordWrap": "on",  
-    "editor.matchBrackets": "never",
-    "editor.mouseWheelZoom": true,
+  // Editor
+  "editor.minimap.enabled": false,
+  "editor.scrollbar.vertical": "hidden",
+  "editor.overviewRulerBorder": false,
+  "editor.hideCursorInOverviewRuler": true,
+  "editor.guides.indentation": false,
+  "editor.glyphMargin": false,
+  "editor.fontSize": 13,
+  "editor.wordWrap": "on",  
+  "editor.matchBrackets": "never",
+  "editor.mouseWheelZoom": true,
+  "editor.tabSize": 2,
+  "editor.insertSpaces": true,
+  "editor.detectIndentation": true,
+  "editor.fontFamily": "'Fira Code', 'Cascadia Code', Consolas, 'Courier New', monospace",
+  "editor.fontLigatures": true,
+
+  // Formato
+  "editor.formatOnSave": true,
+  "editor.formatOnPaste": true,
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": "always",
+    "source.fixAll.eslint": "always"
+  },
+
     // git
     "git.openRepositoryInParentFolders": "never",
+
     // breadcrumbs
     "breadcrumbs.enabled": false,
     // Files
@@ -81,6 +96,7 @@
     "workbench.colorTheme": "Monokai Night",
 }
 ```
+
 
 
 
