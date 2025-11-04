@@ -122,13 +122,12 @@ networks:
   network_dev:
     external: true
   
-
-  
 volumes:
   db_data:
     driver: local  
 
 ```
+
 
 
 
