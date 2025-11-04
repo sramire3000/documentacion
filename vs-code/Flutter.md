@@ -29,25 +29,24 @@
 ### File settings.json
 ```
 {
-    // Windows
-    "window.zoomLevel": 1,
-    // ignore recomendaciones
-    "extensions.ignoreRecommendations": true,
-    // Terminal
-    "terminal.integrated.defaultProfile.windows": "PowerShell",
-    // workbench
-    "workbench.colorCustomizations": {
-        "statusBar.background": "#121016",
-        "statusBar.debuggingBackground": "#121016",
-        "statusBar.debuggingForeground": "#525156",
-        "debugToolBar.background": "#121016",
-    },
-    "workbench.startupEditor": "none",
-    "workbench.sideBar.location": "left",
-    "workbench.editor.showTabs": "multiple",
-    "workbench.statusBar.visible": true,
-    "workbench.iconTheme": "material-icon-theme",
-    // Editor
+  // Windows
+  "window.zoomLevel": 1,
+  // ignore recomendaciones
+  "extensions.ignoreRecommendations": true,
+  // Terminal
+  "terminal.integrated.defaultProfile.windows": "PowerShell",
+  // workbench
+  "workbench.colorCustomizations": {
+    "statusBar.background": "#121016",
+    "statusBar.debuggingBackground": "#121016",
+    "statusBar.debuggingForeground": "#525156",
+    "debugToolBar.background": "#121016",
+  },
+  "workbench.startupEditor": "none",
+  "workbench.sideBar.location": "left",
+  "workbench.editor.showTabs": "multiple",
+  "workbench.statusBar.visible": true,
+  "workbench.iconTheme": "material-icon-theme",
   // Editor
   "editor.minimap.enabled": false,
   "editor.scrollbar.vertical": "hidden",
@@ -56,7 +55,7 @@
   "editor.guides.indentation": false,
   "editor.glyphMargin": false,
   "editor.fontSize": 13,
-  "editor.wordWrap": "on",  
+  "editor.wordWrap": "on",
   "editor.matchBrackets": "never",
   "editor.mouseWheelZoom": true,
   "editor.tabSize": 2,
@@ -64,7 +63,6 @@
   "editor.detectIndentation": true,
   "editor.fontFamily": "'Fira Code', 'Cascadia Code', Consolas, 'Courier New', monospace",
   "editor.fontLigatures": true,
-
   // Formato
   "editor.formatOnSave": true,
   "editor.formatOnPaste": true,
@@ -72,49 +70,26 @@
     "source.organizeImports": "always",
     "source.fixAll.eslint": "always"
   },
-
-    // git
-    "git.openRepositoryInParentFolders": "never",
-
-    // breadcrumbs
-    "breadcrumbs.enabled": false,
-    // Files
-    "files.autoSave": "afterDelay",
-    // Dart
-    "dart.debugExternalPackageLibraries": true,
-    "dart.debugSdkLibraries": true,
-    "[dart]": {
-        "editor.formatOnSave": true,
-        "editor.formatOnType": true,
-        "editor.selectionHighlight": false,
-        "editor.suggest.snippetsPreventQuickSuggestions": false,
-        "editor.suggestSelection": "first",
-        "editor.tabCompletion": "onlySnippets",
-        "editor.wordBasedSuggestions": "off"
-    },
-    // Theme
-    "workbench.colorTheme": "Monokai Night",
+  // git
+  "git.openRepositoryInParentFolders": "never",
+  // breadcrumbs
+  "breadcrumbs.enabled": false,
+  // Files
+  "files.autoSave": "afterDelay",
+  // Dart
+  "dart.debugExternalPackageLibraries": true,
+  "dart.debugSdkLibraries": true,
+  "[dart]": {
+    "editor.formatOnSave": true,
+    "editor.formatOnType": true,
+    "editor.selectionHighlight": false,
+    "editor.suggest.snippetsPreventQuickSuggestions": false,
+    "editor.suggestSelection": "first",
+    "editor.tabCompletion": "onlySnippets",
+    "editor.wordBasedSuggestions": "off"
+  },
+  // Theme
+  "workbench.colorTheme": "Monokai Night",
 }
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
