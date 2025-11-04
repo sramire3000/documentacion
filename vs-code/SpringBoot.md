@@ -33,7 +33,7 @@
   "editor.smoothScrolling": true,
   "editor.mouseWheelZoom": true,
   // ========== EDITOR - VISUAL ==========
-  "editor.minimap.enabled": true,
+  "editor.minimap.enabled": false,
   "editor.minimap.scale": 2,
   "editor.minimap.showSlider": "always",
   "editor.bracketPairColorization.enabled": true,
@@ -310,6 +310,7 @@
 }
 
 ```
+
 
 
 
