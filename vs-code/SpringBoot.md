@@ -3,7 +3,7 @@
 ## Spring Boot
 
 ### Extensions
-- [GitHub Copilot app modernization](https://marketplace.visualstudio.com/items?itemName=vscjava.migrate-java-to-azure)
+- [Debugger for Java](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-debug)
 
 
 
@@ -310,6 +310,7 @@
 }
 
 ```
+
 
 
 
