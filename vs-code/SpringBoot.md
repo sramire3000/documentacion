@@ -10,7 +10,7 @@
 ### File settings.json
 ```
 {
-  "window.zoomLevel": 0.5,
+  "window.zoomLevel": 1,
   // ========== TEMA Y APARIENCIA ==========
   "workbench.colorTheme": "One Dark Pro Darker",
   "workbench.iconTheme": "vscode-icons",
@@ -310,6 +310,7 @@
 }
 
 ```
+
 
 
 
