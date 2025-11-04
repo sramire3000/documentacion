@@ -77,9 +77,11 @@
         "editor.tabCompletion": "onlySnippets",
         "editor.wordBasedSuggestions": "off"
     },
+    // Theme
     "workbench.colorTheme": "Monokai Night",
 }
 ```
+
 
 
 
