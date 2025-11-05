@@ -1,6 +1,6 @@
 # Docker Composer JENKINS
 
-### File docker-compose.yml
+### File docker-compose.yaml
 ```
 version: "3"
 
