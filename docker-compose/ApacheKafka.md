@@ -1,9 +1,5 @@
 # Docker Composer APACHE KAFKA
 
-### File .env
-```
-```
-
 ### File docker-compose.yaml
 ```
 version: '3'
@@ -46,4 +42,5 @@ networks:
     external: true
     
 ```
+
 
