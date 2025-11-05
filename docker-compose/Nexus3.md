@@ -50,6 +50,8 @@ volumes:
     driver: local     
 ```
 
+### URL
+- [Nexus 3](http://localhost:8110/)
 
 
 
