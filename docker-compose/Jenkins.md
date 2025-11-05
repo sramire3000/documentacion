@@ -1,27 +1,6 @@
 # Docker Composer JENKINS
 
-### File dockerfile
-```
-FROM jenkins/jenkins:lts
 
-USER root
-
-# Instala Docker CLI
-RUN apt-get update && \
-    apt-get install -y apt-transport-https ca-certificates curl gnupg lsb-release && \
-    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg && \
-    echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" > /etc/apt/sources.list.d/docker.list && \
-    apt-get update && \
-    apt-get install -y docker-ce-cli && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
-
-# Da permisos al usuario jenkins para usar Docker
-RUN groupadd -g 999 docker && \
-    usermod -aG docker jenkins
-
-USER jenkins
-```
 
 ### File docker-compose.yaml
 ```
@@ -55,4 +34,60 @@ services:
 networks:
   network_dev:
     external: true
+```
+
+## Usando DockerFile
+
+### File dockerfile
+```
+FROM jenkins/jenkins:lts
+
+USER root
+
+# Instala Docker CLI
+RUN apt-get update && \
+    apt-get install -y apt-transport-https ca-certificates curl gnupg lsb-release && \
+    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg && \
+    echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" > /etc/apt/sources.list.d/docker.list && \
+    apt-get update && \
+    apt-get install -y docker-ce-cli && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/*
+
+# Da permisos al usuario jenkins para usar Docker
+RUN groupadd -g 999 docker && \
+    usermod -aG docker jenkins
+
+USER jenkins
+```
+
+### File docker-compose.yaml
+```
+   build: .
+    image: jenkins-custom:latest
+```
+
+### Verificacion de grupo
+Asegúrate de que el grupo docker en tu host tenga el GID 999, o ajusta el groupadd -g en el Dockerfile para que coincida con el GID real del grupo docker en tu sistema. Puedes verificarlo con:
+```
+getent group docker
+```
+
+### File .dockerignore
+```
+# Ignorar archivos y carpetas innecesarios
+.git
+.gitignore
+*.md
+*.log
+*.env
+*.DS_Store
+node_modules
+tmp/
+*.swp
+*.bak
+docker-compose.yml
+*.iml
+.idea/
+.vscode/
 ```
