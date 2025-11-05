@@ -1,5 +1,13 @@
 # Docker Composer NEXUS 3
 
+### File .env
+```
+NEXUS_SERVER=service-nexus3-server
+NEXUS_PORT1=8110
+NEXUS_PORT2=8120
+NEXUS_PORT3=8130
+```
+
 ### File docker-compose.yaml
 ```
 version: "3"
@@ -36,6 +44,7 @@ volumes:
   nexus-data:
     driver: local     
 ```
+
 
 
 
