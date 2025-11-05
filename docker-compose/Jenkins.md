@@ -1,5 +1,6 @@
 # Docker Composer JENKINS
 
+
 ### File docker-compose.yaml
 ```
 version: "3"
@@ -7,7 +8,8 @@ version: "3"
 services:
   service-jenkins-server:
     container_name: service-jenkins-server
-    image: sramire3000/jenkins_server:1.0.0
+    #image: sramire3000/jenkins_server:1.0.0
+    image: jenkins/jenkins
     deploy:
        resources:
           limits:
