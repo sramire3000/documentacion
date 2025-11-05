@@ -1,46 +1,54 @@
-# Docker Composer APACHE KAFKA
+# Docker Composer SONARQBE
+
+### File .env
+```
+SONARQUBE_SERVER=service-sonarqube
+SONARQUBE_PORT=9000
+POSTGRESS_SERVER=host.docker.internal
+POSTGRESS_PORT=5432
+POSTGRESS_DB=sonar
+POSTGRESS_USER=admin
+POSTGRESS_PASSWORD=password
+```
 
 ### File docker-compose.yaml
 ```
-version: '3'
+version: "3"
 
 services:
-
-  zookeeper:
-    image: confluentinc/cp-zookeeper:7.4.3
-    container_name: load-balancer
-    restart: always
-    networks:
-      - network_dev      
-    environment:
-      ZOOKEEPER_CLIENT_PORT: 2181
-      ZOOKEEPER_TICK_TIME: 2000
+  service-sonarqube:
+    container_name: ${SONARQUBE_SERVER}
+    image: sonarqube  
+    deploy:
+       resources:
+          limits:
+             cpus: '0.7'
+             memory: 2560M
+          reservations:
+             cpus: '0.5'
+             memory: 1536M     
+    expose:
+      - ${SONARQUBE_PORT}
     ports:
-      - "2181:2181"
-
-  kafka:
-    image: confluentinc/cp-kafka:7.4.3
-    container_name: msg-broker
-    restart: always
+      - ${SONARQUBE_PORT}:9000
     networks:
-      - network_dev    
-    depends_on:
-      - zookeeper
+      - network_dev
+    restart: no      
     environment:
-      KAFKA_BROKER_ID: 1
-      KAFKA_ZOOKEEPER_CONNECT: 'zookeeper:2181'
-      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_INTERNAL:PLAINTEXT
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://host.docker.internal:9092,PLAINTEXT_INTERNAL://broker:29092
-      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
-      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
-      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
-    ports:
-      - "9092:9092"   
-         
+      SONARQUBE_JDBC_URL: jdbc:postgresql://${POSTGRESS_SERVER}:${POSTGRESS_PORT}/${POSTGRESS_DB}
+      SONARQUBE_JDBC_USERNAME: ${POSTGRESS_USER}
+      SONARQUBE_JDBC_PASSWORD: ${POSTGRESS_PASSWORD}
+    volumes:
+      - ./sonarqube_data:/opt/sonarqube/conf
+      - ./sonarqube_data:/opt/sonarqube/data
+      - ./sonarqube_data:/opt/sonarqube/extensions
+      - ./sonarqube_data:/opt/sonarqube/lib/bundled-plugins
+      - ./sonarqube_data:/opt/sonarqube/logs
+
 networks:
   network_dev:
-    external: true
-    
+    external: true    
 ```
+
 
 
