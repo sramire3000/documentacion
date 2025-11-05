@@ -11,6 +11,11 @@ POSTGRESS_USER=[user_db]
 POSTGRESS_PASSWORD=[password_db]
 ```
 
+### Create folder "sonarqube_data" y dar permisos
+```
+sudo chmod 777 sonarqube_data
+```
+
 ### File docker-compose.yaml
 ```
 version: "3"
@@ -49,6 +54,7 @@ networks:
   network_dev:
     external: true    
 ```
+
 
 
 
