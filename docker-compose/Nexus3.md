@@ -1,46 +1,50 @@
-# Docker Composer APACHE KAFKA
+# Docker Composer NEXUS 3
+
+### File .env
+```
+NEXUS_SERVER=service-nexus3-server
+NEXUS_PORT1=8110
+NEXUS_PORT2=8120
+NEXUS_PORT3=8130
+```
 
 ### File docker-compose.yaml
 ```
-version: '3'
+version: "3"
 
 services:
-
-  zookeeper:
-    image: confluentinc/cp-zookeeper:7.4.3
-    container_name: load-balancer
-    restart: always
-    networks:
-      - network_dev      
-    environment:
-      ZOOKEEPER_CLIENT_PORT: 2181
-      ZOOKEEPER_TICK_TIME: 2000
+  service-nexus3-server:
+    image: sonatype/nexus3  
+    container_name: ${NEXUS_SERVER}
+    deploy:
+       resources:
+          limits:
+             cpus: '0.7'
+             memory: 2560M
+          reservations:
+             cpus: '0.5'
+             memory: 1536M      
+    expose:
+      - ${NEXUS_PORT1}
+      - ${NEXUS_PORT2}
+      - ${NEXUS_PORT3}
     ports:
-      - "2181:2181"
-
-  kafka:
-    image: confluentinc/cp-kafka:7.4.3
-    container_name: msg-broker
-    restart: always
+      - ${NEXUS_PORT1}:8081
+    restart: no
+    volumes:
+      - ./nexus-data:/nexus-data
     networks:
-      - network_dev    
-    depends_on:
-      - zookeeper
-    environment:
-      KAFKA_BROKER_ID: 1
-      KAFKA_ZOOKEEPER_CONNECT: 'zookeeper:2181'
-      KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_INTERNAL:PLAINTEXT
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://host.docker.internal:9092,PLAINTEXT_INTERNAL://broker:29092
-      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
-      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
-      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
-    ports:
-      - "9092:9092"   
-         
+      - network_dev
+      
 networks:
   network_dev:
     external: true
     
+volumes:
+  nexus-data:
+    driver: local     
 ```
+
+
 
 
