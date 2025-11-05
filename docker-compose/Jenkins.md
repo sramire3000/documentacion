@@ -28,7 +28,7 @@ services:
     environment:
       - JENKINS_OPTS="--httpPort=9080"
     volumes:
-      - ./volume:/var/jenkins_home
+      - ./jenkins_data:/var/jenkins_home
       - /var/run/docker.sock:/var/run/docker.sock
 networks:
   network_dev:
