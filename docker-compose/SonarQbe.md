@@ -58,6 +58,17 @@ networks:
 ### URL
 - [SonarQbe](http://localhost:9001/)
 
+### Password Old
+```
+User      = admin
+Password  = admin
+```
+
+### New Password
+```
+User     = admin
+Password = Password.123
+```
 
 
 
