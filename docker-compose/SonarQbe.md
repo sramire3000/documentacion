@@ -7,8 +7,8 @@ SONARQUBE_PORT=9000
 POSTGRESS_SERVER=host.docker.internal
 POSTGRESS_PORT=5432
 POSTGRESS_DB=sonar
-POSTGRESS_USER=admin
-POSTGRESS_PASSWORD=password
+POSTGRESS_USER=[user_db]
+POSTGRESS_PASSWORD=[password_db]
 ```
 
 ### File docker-compose.yaml
@@ -49,6 +49,7 @@ networks:
   network_dev:
     external: true    
 ```
+
 
 
 
