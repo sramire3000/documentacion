@@ -2,7 +2,7 @@
 
 ### File .env
 ```
-NEXUS_CONTAINER_NAME=service-nexus3-server
+NEXUS_CONTAINER_NAME=server-nexus3
 NEXUS_PORT1=8110
 NEXUS_PORT2=8120
 NEXUS_PORT3=8130
@@ -53,6 +53,7 @@ volumes:
 
 ### URL
 - [Nexus 3](http://localhost:8110/)
+
 
 
 
