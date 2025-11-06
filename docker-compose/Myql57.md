@@ -87,6 +87,7 @@ FLUSH PRIVILEGES;
 
 ### Crear carpeta "db_data" dar permisos
 ```
+mkdir db_data
 sudo chmod 777 db_data
 ```
 
@@ -123,6 +124,7 @@ networks:
   network_dev:
     external: true
 ```
+
 
 
 
