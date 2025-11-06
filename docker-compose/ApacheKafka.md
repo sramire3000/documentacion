@@ -28,6 +28,39 @@ sudo chmod 777 kafka_logs
 sudo chmod 777 kafka_certs
 ```
 
+### File ".env"
+```
+# Versiones de las imágenes
+ZOOKEEPER_VERSION=7.4.3
+KAFKA_VERSION=7.4.3
+
+# Nombres de los contenedores
+ZOOKEEPER_CONTAINER_NAME=load-balancer
+KAFKA_CONTAINER_NAME=msg-broker
+
+# Configuración de Zookeeper
+ZOOKEEPER_CLIENT_PORT=2181
+ZOOKEEPER_TICK_TIME=2000
+
+# Configuración de Kafka
+KAFKA_BROKER_ID=1
+KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181
+KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR=1
+KAFKA_TRANSACTION_STATE_LOG_MIN_ISR=1
+KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR=1
+KAFKA_LOG_DIRS=/var/lib/kafka/data
+
+# Puertos
+ZOOKEEPER_HOST_PORT=2181
+KAFKA_HOST_PORT=9092
+
+# Red
+NETWORK_NAME=network_dev
+
+# Listeners de Kafka
+KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://host.docker.internal:9092,PLAINTEXT_INTERNAL://broker:29092
+```
+
 ### File docker-compose.yaml
 ```
 version: '3'
@@ -81,6 +114,7 @@ networks:
   network_dev:
     external: true
 ```
+
 
 
 
