@@ -110,9 +110,9 @@ services:
              memory: 1024M
            reservations:
              cpus: '0.5'
-             memory: 512M 
+             memory: 512M
     ports:
-      - ${POSTGRES_PORT}:5432 
+      - ${POSTGRES_PORT}:5432
     restart: always
     networks:
       - network_dev
@@ -123,7 +123,7 @@ services:
     volumes:
       - ./postgres_data:/var/lib/postgresql/data
       - ./db.sql:/docker-entrypoint-initdb.d/db.sql
-      
+
   pgAdmin4:
     image: dpage/pgadmin4
     container_name: service-pgadmin4
@@ -134,7 +134,7 @@ services:
              memory: 512M
            reservations:
              cpus: '1.0'
-             memory: 256M   
+             memory: 256M
     ports:
       - ${PGADMIN_PORT}:80
     restart: always
@@ -148,11 +148,13 @@ services:
     depends_on:
       - service-postgres-server
 
-      
+
 networks:
   network_dev:
     external: true
+
 ```
+
 
 
 
