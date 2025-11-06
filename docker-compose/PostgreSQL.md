@@ -4,7 +4,7 @@
 ```
 POSTGRES_USER=postgres
 POSTGRES_PASSWORD=password
-POSTGRES_SERVER=server-postgres
+POSTGRES_CONTAINER_NAME=server-postgres
 POSTGRES_PORT=5432
 
 PGADMIN_DEFAULT_PASSWORD=password
@@ -102,7 +102,7 @@ version: "3"
 services:
   service-postgres-server:
     image: postgres:latest
-    container_name: ${POSTGRES_SERVER}
+    container_name: ${POSTGRES_CONTAINER_NAME}
     deploy:
        resources:
            limits:
@@ -153,6 +153,7 @@ networks:
   network_dev:
     external: true
 ```
+
 
 
 
