@@ -9,6 +9,12 @@ MONGO_PORT=27017
 MONGO_EXPRESS_PORT=8084
 ```
 
+### Create folder "mongo_data"
+```
+mkdir -p mongo_data
+sudo chmod 777 mongo_data
+```
+
 ### File docker-compose.yaml
 ```
 version: '3'
@@ -32,7 +38,7 @@ services:
     networks:
       - network_dev
     volumes:      
-       - mongodb_data:/data/db
+       - ./mongo_data:/data/db
     environment:
       MONGO_INITDB_ROOT_USERNAME: ${MONGO_USERNAME}
       MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PASSWORD}
@@ -64,11 +70,8 @@ services:
 networks:
   network_dev:
     external: true
-
-volumes:
-  mongodb_data:
-    driver: local
 ```
+
 
 
 
