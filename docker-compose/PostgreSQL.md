@@ -87,10 +87,10 @@ CREATE TABLE IF NOT EXISTS zipkin_dependencies (
 ```
 mkdir postgres_data
 mkdir db.sql
-mkdir
+mkdir pgadmin_data
 
 sudo chmod 777 postgres_data
-sudo chmod 777 dbsql
+sudo chmod 777 db.sql
 sudo chmod 777 pgadmin_data
 ```
 
@@ -144,7 +144,7 @@ services:
       PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
       PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
     volumes:
-      - pg-data:/var/lib/pgadmin
+      - pg_data:/var/lib/pgadmin
     depends_on:
       - ${POSTGRES_SERVER}
 
@@ -159,6 +159,7 @@ volumes:
     driver: local  
 
 ```
+
 
 
 
