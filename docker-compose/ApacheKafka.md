@@ -9,10 +9,12 @@ mkdir -p server-apache-kafka
 mkdir -p zookeeper_data
 mkdir -p zookeeper_logs
 mkdir -p kafka_data
+mkdir -p zookeeper_secrets
 
 sudo chmod 777 zookeeper_data
 sudo chmod 777 zookeeper_logs
 sudo chmod 777 kafka_data
+sudo chmod 777 zookeeper_secrets
 ```
 
 
@@ -33,6 +35,10 @@ services:
       ZOOKEEPER_TICK_TIME: 2000
     ports:
       - "2181:2181"
+    volumes:
+      - ./zookeeper_data:/var/lib/zookeeper/data
+      - ./zookeeper_logs:/var/lib/zookeeper/log
+      - ./zookeeper_secrets:/etc/zookeeper/secrets
 
   kafka:
     image: confluentinc/cp-kafka:7.4.3
@@ -51,13 +57,15 @@ services:
       KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
       KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
     ports:
-      - "9092:9092"   
+      - "9092:9092"
+    volumes:
+      - ./kafka_data:/var/lib/kafka/data
          
 networks:
   network_dev:
-    external: true
-    
+    external: true 
 ```
+
 
 
 
