@@ -115,7 +115,7 @@ services:
              memory: 512M 
     ports:
       - ${POSTGRES_PORT}:5432 
-    restart: no
+    restart: always
     networks:
       - network_dev
     environment:
@@ -128,7 +128,7 @@ services:
       
   pgAdmin4:
     image: dpage/pgadmin4
-    container_name: pgadmin4
+    container_name: service-pgadmin4
     deploy:
        resources:
            limits:
@@ -155,6 +155,7 @@ networks:
   network_dev:
     external: true
 ```
+
 
 
 
