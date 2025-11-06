@@ -85,13 +85,15 @@ CREATE TABLE IF NOT EXISTS zipkin_dependencies (
 
 ### Crear Carpetas 
 ```
-mkdir postgres_data
-mkdir db.sql
-mkdir pgadmin_data
+# Crear carpetas
+mkdir -p postgres_data
+mkdir -p pgadmin_data
+mkdir -p db_data
 
-sudo chmod 777 postgres_data
-sudo chmod 777 db.sql
-sudo chmod 777 pgadmin_data
+# Dar permisos (opción recomendada)
+chmod 755 postgres_data
+chmod 755 pgadmin_data
+chmod 755 db_data
 ```
 
 
@@ -159,6 +161,7 @@ volumes:
     driver: local  
 
 ```
+
 
 
 
