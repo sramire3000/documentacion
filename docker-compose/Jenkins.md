@@ -2,6 +2,12 @@
 
 ## Jenkins normal
 
+### Crear el folder "jenkins_data"
+```
+mkdir -p jenkins_data
+sudo chmod 777 jenkins_data
+```
+
 ### File ".env"
 ```
 # Docker Compose Configuration
