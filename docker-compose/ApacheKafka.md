@@ -52,7 +52,7 @@ KAFKA_LOG_DIRS=/var/lib/kafka/data
 
 # Puertos
 ZOOKEEPER_HOST_PORT=2181
-KAFKA_HOST_PORT=9092
+KAFKA_HOST_PORT=3001
 
 # Red
 NETWORK_NAME=network_dev
@@ -113,6 +113,7 @@ networks:
   network_dev:
     external: true
 ```
+
 
 
 
