@@ -3,7 +3,7 @@
 ### File .env
 ```
 MYSQL57_ROOT_PASSWORD=[password]
-MYSQL57_SERVER=service-mysql57-server
+MYSQL57_SERVER=server-mysql57
 MYSQL57_PORT=3306
 ```
 
@@ -127,6 +127,7 @@ volumes:
     driver: local  
 
 ```
+
 
 
 
