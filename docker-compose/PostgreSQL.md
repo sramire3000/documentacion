@@ -86,7 +86,7 @@ CREATE TABLE IF NOT EXISTS zipkin_dependencies (
 ### Crear Carpetas 
 ```
 mkdir postgres_data
-mkdir dbsql
+mkdir db.sql
 mkdir
 
 sudo chmod 777 postgres_data
@@ -159,6 +159,7 @@ volumes:
     driver: local  
 
 ```
+
 
 
 
