@@ -20,7 +20,7 @@ version: "3"
 
 services:
   service-nexus3-server:
-    image: sonatype/nexus3  
+    image: sonatype/nexus3
     container_name: ${NEXUS_CONTAINER_NAME}
     deploy:
        resources:
@@ -29,7 +29,7 @@ services:
              memory: 2560M
           reservations:
              cpus: '0.5'
-             memory: 1536M      
+             memory: 1536M
     expose:
       - ${NEXUS_PORT1}
       - ${NEXUS_PORT2}
@@ -41,18 +41,20 @@ services:
       - ./nexus_data:/nexus-data
     networks:
       - network_dev
-      
+
 networks:
   network_dev:
     external: true
-    
+
 volumes:
   nexus-data:
-    driver: local     
+    driver: local
+   
 ```
 
 ### URL
 - [Nexus 3](http://localhost:8110/)
+
 
 
 
