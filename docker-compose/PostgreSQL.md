@@ -88,12 +88,10 @@ CREATE TABLE IF NOT EXISTS zipkin_dependencies (
 # Crear carpetas
 mkdir -p postgres_data
 mkdir -p pgadmin_data
-mkdir -p db_data
 
 # Dar permisos (opción recomendada)
 chmod 755 postgres_data
 chmod 755 pgadmin_data
-chmod 755 db_data
 ```
 
 
@@ -124,7 +122,7 @@ services:
       POSTGRES_DB: postgres
     volumes:
       - ./postgres_data:/var/lib/postgresql/data
-      - ./dbsql:/docker-entrypoint-initdb.d/db.sql
+      - ./db.sql:/docker-entrypoint-initdb.d/db.sql
       
   pgAdmin4:
     image: dpage/pgadmin4
@@ -155,6 +153,7 @@ networks:
   network_dev:
     external: true
 ```
+
 
 
 
