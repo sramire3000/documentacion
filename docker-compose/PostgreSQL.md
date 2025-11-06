@@ -90,8 +90,8 @@ mkdir -p postgres_data
 mkdir -p pgadmin_data
 
 # Dar permisos (opción recomendada)
-chmod 755 postgres_data
-chmod 755 pgadmin_data
+chmod 777 postgres_data
+chmod 777 pgadmin_data
 ```
 
 
@@ -153,6 +153,7 @@ networks:
   network_dev:
     external: true
 ```
+
 
 
 
