@@ -4,7 +4,7 @@
 ```
 POSTGRES_USER=postgres
 POSTGRES_PASSWORD=password
-POSTGRES_SERVER=service-postgres-server
+POSTGRES_SERVER=server-postgres
 POSTGRES_PORT=5432
 
 PGADMIN_DEFAULT_PASSWORD=password
@@ -147,6 +147,7 @@ volumes:
     driver: local  
 
 ```
+
 
 
 
