@@ -83,10 +83,6 @@ CREATE USER 'zipkin'@'%' IDENTIFIED BY 'zipkin';
 GRANT INSERT, UPDATE, DELETE, EXECUTE, SHOW VIEW, SELECT ON zipkin . * TO 'zipkin'@'%';
 
 FLUSH PRIVILEGES;
-
-
-
-
 ```
 
 ### File docker-compose.yaml
@@ -113,7 +109,7 @@ services:
     networks:
       - network_dev
     volumes:
-      - db_data:/var/lib/mysql
+      - ./db_data:/var/lib/mysql
       - ./schemazipkin.sql:/docker-entrypoint-initdb.d/schemazipkin.sql
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL57_ROOT_PASSWORD}
@@ -121,12 +117,8 @@ services:
 networks:
   network_dev:
     external: true
-  
-volumes:
-  db_data:
-    driver: local  
-
 ```
+
 
 
 
