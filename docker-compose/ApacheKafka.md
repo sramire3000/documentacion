@@ -4,6 +4,17 @@
 ```
 mkdir -p server-apache-kafka
 ```
+### Crear filder
+```
+mkdir -p zookeeper_data
+mkdir -p zookeeper_logs
+mkdir -p kafka_data
+
+sudo chmod 777 zookeeper_data
+sudo chmod 777 zookeeper_logs
+sudo chmod 777 kafka_data
+```
+
 
 ### File docker-compose.yaml
 ```
@@ -47,6 +58,7 @@ networks:
     external: true
     
 ```
+
 
 
 
