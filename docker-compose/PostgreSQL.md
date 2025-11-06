@@ -123,8 +123,8 @@ services:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       POSTGRES_DB: postgres
     volumes:
-      - db-data:/var/lib/postgresql/data
-      - ./db.sql:/docker-entrypoint-initdb.d/db.sql
+      - ./postgres_data:/var/lib/postgresql/data
+      - ./dbsql:/docker-entrypoint-initdb.d/db.sql
       
   pgAdmin4:
     image: dpage/pgadmin4
@@ -146,21 +146,16 @@ services:
       PGADMIN_DEFAULT_PASSWORD: ${PGADMIN_DEFAULT_PASSWORD}
       PGADMIN_DEFAULT_EMAIL: ${PGADMIN_DEFAULT_EMAIL}
     volumes:
-      - pg_data:/var/lib/pgadmin
+      - ./pgadmin_data:/var/lib/pgadmin
     depends_on:
-      - ${POSTGRES_SERVER}
+      - service-postgres-server
 
       
 networks:
   network_dev:
     external: true
-    
-volumes:
-  pg-data:
-  db-data:
-    driver: local  
-
 ```
+
 
 
 
