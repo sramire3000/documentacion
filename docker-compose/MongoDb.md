@@ -39,6 +39,7 @@ services:
       - network_dev
     volumes:      
        - ./mongo_data:/data/db
+       - ./mongo_data:/data/configdb
     environment:
       MONGO_INITDB_ROOT_USERNAME: ${MONGO_USERNAME}
       MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PASSWORD}
@@ -53,10 +54,10 @@ services:
              memory: 512M
            reservations:
              cpus: '0.5'
-             memory: 256M        
+             memory: 256M
     image: mongo-express:1.0.0-alpha.4
     networks:
-      - network_dev    
+      - network_dev
     environment:
       ME_CONFIG_MONGODB_ADMINUSERNAME: ${MONGO_USERNAME}
       ME_CONFIG_MONGODB_ADMINPASSWORD: ${MONGO_PASSWORD}
@@ -66,11 +67,13 @@ services:
     restart: unless-stopped
     depends_on:
       - service-mongodb-server
-  
+
 networks:
   network_dev:
     external: true
+
 ```
+
 
 
 
