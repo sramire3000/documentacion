@@ -7,19 +7,25 @@ mkdir -p server-apache-kafka
 
 ### Crear filder
 ```
+# Zookeper
 mkdir -p zookeeper_data
 mkdir -p zookeeper_logs
 mkdir -p zookeeper_secrets
-
-mkdir -p kafka_data
-mkdir -p kafka_logs
 
 sudo chmod 777 zookeeper_data
 sudo chmod 777 zookeeper_logs
 sudo chmod 777 zookeeper_secrets
 
+# Kafka
+mkdir -p kafka_data
+mkdir -p kafka_secrets
+mkdir -p kafka_logs
+mkdir -p kafka_certs
+
 sudo chmod 777 kafka_data
+sudo chmod 777 kafka_secrets
 sudo chmod 777 kafka_logs
+sudo chmod 777 kafka_certs
 ```
 
 ### File docker-compose.yaml
@@ -66,12 +72,16 @@ services:
       - "9092:9092"
     volumes:
       - ./kafka_data:/var/lib/kafka/data
+      - ./kafka_secrets:/etc/kafka/secrets
+      - ./kafka_logs:/opt/kafka/logs
+      - ./kafka_certs:/etc/kafka/certs      
       - ./kafka_logs:/var/lib/kafka/logs
          
 networks:
   network_dev:
     external: true
 ```
+
 
 
 
