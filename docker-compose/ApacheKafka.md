@@ -35,8 +35,8 @@ ZOOKEEPER_VERSION=7.4.3
 KAFKA_VERSION=7.4.3
 
 # Nombres de los contenedores
-ZOOKEEPER_CONTAINER_NAME=load-balancer
-KAFKA_CONTAINER_NAME=msg-broker
+ZOOKEEPER_CONTAINER_NAME=server-load-balancer
+KAFKA_CONTAINER_NAME=server-msg-broker
 
 # Configuración de Zookeeper
 ZOOKEEPER_CLIENT_PORT=2181
@@ -113,6 +113,7 @@ networks:
   network_dev:
     external: true
 ```
+
 
 
 
