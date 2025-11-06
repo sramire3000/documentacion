@@ -85,6 +85,11 @@ GRANT INSERT, UPDATE, DELETE, EXECUTE, SHOW VIEW, SELECT ON zipkin . * TO 'zipki
 FLUSH PRIVILEGES;
 ```
 
+### Crear carpeta "db_data" dar permisos
+```
+sudo chmod 777 db_data
+```
+
 ### File docker-compose.yaml
 ```
 version: '3'
@@ -118,6 +123,7 @@ networks:
   network_dev:
     external: true
 ```
+
 
 
 
