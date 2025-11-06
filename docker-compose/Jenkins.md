@@ -1,7 +1,29 @@
 # Docker Composer JENKINS
 
-
 ## Jenkins normal
+
+### File ".env"
+```
+# Docker Compose Configuration
+COMPOSE_PROJECT_NAME=jenkins-project
+
+# Jenkins Configuration
+JENKINS_HTTP_PORT=9080
+JENKINS_HOST_PORT=9080
+JENKINS_CONTAINER_NAME=service-jenkins-server
+
+# Resource Limits
+JENKINS_CPU_LIMIT=0.7
+JENKINS_MEMORY_LIMIT=1024M
+JENKINS_CPU_RESERVATION=0.5
+JENKINS_MEMORY_RESERVATION=512M
+
+# Volume Configuration
+JENKINS_DATA_DIR=./jenkins_data
+
+# Network Configuration
+DOCKER_NETWORK=network_dev
+```
 
 ### File docker-compose.yaml
 ```
@@ -9,31 +31,33 @@ version: "3"
 
 services:
   service-jenkins-server:
-    container_name: service-jenkins-server
+    container_name: ${JENKINS_CONTAINER_NAME}
     image: jenkins/jenkins
     deploy:
        resources:
           limits:
-             cpus: '0.7'
-             memory: 1024M
+             cpus: '${JENKINS_CPU_LIMIT}'
+             memory: ${JENKINS_MEMORY_LIMIT}
           reservations:
-             cpus: '0.5'
-             memory: 512M  
+             cpus: '${JENKINS_CPU_RESERVATION}'
+             memory: ${JENKINS_MEMORY_RESERVATION}
     expose:
-      - 9080
+      - ${JENKINS_HTTP_PORT}
     ports:
-      - "9080:9080"
+      - "${JENKINS_HOST_PORT}:${JENKINS_HTTP_PORT}"
     restart: no
     networks:
-      - network_dev
+      - ${DOCKER_NETWORK}
     environment:
-      - JENKINS_OPTS="--httpPort=9080"
+      - JENKINS_OPTS=--httpPort=${JENKINS_HTTP_PORT}
     volumes:
-      - ./jenkins_data:/var/jenkins_home
+      - ${JENKINS_DATA_DIR}:/var/jenkins_home
       - /var/run/docker.sock:/var/run/docker.sock
+
 networks:
   network_dev:
     external: true
+    name: ${DOCKER_NETWORK}
 ```
 
 ## Usando DockerFile
