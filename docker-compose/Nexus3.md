@@ -2,7 +2,7 @@
 
 ### File .env
 ```
-NEXUS_SERVER=service-nexus3-server
+NEXUS_CONTAINER_NAME=service-nexus3-server
 NEXUS_PORT1=8110
 NEXUS_PORT2=8120
 NEXUS_PORT3=8130
@@ -10,7 +10,8 @@ NEXUS_PORT3=8130
 
 ### Crear Carpeta "nexus-data" y dar permisos
 ```
-sudo chmod 777 nexus-data
+mkdir -p nexus_data
+sudo chmod 777 nexus_data
 ```
 
 ### File docker-compose.yaml
@@ -20,7 +21,7 @@ version: "3"
 services:
   service-nexus3-server:
     image: sonatype/nexus3  
-    container_name: ${NEXUS_SERVER}
+    container_name: ${NEXUS_CONTAINER_NAME}
     deploy:
        resources:
           limits:
@@ -37,7 +38,7 @@ services:
       - ${NEXUS_PORT1}:8081
     restart: no
     volumes:
-      - ./nexus-data:/nexus-data
+      - ./nexus_data:/nexus-data
     networks:
       - network_dev
       
@@ -52,6 +53,7 @@ volumes:
 
 ### URL
 - [Nexus 3](http://localhost:8110/)
+
 
 
 
