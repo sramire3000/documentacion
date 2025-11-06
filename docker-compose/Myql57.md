@@ -97,7 +97,7 @@ version: '3'
 
 services:
 
-  service-mysql57-server:   
+  service-mysql57-server:
     container_name: ${MYSQL57_SERVER}
     image: mysql:5.7
     command: --default-authentication-plugin=mysql_native_password
@@ -119,11 +119,13 @@ services:
       - ./schemazipkin.sql:/docker-entrypoint-initdb.d/schemazipkin.sql
     environment:
       MYSQL_ROOT_PASSWORD: ${MYSQL57_ROOT_PASSWORD}
-         
+
 networks:
   network_dev:
     external: true
+
 ```
+
 
 
 
