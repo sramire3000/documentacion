@@ -68,41 +68,40 @@ version: '3'
 services:
 
   zookeeper:
-    image: confluentinc/cp-zookeeper:7.4.3
-    container_name: load-balancer
+    image: confluentinc/cp-zookeeper:${ZOOKEEPER_VERSION}
+    container_name: ${ZOOKEEPER_CONTAINER_NAME}
     restart: always
     networks:
-      - network_dev      
+      - ${NETWORK_NAME}      
     environment:
-      ZOOKEEPER_CLIENT_PORT: 2181
-      ZOOKEEPER_TICK_TIME: 2000
+      ZOOKEEPER_CLIENT_PORT: ${ZOOKEEPER_CLIENT_PORT}
+      ZOOKEEPER_TICK_TIME: ${ZOOKEEPER_TICK_TIME}
     ports:
-      - "2181:2181"
+      - "${ZOOKEEPER_HOST_PORT}:${ZOOKEEPER_CLIENT_PORT}"
     volumes:
       - ./zookeeper_data:/var/lib/zookeeper/data
       - ./zookeeper_logs:/var/lib/zookeeper/log
       - ./zookeeper_secrets:/etc/zookeeper/secrets
 
   kafka:
-    image: confluentinc/cp-kafka:7.4.3
-    container_name: msg-broker
+    image: confluentinc/cp-kafka:${KAFKA_VERSION}
+    container_name: ${KAFKA_CONTAINER_NAME}
     restart: always
     networks:
-      - network_dev    
+      - ${NETWORK_NAME}    
     depends_on:
       - zookeeper
     environment:
-      KAFKA_BROKER_ID: 1
-      KAFKA_ZOOKEEPER_CONNECT: 'zookeeper:2181'
+      KAFKA_BROKER_ID: ${KAFKA_BROKER_ID}
+      KAFKA_ZOOKEEPER_CONNECT: ${KAFKA_ZOOKEEPER_CONNECT}
       KAFKA_LISTENER_SECURITY_PROTOCOL_MAP: PLAINTEXT:PLAINTEXT,PLAINTEXT_INTERNAL:PLAINTEXT
-      KAFKA_ADVERTISED_LISTENERS: PLAINTEXT://host.docker.internal:9092,PLAINTEXT_INTERNAL://broker:29092
-      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
-      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
-      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
-      # Configuración adicional para forzar la persistencia
-      KAFKA_LOG_DIRS: /var/lib/kafka/data
+      KAFKA_ADVERTISED_LISTENERS: ${KAFKA_ADVERTISED_LISTENERS}
+      KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: ${KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR}
+      KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: ${KAFKA_TRANSACTION_STATE_LOG_MIN_ISR}
+      KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: ${KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR}
+      KAFKA_LOG_DIRS: ${KAFKA_LOG_DIRS}
     ports:
-      - "9092:9092"
+      - "${KAFKA_HOST_PORT}:9092"
     volumes:
       - ./kafka_data:/var/lib/kafka/data
       - ./kafka_secrets:/etc/kafka/secrets
@@ -114,6 +113,7 @@ networks:
   network_dev:
     external: true
 ```
+
 
 
 
