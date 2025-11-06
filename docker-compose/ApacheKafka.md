@@ -1,5 +1,10 @@
 # Docker Composer APACHE KAFKA
 
+### crear folder server-apache-kafka
+```
+mkdir -p server-apache-kafka
+```
+
 ### File docker-compose.yaml
 ```
 version: '3'
@@ -42,5 +47,6 @@ networks:
     external: true
     
 ```
+
 
 
