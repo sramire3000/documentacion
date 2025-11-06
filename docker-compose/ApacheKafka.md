@@ -4,6 +4,7 @@
 ```
 mkdir -p server-apache-kafka
 ```
+
 ### Crear filder
 ```
 mkdir -p zookeeper_data
@@ -19,9 +20,7 @@ sudo chmod 777 zookeeper_secrets
 
 sudo chmod 777 kafka_data
 sudo chmod 777 kafka_logs
-
 ```
-
 
 ### File docker-compose.yaml
 ```
@@ -61,15 +60,19 @@ services:
       KAFKA_OFFSETS_TOPIC_REPLICATION_FACTOR: 1
       KAFKA_TRANSACTION_STATE_LOG_MIN_ISR: 1
       KAFKA_TRANSACTION_STATE_LOG_REPLICATION_FACTOR: 1
+      # Configuración adicional para forzar la persistencia
+      KAFKA_LOG_DIRS: /var/lib/kafka/data
     ports:
       - "9092:9092"
     volumes:
       - ./kafka_data:/var/lib/kafka/data
+      - ./kafka_logs:/var/lib/kafka/logs
          
 networks:
   network_dev:
-    external: true 
+    external: true
 ```
+
 
 
 
