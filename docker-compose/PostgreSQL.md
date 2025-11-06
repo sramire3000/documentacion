@@ -83,6 +83,18 @@ CREATE TABLE IF NOT EXISTS zipkin_dependencies (
 ) WITH (OIDS=FALSE);
 ```
 
+### Crear Carpetas 
+```
+mkdir postgres_data
+mkdir dbsql
+mkdir
+
+sudo chmod 777 postgres_data
+sudo chmod 777 dbsql
+sudo chmod 777 pgadmin_data
+```
+
+
 ### File docker-compose.yaml
 ```
 version: "3"
@@ -147,6 +159,7 @@ volumes:
     driver: local  
 
 ```
+
 
 
 
