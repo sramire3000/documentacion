@@ -3,7 +3,7 @@
 ### File .env
 ```
 MYSQL57_ROOT_PASSWORD=[password]
-MYSQL57_SERVER=server-mysql57
+MYSQL57_SERVER=server-mysql-57
 MYSQL57_PORT=3306
 ```
 
@@ -124,6 +124,7 @@ networks:
   network_dev:
     external: true
 ```
+
 
 
 
