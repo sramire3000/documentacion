@@ -14,9 +14,9 @@ sudo chmod 777 jenkins_data
 COMPOSE_PROJECT_NAME=jenkins-project
 
 # Jenkins Configuration
-JENKINS_HTTP_PORT=9080
-JENKINS_HOST_PORT=9080
-JENKINS_CONTAINER_NAME=service-jenkins-server
+JENKINS_HTTP_PORT=3000
+JENKINS_HOST_PORT=3000
+JENKINS_CONTAINER_NAME=server-jenkins
 
 # Resource Limits
 JENKINS_CPU_LIMIT=0.7
