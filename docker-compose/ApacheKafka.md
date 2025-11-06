@@ -8,13 +8,18 @@ mkdir -p server-apache-kafka
 ```
 mkdir -p zookeeper_data
 mkdir -p zookeeper_logs
-mkdir -p kafka_data
 mkdir -p zookeeper_secrets
+
+mkdir -p kafka_data
+mkdir -p kafka_logs
 
 sudo chmod 777 zookeeper_data
 sudo chmod 777 zookeeper_logs
-sudo chmod 777 kafka_data
 sudo chmod 777 zookeeper_secrets
+
+sudo chmod 777 kafka_data
+sudo chmod 777 kafka_logs
+
 ```
 
 
@@ -65,6 +70,7 @@ networks:
   network_dev:
     external: true 
 ```
+
 
 
 
