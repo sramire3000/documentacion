@@ -28,12 +28,11 @@ services:
     image: mongo
     ports:
       - ${MONGO_PORT}:27017
-    restart: none
+    restart: unless-stopped
     networks:
       - network_dev
     volumes:      
-       - db_data:/data/configdb
-       - db_data:/data/db
+       - mongodb_data:/data/db
     environment:
       MONGO_INITDB_ROOT_USERNAME: ${MONGO_USERNAME}
       MONGO_INITDB_ROOT_PASSWORD: ${MONGO_PASSWORD}
@@ -58,7 +57,7 @@ services:
       ME_CONFIG_MONGODB_SERVER: ${MONGO_SERVER}
     ports:
       - ${MONGO_EXPRESS_PORT}:8081
-    restart: none
+    restart: unless-stopped
     depends_on:
       - service-mongodb-server
   
@@ -67,9 +66,9 @@ networks:
     external: true
 
 volumes:
-  db_data:
-    driver: local      
-  
+  mongodb_data:
+    driver: local
 ```
+
 
 
