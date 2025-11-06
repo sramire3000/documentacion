@@ -4,7 +4,7 @@
 ```
 MONGO_USERNAME=admin
 MONGO_PASSWORD=password
-MONGO_SERVER=server-mongodb
+MONGO_SERVER=server-mongo-db
 MONGO_PORT=27017
 MONGO_EXPRESS_PORT=8084
 ```
@@ -71,6 +71,7 @@ networks:
   network_dev:
     external: true
 ```
+
 
 
 
