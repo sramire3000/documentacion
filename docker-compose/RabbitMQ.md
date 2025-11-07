@@ -36,9 +36,9 @@ services:
       RABBITMQ_DEFAULT_USER: ${RABBITMQ_USER}
       RABBITMQ_DEFAULT_PASS: ${RABBITMQ_PASS}
     volumes:
-       - db_data:/var/lib/rabbitmq
-       - db_data:/var/log/rabbitmq    
-       - db_data:/var/lib/rabbitmq/mnesia
+       - rabbitmq_data:/var/lib/rabbitmq
+       - rabbitmq_logs:/var/log/rabbitmq    
+       - rabbitmq_mnesia:/var/lib/rabbitmq/mnesia
     networks:
       - network_dev
 
@@ -47,9 +47,14 @@ networks:
     external: true
   
 volumes:
-  db_data:
-    driver: local  
+  rabbitmq_data:
+    driver: local
+  rabbitmq_logs:
+    driver: local
+  rabbitmq_mnesia:
+    driver: local 
 ```
+
 
 
 
