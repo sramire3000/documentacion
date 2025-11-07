@@ -24,7 +24,7 @@ version: "3"
 services:
   service-sonarqube:
     container_name: ${SONARQUBE_SERVER}
-    image: sonarqube  
+    image: sonarqube
     deploy:
        resources:
           limits:
@@ -32,14 +32,14 @@ services:
              memory: 2560M
           reservations:
              cpus: '0.5'
-             memory: 1536M     
+             memory: 1536M
     expose:
       - ${SONARQUBE_PORT}
     ports:
       - ${SONARQUBE_PORT}:9000
     networks:
       - network_dev
-    restart: no      
+    restart: no
     environment:
       SONARQUBE_JDBC_URL: jdbc:postgresql://${POSTGRESS_SERVER}:${POSTGRESS_PORT}/${POSTGRESS_DB}
       SONARQUBE_JDBC_USERNAME: ${POSTGRESS_USER}
@@ -53,7 +53,7 @@ services:
 
 networks:
   network_dev:
-    external: true    
+    external: true
 ```
 
 ### URL
@@ -70,6 +70,7 @@ Password  = admin
 User     = admin
 Password = Password.123
 ```
+
 
 
 
