@@ -42,7 +42,7 @@ services:
     ports:
       - ${RABBITMQ_PORT1}:5672
       - ${RABBITMQ_PORT2}:15672
-    restart: none
+    restart: always
     environment:
       RABBITMQ_ERLANG_COOKIE: "rabbitcookie"
       RABBITMQ_DEFAULT_USER: ${RABBITMQ_USER}
@@ -66,3 +66,4 @@ volumes:
   rabbitmq_mnesia:
     driver: local
 ```
+
