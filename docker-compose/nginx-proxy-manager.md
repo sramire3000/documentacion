@@ -11,7 +11,7 @@ Password	: changeme
 services:
   app:
     image: 'jc21/nginx-proxy-manager:latest'
-    restart: unless-stopped
+    restart: always
     ports:
       # These ports are in format <host-port>:<container-port>
       - '80:80' # Public HTTP Port
@@ -32,6 +32,7 @@ services:
       - ./data:/data
       - ./letsencrypt:/etc/letsencrypt
 ```
+
 
 
 
