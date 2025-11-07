@@ -4,7 +4,7 @@
 ```
 RABBITMQ_USER=guest
 RABBITMQ_PASS=guest
-RABBITMQ_SERVER=service-rabbitmq-server
+RABBITMQ_SERVER=server-rabbit-mq
 RABBITMQ_PORT1=5672
 RABBITMQ_PORT2=15672
 ```
@@ -50,6 +50,7 @@ volumes:
   db_data:
     driver: local  
 ```
+
 
 
 
