@@ -38,7 +38,7 @@ services:
              memory: 500M
            reservations:
              cpus: '1.0'
-             memory: 200M    
+             memory: 200M
     ports:
       - ${RABBITMQ_PORT1}:5672
       - ${RABBITMQ_PORT2}:15672
@@ -49,7 +49,7 @@ services:
       RABBITMQ_DEFAULT_PASS: ${RABBITMQ_PASS}
     volumes:
        - rabbitmq_data:/var/lib/rabbitmq
-       - rabbitmq_logs:/var/log/rabbitmq    
+       - rabbitmq_logs:/var/log/rabbitmq
        - rabbitmq_mnesia:/var/lib/rabbitmq/mnesia
     networks:
       - network_dev
@@ -57,25 +57,12 @@ services:
 networks:
   network_dev:
     external: true
-  
+
 volumes:
   rabbitmq_data:
     driver: local
   rabbitmq_logs:
     driver: local
   rabbitmq_mnesia:
-    driver: local 
+    driver: local
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
