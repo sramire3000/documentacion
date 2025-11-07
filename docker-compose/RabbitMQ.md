@@ -9,6 +9,18 @@ RABBITMQ_PORT1=5672
 RABBITMQ_PORT2=15672
 ```
 
+### Create folder
+```
+mkdir -p rabbitmq_data
+sudo chmod 777 rabbitmq_data
+
+mkdir -p rabbitmq_logs
+sudo chmod 777 rabbitmq_logs
+
+mkdir -p rabbitmq_mnesia
+sudo chmod 777 rabbitmq_mnesia
+```
+
 
 ### File docker-compose.yaml
 ```
@@ -54,6 +66,7 @@ volumes:
   rabbitmq_mnesia:
     driver: local 
 ```
+
 
 
 
