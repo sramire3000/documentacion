@@ -6,6 +6,15 @@ Email       : admin@example.com
 Password	: changeme
 ```
 
+### Create folder
+```
+mkdir -p data
+sudo chmod 777 data
+
+mkdir -p letsencrypt
+sudo chmomd 777 letsencrypt
+```
+
 ### File docker-compose.yaml
 ```
 services:
@@ -32,6 +41,7 @@ services:
       - ./data:/data
       - ./letsencrypt:/etc/letsencrypt
 ```
+
 
 
 
