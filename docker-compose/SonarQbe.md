@@ -13,6 +13,7 @@ POSTGRESS_PASSWORD=[password_db]
 
 ### Create folder "sonarqube_data" y dar permisos
 ```
+mkdir -p sonarqube_data
 sudo chmod 777 sonarqube_data
 ```
 
@@ -69,6 +70,7 @@ Password  = admin
 User     = admin
 Password = Password.123
 ```
+
 
 
 
