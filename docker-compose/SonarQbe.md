@@ -3,7 +3,7 @@
 ### File .env
 ```
 SONARQUBE_SERVER=service-sonarqube
-SONARQUBE_PORT=9000
+SONARQUBE_PORT=9001
 POSTGRESS_SERVER=host.docker.internal
 POSTGRESS_PORT=5432
 POSTGRESS_DB=sonar
@@ -70,6 +70,7 @@ Password  = admin
 User     = admin
 Password = Password.123
 ```
+
 
 
 
