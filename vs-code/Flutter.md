@@ -32,30 +32,42 @@
 {
   // Windows
   "window.zoomLevel": 1,
+  
   // ignore recomendaciones
   "extensions.ignoreRecommendations": true,
-  // Terminal
+  
+  // Terminal optimizado para Flutter
   "terminal.integrated.defaultProfile.windows": "PowerShell",
-  // workbench
+  "terminal.integrated.fontSize": 12,
+  "terminal.integrated.cursorBlinking": true,
+  
+  // Workbench mejorado
   "workbench.colorCustomizations": {
     "statusBar.background": "#121016",
     "statusBar.debuggingBackground": "#121016",
     "statusBar.debuggingForeground": "#525156",
     "debugToolBar.background": "#121016",
+    "activityBar.background": "#1a1620",
+    "titleBar.activeBackground": "#1a1620",
+    "editor.lineHighlightBackground": "#1e1a25",
+    "editor.lineHighlightBorder": "#1e1a25"
   },
   "workbench.startupEditor": "none",
   "workbench.sideBar.location": "left",
   "workbench.editor.showTabs": "multiple",
   "workbench.statusBar.visible": true,
   "workbench.iconTheme": "material-icon-theme",
-  // Editor
+  "workbench.productIconTheme": "fluent-icons",
+  
+  // Editor optimizado para Flutter/Dart
   "editor.minimap.enabled": false,
   "editor.scrollbar.vertical": "hidden",
   "editor.overviewRulerBorder": false,
   "editor.hideCursorInOverviewRuler": true,
   "editor.guides.indentation": false,
   "editor.glyphMargin": false,
-  "editor.fontSize": 13,
+  "editor.fontSize": 14,
+  "editor.lineHeight": 1.3,
   "editor.wordWrap": "on",
   "editor.matchBrackets": "never",
   "editor.mouseWheelZoom": true,
@@ -64,22 +76,46 @@
   "editor.detectIndentation": true,
   "editor.fontFamily": "'Fira Code', 'Cascadia Code', Consolas, 'Courier New', monospace",
   "editor.fontLigatures": true,
-  // Formato
+  "editor.bracketPairColorization.enabled": true,
+  "editor.guides.bracketPairs": true,
+  "editor.semanticHighlighting.enabled": true,
+  "editor.inlineSuggest.enabled": true,
+  
+  // Formato y organización
   "editor.formatOnSave": true,
   "editor.formatOnPaste": true,
   "editor.codeActionsOnSave": {
     "source.organizeImports": "always",
-    "source.fixAll.eslint": "always"
+    "source.fixAll": "always",
+    "source.sortMembers": "always"
   },
-  // git
+  
+  // Git
   "git.openRepositoryInParentFolders": "never",
-  // breadcrumbs
+  "git.confirmSync": false,
+  
+  // Breadcrumbs
   "breadcrumbs.enabled": false,
+  
   // Files
   "files.autoSave": "afterDelay",
-  // Dart
-  "dart.debugExternalPackageLibraries": true,
-  "dart.debugSdkLibraries": true,
+  "files.autoSaveDelay": 1000,
+  "files.exclude": {
+    "**/*.o": true,
+    "**/.dart_tool": true,
+    "**/.pub": true,
+    "**/build": true
+  },
+  
+  // Dart específico optimizado
+  "dart.debugExternalPackageLibraries": false,
+  "dart.debugSdkLibraries": false,
+  "dart.previewFlutterUiGuides": true,
+  "dart.previewFlutterUiGuidesCustomTracking": true,
+  "dart.showInspectorNotificationsForWidgetErrors": false,
+  "dart.checkForSdkUpdates": false,
+  "dart.hotReloadOnSave": "all",
+  
   "[dart]": {
     "editor.formatOnSave": true,
     "editor.formatOnType": true,
@@ -87,11 +123,39 @@
     "editor.suggest.snippetsPreventQuickSuggestions": false,
     "editor.suggestSelection": "first",
     "editor.tabCompletion": "onlySnippets",
-    "editor.wordBasedSuggestions": "off"
+    "editor.wordBasedSuggestions": "off",
+    "editor.defaultFormatter": "Dart-Code.dart-code",
+    "editor.foldingStrategy": "indentation"
   },
+  
   // Theme
   "workbench.colorTheme": "Monokai Night",
+  
+  // Configuraciones adicionales para Flutter
+  "emmet.includeLanguages": {
+    "dart": "html"
+  },
+  
+  // Bracket Pair Colorizer (si tienes la extensión)
+  "bracket-pair-colorizer-2.colors": [
+    "#ffd700",
+    "#da70d6",
+    "#87ceeb"
+  ],
+  
+  // Configuración de explorador
+  "explorer.confirmDelete": false,
+  "explorer.confirmDragAndDrop": false,
+  
+  // Search
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/bower_components": true,
+    "**/*.code-search": true,
+    "**/build": true
+  }
 }
 ```
+
 
 
