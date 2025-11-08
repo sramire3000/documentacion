@@ -58,6 +58,34 @@
   // Windows
   "window.zoomLevel": 1,
 
+  // ignore recomendaciones
+  "extensions.ignoreRecommendations": true,
+  
+  // Terminal optimizado para Flutter
+  "terminal.integrated.defaultProfile.windows": "PowerShell",
+  "terminal.integrated.fontSize": 12,
+  "terminal.integrated.cursorBlinking": true,
+
+  // Workbench mejorado
+  "workbench.colorCustomizations": {
+    "statusBar.background": "#121016",
+    "statusBar.debuggingBackground": "#121016",
+    "statusBar.debuggingForeground": "#525156",
+    "debugToolBar.background": "#121016",
+    "activityBar.background": "#1a1620",
+    "titleBar.activeBackground": "#1a1620",
+    "editor.lineHighlightBackground": "#1e1a25",
+    "editor.lineHighlightBorder": "#1e1a25",
+    "editor.selectionBackground": "#2a2438",
+    "selection.background": "#2a2438"
+  },
+  "workbench.startupEditor": "none",
+  "workbench.sideBar.location": "left",
+  "workbench.editor.showTabs": "multiple",
+  "workbench.statusBar.visible": true,
+  "workbench.iconTheme": "material-icon-theme",
+  
+
   // Angular & TypeScript
   "typescript.preferences.autoImportFileExcludePatterns": [
     "@angular/compiler",
@@ -106,7 +134,6 @@
   "editor.suggest.snippetsPreventQuickSuggestions": false,
   "editor.renderLineHighlight": "gutter",
   "editor.selectionHighlight": false,
- 
 
   // Formato
   "editor.formatOnSave": true,
@@ -116,8 +143,14 @@
     "source.fixAll.eslint": "always"
   },
 
+  // Git
+  "git.openRepositoryInParentFolders": "never",
+  "git.confirmSync": false,
+  "git.enableSmartCommit": true,
 
-  
+  // Breadcrumbs
+  "breadcrumbs.enabled": false,
+
   // Archivos
   "files.autoSave": "onFocusChange",
   "files.exclude": {
@@ -129,10 +162,10 @@
   // Terminal
   "terminal.integrated.shellArgs.windows": ["-NoExit", "-Command", "ng version"],
   "terminal.integrated.fontSize": 14,
-  
-  // Workbench
-  "workbench.iconTheme": "material-icon-theme",
-  "workbench.colorTheme": "Default Dark Modern",
+
+  // Theme
+  "workbench.colorTheme": "Monokai Night",
+
   
   // ESLint
   "eslint.validate": [
@@ -146,6 +179,7 @@
   "angular.suggest.includeAutocompleteOptionalChain": true
 }
 ```
+
 
 
 
