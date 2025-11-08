@@ -24,7 +24,6 @@
 ### Theme
 - [Material Icon Theme](https://marketplace.visualstudio.com/items?itemName=PKief.material-icon-theme)
 - [Monokai Night Theme](https://marketplace.visualstudio.com/items?itemName=fabiospampinato.vscode-monokai-night)
-- [Tokyo Night](https://marketplace.visualstudio.com/items?itemName=enkia.tokyo-night)
 
 ### Git
 - [GitHub Copilot](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot)
@@ -123,6 +122,7 @@
   "angular.suggest.includeAutocompleteOptionalChain": true
 }
 ```
+
 
 
 
