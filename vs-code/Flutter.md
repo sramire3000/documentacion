@@ -29,6 +29,7 @@
 - [Flutter Tree](https://marketplace.visualstudio.com/items?itemName=marcelovelasquez.flutter-tree)
 - [Awesome Flutter Snippets](https://marketplace.visualstudio.com/items?itemName=Nash.awesome-flutter-snippets)
 - [Flutter Color](https://marketplace.visualstudio.com/items?itemName=circlecodesolution.ccs-flutter-color)
+- [Flutter Files](https://marketplace.visualstudio.com/items?itemName=gornivv.vscode-flutter-files)
 
 
 ### File settings.json
@@ -183,6 +184,7 @@
   "debug.internalConsoleOptions": "openOnSessionStart"
 }
 ```
+
 
 
 
