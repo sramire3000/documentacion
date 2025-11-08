@@ -4,7 +4,7 @@
 
 ### snippets MateApp
 ```
-	"Flutter MateApp": {
+	"Flutter Material App": {
 		"prefix": "mateapp",
 		"body": [
 			"import 'package:flutter/material.dart';",
