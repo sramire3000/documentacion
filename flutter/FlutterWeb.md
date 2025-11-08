@@ -2,7 +2,7 @@
 
 ## snippets
 
-### MateApp
+### snippets MateApp
 ```
 	"Flutter MateApp": {
 		"prefix": "mateapp",
