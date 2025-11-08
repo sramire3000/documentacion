@@ -1,6 +1,4 @@
-# Visual Studio Code
-
-## Flutter
+# Visual Studio Code FLUTTER
 
 ### Extensions Globales
 
@@ -188,6 +186,7 @@
   "debug.internalConsoleOptions": "openOnSessionStart"
 }
 ```
+
 
 
 
