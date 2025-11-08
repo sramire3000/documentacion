@@ -115,7 +115,7 @@
   "dart.previewFlutterUiGuidesCustomTracking": true,
   "dart.showInspectorNotificationsForWidgetErrors": false,
   "dart.checkForSdkUpdates": false,
-  "dart.hotReloadOnSave": "all",
+  "dart.hotReloadOnSave": "always",
   
   "[dart]": {
     "editor.formatOnSave": true,
@@ -137,13 +137,6 @@
     "dart": "html"
   },
   
-  // Bracket Pair Colorizer (si tienes la extensión)
-  "bracket-pair-colorizer-2.colors": [
-    "#ffd700",
-    "#da70d6",
-    "#87ceeb"
-  ],
-  
   // Configuración de explorador
   "explorer.confirmDelete": false,
   "explorer.confirmDragAndDrop": false,
@@ -157,6 +150,7 @@
   }
 }
 ```
+
 
 
 
