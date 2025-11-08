@@ -3,7 +3,6 @@
 ### Extensions
 - [Color Highlight](https://marketplace.visualstudio.com/items?itemName=naumovs.color-highlight)
 - [Error Lens](https://marketplace.visualstudio.com/items?itemName=usernamehw.errorlens)
-- [Fira Code Nerd Font / Icons](https://marketplace.visualstudio.com/items?itemName=Entuent.fira-code-nerd-font)
 - [Fluent Icons](https://marketplace.visualstudio.com/items?itemName=miguelsolorio.fluent-icons)
 - [indent-rainbow](https://marketplace.visualstudio.com/items?itemName=oderwat.indent-rainbow)
 - [IntelliCode](https://marketplace.visualstudio.com/items?itemName=VisualStudioExptTeam.vscodeintellicode)
@@ -345,6 +344,7 @@
 }
 
 ```
+
 
 
 
