@@ -43,16 +43,19 @@
 ### File settings.json
 ```
 {
+  // Windows
   "window.zoomLevel": 1,
+  // ignore recomendaciones
+  "extensions.ignoreRecommendations": true,
   // ========== TEMA Y APARIENCIA ==========
   "workbench.colorTheme": "Monokai Night",
   "workbench.iconTheme": "material-icon-theme",
-  "workbench.productIconTheme": "fluent-icons",
   "workbench.startupEditor": "none",
   "workbench.editor.highlightModifiedTabs": true,
   "workbench.editor.tabSizing": "shrink",
   "workbench.statusBar.visible": true,
   "workbench.sideBar.location": "left",
+  "workbench.editor.showTabs": "multiple",
   // ========== EDITOR - TEXTO Y FUENTES ==========
   "editor.fontFamily": "JetBrains Mono",
   "editor.fontSize": 14,
@@ -217,7 +220,8 @@
   "editor.insertSpaces": true,
   "editor.detectIndentation": true,
   // ========== TERMINAL VISUAL ==========
-  "terminal.integrated.fontSize": 14,
+  "terminal.integrated.defaultProfile.windows": "PowerShell",
+  "terminal.integrated.fontSize": 12,
   "terminal.integrated.fontFamily": "'Fira Code', 'Cascadia Code', monospace",
   "terminal.integrated.cursorBlinking": true,
   "terminal.integrated.cursorStyle": "line",
@@ -343,6 +347,7 @@
 }
 
 ```
+
 
 
 
