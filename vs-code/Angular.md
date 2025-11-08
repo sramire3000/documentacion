@@ -43,8 +43,10 @@
 ### Angular 17
 - [Angular 17 Snippets](https://marketplace.visualstudio.com/items?itemName=Mikael.Angular-BeastCode)
 
-### Angular 19
+### Angular 18
 - [Angular Snippets (Version 18)](https://marketplace.visualstudio.com/items?itemName=johnpapa.Angular2)
+
+### Angular 19
 - [Angular Snippets 2025 - v19](https://marketplace.visualstudio.com/items?itemName=JMGomes.angular-latest-snippets)
 
 ### Angular 20
@@ -133,6 +135,7 @@
   "angular.suggest.includeAutocompleteOptionalChain": true
 }
 ```
+
 
 
 
