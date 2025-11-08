@@ -1,3 +1,4 @@
+```
 # Miscellaneous
 *.env
 
@@ -47,3 +48,4 @@ app.*.map.json
 
 # FVM Version Cache
 .fvm/
+```
