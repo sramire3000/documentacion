@@ -48,8 +48,8 @@
 {
   "window.zoomLevel": 1,
   // ========== TEMA Y APARIENCIA ==========
-  "workbench.colorTheme": "One Dark Pro Darker",
-  "workbench.iconTheme": "vscode-icons",
+  "workbench.colorTheme": "Monokai Night",
+  "workbench.iconTheme": "material-icon-theme",
   "workbench.productIconTheme": "fluent-icons",
   "workbench.startupEditor": "none",
   "workbench.editor.highlightModifiedTabs": true,
@@ -346,6 +346,7 @@
 }
 
 ```
+
 
 
 
