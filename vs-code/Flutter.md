@@ -3,13 +3,9 @@
 ### Extensions Globales
 
 - [Bracket Pair Color DLW](https://marketplace.visualstudio.com/items?itemName=BracketPairColorDLW.bracket-pair-color-dlw)
-- [GitHub Copilot app modernization](https://marketplace.visualstudio.com/items?itemName=vscjava.migrate-java-to-azure)
 - [Activitus Bar](https://marketplace.visualstudio.com/items?itemName=Gruntfuggly.activitusbar)
 - [Better Comments](https://marketplace.visualstudio.com/items?itemName=aaron-bond.better-comments)
 - [Error Lens](https://marketplace.visualstudio.com/items?itemName=usernamehw.errorlens)
-- [Git Graph](https://marketplace.visualstudio.com/items?itemName=mhutchie.git-graph)
-- [GitHub Copilot](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot)
-- [GitHub Copilot Chat](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot-chat)
 - [JSON Crack](https://marketplace.visualstudio.com/items?itemName=AykutSarac.jsoncrack-vscode)
 - [Lorem ipsum](https://marketplace.visualstudio.com/items?itemName=Tyriar.lorem-ipsum)
 - [Material Icon Theme](https://marketplace.visualstudio.com/items?itemName=PKief.material-icon-theme)
@@ -20,6 +16,13 @@
 - [TODO Highlight](https://marketplace.visualstudio.com/items?itemName=wayou.vscode-todo-highlight)
 - [Auto Rename Tag](https://marketplace.visualstudio.com/items?itemName=formulahendry.auto-rename-tag)
 - [JavaScript and TypeScript Nightly](https://marketplace.visualstudio.com/items?itemName=ms-vscode.vscode-typescript-next)
+
+### Extenciones de GIT
+- [GitHub Copilot app modernization](https://marketplace.visualstudio.com/items?itemName=vscjava.migrate-java-to-azure)
+- [Git Graph](https://marketplace.visualstudio.com/items?itemName=mhutchie.git-graph)
+- [GitHub Copilot](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot)
+- [GitHub Copilot Chat](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot-chat)
+
 
 ### Extenciones de Flutter
 - [Dart](https://marketplace.visualstudio.com/items?itemName=Dart-Code.dart-code)
@@ -186,6 +189,7 @@
   "debug.internalConsoleOptions": "openOnSessionStart"
 }
 ```
+
 
 
 
