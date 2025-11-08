@@ -158,10 +158,7 @@
     "**/dist": true,
     "**/.angular": true
   },
-  
-  // Terminal
-  "terminal.integrated.shellArgs.windows": ["-NoExit", "-Command", "ng version"],
-  "terminal.integrated.fontSize": 14,
+
 
   // Theme
   "workbench.colorTheme": "Monokai Night",
@@ -179,6 +176,7 @@
   "angular.suggest.includeAutocompleteOptionalChain": true
 }
 ```
+
 
 
 
