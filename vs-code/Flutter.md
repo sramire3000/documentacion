@@ -2,9 +2,9 @@
 
 ## Flutter
 
-### Extensions
+### Extensions Globales
 
--[Bracket Pair Color DLW](https://marketplace.visualstudio.com/items?itemName=BracketPairColorDLW.bracket-pair-color-dlw)
+- [Bracket Pair Color DLW](https://marketplace.visualstudio.com/items?itemName=BracketPairColorDLW.bracket-pair-color-dlw)
 - [GitHub Copilot app modernization](https://marketplace.visualstudio.com/items?itemName=vscjava.migrate-java-to-azure)
 - [Activitus Bar](https://marketplace.visualstudio.com/items?itemName=Gruntfuggly.activitusbar)
 - [Better Comments](https://marketplace.visualstudio.com/items?itemName=aaron-bond.better-comments)
@@ -22,6 +22,8 @@
 - [TODO Highlight](https://marketplace.visualstudio.com/items?itemName=wayou.vscode-todo-highlight)
 - [Auto Rename Tag](https://marketplace.visualstudio.com/items?itemName=formulahendry.auto-rename-tag)
 - [JavaScript and TypeScript Nightly](https://marketplace.visualstudio.com/items?itemName=ms-vscode.vscode-typescript-next)
+
+### Extenciones de Flutter
 - [Dart](https://marketplace.visualstudio.com/items?itemName=Dart-Code.dart-code)
 - [Dart Import Sorter](https://marketplace.visualstudio.com/items?itemName=aziznal.dart-import-sorter)
 - [bloc](https://marketplace.visualstudio.com/items?itemName=FelixAngelov.bloc)
@@ -186,6 +188,7 @@
   "debug.internalConsoleOptions": "openOnSessionStart"
 }
 ```
+
 
 
 
