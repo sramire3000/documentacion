@@ -55,6 +55,9 @@
 ### File settings.json
 ```
 {
+  // Windows
+  "window.zoomLevel": 1,
+
   // Angular & TypeScript
   "typescript.preferences.autoImportFileExcludePatterns": [
     "@angular/compiler",
@@ -80,14 +83,15 @@
   },
   
   // Editor
-  "editor.minimap.enabled": false,
+ "editor.minimap.enabled": false,
   "editor.scrollbar.vertical": "hidden",
   "editor.overviewRulerBorder": false,
   "editor.hideCursorInOverviewRuler": true,
   "editor.guides.indentation": false,
   "editor.glyphMargin": false,
-  "editor.fontSize": 13,
-  "editor.wordWrap": "on",  
+  "editor.fontSize": 14,
+  "editor.lineHeight": 1.3,
+  "editor.wordWrap": "on",
   "editor.matchBrackets": "never",
   "editor.mouseWheelZoom": true,
   "editor.tabSize": 2,
@@ -95,6 +99,14 @@
   "editor.detectIndentation": true,
   "editor.fontFamily": "'Fira Code', 'Cascadia Code', Consolas, 'Courier New', monospace",
   "editor.fontLigatures": true,
+  "editor.bracketPairColorization.enabled": true,
+  "editor.guides.bracketPairs": true,
+  "editor.semanticHighlighting.enabled": true,
+  "editor.inlineSuggest.enabled": true,
+  "editor.suggest.snippetsPreventQuickSuggestions": false,
+  "editor.renderLineHighlight": "gutter",
+  "editor.selectionHighlight": false,
+ 
 
   // Formato
   "editor.formatOnSave": true,
@@ -104,8 +116,7 @@
     "source.fixAll.eslint": "always"
   },
 
-  // Windows
-  "window.zoomLevel": 1,
+
   
   // Archivos
   "files.autoSave": "onFocusChange",
@@ -135,6 +146,7 @@
   "angular.suggest.includeAutocompleteOptionalChain": true
 }
 ```
+
 
 
 
