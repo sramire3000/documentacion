@@ -1,5 +1,34 @@
 # FLUTTER WEB
 
+## snippets
+
+### MateApp
+```
+	"Flutter MateApp": {
+		"prefix": "mateapp",
+		"body": [
+			"import 'package:flutter/material.dart';",
+			"",
+			"void main() => runApp(MyApp());",
+			"",
+			"class MyApp extends StatelessWidget {",
+			"  @override",
+			"  Widget build(BuildContext context) {",
+			"    return MaterialApp(",
+			"      title: 'Material App',",
+			"      theme: ThemeData(primarySwatch: Colors.blue),",
+			"      home: Scaffold(",
+			"        appBar: AppBar(title: Text('Material App Bar')),",
+			"        body: Center(child: Text('Hello, World!')),",
+			"      ),",
+			"    );",
+			"  }",
+			"}"
+		],
+		"description": "Crea una página/AppMaterial de flutter fácilmente"
+	}
+```
+
 ### Crear un nuevo proyecto Flutter
 ```bash
 # Elimina cualquier configuracion
