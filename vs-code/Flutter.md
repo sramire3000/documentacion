@@ -51,14 +51,15 @@
     "activityBar.background": "#1a1620",
     "titleBar.activeBackground": "#1a1620",
     "editor.lineHighlightBackground": "#1e1a25",
-    "editor.lineHighlightBorder": "#1e1a25"
+    "editor.lineHighlightBorder": "#1e1a25",
+    "editor.selectionBackground": "#2a2438",
+    "selection.background": "#2a2438"
   },
   "workbench.startupEditor": "none",
   "workbench.sideBar.location": "left",
   "workbench.editor.showTabs": "multiple",
   "workbench.statusBar.visible": true,
   "workbench.iconTheme": "material-icon-theme",
-  "workbench.productIconTheme": "fluent-icons",
   
   // Editor optimizado para Flutter/Dart
   "editor.minimap.enabled": false,
@@ -81,6 +82,9 @@
   "editor.guides.bracketPairs": true,
   "editor.semanticHighlighting.enabled": true,
   "editor.inlineSuggest.enabled": true,
+  "editor.suggest.snippetsPreventQuickSuggestions": false,
+  "editor.renderLineHighlight": "gutter",
+  "editor.selectionHighlight": false,
   
   // Formato y organización
   "editor.formatOnSave": true,
@@ -94,6 +98,7 @@
   // Git
   "git.openRepositoryInParentFolders": "never",
   "git.confirmSync": false,
+  "git.enableSmartCommit": true,
   
   // Breadcrumbs
   "breadcrumbs.enabled": false,
@@ -105,17 +110,28 @@
     "**/*.o": true,
     "**/.dart_tool": true,
     "**/.pub": true,
+    "**/build": true,
+    "**/.DS_Store": true,
+    "**/thumbs.db": true
+  },
+  "files.watcherExclude": {
+    "**/.dart_tool": true,
+    "**/.pub": true,
     "**/build": true
   },
   
-  // Dart específico optimizado
+  // Dart específico optimizado (configuraciones actuales)
   "dart.debugExternalPackageLibraries": false,
   "dart.debugSdkLibraries": false,
   "dart.previewFlutterUiGuides": true,
   "dart.previewFlutterUiGuidesCustomTracking": true,
   "dart.showInspectorNotificationsForWidgetErrors": false,
   "dart.checkForSdkUpdates": false,
-  "dart.hotReloadOnSave": "always",
+  "dart.pubOutdatedPrompt": "never",
+  "dart.runPubGetOnPubspecChanges": "always",
+  "dart.flutterHotReloadOnSave": "never",
+  "dart.flutterCreateOrganization": "com.example",
+  "dart.analyzeAngularTemplates": true,
   
   "[dart]": {
     "editor.formatOnSave": true,
@@ -126,7 +142,9 @@
     "editor.tabCompletion": "onlySnippets",
     "editor.wordBasedSuggestions": "off",
     "editor.defaultFormatter": "Dart-Code.dart-code",
-    "editor.foldingStrategy": "indentation"
+    "editor.foldingStrategy": "indentation",
+    "editor.rulers": [80],
+    "editor.wordSeparators": "`!%&()=+[{}];:''\"\"\\|,.<>/?"
   },
   
   // Theme
@@ -140,16 +158,29 @@
   // Configuración de explorador
   "explorer.confirmDelete": false,
   "explorer.confirmDragAndDrop": false,
+  "explorer.compactFolders": false,
   
   // Search
   "search.exclude": {
     "**/node_modules": true,
     "**/bower_components": true,
     "**/*.code-search": true,
-    "**/build": true
-  }
+    "**/build": true,
+    "**/.dart_tool": true,
+    "**/.pub": true
+  },
+  
+  // Configuración de snippets
+  "editor.quickSuggestions": {
+    "strings": true
+  },
+  
+  // Debug
+  "debug.onTaskErrors": "showErrors",
+  "debug.internalConsoleOptions": "openOnSessionStart"
 }
 ```
+
 
 
 
