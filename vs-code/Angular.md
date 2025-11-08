@@ -25,9 +25,12 @@
 - [Material Icon Theme](https://marketplace.visualstudio.com/items?itemName=PKief.material-icon-theme)
 - [Monokai Night Theme](https://marketplace.visualstudio.com/items?itemName=fabiospampinato.vscode-monokai-night)
 
-### Git
+### Extenciones de GIT
+- [GitHub Copilot app modernization](https://marketplace.visualstudio.com/items?itemName=vscjava.migrate-java-to-azure)
+- [Git Graph](https://marketplace.visualstudio.com/items?itemName=mhutchie.git-graph)
 - [GitHub Copilot](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot)
 - [GitHub Copilot Chat](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot-chat)
+
 
 ### Angular 19
 - [Tailwind CSS IntelliSense](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss)
@@ -122,6 +125,7 @@
   "angular.suggest.includeAutocompleteOptionalChain": true
 }
 ```
+
 
 
 
