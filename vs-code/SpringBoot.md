@@ -1,7 +1,5 @@
 # Visual Studio Code SPRING BOOT
 
-## Spring Boot
-
 ### Extensions
 - [Color Highlight](https://marketplace.visualstudio.com/items?itemName=naumovs.color-highlight)
 - [Error Lens](https://marketplace.visualstudio.com/items?itemName=usernamehw.errorlens)
@@ -346,6 +344,7 @@
 }
 
 ```
+
 
 
 
