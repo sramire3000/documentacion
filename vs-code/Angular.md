@@ -44,6 +44,8 @@
 - [angular2-inline](https://marketplace.visualstudio.com/items?itemName=natewallace.angular2-inline)
 
 ### Angular 20
+- [Angular Language Service](https://marketplace.visualstudio.com/items?itemName=Angular.ng-template)
+- [Angular Schematics](https://marketplace.visualstudio.com/items?itemName=cyrilletuzi.angular-schematics)
 - [Tailwind CSS IntelliSense](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss)
 
 ### File settings.json
@@ -129,6 +131,7 @@
   "angular.suggest.includeAutocompleteOptionalChain": true
 }
 ```
+
 
 
 
