@@ -3,12 +3,9 @@
 ### Extensions
 - [Color Highlight](https://marketplace.visualstudio.com/items?itemName=naumovs.color-highlight)
 - [Error Lens](https://marketplace.visualstudio.com/items?itemName=usernamehw.errorlens)
-- [Fira Code Nerd Font / Icons](https://marketplace.visualstudio.com/items?itemName=Entuent.fira-code-nerd-font)
-- [Fluent Icons](https://marketplace.visualstudio.com/items?itemName=miguelsolorio.fluent-icons)
 - [indent-rainbow](https://marketplace.visualstudio.com/items?itemName=oderwat.indent-rainbow)
 - [IntelliCode](https://marketplace.visualstudio.com/items?itemName=VisualStudioExptTeam.vscodeintellicode)
 - [IntelliCode API Usage Examples](https://marketplace.visualstudio.com/items?itemName=VisualStudioExptTeam.intellicode-api-usage-examples)
-- [Peacock](https://marketplace.visualstudio.com/items?itemName=johnpapa.vscode-peacock)
 - [Thunder Client](https://marketplace.visualstudio.com/items?itemName=rangav.vscode-thunder-client)
 - [Todo Tree](https://marketplace.visualstudio.com/items?itemName=Gruntfuggly.todo-tree)
 - [XML](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-xml)
@@ -46,16 +43,19 @@
 ### File settings.json
 ```
 {
+  // Windows
   "window.zoomLevel": 1,
+  // ignore recomendaciones
+  "extensions.ignoreRecommendations": true,
   // ========== TEMA Y APARIENCIA ==========
   "workbench.colorTheme": "Monokai Night",
   "workbench.iconTheme": "material-icon-theme",
-  "workbench.productIconTheme": "fluent-icons",
   "workbench.startupEditor": "none",
   "workbench.editor.highlightModifiedTabs": true,
   "workbench.editor.tabSizing": "shrink",
   "workbench.statusBar.visible": true,
   "workbench.sideBar.location": "left",
+  "workbench.editor.showTabs": "multiple",
   // ========== EDITOR - TEXTO Y FUENTES ==========
   "editor.fontFamily": "JetBrains Mono",
   "editor.fontSize": 14,
@@ -220,7 +220,8 @@
   "editor.insertSpaces": true,
   "editor.detectIndentation": true,
   // ========== TERMINAL VISUAL ==========
-  "terminal.integrated.fontSize": 14,
+  "terminal.integrated.defaultProfile.windows": "PowerShell",
+  "terminal.integrated.fontSize": 12,
   "terminal.integrated.fontFamily": "'Fira Code', 'Cascadia Code', monospace",
   "terminal.integrated.cursorBlinking": true,
   "terminal.integrated.cursorStyle": "line",
@@ -346,6 +347,10 @@
 }
 
 ```
+
+
+
+
 
 
 
