@@ -40,6 +40,11 @@ USER javaapp
 CMD ["java", "-version"]
 ```
 
+### Contruir la imagen
+```
+docker build -t jdk21-base:latest .
+```
+
 ### File DockerFile
 ```
 # Usar una imagen base minimalista y segura
