@@ -87,3 +87,14 @@ cp -r tu-proyecto/ scan/
 # Escanear el filesystem
 docker-compose --profile trivy run --rm trivy filesystem --skip-update /scan
 ```
+
+### 3. Escanear un repositorio Git:
+```
+docker-compose --profile trivy run --rm trivy repo https://github.com/username/repo.git
+```
+
+### 4. Comando personalizado con variables override:
+```
+TRIVY_FORMAT=json TRIVY_SEVERITY=CRITICAL,HIGH,MEDIUM docker-compose --profile trivy run --rm trivy image nginx:latest
+```
+
