@@ -1,5 +1,53 @@
 # DOCKERFILE
 
+## OpenJdk1.8
+
+### Dockerfile
+```
+# Dockerfile para JDK 1.8
+FROM ubuntu:20.04
+
+# Evitar preguntas interactivas durante la instalación
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Instalar dependencias necesarias
+RUN apt-get update && apt-get install -y \
+    wget \
+    curl \
+    gnupg \
+    software-properties-common \
+    && rm -rf /var/lib/apt/lists/* \
+    && apt-get clean
+
+# Descargar e instalar JDK 8 de Oracle
+RUN wget --no-check-certificate -c --header "Cookie: oraclelicense=accept-securebackup-cookie" \
+    https://download.oracle.com/otn-pub/java/jdk/8u381-b09/jdk-8u381-linux-x64.tar.gz
+
+# Crear directorio para JDK y extraer
+RUN mkdir -p /usr/lib/jvm && \
+    tar -xzf jdk-8u381-linux-x64.tar.gz -C /usr/lib/jvm && \
+    rm jdk-8u381-linux-x64.tar.gz
+
+# Configurar variables de entorno
+ENV JAVA_HOME /usr/lib/jvm/jdk1.8.0_381
+ENV PATH $JAVA_HOME/bin:$PATH
+
+# Crear usuario no-root para seguridad
+RUN groupadd -r javaapp && useradd -r -g javaapp javaapp
+
+# Directorio de trabajo
+WORKDIR /app
+
+# Cambiar ownership al usuario no-root
+RUN chown -R javaapp:javaapp /app
+
+# Cambiar al usuario no-root
+USER javaapp
+
+# Verificar la instalación
+CMD ["java", "-version"]
+```
+
 ## OpenJdk21
 
 ### File Dockerfile 21
