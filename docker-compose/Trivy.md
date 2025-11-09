@@ -79,3 +79,11 @@ mkdir -p scan
 docker-compose --profile trivy run --rm trivy image alpine:latest
 ```
 
+### 2. Escanear un sistema de archivos:
+```
+# Copiar archivos al directorio de escaneo
+cp -r tu-proyecto/ scan/
+
+# Escanear el filesystem
+docker-compose --profile trivy run --rm trivy filesystem --skip-update /scan
+```
