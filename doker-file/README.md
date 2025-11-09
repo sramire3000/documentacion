@@ -1,51 +1,204 @@
 # DOCKERFILE
 
+## OpenJdk1.8
 
-### Jdk21
+### Dockerfile
 ```
-# Usar una imagen base minimalista y segura
-FROM eclipse-temurin:21.0.2_13-jdk-jammy
+# Usar versión LTS específica de Ubuntu para mejor soporte de seguridad
+FROM ubuntu:22.04
 
-# Metadatos del maintainer
+# Metadatos de seguridad
 LABEL maintainer="tu-equipo@empresa.com"
-LABEL description="Aplicación Java con JDK 21 en base segura"
+LABEL description="Imagen segura con JDK 8"
+LABEL security.scan="true"
+LABEL update.policy="weekly"
 
-# Instalar seguridad updates y herramientas básicas
+# Evitar preguntas interactivas durante la instalación
+ENV DEBIAN_FRONTEND=noninteractive
+
+# Instalar dependencias mínimas necesarias con actualizaciones de seguridad
 RUN apt-get update && \
-apt-get upgrade -y && \
-apt-get install -y --no-install-recommends \
-curl \
-ca-certificates \
-tzdata \
-&& rm -rf /var/lib/apt/lists/* \
-&& apt-get clean
+    apt-get upgrade -y --no-install-recommends && \
+    apt-get install -y --no-install-recommends \
+    wget \
+    curl \
+    gnupg \
+    software-properties-common \
+    ca-certificates \
+    && \
+    # Limpieza de seguridad en la misma capa
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
+    # Hardening del sistema de archivos
+    chmod 700 /tmp /var/tmp
 
-# Crear usuario no-root para seguridad
-RUN groupadd -r javaapp && useradd -r -g javaapp javaapp
+# Solución: Usar Eclipse Temurin (OpenJDK certificado) - Compatible con Ubuntu 22.04
+RUN wget -O jdk8.tar.gz "https://github.com/adoptium/temurin8-binaries/releases/download/jdk8u402-b06/OpenJDK8U-jdk_x64_linux_hotspot_8u402b06.tar.gz" && \
+    # Verificar que la descarga fue exitosa
+    test -f jdk8.tar.gz && \
+    # Crear directorio y extraer
+    mkdir -p /usr/lib/jvm && \
+    tar -xzf jdk8.tar.gz -C /usr/lib/jvm && \
+    # Limpieza de seguridad
+    rm -f jdk8.tar.gz && \
+    # Renombrar directorio para consistencia
+    mv /usr/lib/jvm/jdk8u402-b06 /usr/lib/jvm/java-8-temurin
 
-# Configurar timezone (opcional, ajusta según necesidad)
-ENV TZ=America/Mexico_City
+# Configurar variables de entorno (formato corregido)
+ENV JAVA_HOME=/usr/lib/jvm/java-8-temurin
+ENV PATH=$JAVA_HOME/bin:$PATH
 
-# Directorio de trabajo
+# Configuración segura de JVM para JDK 8
+ENV JAVA_OPTS="-Djava.security.egd=file:/dev/./urandom"
+ENV JAVA_TOOL_OPTIONS="-XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap"
+
+# Verificar instalación
+RUN java -version && \
+    javac -version
+
+# Crear usuario y grupo no-privilegiados con UID/GID específicos
+RUN groupadd -r -g 1001 javaapp && \
+    useradd -r -u 1001 -g javaapp -s /bin/false javaapp && \
+    # Asegurar directorios del usuario
+    mkdir -p /app /home/javaapp && \
+    chown -R javaapp:javaapp /app /home/javaapp && \
+    chmod 755 /app /home/javaapp
+
+# Configurar directorio de trabajo seguro
 WORKDIR /app
 
-# Copiar el JAR de la aplicación (ajusta el nombre)
-COPY target/tu-aplicacion.jar app.jar
-
-# Cambiar ownership al usuario no-root
-RUN chown -R javaapp:javaapp /app
+# Copiar aplicación si es necesario
+# COPY --chown=javaapp:javaapp . /app
 
 # Cambiar al usuario no-root
 USER javaapp
 
-# Exponer puerto (ajusta según tu aplicación)
-EXPOSE 8080
+# Health check seguro (sin dependencias externas)
+HEALTHCHECK --interval=30s --timeout=10s --start-period=40s --retries=3 \
+    CMD java -XshowSettings:system -version > /dev/null 2>&1 || exit 1
 
-# Health check
-HEALTHCHECK --interval=30s --timeout=3s --start-period=5s --retries=3 \
-CMD curl -f http://localhost:8080/actuator/health || exit 1
-
-# Entrypoint optimizado para contenedores
-ENTRYPOINT ["java", "-jar", "app.jar"]
-
+# Verificación de seguridad como entrypoint
+CMD ["java", "-XshowSettings:security", "-version"]
 ```
+
+### Contruir Imagen jdk 1.8
+```
+docker build --no-cache -t jdk8-secure:latest .
+```
+
+## OpenJdk17
+
+### Dockerfile
+```
+# Usar imagen oficial mínima y específica con versión fixed
+FROM eclipse-temurin:17.0.11_9-jdk-jammy
+
+# Metadatos de seguridad
+LABEL maintainer="tu-equipo@empresa.com"
+LABEL description="Imagen segura con JDK 17"
+LABEL security.scan="true"
+LABEL update.policy="weekly"
+
+# Instalar solo lo esencial sin versiones fijas problemáticas
+RUN apt-get update && \
+    apt-get upgrade -y --no-install-recommends && \
+    apt-get install -y --no-install-recommends \
+    curl \
+    ca-certificates \
+    && \
+    # Limpieza de seguridad en la MISMA capa
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
+    # Hardening del sistema de archivos
+    chmod 700 /tmp /var/tmp
+
+# Crear usuario y grupo no-privilegiados con UID/GID específicos
+RUN groupadd -r -g 1001 javaapp && \
+    useradd -r -u 1001 -g javaapp -s /bin/false javaapp && \
+    # Asegurar directorios del usuario
+    mkdir -p /app /home/javaapp && \
+    chown -R javaapp:javaapp /app /home/javaapp && \
+    chmod 755 /app /home/javaapp
+
+# Configurar directorio de trabajo seguro
+WORKDIR /app
+
+# Cambiar al usuario no-root
+USER javaapp
+
+# Variables de entorno seguras para JVM
+ENV JAVA_OPTS="-Djava.security.egd=file:/dev/./urandom"
+ENV JAVA_TOOL_OPTIONS="-XX:+UseContainerSupport -XX:MaxRAMPercentage=75.0"
+
+# Health check seguro (sin herramientas externas)
+HEALTHCHECK --interval=30s --timeout=10s --start-period=40s --retries=3 \
+    CMD java -XshowSettings:system -version > /dev/null 2>&1 || exit 1
+
+# Verificación de seguridad como entrypoint
+CMD ["java", "-XshowSettings:security", "-version"]
+```
+### Contruir la imagen
+```
+docker build --no-cache -t jdk17-secure:latest .
+```
+
+## OpenJdk21
+
+### File Dockerfile 21
+```
+# Usar imagen oficial con versión específica
+FROM eclipse-temurin:21.0.2_13-jdk-jammy
+
+# Metadatos de seguridad
+LABEL maintainer="tu-equipo@empresa.com"
+LABEL description="Imagen segura con JDK 21"
+LABEL security.scan="true"
+LABEL update.policy="weekly"
+
+# Instalar solo actualizaciones de seguridad esenciales
+RUN apt-get update && \
+    apt-get upgrade -y --no-install-recommends && \
+    # Instalar solo lo absolutamente necesario
+    apt-get install -y --no-install-recommends \
+    tzdata \
+    && \
+    # Limpieza de seguridad en la misma capa
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
+    # Hardening del sistema de archivos
+    chmod 700 /tmp /var/tmp
+
+# Crear usuario y grupo no-privilegiados con UID/GID específicos
+RUN groupadd -r -g 1001 javaapp && \
+    useradd -r -u 1001 -g javaapp -s /bin/false javaapp && \
+    # Asegurar directorios del usuario
+    mkdir -p /app /home/javaapp && \
+    chown -R javaapp:javaapp /app /home/javaapp && \
+    chmod 755 /app /home/javaapp
+
+# Configurar timezone de forma segura
+ENV TZ=America/Mexico_City
+
+# Configurar directorio de trabajo seguro
+WORKDIR /app
+
+# Cambiar al usuario no-root
+USER javaapp
+
+# Variables de entorno seguras para JVM
+ENV JAVA_OPTS="-Djava.security.egd=file:/dev/./urandom"
+ENV JAVA_TOOL_OPTIONS="-XX:+UseContainerSupport -XX:MaxRAMPercentage=75.0 -XX:InitialRAMPercentage=50.0"
+
+# Health check seguro (sin dependencias externas)
+HEALTHCHECK --interval=30s --timeout=10s --start-period=40s --retries=3 \
+    CMD java -XshowSettings:system -version > /dev/null 2>&1 || exit 1
+
+# Verificación de seguridad como entrypoint
+CMD ["java", "-XshowSettings:security", "-version"]
+```
+
+### Contruir la imagen
+```
+docker build --no-cache -t jdk21-secure:latest .
+```
+
