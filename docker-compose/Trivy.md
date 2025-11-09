@@ -59,3 +59,13 @@ services:
     profiles:
       - trivy
 ```
+## Ejemplos de uso:
+
+### 1. Escanear una imagen de Docker:
+```
+# Crear el directorio de scan si no existe
+mkdir -p scan
+
+# Ejecutar escaneo de imagen
+docker-compose --profile trivy run --rm trivy image alpine:latest
+```
