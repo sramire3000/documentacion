@@ -29,7 +29,7 @@ TRIVY_DEFAULT_COMMAND=--help
 # TRIVY_SKIP_DIRS=/proc,/sys,/dev
 ```
 
-### File schemazipkin.sql
+### File docker-compose.yaml
 ```
 version: '3.8'
 
