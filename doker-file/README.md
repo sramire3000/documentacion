@@ -166,6 +166,6 @@ CMD ["java", "-XshowSettings:security", "-version"]
 
 ### Contruir la imagen
 ```
-docker build -t jdk21-secure:latest .
+docker build --no-cache -t jdk21-secure:latest .
 ```
 
