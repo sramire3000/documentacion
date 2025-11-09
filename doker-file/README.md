@@ -113,40 +113,55 @@ docker build --no-cache -t jdk17-secure:latest .
 
 ### File Dockerfile 21
 ```
-# Usar una imagen base minimalista y segura
+# Usar imagen oficial con versión específica
 FROM eclipse-temurin:21.0.2_13-jdk-jammy
 
-# Metadatos del maintainer
+# Metadatos de seguridad
 LABEL maintainer="tu-equipo@empresa.com"
-LABEL description="Imagen base con JDK 21"
+LABEL description="Imagen segura con JDK 21"
+LABEL security.scan="true"
+LABEL update.policy="weekly"
 
-# Instalar seguridad updates y herramientas básicas
+# Instalar solo actualizaciones de seguridad esenciales
 RUN apt-get update && \
-    apt-get upgrade -y && \
+    apt-get upgrade -y --no-install-recommends && \
+    # Instalar solo lo absolutamente necesario
     apt-get install -y --no-install-recommends \
-    curl \
-    ca-certificates \
     tzdata \
-    && rm -rf /var/lib/apt/lists/* \
-    && apt-get clean
+    && \
+    # Limpieza de seguridad en la misma capa
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
+    # Hardening del sistema de archivos
+    chmod 700 /tmp /var/tmp
 
-# Crear usuario no-root para seguridad
-RUN groupadd -r javaapp && useradd -r -g javaapp javaapp
+# Crear usuario y grupo no-privilegiados con UID/GID específicos
+RUN groupadd -r -g 1001 javaapp && \
+    useradd -r -u 1001 -g javaapp -s /bin/false javaapp && \
+    # Asegurar directorios del usuario
+    mkdir -p /app /home/javaapp && \
+    chown -R javaapp:javaapp /app /home/javaapp && \
+    chmod 755 /app /home/javaapp
 
-# Configurar timezone (opcional, ajusta según necesidad)
+# Configurar timezone de forma segura
 ENV TZ=America/Mexico_City
 
-# Directorio de trabajo
+# Configurar directorio de trabajo seguro
 WORKDIR /app
-
-# Cambiar ownership al usuario no-root
-RUN chown -R javaapp:javaapp /app
 
 # Cambiar al usuario no-root
 USER javaapp
 
-# Verificar la instalación del JDK
-CMD ["java", "-version"]
+# Variables de entorno seguras para JVM
+ENV JAVA_OPTS="-Djava.security.egd=file:/dev/./urandom"
+ENV JAVA_TOOL_OPTIONS="-XX:+UseContainerSupport -XX:MaxRAMPercentage=75.0 -XX:InitialRAMPercentage=50.0"
+
+# Health check seguro (sin dependencias externas)
+HEALTHCHECK --interval=30s --timeout=10s --start-period=40s --retries=3 \
+    CMD java -XshowSettings:system -version > /dev/null 2>&1 || exit 1
+
+# Verificación de seguridad como entrypoint
+CMD ["java", "-XshowSettings:security", "-version"]
 ```
 
 ### Contruir la imagen
