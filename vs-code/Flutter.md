@@ -201,6 +201,38 @@
 }
 ```
 
+### Snippets
+```
+{
+	"MyApp": {
+		"prefix": "myApp",
+		"body": [
+			"import 'package:flutter/material.dart';",
+			"",
+			"void main() => runApp(MyApp());",
+			"",
+			"class MyApp extends StatelessWidget {",
+			"  const MyApp({super.key});",
+			"",
+			"  @override",
+			"  Widget build(BuildContext context) {",
+			"    return MaterialApp(",
+			"      debugShowCheckedModeBanner: false, //Quitar banner de debug",
+			"      title: 'Material App', //Titulo de la aplicacion",
+			"      initialRoute: '/login', //Ruta inicial",
+			"      routes: {",
+			"        //Definicion de rutas",
+			"        //'/login': (_) => LoginPage(),",
+			"      },",
+			"    );",
+			"  }",
+			"}"
+		],
+		"description": "MyApp class"
+	}
+}
+```
+
 
 
 
