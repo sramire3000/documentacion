@@ -90,7 +90,17 @@ docker-compose --profile trivy run --rm trivy filesystem --skip-update /scan
 
 ### 3. Escanear un repositorio Git:
 ```
+# Git sin credenciales
 docker-compose --profile trivy run --rm trivy repo https://github.com/username/repo.git
+
+# Usuario y contraseña/token
+docker-compose --profile trivy run --rm trivy repo https://usuario:contraseña@github.com/username/repo.git
+
+# Usuario y token personal
+docker-compose --profile trivy run --rm trivy repo https://usuario:ghp_tu_token@github.com/username/repo.git
+
+# Solo token (GitHub acepta token como usuario)
+docker-compose --profile trivy run --rm trivy repo https://ghp_tu_token@github.com/username/repo.git
 ```
 
 ### 4. Comando personalizado con variables override:
@@ -106,3 +116,4 @@ docker-compose --profile trivy run --rm trivy repo https://bitbucket.org/usuario
 # Escanear repositorio privado con variables de entorno
 TRIVY_USERNAME=tu_usuario TRIVY_PASSWORD=tu_token docker-compose --profile trivy run --rm trivy repo https://bitbucket.org/usuario/repositorio.git
 ```
+
