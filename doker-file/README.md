@@ -2,6 +2,44 @@
 
 ### OpenJdk21
 
+### File Dockerfile 21
+```
+# Usar una imagen base minimalista y segura
+FROM eclipse-temurin:21.0.2_13-jdk-jammy
+
+# Metadatos del maintainer
+LABEL maintainer="tu-equipo@empresa.com"
+LABEL description="Imagen base con JDK 21"
+
+# Instalar seguridad updates y herramientas básicas
+RUN apt-get update && \
+    apt-get upgrade -y && \
+    apt-get install -y --no-install-recommends \
+    curl \
+    ca-certificates \
+    tzdata \
+    && rm -rf /var/lib/apt/lists/* \
+    && apt-get clean
+
+# Crear usuario no-root para seguridad
+RUN groupadd -r javaapp && useradd -r -g javaapp javaapp
+
+# Configurar timezone (opcional, ajusta según necesidad)
+ENV TZ=America/Mexico_City
+
+# Directorio de trabajo
+WORKDIR /app
+
+# Cambiar ownership al usuario no-root
+RUN chown -R javaapp:javaapp /app
+
+# Cambiar al usuario no-root
+USER javaapp
+
+# Verificar la instalación del JDK
+CMD ["java", "-version"]
+```
+
 ### File DockerFile
 ```
 # Usar una imagen base minimalista y segura
