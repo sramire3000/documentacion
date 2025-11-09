@@ -66,14 +66,14 @@ LABEL description="Imagen segura con JDK 17"
 LABEL security.scan="true"
 LABEL update.policy="weekly"
 
-# Instalar solo lo esencial con versión fixed
+# Instalar solo lo esencial sin versiones fijas problemáticas
 RUN apt-get update && \
     apt-get upgrade -y --no-install-recommends && \
     apt-get install -y --no-install-recommends \
-    curl=7.81.0* \
-    ca-certificates=20211016* \
+    curl \
+    ca-certificates \
     && \
-    # Limpieza de seguridad
+    # Limpieza de seguridad en la MISMA capa
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
     # Hardening del sistema de archivos
@@ -90,7 +90,7 @@ RUN groupadd -r -g 1001 javaapp && \
 # Configurar directorio de trabajo seguro
 WORKDIR /app
 
-# Cambiar al usuario no-root ANTES de copiar archivos
+# Cambiar al usuario no-root
 USER javaapp
 
 # Variables de entorno seguras para JVM
