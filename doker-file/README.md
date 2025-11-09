@@ -52,5 +52,5 @@ ENTRYPOINT ["java", "-jar", "app.jar"]
 
 ### Contruir Jdk21
 ```
-docker buuld -t mi-app:jdk21-segura .
+docker build -t mi-app:jdk21-segura .
 ```
