@@ -1,6 +1,6 @@
 # DOCKERFILE
 
-### OpenJdk21
+## OpenJdk21
 
 ### File Dockerfile 21
 ```
@@ -45,7 +45,7 @@ CMD ["java", "-version"]
 docker build -t jdk21-base:latest .
 ```
 
-### File DockerFile
+### File DockerFile + App.jar
 ```
 # Usar una imagen base minimalista y segura
 FROM eclipse-temurin:21.0.2_13-jdk-jammy
@@ -93,7 +93,7 @@ CMD curl -f http://localhost:8080/actuator/health || exit 1
 ENTRYPOINT ["java", "-jar", "app.jar"]
 ```
 
-### Contruir Jdk21
+### Contruir Jdk21 con ti
 ```
 docker build -t mi-app:jdk21-segura .
 ```
