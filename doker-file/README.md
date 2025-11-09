@@ -4,53 +4,86 @@
 
 ### Dockerfile
 ```
-# Dockerfile para JDK 1.8
-FROM ubuntu:20.04
+# Usar versión LTS específica de Ubuntu para mejor soporte de seguridad
+FROM ubuntu:22.04
+
+# Metadatos de seguridad
+LABEL maintainer="tu-equipo@empresa.com"
+LABEL description="Imagen segura con JDK 8"
+LABEL security.scan="true"
+LABEL update.policy="weekly"
 
 # Evitar preguntas interactivas durante la instalación
 ENV DEBIAN_FRONTEND=noninteractive
 
-# Instalar dependencias necesarias
-RUN apt-get update && apt-get install -y \
+# Instalar dependencias mínimas necesarias con actualizaciones de seguridad
+RUN apt-get update && \
+    apt-get upgrade -y --no-install-recommends && \
+    apt-get install -y --no-install-recommends \
     wget \
     curl \
     gnupg \
     software-properties-common \
-    && rm -rf /var/lib/apt/lists/* \
-    && apt-get clean
+    ca-certificates \
+    && \
+    # Limpieza de seguridad en la misma capa
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
+    # Hardening del sistema de archivos
+    chmod 700 /tmp /var/tmp
 
-# Descargar e instalar JDK 8 de Oracle
-RUN wget --no-check-certificate -c --header "Cookie: oraclelicense=accept-securebackup-cookie" \
-    https://download.oracle.com/otn-pub/java/jdk/8u381-b09/jdk-8u381-linux-x64.tar.gz
+# Solución: Usar Eclipse Temurin (OpenJDK certificado) - Compatible con Ubuntu 22.04
+RUN wget -O jdk8.tar.gz "https://github.com/adoptium/temurin8-binaries/releases/download/jdk8u402-b06/OpenJDK8U-jdk_x64_linux_hotspot_8u402b06.tar.gz" && \
+    # Verificar que la descarga fue exitosa
+    test -f jdk8.tar.gz && \
+    # Crear directorio y extraer
+    mkdir -p /usr/lib/jvm && \
+    tar -xzf jdk8.tar.gz -C /usr/lib/jvm && \
+    # Limpieza de seguridad
+    rm -f jdk8.tar.gz && \
+    # Renombrar directorio para consistencia
+    mv /usr/lib/jvm/jdk8u402-b06 /usr/lib/jvm/java-8-temurin
 
-# Crear directorio para JDK y extraer
-RUN mkdir -p /usr/lib/jvm && \
-    tar -xzf jdk-8u381-linux-x64.tar.gz -C /usr/lib/jvm && \
-    rm jdk-8u381-linux-x64.tar.gz
+# Configurar variables de entorno (formato corregido)
+ENV JAVA_HOME=/usr/lib/jvm/java-8-temurin
+ENV PATH=$JAVA_HOME/bin:$PATH
 
-# Configurar variables de entorno
-ENV JAVA_HOME /usr/lib/jvm/jdk1.8.0_381
-ENV PATH $JAVA_HOME/bin:$PATH
+# Configuración segura de JVM para JDK 8
+ENV JAVA_OPTS="-Djava.security.egd=file:/dev/./urandom"
+ENV JAVA_TOOL_OPTIONS="-XX:+UnlockExperimentalVMOptions -XX:+UseCGroupMemoryLimitForHeap"
 
-# Crear usuario no-root para seguridad
-RUN groupadd -r javaapp && useradd -r -g javaapp javaapp
+# Verificar instalación
+RUN java -version && \
+    javac -version
 
-# Directorio de trabajo
+# Crear usuario y grupo no-privilegiados con UID/GID específicos
+RUN groupadd -r -g 1001 javaapp && \
+    useradd -r -u 1001 -g javaapp -s /bin/false javaapp && \
+    # Asegurar directorios del usuario
+    mkdir -p /app /home/javaapp && \
+    chown -R javaapp:javaapp /app /home/javaapp && \
+    chmod 755 /app /home/javaapp
+
+# Configurar directorio de trabajo seguro
 WORKDIR /app
 
-# Cambiar ownership al usuario no-root
-RUN chown -R javaapp:javaapp /app
+# Copiar aplicación si es necesario
+# COPY --chown=javaapp:javaapp . /app
 
 # Cambiar al usuario no-root
 USER javaapp
 
-# Verificar la instalación
-CMD ["java", "-version"]
+# Health check seguro (sin dependencias externas)
+HEALTHCHECK --interval=30s --timeout=10s --start-period=40s --retries=3 \
+    CMD java -XshowSettings:system -version > /dev/null 2>&1 || exit 1
+
+# Verificación de seguridad como entrypoint
+CMD ["java", "-XshowSettings:security", "-version"]
 ```
 
 ### Contruir Imagen jdk 1.8
 ```
-docker build -t jdk8-base:latest .
+docker build --no-cache -t jdk8-secure:latest .
 ```
 
 ## OpenJdk17
