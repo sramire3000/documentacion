@@ -48,6 +48,11 @@ USER javaapp
 CMD ["java", "-version"]
 ```
 
+### Contruir Imagen jdk 1.8
+```
+docker build -t jdk8-base:latest .
+```
+
 ## OpenJdk21
 
 ### File Dockerfile 21
