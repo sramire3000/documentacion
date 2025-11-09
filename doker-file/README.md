@@ -104,6 +104,10 @@ HEALTHCHECK --interval=30s --timeout=10s --start-period=40s --retries=3 \
 # Verificación de seguridad como entrypoint
 CMD ["java", "-XshowSettings:security", "-version"]
 ```
+### Contruir la imagen
+```
+docker build --no-cache -t jdk17-secure:latest .
+```
 
 ## OpenJdk21
 
