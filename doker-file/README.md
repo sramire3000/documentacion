@@ -1,7 +1,8 @@
 # DOCKERFILE
 
+### OpenJdk21
 
-### Jdk21
+### File DockerFile
 ```
 # Usar una imagen base minimalista y segura
 FROM eclipse-temurin:21.0.2_13-jdk-jammy
@@ -47,5 +48,9 @@ CMD curl -f http://localhost:8080/actuator/health || exit 1
 
 # Entrypoint optimizado para contenedores
 ENTRYPOINT ["java", "-jar", "app.jar"]
+```
 
+### Contruir Jdk21
+```
+docker buuld -t mi-app:jdk21-segura .
 ```
