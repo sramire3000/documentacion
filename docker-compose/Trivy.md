@@ -101,6 +101,12 @@ docker-compose --profile trivy run --rm trivy repo https://usuario:ghp_tu_token@
 
 # Solo token (GitHub acepta token como usuario)
 docker-compose --profile trivy run --rm trivy repo https://ghp_tu_token@github.com/username/repo.git
+
+# Configurar credenciales de Git en el contenedor
+docker-compose --profile trivy run --rm \
+  -e GIT_USERNAME=[user] \
+  -e GIT_PASSWORD=[password] \
+  trivy repo https://github.com/sramire3000/arreconsa-springboot-service-api-core.git
 ```
 
 ### 4. Comando personalizado con variables override:
@@ -116,4 +122,5 @@ docker-compose --profile trivy run --rm trivy repo https://bitbucket.org/usuario
 # Escanear repositorio privado con variables de entorno
 TRIVY_USERNAME=tu_usuario TRIVY_PASSWORD=tu_token docker-compose --profile trivy run --rm trivy repo https://bitbucket.org/usuario/repositorio.git
 ```
+
 
