@@ -1,141 +1,61 @@
-# Docker Composer MYSQL V. 5.7
+# Docker Composer Trivy
 
 ### File .env
 ```
-MYSQL57_ROOT_PASSWORD=[password]
-MYSQL57_SERVER=server-mysql-57
-MYSQL57_PORT=3306
+# Directorio de cache de Trivy en el host
+TRIVY_CACHE_VOLUME=./trivy-cache
+
+# Directorio que contiene los archivos a escanear
+HOST_SCAN_DIR=./scan
+
+# Configuración de Trivy
+TRIVY_CACHE_DIR=/tmp/trivy
+TRIVY_TIMEOUT=10m
+TRIVY_QUIET=false
+TRIVY_FORMAT=table
+TRIVY_SEVERITY=HIGH,CRITICAL
+TRIVY_IGNORE_UNFIXED=false
+
+# Comando por defecto al ejecutar el contenedor
+TRIVY_DEFAULT_COMMAND=--help
+
+# Credenciales opcionales para registros privados
+# TRIVY_TOKEN=your-token-here
+# TRIVY_USERNAME=your-username
+# TRIVY_PASSWORD=your-password
+
+# Archivos y directorios a excluir
+# TRIVY_SKIP_FILES=/etc/ssl/certs/ca-certificates.crt
+# TRIVY_SKIP_DIRS=/proc,/sys,/dev
 ```
 
 ### File schemazipkin.sql
 ```
---
--- Copyright 2015-2019 The OpenZipkin Authors
---
--- Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
--- in compliance with the License. You may obtain a copy of the License at
---
--- http://www.apache.org/licenses/LICENSE-2.0
---
--- Unless required by applicable law or agreed to in writing, software distributed under the License
--- is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
--- or implied. See the License for the specific language governing permissions and limitations under
--- the License.
---
-
-CREATE SCHEMA `zipkin` DEFAULT CHARACTER SET utf8 COLLATE utf8_bin ;
-
-
-use zipkin;
-
-CREATE TABLE IF NOT EXISTS zipkin_spans (
-  `trace_id_high` BIGINT NOT NULL DEFAULT 0 COMMENT 'If non zero, this means the trace uses 128 bit traceIds instead of 64 bit',
-  `trace_id` BIGINT NOT NULL,
-  `id` BIGINT NOT NULL,
-  `name` VARCHAR(255) NOT NULL,
-  `remote_service_name` VARCHAR(255),
-  `parent_id` BIGINT,
-  `debug` BIT(1),
-  `start_ts` BIGINT COMMENT 'Span.timestamp(): epoch micros used for endTs query and to implement TTL',
-  `duration` BIGINT COMMENT 'Span.duration(): micros used for minDuration and maxDuration query',
-  PRIMARY KEY (`trace_id_high`, `trace_id`, `id`)
-) ENGINE=InnoDB ROW_FORMAT=COMPRESSED CHARACTER SET=utf8 COLLATE utf8_general_ci;
-
-ALTER TABLE zipkin_spans ADD INDEX(`trace_id_high`, `trace_id`) COMMENT 'for getTracesByIds';
-ALTER TABLE zipkin_spans ADD INDEX(`name`) COMMENT 'for getTraces and getSpanNames';
-ALTER TABLE zipkin_spans ADD INDEX(`remote_service_name`) COMMENT 'for getTraces and getRemoteServiceNames';
-ALTER TABLE zipkin_spans ADD INDEX(`start_ts`) COMMENT 'for getTraces ordering and range';
-
-CREATE TABLE IF NOT EXISTS zipkin_annotations (
-  `trace_id_high` BIGINT NOT NULL DEFAULT 0 COMMENT 'If non zero, this means the trace uses 128 bit traceIds instead of 64 bit',
-  `trace_id` BIGINT NOT NULL COMMENT 'coincides with zipkin_spans.trace_id',
-  `span_id` BIGINT NOT NULL COMMENT 'coincides with zipkin_spans.id',
-  `a_key` VARCHAR(255) NOT NULL COMMENT 'BinaryAnnotation.key or Annotation.value if type == -1',
-  `a_value` BLOB COMMENT 'BinaryAnnotation.value(), which must be smaller than 64KB',
-  `a_type` INT NOT NULL COMMENT 'BinaryAnnotation.type() or -1 if Annotation',
-  `a_timestamp` BIGINT COMMENT 'Used to implement TTL; Annotation.timestamp or zipkin_spans.timestamp',
-  `endpoint_ipv4` INT COMMENT 'Null when Binary/Annotation.endpoint is null',
-  `endpoint_ipv6` BINARY(16) COMMENT 'Null when Binary/Annotation.endpoint is null, or no IPv6 address',
-  `endpoint_port` SMALLINT COMMENT 'Null when Binary/Annotation.endpoint is null',
-  `endpoint_service_name` VARCHAR(255) COMMENT 'Null when Binary/Annotation.endpoint is null'
-) ENGINE=InnoDB ROW_FORMAT=COMPRESSED CHARACTER SET=utf8 COLLATE utf8_general_ci;
-
-ALTER TABLE zipkin_annotations ADD UNIQUE KEY(`trace_id_high`, `trace_id`, `span_id`, `a_key`, `a_timestamp`) COMMENT 'Ignore insert on duplicate';
-ALTER TABLE zipkin_annotations ADD INDEX(`trace_id_high`, `trace_id`, `span_id`) COMMENT 'for joining with zipkin_spans';
-ALTER TABLE zipkin_annotations ADD INDEX(`trace_id_high`, `trace_id`) COMMENT 'for getTraces/ByIds';
-ALTER TABLE zipkin_annotations ADD INDEX(`endpoint_service_name`) COMMENT 'for getTraces and getServiceNames';
-ALTER TABLE zipkin_annotations ADD INDEX(`a_type`) COMMENT 'for getTraces and autocomplete values';
-ALTER TABLE zipkin_annotations ADD INDEX(`a_key`) COMMENT 'for getTraces and autocomplete values';
-ALTER TABLE zipkin_annotations ADD INDEX(`trace_id`, `span_id`, `a_key`) COMMENT 'for dependencies job';
-
-CREATE TABLE IF NOT EXISTS zipkin_dependencies (
-  `day` DATE NOT NULL,
-  `parent` VARCHAR(255) NOT NULL,
-  `child` VARCHAR(255) NOT NULL,
-  `call_count` BIGINT,
-  `error_count` BIGINT,
-  PRIMARY KEY (`day`, `parent`, `child`)
-) ENGINE=InnoDB ROW_FORMAT=COMPRESSED CHARACTER SET=utf8 COLLATE utf8_general_ci;
-
-
-CREATE USER 'zipkin'@'%' IDENTIFIED BY 'zipkin';
-
-GRANT INSERT, UPDATE, DELETE, EXECUTE, SHOW VIEW, SELECT ON zipkin . * TO 'zipkin'@'%';
-
-FLUSH PRIVILEGES;
-```
-
-### Crear carpeta "db_data" dar permisos
-```
-mkdir -p db_data
-sudo chmod 777 db_data
-```
-
-### File docker-compose.yaml
-```
-version: '3'
+version: '3.8'
 
 services:
-
-  service-mysql57-server:
-    container_name: ${MYSQL57_SERVER}
-    image: mysql:5.7
-    command: --default-authentication-plugin=mysql_native_password
-    deploy:
-       resources:
-           limits:
-             cpus: '1.5'
-             memory: 500M
-           reservations:
-             cpus: '1.0'
-             memory: 200M
-    ports:
-      - ${MYSQL57_PORT}:3306
-    restart: always
-    networks:
-      - network_dev
-    volumes:
-      - ./db_data:/var/lib/mysql
-      - ./schemazipkin.sql:/docker-entrypoint-initdb.d/schemazipkin.sql
+  trivy:
+    image: aquasec/trivy:latest
+    container_name: trivy-scanner
     environment:
-      MYSQL_ROOT_PASSWORD: ${MYSQL57_ROOT_PASSWORD}
-
-networks:
-  network_dev:
-    external: true
-
+      - TRIVY_CACHE_DIR=${TRIVY_CACHE_DIR:-/tmp/trivy}
+      - TRIVY_TIMEOUT=${TRIVY_TIMEOUT:-5m}
+      - TRIVY_QUIET=${TRIVY_QUIET:-false}
+      - TRIVY_FORMAT=${TRIVY_FORMAT:-table}
+      - TRIVY_SEVERITY=${TRIVY_SEVERITY:-HIGH,CRITICAL}
+      - TRIVY_IGNORE_UNFIXED=${TRIVY_IGNORE_UNFIXED:-false}
+      - TRIVY_SKIP_FILES=${TRIVY_SKIP_FILES}
+      - TRIVY_SKIP_DIRS=${TRIVY_SKIP_DIRS}
+      - TRIVY_TOKEN=${TRIVY_TOKEN}
+      - TRIVY_USERNAME=${TRIVY_USERNAME}
+      - TRIVY_PASSWORD=${TRIVY_PASSWORD}
+    volumes:
+      - ${TRIVY_CACHE_VOLUME:-./trivy-cache}:/tmp/trivy
+      - ${HOST_SCAN_DIR:-./scan}:/scan:ro
+      - /var/run/docker.sock:/var/run/docker.sock
+    working_dir: /scan
+    command: ${TRIVY_DEFAULT_COMMAND:---help}
+    restart: unless-stopped
+    profiles:
+      - trivy
 ```
-
-
-
-
-
-
-
-
-
-
-
-
-
-
