@@ -98,3 +98,11 @@ docker-compose --profile trivy run --rm trivy repo https://github.com/username/r
 TRIVY_FORMAT=json TRIVY_SEVERITY=CRITICAL,HIGH,MEDIUM docker-compose --profile trivy run --rm trivy image nginx:latest
 ```
 
+### 5, Comando usando bitbucket
+```
+# Escanear repositorio público
+docker-compose --profile trivy run --rm trivy repo https://bitbucket.org/usuario/repositorio.git
+
+# Escanear repositorio privado con variables de entorno
+TRIVY_USERNAME=tu_usuario TRIVY_PASSWORD=tu_token docker-compose --profile trivy run --rm trivy repo https://bitbucket.org/usuario/repositorio.git
+```
