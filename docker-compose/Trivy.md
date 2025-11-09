@@ -29,6 +29,15 @@ TRIVY_DEFAULT_COMMAND=--help
 # TRIVY_SKIP_DIRS=/proc,/sys,/dev
 ```
 
+### Create folder
+```
+mkdir -p scan
+sudo chmod 777 scan
+
+mkdir -p trivy-cache
+sudo chmod 777 trivy-cache
+```
+
 ### File docker-compose.yaml
 ```
 version: '3.8'
@@ -69,3 +78,4 @@ mkdir -p scan
 # Ejecutar escaneo de imagen
 docker-compose --profile trivy run --rm trivy image alpine:latest
 ```
+
