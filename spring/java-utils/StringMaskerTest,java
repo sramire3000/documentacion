@@ -1,0 +1,257 @@
+package com.example.demo.util;
+
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.NullAndEmptySource;
+import org.junit.jupiter.params.provider.ValueSource;
+import org.junit.jupiter.params.provider.CsvSource;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+/**
+ * Clase de pruebas unitarias para StringMasker.
+ * 
+ * @author Ejemplo
+ * @version 1.0
+ */
+class StringMaskerTest {
+
+    // Tests para casos generales y valores límite
+    
+    @Test
+    @DisplayName("Debería retornar null cuando la entrada es null")
+    void testMaskStringWithNull() {
+        assertNull(StringMasker.maskString(null));
+    }
+
+    @ParameterizedTest
+    @NullAndEmptySource
+    @ValueSource(strings = {"", "a", "ab", "abc", "abcd"})
+    @DisplayName("Debería retornar la misma cadena cuando la longitud es <= 4")
+    void testMaskStringWithShortStrings(String input) {
+        assertEquals(input, StringMasker.maskString(input));
+    }
+
+    // Tests para correos electrónicos válidos
+    
+    @Test
+    @DisplayName("Debería enmascarar correo electrónico con parte local larga")
+    void testMaskEmailWithLongLocalPart() {
+        String input = "usuario.largo@dominio.com";
+        String expected = "***********go@dominio.com";
+        System.out.println(""+StringMasker.maskString(input));
+        assertEquals(expected, StringMasker.maskString(input));
+    }
+
+    @Test
+    @DisplayName("Debería enmascarar correo electrónico con subdominios")
+    void testMaskEmailWithSubdomain() {
+        String input = "test.email@sub.dominio.com";
+        String expected = "********il@sub.dominio.com";
+        assertEquals(expected, StringMasker.maskString(input));
+    }
+
+    @Test
+    @DisplayName("Debería enmascarar correo electrónico con parte local de exactamente 4 caracteres")
+    void testMaskEmailWithFourCharLocalPart() {
+        String input = "user@dominio.com";
+        String expected = "**er@dominio.com";
+        assertEquals(expected, StringMasker.maskString(input));
+    }
+
+    @Test
+    @DisplayName("Debería enmascarar correo electrónico con parte local de exactamente 3 caracteres")
+    void testMaskEmailWithThreeCharLocalPart() {
+        String input = "abc@dominio.com";
+        String expected = "*bc@dominio.com";
+        assertEquals(expected, StringMasker.maskString(input));
+    }
+
+    @Test
+    @DisplayName("No debería enmascarar correo con parte local de 2 caracteres o menos")
+    void testMaskEmailWithShortLocalPart() {
+        assertEquals("ab@dominio.com", StringMasker.maskString("ab@dominio.com"));
+        assertEquals("a@dominio.com", StringMasker.maskString("a@dominio.com"));
+    }
+
+    // Tests para cadenas que contienen @ pero no son emails válidos
+    
+    @Test
+    @DisplayName("Debería tratar como string normal cuando @ está al inicio")
+    void testMaskStringWithAtAtStart() {
+        String input = "@dominio.com";
+        String expected = "********.com"; // No es email válido (@ al inicio)
+        assertEquals(expected, StringMasker.maskString(input));
+    }
+
+    @Test
+    @DisplayName("Debería tratar como string normal cuando @ está al final")
+    void testMaskStringWithAtAtEnd() {
+        String input = "usuario@";
+        String expected = "****rio@"; // No es email válido (@ al final)
+        assertEquals(expected, StringMasker.maskString(input));
+    }
+
+    @Test
+    @DisplayName("Debería tratar como string normal cuando solo tiene @")
+    void testMaskStringWithOnlyAt() {
+        String input = "@";
+        String expected = "@"; // Cadena corta
+        assertEquals(expected, StringMasker.maskString(input));
+    }
+
+    @Test
+    @DisplayName("Debería tratar como string normal cuando @ está en medio sin formato email")
+    void testMaskStringWithAtInMiddleNotEmail() {
+        String input = "esto no es un@email";
+        // No es email válido (espacios en la parte local), se trata como string normal
+        String expected = "***********un@email"; // 15 asteriscos + "mail"
+        assertEquals(expected, StringMasker.maskString(input));
+    }
+
+    // Tests para números de tarjeta y cadenas similares
+    
+    @Test
+    @DisplayName("Debería enmascarar número de tarjeta mostrando últimos 4 dígitos")
+    void testMaskCardNumber() {
+        String input = "1234567890123456";
+        String expected = "************3456";
+        assertEquals(expected, StringMasker.maskString(input));
+    }
+
+    @Test
+    @DisplayName("Debería enmascarar cadena numérica de 5 caracteres")
+    void testMaskFiveDigitNumber() {
+        String input = "12345";
+        String expected = "*2345";
+        assertEquals(expected, StringMasker.maskString(input));
+    }
+
+    @Test
+    @DisplayName("Debería enmascarar cadena larga genérica")
+    void testMaskLongString() {
+        String input = "HolaMundo12345";
+        String expected = "**********2345";
+        assertEquals(expected, StringMasker.maskString(input));
+    }
+
+    @ParameterizedTest
+    @CsvSource({
+        "'1234567890', '******7890'",
+        "'ABCDEFGHIJ', '******GHIJ'",
+        "'password123', '*******d123'",
+        "'test123456', '******3456'",
+        "'123456', '**3456'",
+        "'abcde', '*bcde'"
+    })
+    @DisplayName("Debería enmascarar diferentes cadenas no email mostrando últimos 4 caracteres")
+    void testMaskNonEmailVariousFormats(String input, String expected) {
+        assertEquals(expected, StringMasker.maskString(input));
+    }
+
+    // Tests para casos edge y especiales
+    
+    @Test
+    @DisplayName("Debería manejar correo con múltiples @ (toma el primero)")
+    void testMaskEmailWithMultipleAtSymbols() {
+        String input = "user@name@domain.com";
+        // Toma el primer @ como separador
+        String expected = "**er@name@domain.com";
+        assertEquals(expected, StringMasker.maskString(input));
+    }
+
+    @Test
+    @DisplayName("Debería mantener la longitud original en cadenas enmascaradas")
+    void testMaskedStringLength() {
+        String[] testCases = {
+            "usuario@dominio.com",
+            "1234567890123456",
+            "HolaMundoTest",
+            "a@b.cd",
+            "test@domain.com"
+        };
+        
+        for (String input : testCases) {
+            String masked = StringMasker.maskString(input);
+            assertEquals(input.length(), masked.length(), 
+                "La longitud debería mantenerse para: " + input);
+        }
+    }
+
+    @Test
+    @DisplayName("Debería enmascarar solo con asteriscos")
+    void testMaskUsesOnlyAsterisks() {
+        String input = "testemail@domain.com";
+        String masked = StringMasker.maskString(input);
+        
+        // Verificar que la parte enmascarada solo contiene asteriscos
+        String localPart = masked.substring(0, masked.indexOf("@"));
+        String maskedPart = localPart.substring(0, localPart.length() - 2); // Excluir los últimos 2 caracteres visibles
+        
+        if (!maskedPart.isEmpty()) {
+            assertTrue(maskedPart.chars().allMatch(c -> c == '*'),
+                "La parte enmascarada debería contener solo asteriscos");
+        }
+    }
+
+    // Tests para verificar la lógica de caracteres visibles
+    
+    @Test
+    @DisplayName("Debería mostrar exactamente 2 caracteres en parte local de email")
+    void testEmailShowsExactlyTwoVisibleChars() {
+        String input = "largousername@test.com";
+        String masked = StringMasker.maskString(input);
+        String localPart = masked.substring(0, masked.indexOf("@"));
+        
+        // Los últimos 2 caracteres antes del @ deben ser visibles
+        String lastTwoVisible = localPart.substring(localPart.length() - 2);
+        assertEquals("me", lastTwoVisible); // "me" de "username"
+        
+        // El resto debe ser asteriscos (si hay)
+        if (localPart.length() > 2) {
+            String maskedPart = localPart.substring(0, localPart.length() - 2);
+            assertTrue(maskedPart.chars().allMatch(c -> c == '*'));
+        }
+    }
+
+    @Test
+    @DisplayName("Debería mostrar exactamente 4 caracteres en cadenas no email")
+    void testNonEmailShowsExactlyFourVisibleChars() {
+        String input = "1234567890ABCDEF";
+        String masked = StringMasker.maskString(input);
+        
+        // Los últimos 4 caracteres deben ser visibles
+        String lastFourVisible = masked.substring(masked.length() - 4);
+        assertEquals("CDEF", lastFourVisible);
+        
+        // El resto debe ser asteriscos
+        String maskedPart = masked.substring(0, masked.length() - 4);
+        assertTrue(maskedPart.chars().allMatch(c -> c == '*'));
+    }
+
+    @Test
+    @DisplayName("Debería calcular correctamente la longitud del enmascarado para emails")
+    void testEmailMaskLengthCalculation() {
+        String[] testCases = {
+            "test.email@domain.com",     // 10 chars local -> 8 asteriscos
+            "user@domain.com",           // 4 chars local -> 2 asteriscos  
+            "a@b.c",                     // 1 char local -> 0 asteriscos (no enmascara)
+            "abcd@domain.com",           // 4 chars local -> 2 asteriscos
+            "abc@domain.com",            // 3 chars local -> 1 asterisco
+        };
+        
+        String[] expectedMasks = {
+            "********il@domain.com",     // 8 asteriscos
+            "**er@domain.com",           // 2 asteriscos
+            "a@b.c",                     // sin enmascarar
+            "**cd@domain.com",           // 2 asteriscos
+            "*bc@domain.com",            // 1 asterisco
+        };
+        
+        for (int i = 0; i < testCases.length; i++) {
+            assertEquals(expectedMasks[i], StringMasker.maskString(testCases[i]),
+                "Caso fallado: " + testCases[i]);
+        }
+    }
+}
