@@ -2,13 +2,14 @@ package com.example.demo.util;
 
 import javax.crypto.Cipher;
 import javax.crypto.spec.SecretKeySpec;
+import java.util.Arrays;
 
 /**
  * Clase utilitaria para operaciones de cifrado y descifrado utilizando el algoritmo AES.
  * Proporciona métodos para convertir entre diferentes formatos y realizar operaciones criptográficas.
  * 
  * @author Ejemplo
- * @version 1.0
+ * @version 1.1
  */
 public class EcryptBuilder {
     
@@ -23,14 +24,40 @@ public class EcryptBuilder {
     private static final int DECRYPT_MODE = 2;
     
     /**
-     * Algoritmo de cifrado a utilizar
+     * Algoritmos de cifrado a probar (en orden de preferencia)
      */
-    private static final String CIPHER_ALGORITHM = "AES/ECB/PKCS5Padding";
+    private static final String[] CIPHER_ALGORITHMS = {
+        "AES/ECB/PKCS5Padding",
+        "AES/ECB/PKCS7Padding", 
+        "AES"
+    };
     
     /**
      * Algoritmo de clave a utilizar
      */
     private static final String KEY_ALGORITHM = "AES";
+    
+    /**
+     * Obtiene una instancia de Cipher probando diferentes algoritmos disponibles
+     * 
+     * @return Instancia de Cipher configurada
+     * @throws Exception Si ningún algoritmo está disponible
+     */
+    private static Cipher getCipherInstance() throws Exception {
+        Exception lastException = null;
+        
+        for (String algorithm : CIPHER_ALGORITHMS) {
+            try {
+                return Cipher.getInstance(algorithm);
+            } catch (Exception e) {
+                lastException = e;
+                System.out.println("Algoritmo no disponible: " + algorithm + ", probando siguiente...");
+            }
+        }
+        
+        throw new Exception("Ningún algoritmo de cifrado disponible. Algoritmos probados: " + 
+                           Arrays.toString(CIPHER_ALGORITHMS), lastException);
+    }
     
     /**
      * Convierte un array de bytes a una representación hexadecimal en formato String.
@@ -39,6 +66,10 @@ public class EcryptBuilder {
      * @return String que representa los bytes en formato hexadecimal en mayúsculas
      */
     public static String byteArrayToHexString(byte[] b) {
+        if (b == null) {
+            return null;
+        }
+        
         StringBuffer sb = new StringBuffer(b.length * 2);
         for (int i = 0; i < b.length; i++) {
             int v = b[i] & 0xFF;
@@ -58,7 +89,10 @@ public class EcryptBuilder {
      * @throws IllegalArgumentException Si la longitud de la cadena no es par
      */
     public static byte[] hexStringToByteArray(String s) {
-        if (s == null || s.length() % 2 != 0) {
+        if (s == null) {
+            throw new IllegalArgumentException("La cadena hexadecimal no puede ser nula");
+        }
+        if (s.length() % 2 != 0) {
             throw new IllegalArgumentException("La cadena hexadecimal debe tener longitud par");
         }
         
@@ -85,25 +119,16 @@ public class EcryptBuilder {
             try {
                 byte[] bytes = hexStringToByteArray(key.toUpperCase());
                 SecretKeySpec skeySpec = new SecretKeySpec(bytes, KEY_ALGORITHM);
-                Cipher cipher = Cipher.getInstance(CIPHER_ALGORITHM);
+                Cipher cipher = getCipherInstance();
                 cipher.init(ENCRYPT_MODE, skeySpec);
-                byte[] encrypted = cipher.doFinal(text.getBytes());
+                byte[] encrypted = cipher.doFinal(text.getBytes("UTF-8"));
                 encryptText = byteArrayToHexString(encrypted);
             } catch (IllegalArgumentException e) {
                 System.err.println("Error en formato de clave o datos: " + e.getMessage());
                 throw e;
-            } catch (javax.crypto.NoSuchPaddingException e) {
-                System.err.println("Error de padding: " + e.getMessage());
-            } catch (javax.crypto.NoSuchAlgorithmException e) {
-                System.err.println("Algoritmo no disponible: " + e.getMessage());
-            } catch (javax.crypto.BadPaddingException e) {
-                System.err.println("Error de padding durante cifrado: " + e.getMessage());
-            } catch (javax.crypto.IllegalBlockSizeException e) {
-                System.err.println("Tamaño de bloque ilegal: " + e.getMessage());
-            } catch (java.security.InvalidKeyException e) {
-                System.err.println("Clave inválida: " + e.getMessage());
             } catch (Exception e) {
-                System.err.println("Error inesperado durante cifrado: " + e.getMessage());
+                System.err.println("Error durante cifrado: " + e.getMessage());
+                e.printStackTrace();
             }
         } else {
             throw new IllegalArgumentException("La clave y el texto no pueden ser nulos");
@@ -125,25 +150,16 @@ public class EcryptBuilder {
             try {
                 byte[] bytes = hexStringToByteArray(key.toUpperCase());
                 SecretKeySpec skeySpec = new SecretKeySpec(bytes, KEY_ALGORITHM);
-                Cipher cipher = Cipher.getInstance(CIPHER_ALGORITHM);
+                Cipher cipher = getCipherInstance();
                 cipher.init(DECRYPT_MODE, skeySpec);
                 byte[] original = cipher.doFinal(hexStringToByteArray(text));
-                desencryptText = new String(original);
+                desencryptText = new String(original, "UTF-8");
             } catch (IllegalArgumentException e) {
                 System.err.println("Error en formato de clave o datos: " + e.getMessage());
                 throw e;
-            } catch (javax.crypto.NoSuchPaddingException e) {
-                System.err.println("Error de padding: " + e.getMessage());
-            } catch (javax.crypto.NoSuchAlgorithmException e) {
-                System.err.println("Algoritmo no disponible: " + e.getMessage());
-            } catch (javax.crypto.BadPaddingException e) {
-                System.err.println("Error de padding durante descifrado - posible clave incorrecta: " + e.getMessage());
-            } catch (javax.crypto.IllegalBlockSizeException e) {
-                System.err.println("Tamaño de bloque ilegal: " + e.getMessage());
-            } catch (java.security.InvalidKeyException e) {
-                System.err.println("Clave inválida: " + e.getMessage());
             } catch (Exception e) {
-                System.err.println("Error inesperado durante descifrado: " + e.getMessage());
+                System.err.println("Error durante descifrado: " + e.getMessage());
+                e.printStackTrace();
             }
         } else {
             throw new IllegalArgumentException("La clave y el texto no pueden ser nulos");
@@ -165,25 +181,16 @@ public class EcryptBuilder {
             try {
                 byte[] bytes = hexStringToByteArray(key.toUpperCase());
                 SecretKeySpec skeySpec = new SecretKeySpec(bytes, KEY_ALGORITHM);
-                Cipher cipher = Cipher.getInstance(CIPHER_ALGORITHM);
+                Cipher cipher = getCipherInstance();
                 cipher.init(ENCRYPT_MODE, skeySpec);
                 byte[] encrypted = cipher.doFinal(text);
                 encryptText = encrypted;
             } catch (IllegalArgumentException e) {
                 System.err.println("Error en formato de clave: " + e.getMessage());
                 throw e;
-            } catch (javax.crypto.NoSuchPaddingException e) {
-                System.err.println("Error de padding: " + e.getMessage());
-            } catch (javax.crypto.NoSuchAlgorithmException e) {
-                System.err.println("Algoritmo no disponible: " + e.getMessage());
-            } catch (javax.crypto.BadPaddingException e) {
-                System.err.println("Error de padding durante cifrado: " + e.getMessage());
-            } catch (javax.crypto.IllegalBlockSizeException e) {
-                System.err.println("Tamaño de bloque ilegal: " + e.getMessage());
-            } catch (java.security.InvalidKeyException e) {
-                System.err.println("Clave inválida: " + e.getMessage());
             } catch (Exception e) {
-                System.err.println("Error inesperado durante cifrado: " + e.getMessage());
+                System.err.println("Error durante cifrado de bytes: " + e.getMessage());
+                e.printStackTrace();
             }
         } else {
             throw new IllegalArgumentException("La clave y el texto no pueden ser nulos");
@@ -205,29 +212,42 @@ public class EcryptBuilder {
             try {
                 byte[] bytes = hexStringToByteArray(key.toUpperCase());
                 SecretKeySpec skeySpec = new SecretKeySpec(bytes, KEY_ALGORITHM);
-                Cipher cipher = Cipher.getInstance(CIPHER_ALGORITHM);
+                Cipher cipher = getCipherInstance();
                 cipher.init(DECRYPT_MODE, skeySpec);
                 byte[] original = cipher.doFinal(text);
                 data = original;
             } catch (IllegalArgumentException e) {
                 System.err.println("Error en formato de clave: " + e.getMessage());
                 throw e;
-            } catch (javax.crypto.NoSuchPaddingException e) {
-                System.err.println("Error de padding: " + e.getMessage());
-            } catch (javax.crypto.NoSuchAlgorithmException e) {
-                System.err.println("Algoritmo no disponible: " + e.getMessage());
-            } catch (javax.crypto.BadPaddingException e) {
-                System.err.println("Error de padding durante descifrado - posible clave incorrecta: " + e.getMessage());
-            } catch (javax.crypto.IllegalBlockSizeException e) {
-                System.err.println("Tamaño de bloque ilegal: " + e.getMessage());
-            } catch (java.security.InvalidKeyException e) {
-                System.err.println("Clave inválida: " + e.getMessage());
             } catch (Exception e) {
-                System.err.println("Error inesperado durante descifrado: " + e.getMessage());
+                System.err.println("Error durante descifrado de bytes: " + e.getMessage());
+                e.printStackTrace();
             }
         } else {
             throw new IllegalArgumentException("La clave y el texto no pueden ser nulos");
         }
         return data;
+    }
+    
+    /**
+     * Obtiene información sobre los algoritmos disponibles
+     * 
+     * @return String con información de los algoritmos soportados
+     */
+    public static String getCipherInfo() {
+        StringBuilder info = new StringBuilder();
+        info.append("Algoritmos a probar: ").append(Arrays.toString(CIPHER_ALGORITHMS)).append("\n");
+        
+        for (String algorithm : CIPHER_ALGORITHMS) {
+            try {
+                Cipher cipher = Cipher.getInstance(algorithm);
+                info.append("✓ Disponible: ").append(algorithm)
+                    .append(" (Bloque: ").append(cipher.getBlockSize()).append(")\n");
+            } catch (Exception e) {
+                info.append("✗ No disponible: ").append(algorithm).append("\n");
+            }
+        }
+        
+        return info.toString();
     }
 }
