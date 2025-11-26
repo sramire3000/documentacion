@@ -9,7 +9,7 @@ import java.util.Arrays;
  * Proporciona métodos para convertir entre diferentes formatos y realizar operaciones criptográficas.
  * 
  * @author Ejemplo
- * @version 1.1
+ * @version 1.2
  */
 public class EcryptBuilder {
     
@@ -85,15 +85,23 @@ public class EcryptBuilder {
      * 
      * @param s Cadena hexadecimal a convertir
      * @return Array de bytes resultante de la conversión
+     * @throws IllegalArgumentException Si la cadena es nula o la longitud no es par
      * @throws NumberFormatException Si la cadena contiene caracteres no hexadecimales
-     * @throws IllegalArgumentException Si la longitud de la cadena no es par
      */
     public static byte[] hexStringToByteArray(String s) {
         if (s == null) {
             throw new IllegalArgumentException("La cadena hexadecimal no puede ser nula");
         }
+        if (s.isEmpty()) {
+            throw new IllegalArgumentException("La cadena hexadecimal no puede estar vacía");
+        }
         if (s.length() % 2 != 0) {
             throw new IllegalArgumentException("La cadena hexadecimal debe tener longitud par");
+        }
+        
+        // Verificar que todos los caracteres sean hexadecimales válidos
+        if (!s.matches("^[0-9A-Fa-f]+$")) {
+            throw new NumberFormatException("La cadena contiene caracteres no hexadecimales: " + s);
         }
         
         byte[] b = new byte[s.length() / 2];
@@ -114,26 +122,21 @@ public class EcryptBuilder {
      * @throws IllegalArgumentException Si la clave o el texto son nulos
      */
     public static String encryptData(String key, String text) {
-        String encryptText = null;
-        if (key != null && text != null) {
-            try {
-                byte[] bytes = hexStringToByteArray(key.toUpperCase());
-                SecretKeySpec skeySpec = new SecretKeySpec(bytes, KEY_ALGORITHM);
-                Cipher cipher = getCipherInstance();
-                cipher.init(ENCRYPT_MODE, skeySpec);
-                byte[] encrypted = cipher.doFinal(text.getBytes("UTF-8"));
-                encryptText = byteArrayToHexString(encrypted);
-            } catch (IllegalArgumentException e) {
-                System.err.println("Error en formato de clave o datos: " + e.getMessage());
-                throw e;
-            } catch (Exception e) {
-                System.err.println("Error durante cifrado: " + e.getMessage());
-                e.printStackTrace();
-            }
-        } else {
+        if (key == null || text == null) {
             throw new IllegalArgumentException("La clave y el texto no pueden ser nulos");
         }
-        return encryptText;
+        
+        try {
+            byte[] bytes = hexStringToByteArray(key.toUpperCase());
+            SecretKeySpec skeySpec = new SecretKeySpec(bytes, KEY_ALGORITHM);
+            Cipher cipher = getCipherInstance();
+            cipher.init(ENCRYPT_MODE, skeySpec);
+            byte[] encrypted = cipher.doFinal(text.getBytes("UTF-8"));
+            return byteArrayToHexString(encrypted);
+        } catch (Exception e) {
+            System.err.println("Error durante cifrado: " + e.getMessage());
+            return null;
+        }
     }
     
     /**
@@ -145,26 +148,21 @@ public class EcryptBuilder {
      * @throws IllegalArgumentException Si la clave o el texto son nulos
      */
     public static String desencryptData(String key, String text) {
-        String desencryptText = null;
-        if (key != null && text != null) {
-            try {
-                byte[] bytes = hexStringToByteArray(key.toUpperCase());
-                SecretKeySpec skeySpec = new SecretKeySpec(bytes, KEY_ALGORITHM);
-                Cipher cipher = getCipherInstance();
-                cipher.init(DECRYPT_MODE, skeySpec);
-                byte[] original = cipher.doFinal(hexStringToByteArray(text));
-                desencryptText = new String(original, "UTF-8");
-            } catch (IllegalArgumentException e) {
-                System.err.println("Error en formato de clave o datos: " + e.getMessage());
-                throw e;
-            } catch (Exception e) {
-                System.err.println("Error durante descifrado: " + e.getMessage());
-                e.printStackTrace();
-            }
-        } else {
+        if (key == null || text == null) {
             throw new IllegalArgumentException("La clave y el texto no pueden ser nulos");
         }
-        return desencryptText;
+        
+        try {
+            byte[] bytes = hexStringToByteArray(key.toUpperCase());
+            SecretKeySpec skeySpec = new SecretKeySpec(bytes, KEY_ALGORITHM);
+            Cipher cipher = getCipherInstance();
+            cipher.init(DECRYPT_MODE, skeySpec);
+            byte[] original = cipher.doFinal(hexStringToByteArray(text));
+            return new String(original, "UTF-8");
+        } catch (Exception e) {
+            System.err.println("Error durante descifrado: " + e.getMessage());
+            return null;
+        }
     }
     
     /**
@@ -176,26 +174,20 @@ public class EcryptBuilder {
      * @throws IllegalArgumentException Si la clave o el texto son nulos
      */
     public static byte[] encryptDataBytes(String key, byte[] text) {
-        byte[] encryptText = null;
-        if (key != null && text != null) {
-            try {
-                byte[] bytes = hexStringToByteArray(key.toUpperCase());
-                SecretKeySpec skeySpec = new SecretKeySpec(bytes, KEY_ALGORITHM);
-                Cipher cipher = getCipherInstance();
-                cipher.init(ENCRYPT_MODE, skeySpec);
-                byte[] encrypted = cipher.doFinal(text);
-                encryptText = encrypted;
-            } catch (IllegalArgumentException e) {
-                System.err.println("Error en formato de clave: " + e.getMessage());
-                throw e;
-            } catch (Exception e) {
-                System.err.println("Error durante cifrado de bytes: " + e.getMessage());
-                e.printStackTrace();
-            }
-        } else {
+        if (key == null || text == null) {
             throw new IllegalArgumentException("La clave y el texto no pueden ser nulos");
         }
-        return encryptText;
+        
+        try {
+            byte[] bytes = hexStringToByteArray(key.toUpperCase());
+            SecretKeySpec skeySpec = new SecretKeySpec(bytes, KEY_ALGORITHM);
+            Cipher cipher = getCipherInstance();
+            cipher.init(ENCRYPT_MODE, skeySpec);
+            return cipher.doFinal(text);
+        } catch (Exception e) {
+            System.err.println("Error durante cifrado de bytes: " + e.getMessage());
+            return null;
+        }
     }
     
     /**
@@ -207,26 +199,20 @@ public class EcryptBuilder {
      * @throws IllegalArgumentException Si la clave o el texto son nulos
      */
     public static byte[] desencryptDataBytes(String key, byte[] text) {
-        byte[] data = null;
-        if (key != null && text != null) {
-            try {
-                byte[] bytes = hexStringToByteArray(key.toUpperCase());
-                SecretKeySpec skeySpec = new SecretKeySpec(bytes, KEY_ALGORITHM);
-                Cipher cipher = getCipherInstance();
-                cipher.init(DECRYPT_MODE, skeySpec);
-                byte[] original = cipher.doFinal(text);
-                data = original;
-            } catch (IllegalArgumentException e) {
-                System.err.println("Error en formato de clave: " + e.getMessage());
-                throw e;
-            } catch (Exception e) {
-                System.err.println("Error durante descifrado de bytes: " + e.getMessage());
-                e.printStackTrace();
-            }
-        } else {
+        if (key == null || text == null) {
             throw new IllegalArgumentException("La clave y el texto no pueden ser nulos");
         }
-        return data;
+        
+        try {
+            byte[] bytes = hexStringToByteArray(key.toUpperCase());
+            SecretKeySpec skeySpec = new SecretKeySpec(bytes, KEY_ALGORITHM);
+            Cipher cipher = getCipherInstance();
+            cipher.init(DECRYPT_MODE, skeySpec);
+            return cipher.doFinal(text);
+        } catch (Exception e) {
+            System.err.println("Error durante descifrado de bytes: " + e.getMessage());
+            return null;
+        }
     }
     
     /**
@@ -244,7 +230,7 @@ public class EcryptBuilder {
                 info.append("✓ Disponible: ").append(algorithm)
                     .append(" (Bloque: ").append(cipher.getBlockSize()).append(")\n");
             } catch (Exception e) {
-                info.append("✗ No disponible: ").append(algorithm).append("\n");
+                info.append("✗ No disponible: ").append(algorithm).append(" - ").append(e.getMessage()).append("\n");
             }
         }
         
