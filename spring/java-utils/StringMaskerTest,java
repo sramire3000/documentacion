@@ -40,7 +40,6 @@ class StringMaskerTest {
     void testMaskEmailWithLongLocalPart() {
         String input = "usuario.largo@dominio.com";
         String expected = "***********go@dominio.com";
-        System.out.println(""+StringMasker.maskString(input));
         assertEquals(expected, StringMasker.maskString(input));
     }
 
