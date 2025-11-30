@@ -113,7 +113,7 @@ services:
              memory: 256M
     ports:
       - ${POSTGRES_PORT}:5432
-    restart: always
+    restart: no
     networks:
       - network_dev
     environment:
@@ -137,7 +137,7 @@ services:
              memory: 256M
     ports:
       - ${PGADMIN_PORT}:80
-    restart: always
+    restart: no
     networks:
       - network_dev
     environment:
@@ -154,6 +154,7 @@ networks:
     external: true
 
 ```
+
 
 
 
