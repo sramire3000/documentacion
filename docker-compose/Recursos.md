@@ -5,8 +5,8 @@ deploy:
   resources:
     limits:
       cpus: '0.2'
-      memory: 384M
+      memory: 512M
     reservations:
       cpus: '0.05'
-      memory: 128M
+      memory: 256M
 ```
