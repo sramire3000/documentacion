@@ -53,7 +53,7 @@ services:
              cpus: '0.2'
              memory: 512M
            reservations:
-             cpus: '0.25'
+             cpus: '0.05'
              memory: 256M
     image: mongo-express:1.0.0-alpha.4
     networks:
@@ -73,6 +73,7 @@ networks:
     external: true
 
 ```
+
 
 
 
