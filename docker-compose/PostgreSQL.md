@@ -107,10 +107,10 @@ services:
        resources:
            limits:
              cpus: '0.5'
-             memory: 1024M
+             memory: 512M
            reservations:
              cpus: '0.25'
-             memory: 512M
+             memory: 256M
     ports:
       - ${POSTGRES_PORT}:5432
     restart: always
@@ -154,6 +154,7 @@ networks:
     external: true
 
 ```
+
 
 
 
