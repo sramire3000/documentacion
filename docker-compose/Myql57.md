@@ -111,7 +111,7 @@ services:
              memory: 150M
     ports:
       - ${MYSQL57_PORT}:3306
-    restart: always
+    restart: no
     networks:
       - network_dev
     volumes:
@@ -125,6 +125,7 @@ networks:
     external: true
 
 ```
+
 
 
 
