@@ -34,7 +34,7 @@ services:
     image: mongo
     ports:
       - ${MONGO_PORT}:27017
-    restart: always
+    restart: no
     networks:
       - network_dev
     volumes:      
@@ -64,7 +64,7 @@ services:
       ME_CONFIG_MONGODB_SERVER: ${MONGO_SERVER}
     ports:
       - ${MONGO_EXPRESS_PORT}:8081
-    restart: always
+    restart: no
     depends_on:
       - service-mongodb-server
 
@@ -73,6 +73,7 @@ networks:
     external: true
 
 ```
+
 
 
 
