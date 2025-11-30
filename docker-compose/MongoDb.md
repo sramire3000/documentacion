@@ -50,10 +50,10 @@ services:
     deploy:
        resources:
            limits:
-             cpus: '0.7'
+             cpus: '0.5'
              memory: 512M
            reservations:
-             cpus: '0.5'
+             cpus: '0.25'
              memory: 256M
     image: mongo-express:1.0.0-alpha.4
     networks:
@@ -73,6 +73,7 @@ networks:
     external: true
 
 ```
+
 
 
 
