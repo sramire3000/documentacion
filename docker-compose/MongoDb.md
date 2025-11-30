@@ -26,10 +26,10 @@ services:
     deploy:
        resources:
            limits:
-             cpus: '0.5'
+             cpus: '0.2'
              memory: 512M
            reservations:
-             cpus: '0.25'
+             cpus: '0.05'
              memory: 256M     
     image: mongo
     ports:
@@ -73,6 +73,7 @@ networks:
     external: true
 
 ```
+
 
 
 
