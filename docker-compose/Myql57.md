@@ -104,11 +104,11 @@ services:
     deploy:
        resources:
            limits:
-             cpus: '1.5'
-             memory: 500M
+             cpus: '0.5'
+             memory: 350M
            reservations:
-             cpus: '1.0'
-             memory: 200M
+             cpus: '0.25'
+             memory: 150M
     ports:
       - ${MYSQL57_PORT}:3306
     restart: always
@@ -125,6 +125,7 @@ networks:
     external: true
 
 ```
+
 
 
 
