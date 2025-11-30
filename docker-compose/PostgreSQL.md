@@ -106,10 +106,10 @@ services:
     deploy:
        resources:
            limits:
-             cpus: '0.7'
+             cpus: '0.5'
              memory: 1024M
            reservations:
-             cpus: '0.5'
+             cpus: '0.25'
              memory: 512M
     ports:
       - ${POSTGRES_PORT}:5432
@@ -130,10 +130,10 @@ services:
     deploy:
        resources:
            limits:
-             cpus: '1.5'
+             cpus: '0.5'
              memory: 512M
            reservations:
-             cpus: '1.0'
+             cpus: '0.25'
              memory: 256M
     ports:
       - ${PGADMIN_PORT}:80
@@ -154,6 +154,7 @@ networks:
     external: true
 
 ```
+
 
 
 
