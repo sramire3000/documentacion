@@ -25,10 +25,10 @@ services:
     deploy:
        resources:
           limits:
-             cpus: '0.7'
+             cpus: '0.2'
              memory: 2560M
           reservations:
-             cpus: '0.5'
+             cpus: '0.05'
              memory: 1536M
     expose:
       - ${NEXUS_PORT1}
@@ -54,6 +54,7 @@ volumes:
 
 ### URL
 - [Nexus 3](http://localhost:8110/)
+
 
 
 
