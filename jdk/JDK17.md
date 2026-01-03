@@ -3,3 +3,56 @@
 ```
 docker build -t openjdk:17-jdk-alpine3.14 .
 ```
+
+### dockerfile
+```
+# Usar imagen oficial mínima y específica con versión fixed
+FROM eclipse-temurin:17.0.11_9-jdk-jammy
+
+# Metadatos de seguridad
+LABEL maintainer="tu-equipo@empresa.com"
+LABEL description="Imagen segura con JDK 17"
+LABEL security.scan="true"
+LABEL update.policy="weekly"
+
+# Instalar solo lo esencial sin versiones fijas problemáticas
+RUN apt-get update && \
+    apt-get upgrade -y --no-install-recommends && \
+    apt-get install -y --no-install-recommends \
+    curl \
+    ca-certificates \
+    fontconfig \
+    fonts-dejavu \
+    && \
+    # Limpieza de seguridad en la MISMA capa
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+# Crear usuario y grupo no-privilegiados con UID/GID específicos
+RUN groupadd -r -g 1001 javaapp && \
+    useradd -r -u 1001 -g javaapp -s /bin/false javaapp && \
+    # Asegurar directorios del usuario
+    mkdir -p /app /home/javaapp service-core && \
+    chown -R javaapp:javaapp /app /home/javaapp service-core && \
+    chmod 755 /app /home/javaapp service-core && \
+    # Configurar permisos de /tmp para el usuario no-root
+    chmod 1777 /tmp /var/tmp && \
+    chown javaapp:javaapp /tmp /var/tmp
+
+# Configurar directorio de trabajo seguro
+WORKDIR /app
+
+# Cambiar al usuario no-root
+USER javaapp
+
+# Variables de entorno seguras para JVM
+ENV JAVA_OPTS="-Djava.security.egd=file:/dev/./urandom"
+ENV JAVA_TOOL_OPTIONS="-XX:+UseContainerSupport -XX:MaxRAMPercentage=75.0"
+
+# Health check seguro (sin herramientas externas)
+HEALTHCHECK --interval=30s --timeout=10s --start-period=40s --retries=3 \
+    CMD java -XshowSettings:system -version > /dev/null 2>&1 || exit 1
+
+# Verificación de seguridad como entrypoint
+CMD ["java", "-XshowSettings:security", "-version"]
+```
