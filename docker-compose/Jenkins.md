@@ -19,6 +19,14 @@ services:
     restart: unless-stopped
     user: root
     privileged: true
+    deploy:
+       resources:
+           limits:
+             cpus: '0.2'
+             memory: 2048M
+           reservations:
+             cpus: '0.05'
+             memory: 1024M
     ports:
       - "9060:8080"
       - "50000:50000"
