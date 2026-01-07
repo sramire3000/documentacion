@@ -66,3 +66,52 @@ networks:
     name: ${DOCKER_NETWORK}
 ```
 
+```
++Instalar Plugin (Panel de Control>Administrar Jenkins>Plugins)
+	+LOCALE
+	+Maven Integration
+	+Nexus Artifact Uploader
+	+Pipeline Utility Steps
+	+SonarQube Scanner
+	+Reiniciar
+
++Configuracion Idioma (System)
+	+Administrar Jenkins > Configuración del sistema 
+		+LOCALE	
+			+Default Language = en_US
+			+Ignore browser preference and force this language to all users = Check
+
+
++Add Credentials
+	+Manage Jenkins>Credentials>System>Global credentials
+		+New credentials
+			-username = user-server-config
+			-password = 
+			-id       = git_credentials	
+		+New credentials
+			-username = admin
+			-password = password
+			-id       = nexus_credentials
+		+Sonarqube
+            -Id         = sonar_credentials
+            Secret Text = 
+
++Configurar Maven
+	+Tools
+		+Maven installations
+		    +Add Maven
+		    +Name = "Maven3"
+			+Install automatically
+			+Version3.9.5
+        +SonarQube Scanner installations
+		    +Name = SonarQube
+            +Install Automatic = check
+
+	
++Configurar Sonar (System)
+	+SonarQube installations
+		+Sonar Add
+			-Name = SonarQube
+			-URL  = http://host.docker.internal:9000
+            -Server authentication token = sonar_credentials
+```
