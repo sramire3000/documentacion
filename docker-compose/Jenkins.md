@@ -8,29 +8,6 @@ mkdir -p jenkins_data
 sudo chmod 777 jenkins_data
 ```
 
-### File ".env"
-```
-# Docker Compose Configuration
-COMPOSE_PROJECT_NAME=jenkins-project
-
-# Jenkins Configuration
-JENKINS_HTTP_PORT=3000
-JENKINS_HOST_PORT=3000
-JENKINS_CONTAINER_NAME=server-jenkins
-
-# Resource Limits
-JENKINS_CPU_LIMIT=0.7
-JENKINS_MEMORY_LIMIT=1024M
-JENKINS_CPU_RESERVATION=0.5
-JENKINS_MEMORY_RESERVATION=512M
-
-# Volume Configuration
-JENKINS_DATA_DIR=./jenkins_data
-
-# Network Configuration
-DOCKER_NETWORK=network_dev
-```
-
 ### File docker-compose.yaml
 ```
 version: "3"
@@ -66,6 +43,7 @@ networks:
     name: ${DOCKER_NETWORK}
 ```
 
+### Configuracion
 ```
 +Instalar Plugin (Panel de Control>Administrar Jenkins>Plugins)
 	+LOCALE
