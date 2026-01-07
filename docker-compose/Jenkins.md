@@ -10,37 +10,50 @@ sudo chmod 777 jenkins_data
 
 ### File docker-compose.yaml
 ```
-version: "3"
+version: '3.8'
 
 services:
-  service-jenkins-server:
-    container_name: ${JENKINS_CONTAINER_NAME}
-    image: jenkins/jenkins
-    deploy:
-       resources:
-          limits:
-             cpus: '${JENKINS_CPU_LIMIT}'
-             memory: ${JENKINS_MEMORY_LIMIT}
-          reservations:
-             cpus: '${JENKINS_CPU_RESERVATION}'
-             memory: ${JENKINS_MEMORY_RESERVATION}
-    expose:
-      - ${JENKINS_HTTP_PORT}
+  jenkins-lts-17:
+    image: jenkins/jenkins:lts-jdk17
+    container_name: jenkins-server
+    restart: unless-stopped
+    user: root
+    privileged: true
     ports:
-      - "${JENKINS_HOST_PORT}:${JENKINS_HTTP_PORT}"
-    restart: no
-    networks:
-      - ${DOCKER_NETWORK}
-    environment:
-      - JENKINS_OPTS=--httpPort=${JENKINS_HTTP_PORT}
+      - "9060:8080"
+      - "50000:50000"
     volumes:
-      - ${JENKINS_DATA_DIR}:/var/jenkins_home
+      # Persistencia de TODAS las carpetas de Jenkins
+      - jenkins-data:/var/jenkins_home
+     
+      # Docker integration
       - /var/run/docker.sock:/var/run/docker.sock
+      - /usr/bin/docker:/usr/bin/docker:ro
+      - /usr/local/bin/docker-compose:/usr/local/bin/docker-compose:ro
+     
+      # Timezone
+      - /etc/timezone:/etc/timezone:ro
+      - /etc/localtime:/etc/localtime:ro
+   
+    environment:
+      - JAVA_OPTS=-Djava.awt.headless=true -Duser.timezone=America/El_Salvador
+      - JENKINS_OPTS=--webroot=/var/cache/jenkins/war
+      - DOCKER_HOST=unix:///var/run/docker.sock
+     
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/login"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
 
-networks:
-  network_dev:
-    external: true
-    name: ${DOCKER_NETWORK}
+volumes:
+  jenkins-data:
+    driver: local
+    driver_opts:
+      type: none
+      o: bind
+      device: ./jenkins_data  # Carpeta específica en el host
 ```
 
 ### Configuracion
