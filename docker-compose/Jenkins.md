@@ -1,6 +1,6 @@
 # Docker Composer JENKINS
 
-## Jenkins normal
+## Jenkins JDK17
 
 ### Crear el folder "jenkins_data"
 ```
