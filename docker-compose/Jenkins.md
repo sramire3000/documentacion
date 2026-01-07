@@ -72,6 +72,7 @@ volumes:
 	+Nexus Artifact Uploader
 	+Pipeline Utility Steps
 	+SonarQube Scanner
+    +Nodejs
 	+Reiniciar
 
 +Configuracion Idioma (System)
