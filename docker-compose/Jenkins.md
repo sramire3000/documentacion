@@ -22,10 +22,10 @@ services:
     deploy:
        resources:
            limits:
-             cpus: '0.2'
+             cpus: '2.0'
              memory: 2048M
            reservations:
-             cpus: '0.05'
+             cpus: '1.0'
              memory: 1024M
     ports:
       - "9060:8080"
