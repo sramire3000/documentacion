@@ -98,5 +98,10 @@
     "source.fixAll": "always",
     "source.sortMembers": "always"
   },
+  // Files y Explorador
+  "files.autoSave": "afterDelay",
+  "files.autoSaveDelay": 1000,
+  "explorer.confirmDelete": false,
+  "explorer.confirmDragAndDrop": false,
 }
 ```
