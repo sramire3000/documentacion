@@ -16,45 +16,29 @@
 - [Material Icon Theme](https://marketplace.visualstudio.com/items?itemName=PKief.material-icon-theme)
 - [Monokai Night Theme](https://marketplace.visualstudio.com/items?itemName=fabiospampinato.vscode-monokai-night)
 
-### GIT
+### GIT default
+- [GitHub Copilot Chat](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot-chat)
 - [GitHub Copilot](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot)
+
+### GIT Extras
 - [GitHub Copilot app modernization](https://marketplace.visualstudio.com/items?itemName=vscjava.migrate-java-to-azure)
 - [GitHub Copilot app modernization - upgrade for Java](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-upgrade)
-- [GitHub Copilot Chat](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot-chat)
 - [GitHub Theme](https://marketplace.visualstudio.com/items?itemName=GitHub.github-vscode-theme)
 - [GitLens — Git supercharged](https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens)
 
 
-### Profile
+### Profile Standart
 ```
 {
   // Windows
   "window.zoomLevel": 1,
   // ignore recomendaciones
   "extensions.ignoreRecommendations": true,
-  // Terminal optimizado para Flutter
-  "terminal.integrated.defaultProfile.windows": "PowerShell",
-  "terminal.integrated.fontSize": 12,
-  "terminal.integrated.cursorBlinking": true,
-  // Workbench mejorado
-  "workbench.colorCustomizations": {
-    "statusBar.background": "#121016",
-    "statusBar.debuggingBackground": "#121016",
-    "statusBar.debuggingForeground": "#525156",
-    "debugToolBar.background": "#121016",
-    "activityBar.background": "#1a1620",
-    "titleBar.activeBackground": "#1a1620",
-    "editor.lineHighlightBackground": "#1e1a25",
-    "editor.lineHighlightBorder": "#1e1a25",
-    "editor.selectionBackground": "#2a2438",
-    "selection.background": "#2a2438"
-  },
+  // Deshabilitar la pantalla de inicio
   "workbench.startupEditor": "none",
-  "workbench.sideBar.location": "left",
-  "workbench.editor.showTabs": "multiple",
-  "workbench.statusBar.visible": true,
-  "workbench.iconTheme": "material-icon-theme",
-  // Editor optimizado para Flutter/Dart
+  // Breadcrumbs
+  "breadcrumbs.enabled": false,
+  // Editor
   "editor.minimap.enabled": false,
   "editor.scrollbar.vertical": "hidden",
   "editor.overviewRulerBorder": false,
@@ -78,32 +62,41 @@
   "editor.suggest.snippetsPreventQuickSuggestions": false,
   "editor.renderLineHighlight": "gutter",
   "editor.selectionHighlight": false,
-  // Formato y organización
-  "editor.formatOnSave": true,
-  "editor.formatOnPaste": true,
-  "editor.codeActionsOnSave": {
-    "source.organizeImports": "always",
-    "source.fixAll": "always",
-    "source.sortMembers": "always"
-  },
   // Git
   "git.openRepositoryInParentFolders": "never",
   "git.confirmSync": false,
   "git.enableSmartCommit": true,
-  // Breadcrumbs
-  "breadcrumbs.enabled": false,
-  // Theme
-  "workbench.colorTheme": "Monokai Night",
-  // Configuración de explorador
-  "explorer.confirmDelete": false,
-  "explorer.confirmDragAndDrop": false,
-  "explorer.compactFolders": false,
-  // Configuración de snippets
-  "editor.quickSuggestions": {
-    "strings": true
+  // Workbench mejorado
+  //"workbench.iconTheme": "material-icon-theme",
+  "vsicons.dontShowNewVersionMessage": true,
+  "workbench.iconTheme": "vscode-icons",
+  "workbench.sideBar.location": "left",
+  "workbench.editor.showTabs": "multiple",
+  "workbench.statusBar.visible": true,
+  "workbench.colorCustomizations": {
+    "statusBar.background": "#121016",
+    "statusBar.debuggingBackground": "#121016",
+    "statusBar.debuggingForeground": "#525156",
+    "debugToolBar.background": "#121016",
+    "activityBar.background": "#1a1620",
+    "titleBar.activeBackground": "#1a1620",
+    "editor.lineHighlightBackground": "#1e1a25",
+    "editor.lineHighlightBorder": "#1e1a25",
+    "selection.background": "#2a2438",
+    "editor.selectionBackground": "#09080d",
   },
-  // Debug
-  "debug.onTaskErrors": "showErrors",
-  "debug.internalConsoleOptions": "openOnSessionStart"
+  // Terminal optimizado
+  "terminal.integrated.fontSize": 12,
+  "terminal.integrated.cursorBlinking": true,
+  "terminal.integrated.defaultProfile.windows": "PowerShell",
+  // Formato y Organización de Código
+  "editor.formatOnSave": true,
+  "editor.formatOnPaste": true,
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": "always",
+    "source.fixAll.eslint": "always",
+    "source.fixAll": "always",
+    "source.sortMembers": "always"
+  },
 }
 ```
