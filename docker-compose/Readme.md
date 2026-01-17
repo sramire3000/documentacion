@@ -2,5 +2,5 @@
 
 ### Respaldar imagen Docker
 ```bash
-docker save -o file.bak imagen:version
+docker save -o [nombre_archivo].bak imagen:version
 ```
