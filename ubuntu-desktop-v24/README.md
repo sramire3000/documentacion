@@ -309,6 +309,10 @@ docker run -d -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=Password.1234" --name my-
 https://learn.microsoft.com/en-us/dotnet/core/install/linux-ubuntu-install?tabs=dotnet9&pivots=os-linux-ubuntu-2404
 ```
 
+### Install Bruno
+```bash
+sudo snap install bruno
+```
 
 
 
