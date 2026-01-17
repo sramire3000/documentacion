@@ -83,7 +83,8 @@
     "editor.lineHighlightBackground": "#1e1a25",
     "editor.lineHighlightBorder": "#1e1a25",
     "selection.background": "#2a2438",
-    "editor.selectionBackground": "#09080d",
+    "editor.selectionBackground": "#302f34",
+    "editor.background": "#000000"
   },
   // Terminal optimizado
   "terminal.integrated.fontSize": 12,
@@ -98,5 +99,10 @@
     "source.fixAll": "always",
     "source.sortMembers": "always"
   },
+  // Files y Explorador
+  "files.autoSave": "afterDelay",
+  "files.autoSaveDelay": 1000,
+  "explorer.confirmDelete": false,
+  "explorer.confirmDragAndDrop": false,
 }
 ```
