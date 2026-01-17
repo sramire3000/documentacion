@@ -4,7 +4,7 @@
 ```
 POSTGRES_USER=postgres
 POSTGRES_PASSWORD=password
-POSTGRES_CONTAINER_NAME=server-postgres
+POSTGRES_CONTAINER_NAME=service-postgres18-server
 POSTGRES_PORT=5432
 
 PGADMIN_DEFAULT_PASSWORD=password
@@ -113,7 +113,7 @@ services:
              memory: 256M
     ports:
       - ${POSTGRES_PORT}:5432
-    restart: no
+    restart: always
     networks:
       - network_dev
     environment:
@@ -121,7 +121,7 @@ services:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
       POSTGRES_DB: postgres
     volumes:
-      - ./postgres_data:/var/lib/postgresql/data
+      - ./postgres_data:/var/lib/postgresql
       - ./db.sql:/docker-entrypoint-initdb.d/db.sql
 
   pgAdmin4:
@@ -137,7 +137,7 @@ services:
              memory: 256M
     ports:
       - ${PGADMIN_PORT}:80
-    restart: no
+    restart: always
     networks:
       - network_dev
     environment:
@@ -152,7 +152,6 @@ services:
 networks:
   network_dev:
     external: true
-
 ```
 
 
