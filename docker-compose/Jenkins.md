@@ -84,7 +84,7 @@ volumes:
 
 +Add Credentials
 	+Manage Jenkins>Credentials>System>Global credentials
-		+New credentials
+		+New credentials global
 			-username = user-server-config
 			-password = 
 			-id       = git_credentials	
