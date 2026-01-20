@@ -161,8 +161,13 @@
 
   // Extensiones específicas
   "angular.enable-strict-mode-prompt": false,
+  "github.copilot.enable": {
+    "*": true,
+    "plaintext": false,
+    "markdown": true,
+    "scminput": false,
+  },
 }
-
 ```
 
 
