@@ -57,61 +57,14 @@
 {
   // Windows
   "window.zoomLevel": 1,
-
   // ignore recomendaciones
   "extensions.ignoreRecommendations": true,
-  
-  // Terminal optimizado para Flutter
-  "terminal.integrated.defaultProfile.windows": "PowerShell",
-  "terminal.integrated.fontSize": 12,
-  "terminal.integrated.cursorBlinking": true,
-
-  // Workbench mejorado
-  "workbench.colorCustomizations": {
-    "statusBar.background": "#121016",
-    "statusBar.debuggingBackground": "#121016",
-    "statusBar.debuggingForeground": "#525156",
-    "debugToolBar.background": "#121016",
-    "activityBar.background": "#1a1620",
-    "titleBar.activeBackground": "#1a1620",
-    "editor.lineHighlightBackground": "#1e1a25",
-    "editor.lineHighlightBorder": "#1e1a25",
-    "editor.selectionBackground": "#2a2438",
-    "selection.background": "#2a2438"
-  },
+  // Deshabilitar la pantalla de inicio
   "workbench.startupEditor": "none",
-  "workbench.sideBar.location": "left",
-  "workbench.editor.showTabs": "multiple",
-  "workbench.statusBar.visible": true,
-  "workbench.iconTheme": "material-icon-theme",
-  
-
-  // Angular & TypeScript
-  "typescript.preferences.autoImportFileExcludePatterns": [
-    "@angular/compiler",
-    "rxjs/internal/**"
-  ],
-  "typescript.updateImportsOnFileMove.enabled": "always",
-  "typescript.suggest.autoImports": true,
-  
-  // Prettier
-  "prettier.singleQuote": true,
-  "prettier.trailingComma": "es5",
-  "prettier.semi": true,
-  "prettier.printWidth": 100,
-  "prettier.tabWidth": 2,
-  "[typescript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[html]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  "[scss]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
-  },
-  
+  // Breadcrumbs
+  "breadcrumbs.enabled": false,
   // Editor
- "editor.minimap.enabled": false,
+  "editor.minimap.enabled": false,
   "editor.scrollbar.vertical": "hidden",
   "editor.overviewRulerBorder": false,
   "editor.hideCursorInOverviewRuler": true,
@@ -134,48 +87,87 @@
   "editor.suggest.snippetsPreventQuickSuggestions": false,
   "editor.renderLineHighlight": "gutter",
   "editor.selectionHighlight": false,
-
-  // Formato
-  "editor.formatOnSave": true,
-  "editor.formatOnPaste": true,
-  "editor.codeActionsOnSave": {
-    "source.organizeImports": "always",
-    "source.fixAll.eslint": "always"
-  },
-
   // Git
   "git.openRepositoryInParentFolders": "never",
   "git.confirmSync": false,
   "git.enableSmartCommit": true,
+  // Workbench mejorado
+  //"workbench.iconTheme": "material-icon-theme",
+  "vsicons.dontShowNewVersionMessage": true,
+  "workbench.iconTheme": "vscode-icons",
+  "workbench.sideBar.location": "left",
+  "workbench.editor.showTabs": "multiple",
+  "workbench.statusBar.visible": true,
+  "workbench.colorCustomizations": {
+    "statusBar.background": "#121016",
+    "statusBar.debuggingBackground": "#121016",
+    "statusBar.debuggingForeground": "#525156",
+    "debugToolBar.background": "#121016",
+    "activityBar.background": "#1a1620",
+    "titleBar.activeBackground": "#1a1620",
+    "editor.lineHighlightBackground": "#1e1a25",
+    "editor.lineHighlightBorder": "#1e1a25",
+    "selection.background": "#2a2438",
+    "editor.selectionBackground": "#302f34",
+    "editor.background": "#000000",
+  },
+  // Terminal optimizado
+  "terminal.integrated.fontSize": 12,
+  "terminal.integrated.cursorBlinking": true,
+  "terminal.integrated.defaultProfile.windows": "PowerShell",
+  // Formato y Organización de Código
+  "editor.formatOnSave": true,
+  "editor.formatOnPaste": true,
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": "always",
+    "source.fixAll.eslint": "always",
+    "source.fixAll": "always",
+    "source.sortMembers": "always",
+  },
+  // Files y Explorador
+  "files.autoSave": "afterDelay",
+  "files.autoSaveDelay": 1000,
+  "explorer.confirmDelete": false,
+  "explorer.confirmDragAndDrop": false,
+  "github.copilot.nextEditSuggestions.enabled": true,
 
-  // Breadcrumbs
-  "breadcrumbs.enabled": false,
+  // Angular & TypeScript
+  "typescript.preferences.autoImportFileExcludePatterns": ["@angular/compiler", "rxjs/internal/**"],
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "typescript.suggest.autoImports": true,
 
-  // Archivos
-  "files.autoSave": "onFocusChange",
+  // Prettier
+  "prettier.singleQuote": true,
+  "prettier.trailingComma": "es5",
+  "prettier.semi": true,
+  "prettier.printWidth": 100,
+  "prettier.tabWidth": 2,
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+  },
+  "[html]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+  },
+  "[scss]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+  },
+
+  // Archivos angular
   "files.exclude": {
     "**/node_modules": true,
     "**/dist": true,
-    "**/.angular": true
+    "**/.angular": true,
   },
 
-
-  // Theme
-  "workbench.colorTheme": "Monokai Night",
-
-  
   // ESLint
-  "eslint.validate": [
-    "typescript",
-    "javascript"
-  ],
-  
+  "eslint.validate": ["typescript", "javascript"],
+
   // Extensiones específicas
   "angular.enable-strict-mode-prompt": false,
-  "angular.view-engine": false,
-  "angular.suggest.includeAutocompleteOptionalChain": true
 }
+
 ```
+
 
 
 
