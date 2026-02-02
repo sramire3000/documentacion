@@ -6,29 +6,35 @@
 ```bash
 sudo apt-get install nginx
 ```
+
 ### Verificar
 ```bash
 sudo systemctl status nginx
 ```
+
 ### Archivos de configuraciones Globales
 ```bash
 cd /etc/nginx
 nano nginx.conf
 ```
+
 ### Recargar cambios de configuracion
 ```bash
 sudo nginx -s reload
 ```
+
 ## Comando para el manejo de Nginx con Systemctl
 
 ### Iniciar servicio de Nginx
 ```bash
 sudo systemctl start nginx
 ```
+
 ### Status de Nginx
 ```bash
 sudo systemctl status nginx
 ```
+
 ### Detener el servicio
 ```bash
 sudo systemctl stop nginx
@@ -38,6 +44,12 @@ sudo systemctl stop nginx
 ```bash
 sudo systemctl restart nginx
 ```
+
+### Habilitar servicio de Nginx en el boot
+```bash
+sudo systemctl enable nginx
+```
+
 ## Configuraciones de proyectos
 
 ### Configuraciones sitios disponibles
@@ -54,6 +66,7 @@ cd /etc/nginx/sites-enabled
 ```bash
 cd /var/www
 ```
+
 ## Test
 
 ### Crear carpeta en www para test
