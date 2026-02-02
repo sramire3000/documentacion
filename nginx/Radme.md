@@ -1,16 +1,15 @@
 # NgInx
 
-### Install NgInx in ubuntu
+## Install NgInx en ubuntu
 
+### Install 
 ```bash
 sudo apt-get install nginx
 ```
-
 ### Verificar
 ```bash
 sudo systemctl status nginx
 ```
-
 ### Archivos de configuraciones Globales
 ```bash
 cd /etc/nginx
@@ -20,6 +19,13 @@ nano nginx.conf
 ```bash
 sudo nginx -s reload
 ```
+## Comando para el manejo de Nginx con Systemctl
+
+### Start Nginx
+```bash
+sudo systemctl start nginx
+```
+
 
 ### Configuraciones de cada proyecto
 ```bash
