@@ -25,3 +25,8 @@ sudo nginx -s reload
 ```bash
 cd /etc/nginx/sites-available
 ```
+
+### Configuraciones de enlaces
+```
+cd /etc/nginx/sites-enabled
+```
