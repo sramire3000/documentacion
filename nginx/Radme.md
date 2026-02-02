@@ -35,4 +35,7 @@ cd /etc/nginx/sites-enabled
 ```bash
 cd /var/www
 ```
+### Crear carpeta en www
+```bash
+sudo mkdir -p /var/www/hola
 ```
