@@ -67,4 +67,5 @@ server {
 ```
 ### Activa el sito
 ```bash
+sudo ln -s /etc/nginx/sites-available/hola.conf /etc/nginx/sites-enabled/
 ```
