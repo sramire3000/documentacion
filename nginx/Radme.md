@@ -34,7 +34,13 @@ sudo systemctl status nginx
 sudo systemctl stop nginx
 ```
 
-### Configuraciones de cada proyecto
+### Reiniciar el servicio
+```bash
+sudo systemctl restart nginx
+```
+## Configuraciones de proyectos
+
+### Configuraciones sitios disponibles
 ```bash
 cd /etc/nginx/sites-available
 ```
