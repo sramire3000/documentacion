@@ -46,3 +46,6 @@ echo "<h1>Hola desde Nginx</h1>" | sudo tee /var/www/hola/index.html
 ```bash
 sudo nano /etc/nginx/sites-available/hola.conf
 ```
+### Contenido de hola.conf
+```bash
+```
