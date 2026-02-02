@@ -48,4 +48,6 @@ sudo nano /etc/nginx/sites-available/hola.conf
 ```
 ### Contenido de hola.conf
 ```bash
+server {
+}
 ```
