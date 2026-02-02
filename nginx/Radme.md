@@ -49,5 +49,19 @@ sudo nano /etc/nginx/sites-available/hola.conf
 ### Contenido de hola.conf
 ```bash
 server {
+   # puerto de escucha
+   listen 80;
+   # Nombre del sitio
+   server_name hola.local;
+   # Ruta de sitio o paginas web
+   root /var/www/hola;
+   # Archivo inicial solicitado
+   index index.html
+
+   # Archivo solicitado
+   location / {
+      try_files $uri $uri/ =404;
+   }
+
 }
 ```
