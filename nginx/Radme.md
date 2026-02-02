@@ -121,3 +121,10 @@ sudo nginx -s reload
 sudo nano /etc/hosts
 127.0.1.1 hola.local
 ```
+
+## Produccion
+
+### Reiniciar Servicio sin interrupcion
+```bash
+sudo nginx -t && sudo nginx -s reload
+```
