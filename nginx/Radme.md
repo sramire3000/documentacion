@@ -65,3 +65,6 @@ server {
 
 }
 ```
+### Activa el sito
+```bash
+```
