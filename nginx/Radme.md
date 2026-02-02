@@ -16,3 +16,7 @@ sudo systemctl status nginx
 cd /etc/nginx
 nano nginx.conf
 ```
+### Recargar cambios de configuracion
+```bash
+sudo nginx -s reload
+```
