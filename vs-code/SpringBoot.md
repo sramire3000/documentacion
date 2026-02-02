@@ -12,8 +12,6 @@
 - [YAML](https://marketplace.visualstudio.com/items?itemName=redhat.vscode-yaml)
 
 ### Theme
-- [Material Icon Theme](https://marketplace.visualstudio.com/items?itemName=PKief.material-icon-theme)
-- [Monokai Night Theme](https://marketplace.visualstudio.com/items?itemName=fabiospampinato.vscode-monokai-night)
 - [VsCodeIcons](https://marketplace.visualstudio.com/items?itemName=vscode-icons-team.vscode-icons)
 
 
@@ -340,6 +338,7 @@
 }
 
 ```
+
 
 
 
