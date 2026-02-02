@@ -56,7 +56,7 @@ server {
    # Ruta de sitio o paginas web
    root /var/www/hola;
    # Archivo inicial solicitado
-   index index.html
+   index index.html;
 
    # Archivo solicitado
    location / {
