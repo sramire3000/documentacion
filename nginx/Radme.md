@@ -35,7 +35,14 @@ cd /etc/nginx/sites-enabled
 ```bash
 cd /var/www
 ```
-### Crear carpeta en www
+## Test
+
+### Crear carpeta en www para test
 ```bash
 sudo mkdir -p /var/www/hola
+echo "<h1>Hola desde Nginx</h1>" | sudo tee /var/www/hola/index.html
+```
+### Crear archivo de configuracion
+```bash
+sudo nano /etc/nginx/sites-available/hola.conf
 ```
