@@ -1,0 +1,18 @@
+# PostgreSQL
+
+## Roles
+
+### Create ROLE DBA
+```bash
+CREATE ROLE dba WITH SUPERUSER;
+GRANT USAGE ON SCHEMA CLINICA TO dba;
+GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA CLINICA TO dba WITH GRANT OPTION;
+```
+
+
+## User
+
+### Create Users
+```bash
+CREATE USER administrador WITH PASSWORD '12345' IN ROLE dba;
+```
