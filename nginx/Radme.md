@@ -78,3 +78,8 @@ sudo nginx -t
 ```bash
 sudo nginx -s reload
 ```
+
+### Adicionar el host
+```bash
+sudo nano /etc/hosts
+```
