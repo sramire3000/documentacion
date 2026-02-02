@@ -74,3 +74,7 @@ sudo ln -s /etc/nginx/sites-available/hola.conf /etc/nginx/sites-enabled/
 ```bash
 sudo nginx -t
 ```
+### Recargar Nginx
+```bash
+sudo nginx -s reload
+```
