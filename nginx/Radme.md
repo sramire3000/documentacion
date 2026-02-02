@@ -45,6 +45,11 @@ sudo systemctl stop nginx
 sudo systemctl restart nginx
 ```
 
+### No habilitar servicio de Nginx en el boot
+```bash
+sudo systemctl disable nginx
+```
+
 ### Habilitar servicio de Nginx en el boot
 ```bash
 sudo systemctl enable nginx
