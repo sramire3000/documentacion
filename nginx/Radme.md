@@ -23,5 +23,5 @@ sudo nginx -s reload
 
 ### Configuraciones de cada proyecto
 ```bash
-cd sites-available
+cd /etc/nginx/sites-available
 ```
