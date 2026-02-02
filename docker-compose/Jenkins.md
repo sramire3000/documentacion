@@ -84,7 +84,7 @@ volumes:
 
 +Add Credentials
 	+Manage Jenkins>Credentials>System>Global credentials
-		+New credentials
+		+New credentials global
 			-username = user-server-config
 			-password = 
 			-id       = git_credentials	
@@ -106,6 +106,10 @@ volumes:
         +SonarQube Scanner installations
 		    +Name = SonarQube
             +Install Automatic = check
+        +instalaciones de NodeJS
+            +name = node_js
+            +version = nodejs 24.3.0
+            +global npm = @angular/cli
 
 	
 +Configurar Sonar (System)
