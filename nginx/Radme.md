@@ -69,3 +69,8 @@ server {
 ```bash
 sudo ln -s /etc/nginx/sites-available/hola.conf /etc/nginx/sites-enabled/
 ```
+
+### Comprobar configuracion
+```bash
+sudo nginx -t
+```
