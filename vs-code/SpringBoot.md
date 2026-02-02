@@ -14,6 +14,7 @@
 ### Theme
 - [Material Icon Theme](https://marketplace.visualstudio.com/items?itemName=PKief.material-icon-theme)
 - [Monokai Night Theme](https://marketplace.visualstudio.com/items?itemName=fabiospampinato.vscode-monokai-night)
+- [VsCodeIcons](https://marketplace.visualstudio.com/items?itemName=vscode-icons-team.vscode-icons)
 
 
 ### JAVA
@@ -28,11 +29,7 @@
 
 ### GIT
 - [GitHub Copilot](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot)
-- [GitHub Copilot app modernization](https://marketplace.visualstudio.com/items?itemName=vscjava.migrate-java-to-azure)
-- [GitHub Copilot app modernization - upgrade for Java](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-java-upgrade)
 - [GitHub Copilot Chat](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot-chat)
-- [GitHub Theme](https://marketplace.visualstudio.com/items?itemName=GitHub.github-vscode-theme)
-
 
 ### Spring
 - [Spring Boot Dashboard](https://marketplace.visualstudio.com/items?itemName=vscjava.vscode-spring-boot-dashboard)
@@ -42,84 +39,101 @@
 ### File settings.json
 ```
 {
+{
   // Windows
   "window.zoomLevel": 1,
   // ignore recomendaciones
   "extensions.ignoreRecommendations": true,
-  // ========== TEMA Y APARIENCIA ==========
-  "workbench.colorTheme": "Monokai Night",
-  "workbench.iconTheme": "material-icon-theme",
+  // Deshabilitar la pantalla de inicio
   "workbench.startupEditor": "none",
-  "workbench.editor.highlightModifiedTabs": true,
-  "workbench.editor.tabSizing": "shrink",
-  "workbench.statusBar.visible": true,
+  // Breadcrumbs
+  "breadcrumbs.enabled": false,
+  // Editor
+  "editor.minimap.enabled": false,
+  "editor.scrollbar.vertical": "hidden",
+  "editor.overviewRulerBorder": false,
+  "editor.hideCursorInOverviewRuler": true,
+  "editor.guides.indentation": false,
+  "editor.glyphMargin": false,
+  "editor.fontSize": 14,
+  "editor.lineHeight": 1.3,
+  "editor.wordWrap": "on",
+  "editor.matchBrackets": "never",
+  "editor.mouseWheelZoom": true,
+  "editor.tabSize": 2,
+  "editor.insertSpaces": true,
+  "editor.detectIndentation": true,
+  "editor.fontFamily": "'Fira Code', 'Cascadia Code', Consolas, 'Courier New', monospace",
+  "editor.fontLigatures": true,
+  "editor.bracketPairColorization.enabled": true,
+  "editor.guides.bracketPairs": true,
+  "editor.semanticHighlighting.enabled": true,
+  "editor.inlineSuggest.enabled": true,
+  "editor.suggest.snippetsPreventQuickSuggestions": false,
+  "editor.renderLineHighlight": "gutter",
+  "editor.selectionHighlight": false,
+  "editor.formatOnType": true,
+  "editor.autoIndent": "full",
+  // Git
+  "git.openRepositoryInParentFolders": "never",
+  "git.confirmSync": false,
+  "git.enableSmartCommit": true,
+  // Workbench mejorado
+  //"workbench.iconTheme": "material-icon-theme",
+  "vsicons.dontShowNewVersionMessage": true,
+  "workbench.iconTheme": "vscode-icons",
   "workbench.sideBar.location": "left",
   "workbench.editor.showTabs": "multiple",
+  "workbench.statusBar.visible": true,
+  "workbench.colorCustomizations": {
+    "statusBar.background": "#121016",
+    "statusBar.debuggingBackground": "#121016",
+    "statusBar.debuggingForeground": "#525156",
+    "debugToolBar.background": "#121016",
+    "activityBar.background": "#1a1620",
+    "titleBar.activeBackground": "#1a1620",
+    "editor.lineHighlightBackground": "#1e1a25",
+    "editor.lineHighlightBorder": "#1e1a25",
+    "selection.background": "#2a2438",
+    "editor.selectionBackground": "#302f34",
+    "editor.background": "#000000"
+  },
+  // Terminal optimizado
+  "terminal.integrated.fontSize": 12,
+  "terminal.integrated.cursorBlinking": true,
+  "terminal.integrated.defaultProfile.windows": "PowerShell",
+  // Formato y Organización de Código
+  "editor.formatOnSave": true,
+  "editor.formatOnPaste": true,
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": "always",
+    "source.fixAll.eslint": "always",
+    "source.fixAll": "always",
+    "source.sortMembers": "always"
+  },
+  // Files y Explorador
+  "files.autoSave": "afterDelay",
+  "files.autoSaveDelay": 1000,
+  "explorer.confirmDelete": false,
+  "explorer.confirmDragAndDrop": false,
+  "workbench.editor.highlightModifiedTabs": true,
+  "workbench.editor.tabSizing": "shrink",
   // ========== EDITOR - TEXTO Y FUENTES ==========
-  "editor.fontFamily": "JetBrains Mono",
-  "editor.fontSize": 14,
-  "editor.fontLigatures": true,
-  "editor.lineHeight": 1.8,
   "editor.letterSpacing": 0.3,
   "editor.fontWeight": "450",
   "editor.cursorBlinking": "phase",
   "editor.cursorSmoothCaretAnimation": "on",
   "editor.cursorWidth": 2,
   "editor.smoothScrolling": true,
-  "editor.mouseWheelZoom": true,
   // ========== EDITOR - VISUAL ==========
-  "editor.minimap.enabled": false,
   "editor.minimap.scale": 2,
   "editor.minimap.showSlider": "always",
-  "editor.bracketPairColorization.enabled": true,
-  "editor.guides.bracketPairs": true,
   "editor.guides.bracketPairsHorizontal": true,
-  "editor.guides.indentation": true,
   "editor.guides.highlightActiveIndentation": true,
-  "editor.matchBrackets": "always",
   "editor.renderWhitespace": "boundary",
   "editor.renderControlCharacters": true,
-  "editor.renderLineHighlight": "all",
   "editor.occurrencesHighlight": "multiFile",
-  "editor.selectionHighlight": true,
   // ========== COLORES PERSONALIZADOS ==========
-  "workbench.colorCustomizations": {
-    // Editor principal
-    "editor.background": "#1a1b26",
-    "editor.foreground": "#c0caf5",
-    "editor.lineHighlightBackground": "#2a2b3d",
-    "editor.selectionBackground": "#3d59a1",
-    "editor.inactiveSelectionBackground": "#3d59a140",
-    // Sidebar y panels
-    "sideBar.background": "#16161e",
-    "sideBar.foreground": "#787c99",
-    "sideBarSectionHeader.background": "#1a1b26",
-    "activityBar.background": "#16161e",
-    "activityBar.foreground": "#c0caf5",
-    "activityBar.activeBorder": "#7aa2f7",
-    // Status bar
-    "statusBar.background": "#1a1b26",
-    "statusBar.foreground": "#c0caf5",
-    "statusBar.debuggingBackground": "#bb9af7",
-    // Tabs
-    "tab.activeBackground": "#1a1b26",
-    "tab.activeForeground": "#7aa2f7",
-    "tab.inactiveBackground": "#16161e",
-    "tab.border": "#1a1b26",
-    // Scrollbar
-    "scrollbarSlider.background": "#3b426180",
-    "scrollbarSlider.hoverBackground": "#3b4261",
-    "scrollbarSlider.activeBackground": "#7aa2f7",
-    // Inputs
-    "input.background": "#1a1b26",
-    "input.foreground": "#c0caf5",
-    "input.border": "#3b4261",
-    "inputOption.activeBorder": "#7aa2f7",
-    // Lists
-    "list.activeSelectionBackground": "#3d59a1",
-    "list.activeSelectionForeground": "#c0caf5",
-    "list.hoverBackground": "#292e42"
-  },
   // ========== TOKEN COLORS - SYNTAX HIGHLIGHTING ==========
   "editor.tokenColorCustomizations": {
     "textMateRules": [
@@ -204,25 +218,8 @@
       }
     }
   },
-  // ========== FORMATO Y ORGANIZACIÓN ==========
-  "editor.formatOnSave": true,
-  "editor.formatOnPaste": true,
-  "editor.formatOnType": true,
-  "editor.codeActionsOnSave": {
-    "source.organizeImports": "always",
-    "source.fixAll": "always",
-    "source.addMissingImports": "always"
-  },
-  "files.autoSave": "onFocusChange",
-  "editor.autoIndent": "full",
-  "editor.tabSize": 2,
-  "editor.insertSpaces": true,
-  "editor.detectIndentation": true,
   // ========== TERMINAL VISUAL ==========
-  "terminal.integrated.defaultProfile.windows": "PowerShell",
-  "terminal.integrated.fontSize": 12,
   "terminal.integrated.fontFamily": "'Fira Code', 'Cascadia Code', monospace",
-  "terminal.integrated.cursorBlinking": true,
   "terminal.integrated.cursorStyle": "line",
   "terminal.integrated.cursorWidth": 2,
   // ========== EXTENSIONES VISUALES ==========
@@ -256,16 +253,12 @@
     "iconColor": "#ff9e64"
   },
   // ========== PRODUCTIVIDAD ==========
-  "explorer.confirmDelete": false,
-  "explorer.confirmDragAndDrop": false,
   "files.trimTrailingWhitespace": true,
   "files.insertFinalNewline": true,
   "files.trimFinalNewlines": true,
   // ========== GIT VISUAL ==========
   "git.decorations.enabled": true,
   "git.autofetch": true,
-  "git.confirmSync": false,
-  "git.openRepositoryInParentFolders": "always",
   "gitlens.hovers.currentLine.over": "line",
   "gitlens.currentLine.enabled": true,
   "gitlens.blame.avatars": true,
@@ -341,11 +334,13 @@
   ],
   "gitlens.ai.model": "vscode",
   "gitlens.ai.vscode.model": "copilot:gpt-4.1",
-  "vsicons.dontShowNewVersionMessage": true,
-  "git.enableSmartCommit": true,
+  "github.copilot.nextEditSuggestions.enabled": true,
+}
+
 }
 
 ```
+
 
 
 
