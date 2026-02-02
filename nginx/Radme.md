@@ -20,3 +20,8 @@ nano nginx.conf
 ```bash
 sudo nginx -s reload
 ```
+
+### Configuraciones de cada proyecto
+```bash
+cd sites-available
+```
