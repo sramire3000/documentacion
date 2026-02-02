@@ -29,7 +29,10 @@ sudo systemctl start nginx
 ```bash
 sudo systemctl status nginx
 ```
-
+### Detener el servicio
+```bash
+sudo systemctl stop nginx
+```
 
 ### Configuraciones de cada proyecto
 ```bash
