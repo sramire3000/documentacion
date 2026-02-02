@@ -21,9 +21,13 @@ sudo nginx -s reload
 ```
 ## Comando para el manejo de Nginx con Systemctl
 
-### Start Nginx
+### Iniciar servicio de Nginx
 ```bash
 sudo systemctl start nginx
+```
+### Status de Nginx
+```bash
+sudo systemctl status nginx
 ```
 
 
