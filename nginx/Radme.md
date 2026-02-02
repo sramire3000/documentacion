@@ -27,6 +27,12 @@ cd /etc/nginx/sites-available
 ```
 
 ### Configuraciones de enlaces
-```
+```bash
 cd /etc/nginx/sites-enabled
+```
+
+### Ubiacion de paginas Web
+```bash
+cd /var/www
+```
 ```
