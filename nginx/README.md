@@ -216,6 +216,11 @@ server {
 sudo nano /etc/hosts
 ```
 
+### 13. Add site
+```
+127.0.1.1 mi_sitio.local
+```
+
 
 ## Produccion
 
