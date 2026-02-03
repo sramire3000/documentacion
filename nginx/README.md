@@ -226,6 +226,11 @@ sudo nano /etc/hosts
 sudo ln -s /etc/nginx/sites-available/mi-sitio.conf /etc/nginx/sites-enabled/
 ```
 
+### 15. Comprobar configuracion
+```bash
+sudo nginx -t
+```
+
 ## Produccion
 
 ### Reiniciar Servicio sin interrupcion
