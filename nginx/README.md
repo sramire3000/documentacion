@@ -196,7 +196,7 @@ sudo nano /etc/nginx/sites-available/mi-sitio.conf
 ```bash
 server {
    # Puerto de escucha
-   listen 80;
+   listen 90;
    # Nombre del dominio
    server_name mi_sitio.local;
    # Directorio raiz
