@@ -128,7 +128,23 @@ sudo nano /etc/hosts
 ```bash
 sudo mkdir -p /var/www/mi-sitio
 ```
+### 2. crear index.html
+```bash
+sudo nano /var/www/mi-sitio/index.html
+```
 
+### 3. contenido index.html
+```bash
+<!DOCTYPE html>
+<html>
+   <head>
+      <title>Mi sitio web</title>
+      <link rel="stylesheet" href="style.css">
+   </head>
+   <body>
+   </body>
+</html>
+```
 
 ## Produccion
 
