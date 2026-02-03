@@ -236,6 +236,10 @@ sudo nginx -t
 sudo nginx -s reload
 ```
 
+### Probar sitio
+```bash
+http://mi-sitio.local
+```
 
 ## Produccion
 
