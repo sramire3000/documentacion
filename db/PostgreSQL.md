@@ -54,4 +54,10 @@ GRANT USAGE, SELECT ON ALL SEQUENCES IN SCHEMA clinica TO user_service;
 GRANT EXECUTE ON ALL FUNCTIONS IN SCHEMA clinica TO user_service;
 ```
 
+### Create User
+```bash
+CREATE USER svc_microservicios_write_dev WITH PASSWORD '12345' IN ROLE user_service;
+CREATE USER svc_microservicios_write_qa WITH PASSWORD '12345' IN ROLE user_service;
+CREATE USER svc_microservicios_write_pro WITH PASSWORD '12345' IN ROLE user_service;
+````
 
