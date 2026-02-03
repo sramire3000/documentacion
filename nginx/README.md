@@ -177,6 +177,12 @@ console.log("NGINX Sirve este archivo jajascript");
 alert("Hola Js desde Nginx");
 ```
 
+# 8. Dar permiso de acceso al sitio si no hay
+```bash
+sudo chown -R www-data:www-data /var/www/mi-sitio
+```
+
+
 ## Produccion
 
 ### Reiniciar Servicio sin interrupcion
