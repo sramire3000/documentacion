@@ -143,6 +143,8 @@ sudo nano /var/www/mi-sitio/index.html
    </head>
    <body>
       <h1>Bien venido a mi sitio web con Nginx</h1>
+      <p>Este es un ejemplo de contenido estatico</p>
+      <script src="script.js"></script>
    </body>
 </html>
 ```
