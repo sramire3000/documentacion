@@ -42,3 +42,16 @@ svc_erp_reader_qa
 svc_etl_ingestion_stage
 svc_bi_api_dev
 ```
+
+## Crear usuarios de servicio
+
+### Crear Role
+```bash
+CREATE ROLE user_service;
+GRANT USAGE ON SCHEMA CLINICA TO user_service;
+GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA clinica TO user_service;
+GRANT USAGE, SELECT ON ALL SEQUENCES IN SCHEMA clinica TO user_service;
+GRANT EXECUTE ON ALL FUNCTIONS IN SCHEMA clinica TO user_service;
+```
+
+
