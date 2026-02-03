@@ -180,6 +180,7 @@ alert("Hola Js desde Nginx");
 ### 8. Dar permiso de acceso al sitio si no hay
 ```bash
 sudo chown -R www-data:www-data /var/www/mi-sitio
+sudo chown -R 775 /var/www/mi-sitio
 ```
 
 
