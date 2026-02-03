@@ -142,6 +142,7 @@ sudo nano /var/www/mi-sitio/index.html
       <link rel="stylesheet" href="style.css">
    </head>
    <body>
+      <h1>Bien venido a mi sitio web con Nginx</h1>
    </body>
 </html>
 ```
