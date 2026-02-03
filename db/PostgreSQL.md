@@ -57,10 +57,12 @@ CREATE USER recepcionista_3 WITH PASSWORD '12345' CONNECTION LIMIT 1 IN ROLE rec
 
 ### REVOCAR PERMISOS, BORRAR USUARIOS Y ROLES
 ```bash
-
+DROP USER recepcionista_3;
+REVOKE SELECT, INSERT, UPDATE ON CLINICA.PACIENTE, CLINICA.CITA, CLINICA.AGENDAR_CITA FROM recepcionista;
+REVOKE DELETE ON CLINICA.PACIENTE FROM recepcionista;
+REVOKE USAGE ON SCHEMA CLINICA FROM recepcionista;
+DROP ROLE recepcionista;
 ```
-
-
 
 ### Example the user service (svc_application_tipo_ambiente)
 ```bash
