@@ -231,6 +231,12 @@ sudo ln -s /etc/nginx/sites-available/mi-sitio.conf /etc/nginx/sites-enabled/
 sudo nginx -t
 ```
 
+### 16. Recargar Nginx
+```bash
+sudo nginx -s reload
+```
+
+
 ## Produccion
 
 ### Reiniciar Servicio sin interrupcion
