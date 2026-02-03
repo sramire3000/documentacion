@@ -221,6 +221,10 @@ sudo nano /etc/hosts
 127.0.1.1 mi_sitio.local
 ```
 
+### 14. crear enlace simbolico
+```bash
+sudo ln -s /etc/nginx/sites-available/mi-sitio.conf /etc/nginx/sites-enabled/
+```
 
 ## Produccion
 
