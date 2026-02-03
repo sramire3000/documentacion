@@ -124,6 +124,10 @@ sudo nano /etc/hosts
 
 ## Configuracion de un Sitio Web Basico
 
+### 1. Crear carpeta sitio web
+```bash
+sudo mkdir -p /var/www/mi-sitio
+```
 
 
 ## Produccion
