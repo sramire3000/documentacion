@@ -166,8 +166,14 @@ h1 {
    color: #333;
 }
 ```
+### 6. crear archivo script.js
+```bash
+sudo nano /var/www/mi-sitio/script.js
+```
 
-
+### 7. Contenido de script.js
+```bash
+```
 
 ## Produccion
 
