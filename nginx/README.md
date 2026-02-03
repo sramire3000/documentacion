@@ -173,6 +173,8 @@ sudo nano /var/www/mi-sitio/script.js
 
 ### 7. Contenido de script.js
 ```bash
+console.log("NGINX Sirve este archivo jajascript");
+alert("Hola Js desde Nginx");
 ```
 
 ## Produccion
