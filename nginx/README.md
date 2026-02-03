@@ -187,10 +187,30 @@ sudo chown -R 775 /var/www/mi-sitio
 ls -l /var/www/mi-sitio/
 ```
 
-### 10. Crear archivo de configuracion del sitio disponible
+### 10. Crear archivo mi-sitio.conf de configuracion del sitio disponible
 ```bash
 sudo nano /etc/nginx/sites-available/mi-sitio.conf
 ```
+
+### 11. Contenido de mi-sitio.conf
+```bash
+server {
+   # Puerto de escucha
+   listen 80;
+   # Nombre del dominio
+   server_name mi_sitio.local;
+   # Directorio raiz
+   root /var/www/mi-sitio;
+   # Archivo que se ejecuta por primera vez
+   index index.html;
+
+   location / {
+      # Localizacion del sitio
+      try_files $uri $uri/ /index.html 
+   }
+}
+```
+
 
 ## Produccion
 
