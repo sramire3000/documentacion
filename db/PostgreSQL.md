@@ -17,6 +17,12 @@ GRANT SELECT, INSERT, UPDATE ON CLINICA.EXPEDIENTE, CLINICA.EXPEDIENTE_DIAGNOSTI
 GRANT DELETE ON CLINICA.ESPECIALISTA TO jefe_especialista WITH GRANT OPTION;
 ```
 
+### Eliminar un ROL
+```bash
+DROP OWNED BY user_service CASCADE;
+DROP ROLE user_service;
+```
+
 
 ## User
 
@@ -25,6 +31,8 @@ GRANT DELETE ON CLINICA.ESPECIALISTA TO jefe_especialista WITH GRANT OPTION;
 CREATE USER administrador WITH PASSWORD '12345' IN ROLE dba;
 CREATE USER jefe_especialista_1 WITH PASSWORD '12345' CONNECTION LIMIT 1 IN ROLE jefe_especialista;
 ```
+
+
 
 
 ### Example the user service (svc_application_tipo_ambiente)
