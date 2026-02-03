@@ -211,6 +211,11 @@ server {
 }
 ```
 
+### 12. configurar el nombre del dominio
+```bash
+sudo nano /etc/hosts
+```
+
 
 ## Produccion
 
