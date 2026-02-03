@@ -149,6 +149,17 @@ sudo nano /var/www/mi-sitio/index.html
 </html>
 ```
 
+### 4. crear archivo de estilos
+```bash
+sudo nano /var/www/mi-sitio/style.css
+```
+
+### 5. contenido style.css
+```bash
+```
+
+
+
 ## Produccion
 
 ### Reiniciar Servicio sin interrupcion
