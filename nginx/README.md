@@ -182,6 +182,10 @@ alert("Hola Js desde Nginx");
 sudo chown -R www-data:www-data /var/www/mi-sitio
 sudo chown -R 775 /var/www/mi-sitio
 ```
+### 9. Revision de archivos
+```bash
+ls -l /var/www/mi-sitio/
+```
 
 
 ## Produccion
