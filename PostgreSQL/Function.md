@@ -486,8 +486,8 @@ $$;
 
 Ejemplo
 ```bash
-SELECT public.fn_redondeo_retroactivo_money('$123.4567891234'::money, 2);
-SELECT public.fn_redondeo_retroactivo_money('$123.4567891234'::money, 6);
-SELECT public.fn_redondeo_retroactivo_money('$123.4567891234'::money, 0);
-SELECT public.fn_redondeo_retroactivo_money('$123.4567891234'::money, -1); -- decenas,
+SELECT public.fn_redondeo_retroactivo_money(123.4567891234, 2);
+SELECT public.fn_redondeo_retroactivo_money(123.4567891234, 6);
+SELECT public.fn_redondeo_retroactivo_money(123.4567891234, 0);
+SELECT public.fn_redondeo_retroactivo_money(123.4567891234, -1); -- decenas,
 ```
