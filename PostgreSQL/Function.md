@@ -404,7 +404,7 @@ SELECT public.fn_calcular_iva_sv(100, 13, 2); -- 13.00
 SELECT public.fn_calcular_iva_sv(250.75, 13, 2); -- 32.598
 ```
 
-###  IVA “incluido” (extraer IVA desde un total CON IVA)
+###  IVA “incluido” (extraer IVA desde un total CON IVA recomendado)
 ```bash
 
 CREATE OR REPLACE FUNCTION public.fn_extraer_iva_incluido_sv(
