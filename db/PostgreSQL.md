@@ -91,7 +91,7 @@ CREATE USER svc_microservicios_write_pro WITH PASSWORD '12345' IN ROLE user_serv
 
 # FUNCTION
 
-### Plantilla
+### Plantilla function
 ```bash
 CREATE FUNCTION nameFunction() RETURNS datatype
 AS $$BEGIN
@@ -99,4 +99,24 @@ END;
 $$ LANGUAGE plpgsql;
 ```
 
+### Ejecutar funcion
+```bash
+Select nameFunction()
+```
+
+# PROCEDURE
+
+### Plantilla Procedure
+```bash
+CREATE PROCEDURE nameProcedure()
+LANGUAGE plpgsql
+AS $$
+   Comandos SQK....
+END; $$
+```
+
+### Ejecutar Procedure
+```bash
+call nameProcedure()
+```
 
