@@ -110,7 +110,7 @@ Select nameFunction()
 
 ### Ejemplo de funcion
 ```bash
-CREATE FUNCTION CLINICA.HolaMundo() RETURNS VARCHAR(20) AS $$BEGIN
+CREATE FUNCTION CLINICA.HolaMundo() RETURNS VARCHAR(20) AS $$
 DECLARE 
    mensaje VARCHAR(20) := 'HOLA MUNDO';
 BEGIN   
