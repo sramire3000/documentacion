@@ -447,6 +447,47 @@ ejemplo
 ```bash
 SELECT public.fn_extraer_iva_incluido_sv(113, 13, 2); -- 13.00
 SELECT public.fn_extraer_iva_incluido_sv(1000, 13, 2); -- 115.04 (aprox)
-
 ```
 
+### Redondeo retroactivo
+```bash
+CREATE OR REPLACE FUNCTION public.fn_redondeo_retroactivo_money(
+    p_monto     money,
+    p_decimales integer
+)
+RETURNS numeric
+LANGUAGE plpgsql
+IMMUTABLE
+AS $$
+DECLARE
+    v numeric;
+    d integer;
+    d_inicio integer := 9;
+BEGIN
+    -- Convertimos a numeric para poder manejar escala variable
+    v := p_monto::numeric;
+
+    -- Si p_decimales es NULL, lo tratamos como 0
+    p_decimales := COALESCE(p_decimales, 0);
+
+    -- Si p_decimales es mayor que 9, no tiene sentido “bajar desde 9”
+    -- en ese caso empezamos desde p_decimales (o podrías lanzar error)
+    d_inicio := GREATEST(d_inicio, p_decimales);
+
+    -- Redondeo escalonado: 9,8,7,... hasta p_decimales
+    FOR d IN REVERSE d_inicio..p_decimales LOOP
+        v := round(v, d);
+    END LOOP;
+
+    RETURN v;
+END;
+$$;
+```
+
+Ejemplo
+```bash
+SELECT public.fn_redondeo_retroactivo_money('$123.4567891234'::money, 2);
+SELECT public.fn_redondeo_retroactivo_money('$123.4567891234'::money, 6);
+SELECT public.fn_redondeo_retroactivo_money('$123.4567891234'::money, 0);
+SELECT public.fn_redondeo_retroactivo_money('$123.4567891234'::money, -1); -- decenas,
+```
