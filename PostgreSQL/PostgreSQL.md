@@ -187,7 +187,7 @@ $$ LANGUAGE plpgsql;
 
 ### Plantilla Procedure
 ```bash
-CREATE PROCEDURE nameProcedure()
+CREATE OR REPLACE PROCEDURE nameProcedure()
 LANGUAGE plpgsql
 AS $$
 
