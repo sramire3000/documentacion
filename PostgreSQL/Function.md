@@ -45,3 +45,39 @@ BEGIN
 END;
 $$;
 ```
+
+### Devuelve em Mes en Letras
+```bash
+CREATE or REPLACE FUNCTION CLINICA.MesesLetras(numeroMes INT) RETURNS VARCHAR(30) AS $$
+BEGIN
+	CASE
+	  WHEN numeroMes = 1 THEN 
+	     RETURN 'Enero';
+	  WHEN numeroMes = 2 THEN 
+	     RETURN  'Febrero';
+	  WHEN numeroMes = 3 THEN 
+	     RETURN  'Marzo';
+	  WHEN numeroMes = 4 THEN 
+	     RETURN  'Abril';
+	  WHEN numeroMes = 5 THEN 
+	     RETURN  'Mayo';
+	  WHEN numeroMes = 6 THEN 
+	     RETURN  'Junio';
+	  WHEN numeroMes = 7 THEN 
+	     RETURN  'Julio';
+	  WHEN numeroMes = 8 THEN 
+	     RETURN  'Agosto';
+	  WHEN numeroMes = 9 THEN 
+	     RETURN  'Setptiembre';
+	  WHEN numeroMes = 10 THEN 
+	     RETURN 'Octubre';
+	  WHEN numeroMes = 11 THEN 
+	     RETURN 'Noviembre';
+	  WHEN numeroMes = 12 THEN 
+	     RETURN  'Dicembre';	
+	  ELSE
+	     RETURN 'El número no corresponde al mes o no está declarado';
+	END CASE;
+END;
+$$ LANGUAGE plpgsql;
+```
