@@ -246,6 +246,10 @@ BEGIN
    
 END; $$
 ```
+Call
+```bash
+call CLINICA.InsertarPacienteExpediente ('DANIEL','GOMEZ','M','1999-01-01','MONTEREY','NUEVO LEON','5509867334','O POSITIVO','NA','NA');
+```
 
 ### Ejecutar Procedure
 ```bash
