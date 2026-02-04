@@ -132,7 +132,9 @@ call nameProcedure();
 ```bash
 CREATE FUNCTION nameFunction() RETURN TRIGGER
 AS $$ BEGIN
+
   Comandos Sql...
+
 END;
 $$ LANGUAGE plpgsql;
 ```
