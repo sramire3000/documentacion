@@ -5,6 +5,18 @@
 CREATE SCHEMA public;
 ```
 
+### Genera un UUID
+```bash
+CREATE EXTENSION IF NOT EXISTS pgcrypto;
+
+CREATE OR REPLACE FUNCTION public.fn_generar_uuid_varchar()
+RETURNS varchar AS $$
+BEGIN
+    RETURN gen_random_uuid()::varchar;
+END;
+$$ LANGUAGE plpgsql;
+```
+
 ### Obtener la hora del Sistema
 ```bash
 CREATE OR REPLACE FUNCTION public.fn_obtener_hora_actual()
