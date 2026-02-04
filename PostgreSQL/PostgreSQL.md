@@ -221,9 +221,9 @@ DECLARE
    fechaCracion TIMESTAMP := (SELECT LEFT (CAST(CURRENT_TIMESTAMP AS CHAR(30)),19));
 BEGIN
 
-   p_nombre := btrim(p_nombre);
+   nombre := btrim(nombre);
 
-   IF p_nombre IS NULL OR p_nombre = '' THEN
+   IF nombre IS NULL OR nombre = '' THEN
       RAISE EXCEPTION 'El nombre es obligatorio'
          USING ERRCODE = '22004';
    END IF;
