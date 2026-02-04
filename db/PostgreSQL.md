@@ -128,6 +128,15 @@ call nameProcedure();
 # TRIGGER
 
 ### Plantilla trigger
+
+```bash
+CREATE FUNCTION nameFunction() RETURN TRIGGER
+AS $$ BEGIN
+  Comandos Sql...
+END;
+$$ LANGUAGE plpgsql;
+```
+
 ```bash
 CREATE TRIGGER name_Trigger{BEFORE | AFTER | INSTEAD OF} {event [OR...] }
 ON name_Table
