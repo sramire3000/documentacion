@@ -7,7 +7,7 @@ CREATE SCHEMA public;
 
 ### Obtener la hora del Sistema
 ```bash
-CREATE OR REPLACE FUNCTION public.obtener_hora_actual()
+CREATE OR REPLACE FUNCTION public.fn_obtener_hora_actual()
 RETURNS text
 LANGUAGE plpgsql
 AS $$
@@ -19,7 +19,7 @@ $$;
 
 ### Obtener la fecha en formato yyyy-mm-dd
 ```bash
-CREATE OR REPLACE FUNCTION public.obtener_fecha_actual()
+CREATE OR REPLACE FUNCTION public.fn_obtener_fecha_actual()
 RETURNS text
 LANGUAGE plpgsql
 AS $$
@@ -31,7 +31,7 @@ $$;
 
 ### Rellenar a la Izquira de un caracter definido
 ```bash
-CREATE OR REPLACE FUNCTION public.rellenar_izquierda(
+CREATE OR REPLACE FUNCTION public.fn_rellenar_izquierda(
     valor     varchar,
     repit     int,
     caracter  char(1)
@@ -53,7 +53,7 @@ $$;
 
 ### Devuelve em Mes en Letras
 ```bash
-CREATE or REPLACE FUNCTION public.MesesLetras(numeroMes INT) RETURNS VARCHAR(30) AS $$
+CREATE or REPLACE FUNCTION public.fn_meses_letras(numeroMes INT) RETURNS VARCHAR(30) AS $$
 BEGIN
 	CASE
 	  WHEN numeroMes = 1 THEN 
