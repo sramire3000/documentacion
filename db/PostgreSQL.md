@@ -72,7 +72,7 @@ svc_etl_ingestion_stage
 svc_bi_api_dev
 ```
 
-## Crear usuarios de servicio
+# Crear usuarios de servicio
 
 ### Crear Role
 ```bash
@@ -89,4 +89,15 @@ CREATE USER svc_microservicios_write_dev WITH PASSWORD '12345' IN ROLE user_serv
 CREATE USER svc_microservicios_write_qa WITH PASSWORD '12345' IN ROLE user_service;
 CREATE USER svc_microservicios_write_pro WITH PASSWORD '12345' IN ROLE user_service;
 ````
+
+# FUNCTION
+
+### Plantilla
+```bash
+CREATE FUNCTION nameFunction() RETURNS datatype
+AS $$BEGIN
+END;
+$$ LANGUAGE plpgsql;
+```
+
 
