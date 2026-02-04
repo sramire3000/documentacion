@@ -224,7 +224,7 @@ BEGIN
       idPaciente = 'P-0001';
    ELSE
       idPaciente    := (Select pk_idPaciente from CLINICA.PACIENTE Order by pk_idPaciente DESC LIMIT 1);
-	  idPacienteAux := (Select Substring(pk_idPaciente,3,6));
+	  idPacienteAux := (Select Substring(idPaciente,3,6));
 	  idPacienteAux := CAST(idPacienteAux AS INT)+1;
 
       IF idPacienteAux < '9' THEN 
