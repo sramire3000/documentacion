@@ -335,16 +335,22 @@ AS $$
 DECLARE
   d date;
 BEGIN
-  -- 1) NULL o formato incorrecto
-  IF p_text IS NULL OR p_text !~ '^\d{4}-\d{2}-\d{2}$' THEN
+  -- Si algo falla por cualquier motivo, devolvemos false
+  BEGIN
+    -- 1) NULL o formato incorrecto
+    IF p_text IS NULL OR p_text !~ '^\d{4}-\d{2}-\d{2}$' THEN
+      RETURN false;
+    END IF;
+
+    -- 2) Convertir
+    d := to_date(p_text, 'YYYY-MM-DD');
+
+    -- 3) Validar que no fue "ajustada" (round-trip exacto)
+    RETURN to_char(d, 'YYYY-MM-DD') = p_text;
+
+  EXCEPTION WHEN OTHERS THEN
     RETURN false;
-  END IF;
-
-  -- 2) Intentar convertir (no lanza error si es "normalizable", por eso el paso 3)
-  d := to_date(p_text, 'YYYY-MM-DD');
-
-  -- 3) Validar que no fue "ajustada" (round-trip exacto)
-  RETURN to_char(d, 'YYYY-MM-DD') = p_text;
+  END;
 END;
 $$;
 ```
