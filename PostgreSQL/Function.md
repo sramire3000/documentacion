@@ -452,7 +452,7 @@ SELECT public.fn_extraer_iva_incluido_sv(1000, 13, 2); -- 115.04 (aprox)
 ### Redondeo retroactivo
 ```bash
 CREATE OR REPLACE FUNCTION public.fn_redondeo_retroactivo_money(
-    p_monto     money,
+    p_monto     numeric,
     p_decimales integer
 )
 RETURNS numeric
