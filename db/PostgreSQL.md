@@ -180,6 +180,18 @@ END;
 $$ LANGUAGE plpgsql;
 ```
 
+### Ejemplo de funcion con LOOP
+```bash
+CREATE or REPLACE FUNCTION CLINICA.Loop(numero INT) RETURNS INT AS $$
+DECLARE i INT := 0;
+BEGIN
+	FOR i IN [OPTIONAL REVERSE] 1..numero [OPTIONAL BYTE 2] LOOP
+	   RAISE NOTICE 'CONTADOR %', i;
+	END LOOP;
+	
+END;
+$$ LANGUAGE plpgsql;
+```
 
 # PROCEDURE
 
