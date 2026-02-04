@@ -125,3 +125,18 @@ END; $$
 call nameProcedure();
 ```
 
+# TRIGGER
+
+### Plantilla trigger
+```bash
+CREATE TRIGGER name_Trigger{BEFORE | AFTER | INSTEAD OF} {event [OR...] }
+ON name_Table
+FOR EACH ROW
+EXECUTE PROCEDURE nameFunction();
+```
+Where event can be one of: INSERT, UPDATE, DELETE, TRUNCATE
+
+
+
+
+
