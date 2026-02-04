@@ -399,7 +399,54 @@ $$;
 ```
 
 Ejemplo
-```
+```bash
 SELECT public.fn_calcular_iva_sv(100, 13, 2); -- 13.00
 SELECT public.fn_calcular_iva_sv(250.75, 13, 2); -- 32.598
 ```
+
+###  IVA “incluido” (extraer IVA desde un total CON IVA)
+```bash
+
+CREATE OR REPLACE FUNCTION public.fn_extraer_iva_incluido_sv(
+    p_total      NUMERIC,
+    p_porcentaje NUMERIC DEFAULT 13,
+    p_decimales  INT     DEFAULT 2
+)
+RETURNS NUMERIC
+LANGUAGE plpgsql
+AS $$
+DECLARE
+    v_base NUMERIC;
+    v_iva  NUMERIC;
+BEGIN
+    IF p_total IS NULL THEN
+        RETURN NULL;
+    END IF;
+
+    IF p_decimales IS NULL OR p_decimales < 0 THEN
+        RAISE EXCEPTION 'La cantidad de decimales debe ser >= 0. Valor recibido: %', p_decimales;
+    END IF;
+
+    IF p_porcentaje IS NULL OR p_porcentaje < 0 THEN
+        RAISE EXCEPTION 'El porcentaje debe ser >= 0. Valor recibido: %', p_porcentaje;
+    END IF;
+
+    IF p_porcentaje = 0 THEN
+        RETURN ROUND(0, p_decimales);
+    END IF;
+
+    v_base := p_total / (1 + (p_porcentaje / 100));
+    v_iva  := p_total - v_base;
+
+    RETURN ROUND(v_iva, p_decimales);
+END;
+$$;
+```
+
+ejemplo
+```bash
+SELECT public.fn_extraer_iva_incluido_sv(113, 13, 2); -- 13.00
+SELECT public.fn_extraer_iva_incluido_sv(1000, 13, 2); -- 115.04 (aprox)
+
+```
+
