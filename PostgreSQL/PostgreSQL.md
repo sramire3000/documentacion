@@ -38,7 +38,6 @@ DROP ROLE user_service;
 
 ### Create Users
 ```bash
-CREATE USER administrador WITH PASSWORD '12345' IN ROLE dba;
 CREATE USER jefe_especialista_1 WITH PASSWORD '12345' CONNECTION LIMIT 1 IN ROLE jefe_especialista;
 CREATE USER especialista_1 WITH PASSWORD '12345' CONNECTION LIMIT 1 IN ROLE especialista;
 CREATE USER especialista_2 WITH PASSWORD '12345' CONNECTION LIMIT 1 IN ROLE especialista;
