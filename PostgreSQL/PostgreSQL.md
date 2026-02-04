@@ -197,6 +197,56 @@ BEGIN
 END; $$
 ```
 
+Ejemplo:
+```bash
+CREATE OR REPLACE PROCEDURE CLINICA.InsertarPacienteExpediente
+(
+nombre          VARCHAR(20),
+apellido        VARCHAR(20),
+sexo            CHAR(1),
+fechaNacimiento DATE,
+ciudad          VARCHAR(30),
+estado          VARCHAR(30),
+telefono        CHAR(10),
+tipoSangre      VARCHAR(10),
+tipoAlergia     VARCHAR(30),
+padecimientoCro VARCHAR(30)
+)
+LANGUAGE plpgsql
+AS $$
+DECLARE
+   idPaciente CHAR(6);
+   idPacienteAux CHAR(4);
+   fechaCracion TIMESTAMP := (SELECT LEFT (CAST(CURRENT_TIMESTAMP AS CHAR(30)),19));
+BEGIN
+
+   IF NOT EXISTS(Select pk_idPaciente from CLINICA.PACIENTE Where pk_idPaciente = 'P-0001') THEN
+      idPaciente = 'P-0001';
+   ELSE
+      idPaciente    := (Select pk_idPaciente from CLINICA.PACIENTE Order by pk_idPaciente DESC LIMIT 1);
+	  idPacienteAux := (Select Substring(pk_idPaciente,3,6));
+	  idPacienteAux := CAST(idPacienteAux AS INT)+1;
+
+      IF idPacienteAux < '9' THEN 
+	    idPaciente = 'P-00' || idPacienteAux;
+	  ELSEIF idPacienteAux BETWEEN '10' AND '99' THEN
+	    idPaciente = 'P-0' || idPacienteAux;
+	  ELSEIF idPacienteAux BETWEEN '100' AND '999' THEN
+	    idPaciente = 'P-' || idPacienteAux;
+	  END IF;
+   END IF;	  
+
+   INSERT INTO clinica.paciente(pk_idpaciente, nombre, apellido, sexo, fechanacimiento, ciudad, estado, telefono)
+	  VALUES (idPaciente, nombre, apellido, sexo, fechaNacimiento, ciudad, estado, telefono);
+
+   INSERT INTO clinica.expediente(pk_idpaciente, tiposangre, tipoalergias, padecimientoscronicos, fechacreacion)
+	  VALUES (idPaciente, tipoSangre, tipoAlergia, padecimientoCro, fechaCracion);	  
+
+   RAISE NOTICE 'PACIENTE Y EXPEDIENTE INGRESADO CORRECTAMENTE';
+   
+END; $$
+```
+
 ### Ejecutar Procedure
 ```bash
 call nameProcedure();
