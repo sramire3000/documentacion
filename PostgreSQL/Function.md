@@ -327,7 +327,7 @@ SELECT public.fn_dolares_a_letras(12.345);
 ### Valida una Fecha
 
 ```bash
-CREATE OR REPLACE FUNCTION public.is_valid_date_yyyy_mm_dd(p_text text)
+CREATE OR REPLACE FUNCTION public.fn_is_valid_date_yyyy_mm_dd(p_text text)
 RETURNS boolean
 LANGUAGE plpgsql
 IMMUTABLE
@@ -351,8 +351,8 @@ $$;
 
 ejemplo
 ```bash
-SELECT public.is_valid_date_yyyy_mm_dd('2026-02-04'); -- true
-SELECT public.is_valid_date_yyyy_mm_dd('2026-02-30'); -- false
-SELECT public.is_valid_date_yyyy_mm_dd('2026-2-04');  -- false (formato)
-SELECT public.is_valid_date_yyyy_mm_dd(NULL);         -- false
+SELECT public.fn_is_valid_date_yyyy_mm_dd('2026-02-04'); -- true
+SELECT public.fn_is_valid_date_yyyy_mm_dd('2026-02-30'); -- false
+SELECT public.fn_is_valid_date_yyyy_mm_dd('2026-2-04');  -- false (formato)
+SELECT public.fn_is_valid_date_yyyy_mm_dd(NULL);         -- false
 ```
