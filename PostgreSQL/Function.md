@@ -323,3 +323,36 @@ SELECT public.fn_dolares_a_letras(10000000.00);
 SELECT public.fn_dolares_a_letras(12.345);
 -- ERROR: El monto ... debe tener como máximo 2 decimales
 ```
+
+### Valida una Fecha
+
+```bash
+CREATE OR REPLACE FUNCTION public.is_valid_date_yyyy_mm_dd(p_text text)
+RETURNS boolean
+LANGUAGE plpgsql
+IMMUTABLE
+AS $$
+DECLARE
+  d date;
+BEGIN
+  -- 1) NULL o formato incorrecto
+  IF p_text IS NULL OR p_text !~ '^\d{4}-\d{2}-\d{2}$' THEN
+    RETURN false;
+  END IF;
+
+  -- 2) Intentar convertir (no lanza error si es "normalizable", por eso el paso 3)
+  d := to_date(p_text, 'YYYY-MM-DD');
+
+  -- 3) Validar que no fue "ajustada" (round-trip exacto)
+  RETURN to_char(d, 'YYYY-MM-DD') = p_text;
+END;
+$$;
+```
+
+ejemplo
+```bash
+SELECT public.is_valid_date_yyyy_mm_dd('2026-02-04'); -- true
+SELECT public.is_valid_date_yyyy_mm_dd('2026-02-30'); -- false
+SELECT public.is_valid_date_yyyy_mm_dd('2026-2-04');  -- false (formato)
+SELECT public.is_valid_date_yyyy_mm_dd(NULL);         -- false
+```
