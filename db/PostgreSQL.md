@@ -93,8 +93,9 @@ CREATE USER svc_microservicios_write_pro WITH PASSWORD '12345' IN ROLE user_serv
 
 ### Plantilla function
 ```bash
-CREATE FUNCTION nameFunction() RETURNS datatype
-AS $$BEGIN
+CREATE FUNCTION nameFunction() RETURNS datatype AS $$
+DECLARE ....
+BEGIN
 
  Comandos SQL....
 
