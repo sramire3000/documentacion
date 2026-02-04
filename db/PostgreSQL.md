@@ -108,7 +108,7 @@ $$ LANGUAGE plpgsql;
 Select nameFunction()
 ```
 
-### Ejemplo de funcion
+### Ejemplo de funcion sin parametros
 ```bash
 CREATE or REPLACE FUNCTION CLINICA.HolaMundo() RETURNS VARCHAR(20) AS $$
 DECLARE 
