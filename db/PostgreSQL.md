@@ -128,6 +128,21 @@ END;
 $$ LANGUAGE plpgsql;
 ```
 
+### Ejemplo de funcion con IF
+```bash
+CREATE or REPLACE FUNCTION CLINICA.NumeroMayorMenor(numero1 INT, numero2 INT) RETURNS VARCHAR(30) AS $$
+BEGIN
+ IF numero1 > numero2 THEN
+    return 'El número: ' || numero1 || ' es mayor que el número: ' || numero2;
+ ELSEIF numero1 < numero2 THEN 
+    return 'El número: ' || numero1 || ' es menor que el número: ' || numero2;
+ ELSE
+    return 'El número: ' || numero1 || ' es igual que el número: ' || numero2;
+ END IF;
+END;
+$$ LANGUAGE plpgsql;
+```
+
 
 # PROCEDURE
 
