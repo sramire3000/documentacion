@@ -108,6 +108,18 @@ $$ LANGUAGE plpgsql;
 Select nameFunction()
 ```
 
+### Ejemplo de funcion
+```bash
+CREATE FUNCTION CLINICA.HolaMundo() RETURNS VARCHAR(20) AS $$BEGIN
+DECLARE 
+   mensaje VARCHAR(20) := 'HOLA MUNDO';
+BEGIN   
+	RETURN mensaje;
+END;
+$$ LANGUAGE plpgsql;
+```
+
+
 # PROCEDURE
 
 ### Plantilla Procedure
