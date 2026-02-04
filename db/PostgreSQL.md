@@ -122,6 +122,6 @@ END; $$
 
 ### Ejecutar Procedure
 ```bash
-call nameProcedure()
+call nameProcedure();
 ```
 
