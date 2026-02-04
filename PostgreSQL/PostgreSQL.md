@@ -210,7 +210,8 @@ estado          VARCHAR(30),
 telefono        CHAR(10),
 tipoSangre      VARCHAR(10),
 tipoAlergia     VARCHAR(30),
-padecimientoCro VARCHAR(30)
+padecimientoCro VARCHAR(30),
+OUT o_paciente        clinica.paciente
 )
 LANGUAGE plpgsql
 AS $$
@@ -219,6 +220,13 @@ DECLARE
    idPacienteAux CHAR(4);
    fechaCracion TIMESTAMP := (SELECT LEFT (CAST(CURRENT_TIMESTAMP AS CHAR(30)),19));
 BEGIN
+
+   p_nombre := btrim(p_nombre);
+
+   IF p_nombre IS NULL OR p_nombre = '' THEN
+      RAISE EXCEPTION 'El nombre es obligatorio'
+         USING ERRCODE = '22004';
+   END IF;
 
    IF NOT EXISTS(Select pk_idPaciente from CLINICA.PACIENTE Where pk_idPaciente = 'P-0001') THEN
       idPaciente = 'P-0001';
@@ -237,7 +245,8 @@ BEGIN
    END IF;	  
 
    INSERT INTO clinica.paciente(pk_idpaciente, nombre, apellido, sexo, fechanacimiento, ciudad, estado, telefono)
-	  VALUES (idPaciente, nombre, apellido, sexo, fechaNacimiento, ciudad, estado, telefono);
+	  VALUES (idPaciente, nombre, apellido, sexo, fechaNacimiento, ciudad, estado, telefono)
+         RETURNING * INTO o_paciente;
 
    INSERT INTO clinica.expediente(pk_idpaciente, tiposangre, tipoalergias, padecimientoscronicos, fechacreacion)
 	  VALUES (idPaciente, tipoSangre, tipoAlergia, padecimientoCro, fechaCracion);	  
