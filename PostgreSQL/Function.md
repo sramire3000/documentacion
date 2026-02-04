@@ -87,9 +87,9 @@ END;
 $$ LANGUAGE plpgsql;
 ```
 
-### de Numero a Letras
+### Pasar de Money a Letras con dos decimales
 
-1
+1. Paso
 ```bash
 CREATE OR REPLACE FUNCTION public.fn_1_999_es(x INT)
 RETURNS TEXT
@@ -172,4 +172,154 @@ BEGIN
   END IF;
 END;
 $$;
+```
+
+2. Paso
+```bash
+CREATE OR REPLACE FUNCTION public.fn_numero_a_letras_es(p_n BIGINT)
+RETURNS TEXT
+LANGUAGE plpgsql
+IMMUTABLE
+AS $$
+DECLARE
+  n BIGINT := p_n;
+  millones INT;
+  miles INT;
+  resto INT;
+  texto TEXT := '';
+BEGIN
+  IF n IS NULL THEN
+    RETURN NULL;
+  END IF;
+
+  IF n < 0 THEN
+    RAISE EXCEPTION 'Solo se admiten enteros no negativos. Recibido: %', n;
+  END IF;
+
+  IF n > 10000000 THEN
+    RAISE EXCEPTION 'El entero % excede el máximo permitido de 10,000,000', n;
+  END IF;
+
+  IF n = 0 THEN
+    RETURN 'cero';
+  END IF;
+
+  millones := (n / 1000000)::INT;
+  resto    := (n % 1000000)::INT;
+
+  IF millones > 0 THEN
+    IF millones = 1 THEN
+      texto := 'un millón';
+    ELSE
+      texto := public.fn_1_999_es(millones) || ' millones';
+    END IF;
+  END IF;
+
+  miles := (resto / 1000)::INT;
+  resto := (resto % 1000)::INT;
+
+  IF miles > 0 THEN
+    IF texto <> '' THEN texto := texto || ' '; END IF;
+
+    IF miles = 1 THEN
+      texto := texto || 'mil';
+    ELSE
+      texto := texto || public.fn_1_999_es(miles) || ' mil';
+    END IF;
+  END IF;
+
+  IF resto > 0 THEN
+    IF texto <> '' THEN texto := texto || ' '; END IF;
+    texto := texto || public.fn_1_999_es(resto);
+  END IF;
+
+  RETURN texto;
+END;
+$$;
+```
+
+3. Paso
+```bash
+CREATE OR REPLACE FUNCTION public.fn_dolares_a_letras(p_monto NUMERIC)
+RETURNS TEXT
+LANGUAGE plpgsql
+STABLE
+AS $$
+DECLARE
+  v_entero   BIGINT;
+  v_centavos INT;
+  v_letras   TEXT;
+  v_moneda   TEXT;
+BEGIN
+  IF p_monto IS NULL THEN
+    RETURN NULL;
+  END IF;
+
+  IF p_monto < 0 THEN
+    RAISE EXCEPTION 'Solo se admiten montos no negativos (recibido: %)', p_monto;
+  END IF;
+
+  IF p_monto > 10000000.00 THEN
+    RAISE EXCEPTION 'El monto % excede el máximo permitido de 10,000,000.00', p_monto;
+  END IF;
+
+  -- Validación: no permitir más de 2 decimales
+  -- (si trae 3+ decimales, monto*100 no será entero)
+  IF (p_monto * 100) <> trunc(p_monto * 100) THEN
+    RAISE EXCEPTION 'El monto % debe tener como máximo 2 decimales', p_monto;
+  END IF;
+
+  v_entero   := floor(p_monto)::BIGINT;
+  v_centavos := round((p_monto - v_entero) * 100)::INT;
+
+  v_letras := public.fn_numero_a_letras_es(v_entero);
+
+  -- Ajuste masculino antes de "dólar(es)": uno -> un, veintiuno -> veintiún, y uno -> y un
+  IF (v_entero % 10 = 1) AND (v_entero % 100 <> 11) THEN
+    v_letras := regexp_replace(v_letras, '\mveintiuno\M$', 'veintiún');
+    v_letras := regexp_replace(v_letras, '\my uno\M$', 'y un');
+    v_letras := regexp_replace(v_letras, '\muno\M$', 'un');
+  END IF;
+
+  IF v_entero = 1 THEN
+    v_moneda := 'DÓLAR';
+  ELSE
+    v_moneda := 'DÓLARES';
+  END IF;
+
+  RETURN upper(v_letras) || ' ' || v_moneda
+         || ' CON ' || lpad(v_centavos::TEXT, 2, '0') || '/100';
+END;
+$$;
+```
+
+4. Paso
+```bash
+CREATE OR REPLACE FUNCTION public.fn_dolares_a_letras(p_monto MONEY)
+RETURNS TEXT
+LANGUAGE plpgsql
+STABLE
+AS $$
+BEGIN
+  RETURN public.fn_dolares_a_letras(p_monto::NUMERIC);
+END;
+$$;
+```
+
+5. Ejemplos
+```bash
+SELECT public.fn_dolares_a_letras(0.00);
+-- CERO DÓLARES CON 00/100
+
+SELECT public.fn_dolares_a_letras(1.00);
+-- UN DÓLAR CON 00/100
+
+SELECT public.fn_dolares_a_letras(21.35);
+-- VEINTIÚN DÓLARES CON 35/100
+
+SELECT public.fn_dolares_a_letras(10000000.00);
+-- DIEZ MILLONES DÓLARES CON 00/100
+
+SELECT public.fn_dolares_a_letras(12.345);
+-- ERROR: El monto ... debe tener como máximo 2 decimales
 ```
