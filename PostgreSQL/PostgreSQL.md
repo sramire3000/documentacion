@@ -190,7 +190,8 @@ $$ LANGUAGE plpgsql;
 CREATE OR REPLACE PROCEDURE nameProcedure()
 LANGUAGE plpgsql
 AS $$
-
+DECLARE
+BEGIN
    Comandos SQL....
 
 END; $$
