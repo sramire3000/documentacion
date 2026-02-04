@@ -362,3 +362,44 @@ SELECT public.fn_is_valid_date_yyyy_mm_dd('2026-02-30'); -- false
 SELECT public.fn_is_valid_date_yyyy_mm_dd('2026-2-04');  -- false (formato)
 SELECT public.fn_is_valid_date_yyyy_mm_dd(NULL);         -- false
 ```
+
+###  IVA “sobre” monto neto (monto SIN IVA)
+```bash
+CREATE OR REPLACE FUNCTION public.fn_calcular_iva_sv(
+    p_monto      NUMERIC,
+    p_porcentaje NUMERIC DEFAULT 13,
+    p_decimales  INT     DEFAULT 2
+)
+RETURNS NUMERIC
+LANGUAGE plpgsql
+AS $$
+DECLARE
+    v_iva NUMERIC;
+BEGIN
+    -- Validaciones básicas
+    IF p_monto IS NULL THEN
+        RETURN NULL;
+    END IF;
+
+    IF p_decimales IS NULL OR p_decimales < 0 THEN
+        RAISE EXCEPTION 'La cantidad de decimales debe ser >= 0. Valor recibido: %', p_decimales;
+    END IF;
+
+    IF p_porcentaje IS NULL OR p_porcentaje < 0 THEN
+        RAISE EXCEPTION 'El porcentaje debe ser >= 0. Valor recibido: %', p_porcentaje;
+    END IF;
+
+    -- Cálculo IVA
+    v_iva := p_monto * (p_porcentaje / 100);
+
+    -- Redondeo con decimales solicitados
+    RETURN ROUND(v_iva, p_decimales);
+END;
+$$;
+```
+
+Ejemplo
+```
+SELECT public.fn_calcular_iva_sv(100, 13, 2); -- 13.00
+SELECT public.fn_calcular_iva_sv(250.75, 13, 2); -- 32.598
+```
