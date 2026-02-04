@@ -93,7 +93,7 @@ CREATE USER svc_microservicios_write_pro WITH PASSWORD '12345' IN ROLE user_serv
 
 ### Plantilla function
 ```bash
-CREATE FUNCTION nameFunction() RETURNS datatype AS $$
+CREATE or REPLACE FUNCTION nameFunction() RETURNS datatype AS $$
 DECLARE ....
 BEGIN
 
@@ -110,9 +110,18 @@ Select nameFunction()
 
 ### Ejemplo de funcion
 ```bash
-CREATE FUNCTION CLINICA.HolaMundo() RETURNS VARCHAR(20) AS $$
+CREATE or REPLACE FUNCTION CLINICA.HolaMundo() RETURNS VARCHAR(20) AS $$
 DECLARE 
    mensaje VARCHAR(20) := 'HOLA MUNDO';
+BEGIN   
+	RETURN mensaje;
+END;
+$$ LANGUAGE plpgsql;
+```
+
+### Ejemplo con parametro
+```
+CREATE or REPLACE FUNCTION CLINICA.HolaMundo(mensaje VARCHAR(20)) RETURNS VARCHAR(20) AS $$
 BEGIN   
 	RETURN mensaje;
 END;
