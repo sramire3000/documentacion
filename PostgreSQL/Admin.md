@@ -19,3 +19,11 @@ pg_ctl -D "C:/Program Files/PostgreSQL/18/data" start
 ````
 pg_ctl -D "C:/Program Files/PostgreSQL/18/data" stop
 ````
+
+## Modiciación del archivo "postgresql.conf"
+
+### Maximas conexiones
+````
+max_connections = 100
+````
+
