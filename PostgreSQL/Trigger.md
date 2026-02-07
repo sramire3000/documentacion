@@ -48,7 +48,7 @@ FOR EACH ROW
 EXECUTE PROCEDURE CLINICA.trg_paciente_set_deleted_at();
 ````
 
-## Ejemplo de Actualizacion
+## Ejemplo de Actualización
 ````
 CREATE OR REPLACE FUNCTION CLINICA.trg_paciente_set_deleted_at() RETURNS TRIGGER
 AS $$
