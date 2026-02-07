@@ -38,3 +38,8 @@ pg_ctl -D "C:/Program Files/PostgreSQL/18/data" restart
 ALTER SYSTEM SET max_connections='250';
 ````
 
+### Reset Max Conexion
+````
+ALTER SYSTEM RESET max_connections;
+````
+
