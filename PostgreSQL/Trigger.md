@@ -65,7 +65,7 @@ BEGIN
 	, fecha
 	)
 	VALUES (
-	'BORRADO'
+	'ACTUALIZADO'
 	, OLD.pk_idPaciente
 	, OLD.nombre
 	, OLD.apellido
