@@ -66,3 +66,7 @@ CREATE TABLESPACE ts_ejemplo LOCATION 'E:\ts_jh_technologies';
 DROP TABLESPACE ts_ejemplo;
 ````
 
+### Cambiar de TableSpace Tabla
+````
+ ALTER TABLE CLINICA.EJEMPLO SET tablespace ts_ejemplo; 
+````
