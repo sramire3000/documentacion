@@ -51,5 +51,12 @@ ALTER SYSTEM RESET max_connections;
 ALTER SYSTEM RESET lc_messages;
 ````
 
+### Vistas de BD
+````
+select * from pg_views;
+select * from pg_roles;
+select * from pg_user;
+````
+
 
 
