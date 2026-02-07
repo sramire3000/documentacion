@@ -20,10 +20,16 @@ pg_ctl -D "C:/Program Files/PostgreSQL/18/data" status
 pg_ctl -D "C:/Program Files/PostgreSQL/18/data" start
 ````
 
-### Inicia el servicio
+### Stop el servicio
 ````
 pg_ctl -D "C:/Program Files/PostgreSQL/18/data" stop
 ````
+
+### Restart el servicio
+````
+pg_ctl -D "C:/Program Files/PostgreSQL/18/data" restart
+````
+
 
 ## Modiciación del archivo "postgresql.conf"
 
