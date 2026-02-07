@@ -38,8 +38,17 @@ pg_ctl -D "C:/Program Files/PostgreSQL/18/data" restart
 ALTER SYSTEM SET max_connections='250';
 ````
 
+### Cambiar el lenguaje de los mensajes
+````
+ALTER SYSTEM SET lc_messages = 'en_US.UTF-8';
+ALTER SYSTEM SET lc_messages = 'Spanish_Spain.1252';
+ALTER SYSTEM SET lc_messages = 'Spanish_Mexico.1252';
+````
+
 ### Reset Max Conexion
 ````
 ALTER SYSTEM RESET max_connections;
 ````
+
+
 
