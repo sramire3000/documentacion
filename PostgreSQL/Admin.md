@@ -1,5 +1,10 @@
 # Comandos utiles desde consola
 
+### Muestra Maximo de conexiones en el server
+````
+SHOW max_connections;
+````
+
 ### Muestra donde se gurdan los datos
 ````
 Show data_directory;
