@@ -1,0 +1,15 @@
+# TRIGGER
+
+
+### Plantilla Function
+````
+CREATE OR REPLACE FUNCTION CLINICA.BorradoPaciente() RETURNS TRIGGER
+AS $$
+DECLARE
+
+BEGIN
+   RETURN NEW;
+END
+$$
+LANGUAGE plpgsql;
+````
