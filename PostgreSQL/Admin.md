@@ -63,5 +63,6 @@ Select * from pg_timezone_names;
 ### Create un Table Space
 ````
 CREATE TABLESPACE ts_ejemplo LOCATION 'E:\ts_jh_technologies';
+DROP TABLESPACE ts_ejemplo;
 ````
 
