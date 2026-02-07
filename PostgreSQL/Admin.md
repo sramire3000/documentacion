@@ -57,6 +57,7 @@ select * from pg_views;
 select * from pg_roles;
 select * from pg_user;
 Select * from pg_tables;
+Select * from pg_timezone_names;
 ````
 
 
