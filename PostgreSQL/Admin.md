@@ -56,6 +56,7 @@ ALTER SYSTEM RESET lc_messages;
 select * from pg_views;
 select * from pg_roles;
 select * from pg_user;
+Select * from pg_tables;
 ````
 
 
