@@ -16,7 +16,7 @@ LANGUAGE plpgsql;
 
 ## Ejemplo de trigger de borrado
 ````
-CREATE OR REPLACE FUNCTION CLINICA.BorradoPaciente() RETURNS TRIGGER
+CREATE OR REPLACE FUNCTION CLINICA.trg_paciente_set_deleted_at() RETURNS TRIGGER
 AS $$
 DECLARE
    usuario     VARCHAR(20) := (Select CURRENT_USER);
@@ -42,4 +42,8 @@ BEGIN
 END
 $$
 LANGUAGE plpgsql;
+
+CREATE OR REPLACE TRIGGER paciente_set_deleted_at AFTER DELETE ON CLINICA.PACIENTE
+FOR EACH ROW
+EXECUTE PROCEDURE CLINICA.trg_paciente_set_deleted_at();
 ````
