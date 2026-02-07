@@ -48,6 +48,7 @@ ALTER SYSTEM SET lc_messages = 'Spanish_Mexico.1252';
 ### Reset Max Conexion
 ````
 ALTER SYSTEM RESET max_connections;
+ALTER SYSTEM RESET lc_messages
 ````
 
 
