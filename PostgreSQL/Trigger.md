@@ -50,4 +50,34 @@ EXECUTE PROCEDURE CLINICA.trg_paciente_set_deleted_at();
 
 ## Ejemplo de Actualizacion
 ````
+CREATE OR REPLACE FUNCTION CLINICA.trg_paciente_set_deleted_at() RETURNS TRIGGER
+AS $$
+DECLARE
+   usuario     VARCHAR(20) := (Select CURRENT_USER);
+   fechaActual TIMESTAMP   := (Select LEFT(CAST(CURRENT_TIMESTAMP AS CHAR(30)),19));
+BEGIN
+    INSERT INTO clinica.DATOS_PACIENTES_PERSONAL(
+	  tipomovimiento
+	, idpaciente
+	, nombrepaciente
+	, apellidopaciente
+	, usuario
+	, fecha
+	)
+	VALUES (
+	'BORRADO'
+	, OLD.pk_idPaciente
+	, OLD.nombre
+	, OLD.apellido
+	, usuario
+	, fechaActual);
+	
+   RETURN NEW;
+END
+$$
+LANGUAGE plpgsql;
+
+CREATE OR REPLACE TRIGGER paciente_set_deleted_at AFTER DELETE ON CLINICA.PACIENTE
+FOR EACH ROW
+EXECUTE PROCEDURE CLINICA.trg_paciente_set_deleted_at();
 ````
