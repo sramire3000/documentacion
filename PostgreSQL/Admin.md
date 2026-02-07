@@ -1,4 +1,4 @@
-# Comandos utiles
+# Comandos utiles desde consola
 
 ### Muestra donde se gurdan los datos
 ````
