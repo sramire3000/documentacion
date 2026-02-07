@@ -108,3 +108,9 @@ CREATE OR REPLACE TRIGGER paciente_set_update_at AFTER UPDATE ON CLINICA.PACIENT
 FOR EACH ROW
 EXECUTE PROCEDURE CLINICA.trg_paciente_set_update_at();
 ````
+
+## Eliminación de triggers
+````
+DROP TRIGGER paciente_set_deleted_at ON CLINICA.PACIENTE;
+DROP TRIGGER paciente_set_update_at ON CLINICA.PACIENTE;
+````
