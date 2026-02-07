@@ -18,14 +18,14 @@ LANGUAGE plpgsql;
 ````
 CREATE TABLE IF NOT EXISTS clinica.paciente
 (
-    pk_idpaciente clinica.id_paciente COLLATE pg_catalog."default" NOT NULL,
-    nombre character varying(20) COLLATE pg_catalog."default" NOT NULL,
-    apellido character varying(20) COLLATE pg_catalog."default" NOT NULL,
-    sexo character(1) COLLATE pg_catalog."default" NOT NULL,
-    fechanacimiento date NOT NULL,
-    ciudad character varying(20) COLLATE pg_catalog."default" NOT NULL,
-    estado character varying(20) COLLATE pg_catalog."default" NOT NULL,
-    telefono character(10) COLLATE pg_catalog."default",
+    pk_idpaciente       clinica.id_paciente NOT NULL,
+    nombre character    varying(20)         NOT NULL,
+    apellido character  varying(20)         NOT NULL,
+    sexo                character(1)        NOT NULL,
+    fechanacimiento     date                NOT NULL,
+    ciudad character    varying(20)         NOT NULL,
+    estado character    varying(20)         NOT NULL,
+    telefono            character(10) ,
     CONSTRAINT paciente_pkey PRIMARY KEY (pk_idpaciente),
     CONSTRAINT paciente_telefono_key UNIQUE (telefono)
 );
