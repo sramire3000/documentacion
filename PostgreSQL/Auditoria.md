@@ -1,8 +1,13 @@
 # Auditoria
 
-# Tablas
+## Schema
 ````
-CREATE TABLE IF NOT EXISTS [SCHEMA].auditoria
+CREATE SCHEMA IF NOT EXISTS audit;
+````
+
+## Tablas
+````
+CREATE TABLE IF NOT EXISTS audit.auditoria
 (
     pk_idAuditoria  SERIAL NOT NULL ,
     tipo            character(1) ,
