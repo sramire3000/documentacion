@@ -47,3 +47,7 @@ CREATE OR REPLACE TRIGGER paciente_set_deleted_at AFTER DELETE ON CLINICA.PACIEN
 FOR EACH ROW
 EXECUTE PROCEDURE CLINICA.trg_paciente_set_deleted_at();
 ````
+
+## Ejemplo de Actualizacion
+````
+````
