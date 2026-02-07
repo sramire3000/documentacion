@@ -4,18 +4,17 @@
 ````
 CREATE TABLE IF NOT EXISTS [SCHEMA].auditoria
 (
-    auditoria_id    SERIAL NOT NULL ,
-    tipo            character(1) COLLATE pg_catalog."default",
-    tabla           character varying(50) COLLATE pg_catalog."default",
-    registro        character varying(100) COLLATE pg_catalog."default",
-    campo           character varying(50) COLLATE pg_catalog."default",
-    valor_antes     character varying(50) COLLATE pg_catalog."default",
-    valor_despues   character varying(50) COLLATE pg_catalog."default",
+    pk_idAuditoria  SERIAL NOT NULL ,
+    tipo            character(1) ,
+    tabla           character varying(50) ,
+    registro        character varying(100),
+    campo           character varying(50),
+    valor_antes     character varying(50),
+    valor_despues   character varying(50),
     fecha timestamp without time zone,
-    usuario         character varying(50) COLLATE pg_catalog."default",
-    pc              character varying(50) COLLATE pg_catalog."default",
-    user_app        character(32)         COLLATE pg_catalog."default",
-    CONSTRAINT pk_auditoria PRIMARY KEY (auditoria_id)
-)
-
+    usuario         character varying(50) ,
+    pc              character varying(50),
+    user_app        character(32)        ,
+    CONSTRAINT pk_auditoria PRIMARY KEY (pk_idAuditoria)
+);
 ````
