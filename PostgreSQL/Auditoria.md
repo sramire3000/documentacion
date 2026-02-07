@@ -42,3 +42,16 @@ ON audit.auditoria (userApp, fecha DESC);
 CREATE INDEX IF NOT EXISTS ix_auditoria_tipo_tabla_fecha
 ON audit.auditoria (tipo, tabla, fecha DESC);
 ````
+
+### Store procedure que genera trigger para INSERT
+````
+````
+
+### Store procedure que genera trigger para UPDATE
+````
+````
+
+### Store procedure que genera trigger para DELETE
+````
+````
+
