@@ -111,6 +111,10 @@ EXECUTE PROCEDURE CLINICA.trg_paciente_set_update_at();
 
 ## Eliminación de triggers
 ````
+DROP FUNCTION CLINICA.trg_paciente_set_update_at() CASCADE;
+o
 DROP TRIGGER paciente_set_deleted_at ON CLINICA.PACIENTE;
 DROP TRIGGER paciente_set_update_at ON CLINICA.PACIENTE;
+
+
 ````
