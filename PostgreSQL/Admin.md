@@ -70,3 +70,11 @@ DROP TABLESPACE ts_ejemplo;
 ````
  ALTER TABLE CLINICA.EJEMPLO SET tablespace ts_ejemplo; 
 ````
+
+### Crear una tabla en un TableSpace especifico
+````
+CREATE TABLE clinica.prueba (
+    nombre varchar,
+    apellido varchar
+) TABLESPACE ts_ejemplo;
+````
