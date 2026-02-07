@@ -14,6 +14,33 @@ $$
 LANGUAGE plpgsql;
 ````
 
+## Tabla Ejemplo
+````
+CREATE TABLE IF NOT EXISTS clinica.paciente
+(
+    pk_idpaciente clinica.id_paciente COLLATE pg_catalog."default" NOT NULL,
+    nombre character varying(20) COLLATE pg_catalog."default" NOT NULL,
+    apellido character varying(20) COLLATE pg_catalog."default" NOT NULL,
+    sexo character(1) COLLATE pg_catalog."default" NOT NULL,
+    fechanacimiento date NOT NULL,
+    ciudad character varying(20) COLLATE pg_catalog."default" NOT NULL,
+    estado character varying(20) COLLATE pg_catalog."default" NOT NULL,
+    telefono character(10) COLLATE pg_catalog."default",
+    CONSTRAINT paciente_pkey PRIMARY KEY (pk_idpaciente),
+    CONSTRAINT paciente_telefono_key UNIQUE (telefono)
+);
+
+CREATE TABLE CLINICA.DATOS_PACIENTES_PERSONAL(
+	folio SERIAL       PRIMARY KEY,
+	tipoMovimiento     VARCHAR(20),
+	idPaciente         CLINICA.ID_PACIENTE,
+	nombrePaciente     VARCHAR(20),
+	apellidoPaciente   VARCHAR(20),
+	usuario            VARCHAR(20),
+	fecha              TIMESTAMP
+);
+````
+
 ## Ejemplo de trigger de borrado
 ````
 CREATE OR REPLACE FUNCTION CLINICA.trg_paciente_set_deleted_at() RETURNS TRIGGER
