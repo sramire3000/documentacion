@@ -29,6 +29,6 @@ pg_ctl -D "C:/Program Files/PostgreSQL/18/data" stop
 
 ### Maximas conexiones
 ````
-ALTER SYSTEM SET max_connections='250'
+ALTER SYSTEM SET max_connections='250';
 ````
 
