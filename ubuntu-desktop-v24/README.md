@@ -367,6 +367,17 @@ sudo sh -c 'echo "deb [signed-by=/usr/share/keyrings/packages-pgadmin-org.gpg] h
 sudo apt install pgadmin4-desktop
 ```
 
+### Create Password
+```
+sudo -u postgres psql
+```
+
+### Register Server
+```
+host Name = localhost
+port      = 5432
+username  = postgres
+```
 
 
 
