@@ -314,6 +314,10 @@ https://learn.microsoft.com/en-us/dotnet/core/install/linux-ubuntu-install?tabs=
 sudo snap install bruno
 ```
 
+# Install PostgreSQL
+```
+sudo apt update
+```
 
 
 
