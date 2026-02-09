@@ -352,6 +352,11 @@ https://www.pgadmin.org/download/pgadmin-4-apt/
 sudo apt install curl
 ```
 
+### Install the public key for the repository (if not done previously):
+```
+curl -fsS https://www.pgadmin.org/static/packages_pgadmin_org.pub | sudo gpg --dearmor -o /usr/share/keyrings/packages-pgadmin-org.gpg
+```
+
 
 
 
