@@ -68,6 +68,7 @@ alter user postgres with password 'password';
 host Name = localhost
 port      = 5432
 username  = postgres
+password  = password
 ```
 
 
