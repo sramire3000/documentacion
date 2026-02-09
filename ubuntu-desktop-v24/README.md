@@ -340,6 +340,18 @@ sudo apt update
 sudo apt install postgresql-18
 ```
 
+# Install PgAdmin
+
+### Download
+```
+https://www.pgadmin.org/download/
+https://www.pgadmin.org/download/pgadmin-4-apt/
+```
+### Install CURL
+```
+sudo apt install curl
+```
+
 
 
 
