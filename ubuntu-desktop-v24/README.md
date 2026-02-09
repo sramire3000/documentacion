@@ -325,7 +325,7 @@ sudo apt update
 https://www.postgresql.org/download/
 https://www.postgresql.org/download/linux/ubuntu/
 ```
-### Script
+### Script Cerificado
 ```
 sudo apt install curl ca-certificates
 sudo install -d /usr/share/postgresql-common/pgdg
@@ -335,6 +335,10 @@ sudo sh -c "echo 'deb [signed-by=/usr/share/postgresql-common/pgdg/apt.postgresq
 sudo apt update
 ```
 
+### Install PostgreSQL
+```
+sudo apt install postgresql-18
+```
 
 
 
