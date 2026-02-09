@@ -372,12 +372,18 @@ sudo apt install pgadmin4-desktop
 sudo -u postgres psql
 ```
 
+### Change Password postgres#
+```
+alter user postgres with password 'password';
+```
+
 ### Register Server
 ```
 host Name = localhost
 port      = 5432
 username  = postgres
 ```
+
 
 
 
