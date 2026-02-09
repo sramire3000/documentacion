@@ -323,7 +323,9 @@ sudo apt update
 ### Download
 ```
 https://www.postgresql.org/download/
+https://www.postgresql.org/download/linux/ubuntu/
 ```
+
 
 
 
