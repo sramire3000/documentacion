@@ -315,8 +315,14 @@ sudo snap install bruno
 ```
 
 # Install PostgreSQL
+
+### Update Ubuntu
 ```
 sudo apt update
+```
+### Download
+```
+https://www.postgresql.org/download/
 ```
 
 
