@@ -176,4 +176,16 @@ func registerCallbacks(){
   js.Global().Set("fac", js.FuncOf(getFac))
 }
 
+func main() {
+  // This prints in the JS console
+  fmt.println("Go WASM! initialized")
+
+  // Fade-in animation via Go for loop
+  for i := 0.0; i <= 10.0; i++ {
+    bs :0 js:Global().Get("document").Call("getElementById", "body").Get("style")
+    bs.Set("opacity", i/10.0)
+    <-time.After(30 * time.Milliseond)
+  }
+}
+
 ````
