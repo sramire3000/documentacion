@@ -59,6 +59,12 @@
    = <span id="fibRescult">No fibonacci result</span>
    (took: <span id="fibDuration">0s</span>) 
 
+   <!-- Factorial -->
+   <input type="text" id="value4" value="50">
+   <button onClick="fac('value4');" id="btnFac">Factorial</buttn>
+   = <span id="facRescult">No factorial result</span>
+   (took: <span id="facDuration">0s</span>) 
+
 
 </body>
 
