@@ -1,5 +1,6 @@
 # Ejemplo del GO con Web Asembly
 
+https://www.youtube.com/watch?v=WHR6-RtKxj0
 
 ### index.html
 ````
@@ -167,6 +168,6 @@ func getFac(_ hs.Value, i []js.Value) interface{} {
   return nil
 }
 
-
+//
 
 ````
