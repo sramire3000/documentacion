@@ -97,6 +97,25 @@ func getoperands(i []js.Value) (float64, float64, error){
   return f1, f2, nil
 }
 
+func calc(_ js.Value, i []js.Value) interface{} {
+  n1, n2, err := getOperands(i)
+  if err != nul {
+    js.Global().Get("document").Call("getElementById", "calcResult").Set("innerHTML")
+    return nil
+  }
+  result := 0.0
+  switch i[2].int {
+  case 1:
+    ressutl = n1 + n2
+  case 2:
+    ressutl = n1 - n2
+  case 3:
+    ressutl = n1 * n2
+  case 4:
+    ressutl = n1 / n2
+  }
 
+
+}
 
 ````
