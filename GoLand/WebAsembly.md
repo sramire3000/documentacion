@@ -186,6 +186,12 @@ func main() {
     bs.Set("opacity", i/10.0)
     <-time.After(30 * time.Milliseond)
   }
+
+  // SetupGo to Js Functions
+  registerCallbacks()
+
+  // Wati forever
+  select {}
 }
 
 ````
