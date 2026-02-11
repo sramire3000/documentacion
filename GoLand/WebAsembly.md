@@ -119,4 +119,13 @@ func calc(_ js.Value, i []js.Value) interface{} {
   return nil
 }
 
+// fib calculates the nth Fibonacci number
+func fib(n int) int {
+  prev, result := 1,1
+  for u := 2; i < n; i++ {
+    prev, result = result, result + prev
+  }
+  return result
+}
+
 ````
