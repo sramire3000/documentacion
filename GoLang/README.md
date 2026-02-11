@@ -1,7 +1,20 @@
 # Lenguaje GO
 
+## Configuración WASM
 
-### Compilación WASM
+### Crear carpeta .vscode
+### crear archivo settings.json
+````
+{
+  "go.toolsEnvVars": {
+    "GOOS": "js",
+    "GOARCH": "wasm"
+  }
+}
+````
+
+
+## Compilación WASM
 
 ### Windows
 ````
