@@ -23,7 +23,7 @@
 
       const go = new Go();
       let mod, inst;
-      WebAssembly.instantiateStreaming(fetch("test.wasm"), go.importObject.then((
+      WebAssembly.instantiateStreaming(fetch("test.wasm"), go.importObject.then((result) => {
          mod = result.module;
          inst = result.instance;
          document.getElemenById("runButton").disabled = false;
