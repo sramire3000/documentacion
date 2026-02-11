@@ -42,7 +42,7 @@ https://www.youtube.com/watch?v=WHR6-RtKxj0
    </script">
 
    <button onClick="run();" id="runButton" disabled>Run</button>
-   <ht>
+   <hr>
 
    <div id="body" style="opacity: 0">
 
