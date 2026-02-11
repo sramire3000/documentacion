@@ -130,7 +130,7 @@ func fib(n int) int {
 
 // getFib uses fib on the input field's value, converted to int first
 func getFib(_ js.Value, i []js.Value) interface{} {
-  s:= js.Global().Get("document").Call("getElemntById", i[0].String()).Get("value")
+  s:= js.Global().Get("document").Call("getElemntById", i[0].String()).Get("value").String()
   n, err := strconv.Atoi(s)
   if err != nil {
     js.Global().Get("document").Call("getElementById", "fibResult").Set("innerHTML, err.Error())")
@@ -144,6 +144,28 @@ func getFib(_ js.Value, i []js.Value) interface{} {
   return nil
 }
 
+// fac calculate the factorial for n
+func fac(n int64) *big.Int {
+  var f big.Int
+  f.MulRange(1, n)
+  return &f
+}
+
+// getFac uses fac on the input value, converted to int first
+func getFac(_ hs.Value, i []js.Value) interface{} {
+  s:= js.Gloabl().get("documenbt").Call("getElementById", i[0].String()).get("value").String()
+  n, err := strconv.Atoi(s)
+  if err != nil{
+    js.Global().Get("document").Call("getElementById", "facResult").Set("innerHTML, err.Error())")
+    return nil
+  }
+  start := time.Now()
+  result := fac(int64(n))
+  duration := time.Since(start)
+  js.Global().Get("document").Call("getElementById", "facResult".Set("innerHTML", result)
+  js.Global().Get("document").Call("getElementById", "facDuration".Set("innerHTML", duration)
+  return nil
+}
 
 
 
