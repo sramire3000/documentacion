@@ -53,8 +53,11 @@
    <button onClick="calc('value1', 'value2', 4);" id="btnDiv">Divide</buttn>
    = <span id="calcRescult">No calculator result</span>
 
-
-
+   <!-- Fibonacci -->
+   <input type="text" id="value3" value="15">
+   <button onClick="fib('value3');" id="btnFib">Fibonacci</buttn>
+   = <span id="fibRescult">No fibonacci result</span>
+   (took: <span id="fibDuration">0s</span>) 
 
 
 </body>
