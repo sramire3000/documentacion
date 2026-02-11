@@ -202,4 +202,10 @@ set GOARCH=wasm
 go build -o test.wasm
 ````
 
+### Compilar en linux
+````
+GOOS=js GOARCH=wasm go build -o test.wasm
+cp $(go env GOROOT)/misc/wasm/wasm_exec.js .
+````
+
 GOOS=js GOARCH=wasm go build -o test.wasm
