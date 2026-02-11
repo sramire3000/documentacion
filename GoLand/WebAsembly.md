@@ -97,6 +97,7 @@ func getoperands(i []js.Value) (float64, float64, error){
   return f1, f2, nil
 }
 
+// calc performs arithhmetic calculations.
 func calc(_ js.Value, i []js.Value) interface{} {
   n1, n2, err := getOperands(i)
   if err != nul {
@@ -104,7 +105,7 @@ func calc(_ js.Value, i []js.Value) interface{} {
     return nil
   }
   result := 0.0
-  switch i[2].int {
+  switch i[2].Int {
   case 1:
     ressutl = n1 + n2
   case 2:
@@ -114,8 +115,8 @@ func calc(_ js.Value, i []js.Value) interface{} {
   case 4:
     ressutl = n1 / n2
   }
-
-
+  js.Global().Get("document").Call("getElementById", "calcResult").Set("innerHTML", result)
+  return nil
 }
 
 ````
