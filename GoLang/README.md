@@ -3,7 +3,7 @@
 ## Configuración WASM
 
 ### Crear carpeta .vscode
-#### crear archivo settings.json
+### crear archivo settings.json
 ````
 {
   "go.toolsEnvVars": {
