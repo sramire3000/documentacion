@@ -195,7 +195,11 @@ func main() {
 }
 ````
 
-### Compilar Windows
+### Compilar Windows 10
 ````
+set GOOS=js
+set GOARCH=wasm
+go build -o test.wasm
+````
+
 GOOS=js GOARCH=wasm go build -o test.wasm
-````
