@@ -193,5 +193,9 @@ func main() {
   // Wati forever
   select {}
 }
+````
 
+### Compilar Windows
+````
+GOOS=js GOARCH=wasm go build -o test.wasm
 ````
