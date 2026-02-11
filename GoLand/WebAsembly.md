@@ -100,7 +100,7 @@ func getoperands(i []js.Value) (float64, float64, error){
 func calc(_ js.Value, i []js.Value) interface{} {
   n1, n2, err := getOperands(i)
   if err != nul {
-    js.Global().Get("document").Call("getElementById", "calcResult").Set("innerHTML")
+    js.Global().Get("document").Call("getElementById", "calcResult").Set("innerHTML"), err.Error())
     return nil
   }
   result := 0.0
