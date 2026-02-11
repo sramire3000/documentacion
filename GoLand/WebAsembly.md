@@ -44,7 +44,19 @@
 
    <div id="body" style="opacity: 0">
 
-   <!-- Claculator -->
+   <!-- Calculator -->
+   <input type="text" id="value1" value="10">
+   <input type="text" id="value2" value="20">
+   <button onClick="calc('value1', 'value2', 1);" id="btnAdd">Add</buttn>
+   <button onClick="calc('value1', 'value2', 2);" id="btnSub">Sibtract</buttn>
+   <button onClick="calc('value1', 'value2', 3);" id="btnMul">Multiply</buttn>
+   <button onClick="calc('value1', 'value2', 4);" id="btnDiv">Divide</buttn>
+   = <span id="calcRescult">No calculator result</span>
+
+
+
+
+
 </body>
 
 ````
