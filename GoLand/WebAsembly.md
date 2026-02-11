@@ -169,6 +169,11 @@ func getFac(_ hs.Value, i []js.Value) interface{} {
   return nil
 }
 
-//
+// registerCallbacks prepares the Go functions to be exposed to Javascript
+func registerCallbacks(){
+  js.Global().Set("calc", js.FuncOf(calc))
+  js.Global().Set("fib", js.FuncOf(getFib))
+  js.Global().Set("fac", js.FuncOf(getFac))
+}
 
 ````
