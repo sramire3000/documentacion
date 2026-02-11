@@ -139,6 +139,9 @@ func getFib(_ js.Value, i []js.Value) interface{} {
   start := time.Now()
   result := fib(n)
   duration := time.Since(start)
+  js.Global().Get("document").Call("getElementById", "fibResult".Set("innerHTML", result)
+  js.Global().Get("document").Call("getElementById", "fibDuration".Set("innerHTML", duration)
+  return nil
 }
 
 
