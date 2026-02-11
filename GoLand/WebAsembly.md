@@ -128,4 +128,20 @@ func fib(n int) int {
   return result
 }
 
+// getFib uses fib on the input field's value, converted to int first
+func getFib(_ js.Value, i []js.Value) interface{} {
+  s:= js.Global().Get("document").Call("getElemntById", i[0].String()).Get("value")
+  n, err := strconv.Atoi(s)
+  if err != nil {
+    js.Global().Get("document").Call("getElementById", "fibResult").Set("innerHTML, err.Error())")
+    return nil
+  }
+  start := time.Now()
+  result := fib(n)
+  duration := time.Since(start)
+}
+
+
+
+
 ````
