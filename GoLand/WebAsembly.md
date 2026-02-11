@@ -67,6 +67,36 @@
 
 
 </body>
+</html>
+````
+
+### main.go
+````
+package main
+
+import (
+   "fmt"
+   "math/big"
+   "strconv"
+   "syscall/js"
+   "time"
+)
+
+func getoperands(i []js.Value) (float64, float64, error){
+  s1 := js.Gloabl().Get("document").Call("getElementById", i[0].Sring()).GET("value").String()
+  s2 := js.Gloabl().Get("document").Call("getElementById", i[1].Sring()).GET("value").String()
+  f1, err := strconv.ParseFloat(s1, 64)
+  if err != nil {
+    return 0, 0, err
+  }
+
+  f2, err := strconv.ParseFloat(s2, 64)
+  if err != nil {
+    return 0, 0, err
+  }
+  return f1, f2, nil
+}
+
+
 
 ````
-</html>
