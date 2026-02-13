@@ -64,13 +64,6 @@ func main() {
 }
 ````
 
-### Compilar en Windows 10
-````
-SET GOARCH=wasm
-SET GOOS=js
-go build -o main.wasm main.go
-````
-
 ### Archivo wasm_exec.js
 ````
 // Copyright 2018 The Go Authors. All rights reserved.
@@ -649,4 +642,11 @@ go build -o main.wasm main.go
 	}
 })();
 
+````
+
+### Compilar en Windows 10
+````
+SET GOARCH=wasm
+SET GOOS=js
+go build -o main.wasm main.go
 ````
