@@ -222,9 +222,7 @@ go mod init
 
 ### Compilar Windows 10
 ````
-set GOOS=js
-set GOARCH=wasm
-go build -o test.wasm
+$env:GOOS='js'; $env:GOARCH='wasm'; go build -o test.wasm
 ````
 
 ### Compilar en linux
