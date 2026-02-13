@@ -646,7 +646,5 @@ func main() {
 
 ### Compilar en Windows 10
 ````
-SET GOARCH=wasm
-SET GOOS=js
-go build -o main.wasm main.go
+$env:GOOS='js'; $env:GOARCH='wasm'; go build -o test.wasm
 ````
