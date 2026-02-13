@@ -15,7 +15,7 @@
 
 ## Crear Modulo
 ```
-go mod init
+go mod init test
 ```
 
 
