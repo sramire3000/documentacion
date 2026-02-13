@@ -31,6 +31,9 @@ https://www.youtube.com/watch?v=WHR6-RtKxj0
     WebAssembly.instantiateStreaming(fetch("test.wasm"), go.importObject).then((result) => {
       mod = result.module;
       inst = result.instance;
+	  
+	  console.log(result.instance);
+	  
       console.log("WASM cargado correctamente");
       // Ejecuta inmediatamente el WASM para registrar las funciones calc, fib, fac
       go.run(inst);
