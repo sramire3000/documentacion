@@ -217,7 +217,7 @@ func main() {
 
 ### Crear Modulo
 ```
-go mod init
+go mod init test
 ```
 
 ### Compilar Windows 10
