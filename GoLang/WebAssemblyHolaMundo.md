@@ -1,5 +1,21 @@
 ### Example Hola Mundo WebAssembly Hola Mundo
 
+### Crear carpeta .vscode
+### crear archivo settings.json
+````
+{
+  "go.toolsEnvVars": {
+    "GOOS": "js",
+    "GOARCH": "wasm"
+  }
+}
+````
+
+## Crear Modulo
+```
+go mod init test
+```
+
 ### Index.html
 ````
 <html>
