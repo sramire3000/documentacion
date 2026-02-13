@@ -201,6 +201,11 @@ func main() {
 
 ````
 
+### Crear Modulo
+```
+go mod init
+```
+
 ### Compilar Windows 10
 ````
 set GOOS=js
@@ -211,7 +216,6 @@ go build -o test.wasm
 ### Compilar en linux
 ````
 GOOS=js GOARCH=wasm go build -o test.wasm
-cp $(go env GOROOT)/misc/wasm/wasm_exec.js .
 ````
 
 ### file wasm_exec.js
