@@ -5,22 +5,20 @@ https://www.youtube.com/watch?v=WHR6-RtKxj0
 
 ### index.html
 ````
+<!doctype html>
 <html>
-
 <head>
   <meta charset="utf-8">
-  <title>Go wasm</title>
+  <title>Go WASM Demo</title>
 </head>
-
 <body>
-  <script src="wasm_exec.js"></script">
+  <!-- Carga del runtime de Go para WASM -->
+  <script src="wasm_exec.js"></script>
 
-    <!-- Go WASM functions -->
-
-
-   <script>
+  <script>
+    // Polyfill para navegadores que no soportan instantiateStreaming
     if (!WebAssembly.instantiateStreaming) {
-      WebAssemby.instantiateStreaming = async () => {
+      WebAssembly.instantiateStreaming = async (resp, importObject) => {
         const source = await (await resp).arrayBuffer();
         return await WebAssembly.instantiate(source, importObject);
       };
@@ -28,53 +26,60 @@ https://www.youtube.com/watch?v=WHR6-RtKxj0
 
     const go = new Go();
     let mod, inst;
+
+    // Cargar y ejecutar el módulo WASM automáticamente
     WebAssembly.instantiateStreaming(fetch("test.wasm"), go.importObject).then((result) => {
       mod = result.module;
       inst = result.instance;
-      document.getElementById("runButton").disabled = false;
+      console.log("WASM cargado correctamente");
+      // Ejecuta inmediatamente el WASM para registrar las funciones calc, fib, fac
+      go.run(inst);
     }).catch((err) => {
-      console.error(err);
+      console.error("Error cargando WASM:", err);
     });
 
+    // Si quieres seguir teniendo el botón Run para reiniciar el WASM
     async function run() {
       document.getElementById("runButton").disabled = true;
-      console.clear;
-      await go.run(inst);
-      inst = await WebAssembly.instantiate(mod, go.importObject);
+      console.clear();
+      const result = await WebAssembly.instantiate(mod, go.importObject);
+      inst = result.instance;
+      go.run(inst);
     }
-
   </script>
 
-  <button onClick="run();" id="runButton" disabled>Run</button>
+  <button onClick="run();" id="runButton">Run</button>
   <hr>
 
-  <div id="body" style="opacity: 0">
-
+  <div id="body" style="opacity: 1">
     <!-- Calculator -->
     <input type="text" id="value1" value="10">
     <input type="text" id="value2" value="20">
     <button onClick="calc('value1', 'value2', 1);" id="btnAdd">Add</button>
-    <button onClick="calc('value1', 'value2', 2);" id="btnSub">Sibtract</button>
+    <button onClick="calc('value1', 'value2', 2);" id="btnSub">Subtract</button>
     <button onClick="calc('value1', 'value2', 3);" id="btnMul">Multiply</button>
     <button onClick="calc('value1', 'value2', 4);" id="btnDiv">Divide</button>
-    = <span id="calcRescult">No calculator result</span>
+    = <span id="calcResult">No calculator result</span>
+
+    <br><br>
 
     <!-- Fibonacci -->
     <input type="text" id="value3" value="15">
-    <button onClick="fib('value3');" id="btnFib">Fibonacci</buttn>
-      = <span id="fibRescult">No fibonacci result</span>
-      (took: <span id="fibDuration">0s</span>)
+    <button onClick="fib('value3');" id="btnFib">Fibonacci</button>
+    = <span id="fibResult">No fibonacci result</span>
+    (took: <span id="fibDuration">0s</span>)
 
-      <!-- Factorial -->
-      <input type="text" id="value4" value="50">
-      <button onClick="fac('value4');" id="btnFac">Factorial</button>
-      = <span id="facRescult">No factorial result</span>
-      (took: <span id="facDuration">0s</span>)
+    <br><br>
 
-
+    <!-- Factorial -->
+    <input type="text" id="value4" value="50">
+    <button onClick="fac('value4');" id="btnFac">Factorial</button>
+    = <span id="facResult">No factorial result</span>
+    (took: <span id="facDuration">0s</span>)
+  </div>
 </body>
-
 </html>
+
 ````
 
 ### main.go
