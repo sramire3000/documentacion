@@ -3,6 +3,17 @@
 ### Video
 https://www.youtube.com/watch?v=WHR6-RtKxj0
 
+### Crear carpeta .vscode
+### crear archivo settings.json
+````
+{
+  "go.toolsEnvVars": {
+    "GOOS": "js",
+    "GOARCH": "wasm"
+  }
+}
+````
+
 ### index.html
 ````
 <!doctype html>
