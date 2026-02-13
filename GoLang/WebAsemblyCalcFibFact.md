@@ -14,6 +14,11 @@ https://www.youtube.com/watch?v=WHR6-RtKxj0
 }
 ````
 
+### Crear Modulo
+```
+go mod init test
+```
+
 ### index.html
 ````
 <!doctype html>
@@ -224,21 +229,6 @@ func main() {
 	select {}
 }
 
-````
-
-### Crear Modulo
-```
-go mod init test
-```
-
-### Compilar Windows 10
-````
-$env:GOOS='js'; $env:GOARCH='wasm'; go build -o test.wasm
-````
-
-### Compilar en linux
-````
-GOOS=js GOARCH=wasm go build -o test.wasm
 ````
 
 ### file wasm_exec.js
@@ -818,4 +808,14 @@ GOOS=js GOARCH=wasm go build -o test.wasm
 		}
 	}
 })();
+````
+
+### Compilar Windows 10
+````
+$env:GOOS='js'; $env:GOARCH='wasm'; go build -o test.wasm
+````
+
+### Compilar en linux
+````
+GOOS=js GOARCH=wasm go build -o test.wasm
 ````
