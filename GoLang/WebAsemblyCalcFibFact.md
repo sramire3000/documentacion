@@ -109,7 +109,7 @@ func getOperands(i []js.Value) (float64, float64, error) {
 	return f1, f2, nil
 }
 
-// calc performs arithhmetic calculations.
+// calc performs arithmetic calculations.
 func calc(_ js.Value, i []js.Value) interface{} {
 	n1, n2, err := getOperands(i)
 	if err != nil {
@@ -127,14 +127,20 @@ func calc(_ js.Value, i []js.Value) interface{} {
 	case 4:
 		result = n1 / n2
 	}
-	js.Global().Get("document").Call("getElementById", "calcResult").Set("innerHTML", result)
+	js.Global().Get("document").Call("getElementById", "calcResult").Set("innerHTML", fmt.Sprintf("%f", result))
 	return nil
 }
 
-// fib calculates the nth Fibonacci number
+// fib calculates the nth Fibonacci number (versión estándar)
 func fib(n int) int {
-	prev, result := 1, 1
-	for i := 2; i < n; i++ {
+	if n <= 0 {
+		return 0
+	}
+	if n == 1 {
+		return 1
+	}
+	prev, result := 0, 1
+	for i := 2; i <= n; i++ {
 		prev, result = result, result+prev
 	}
 	return result
@@ -151,8 +157,8 @@ func getFib(_ js.Value, i []js.Value) interface{} {
 	start := time.Now()
 	result := fib(n)
 	duration := time.Since(start)
-	js.Global().Get("document").Call("getElementById", "fibResult").Set("innerHTML", result)
-	js.Global().Get("document").Call("getElementById", "fibDuration").Set("innerHTML", duration)
+	js.Global().Get("document").Call("getElementById", "fibResult").Set("innerHTML", strconv.Itoa(result))
+	js.Global().Get("document").Call("getElementById", "fibDuration").Set("innerHTML", duration.String())
 	return nil
 }
 
@@ -174,8 +180,8 @@ func getFac(_ js.Value, i []js.Value) interface{} {
 	start := time.Now()
 	result := fac(int64(n))
 	duration := time.Since(start)
-	js.Global().Get("document").Call("getElementById", "facResult").Set("innerHTML", result)
-	js.Global().Get("document").Call("getElementById", "facDuration").Set("innerHTML", duration)
+	js.Global().Get("document").Call("getElementById", "facResult").Set("innerHTML", result.String())
+	js.Global().Get("document").Call("getElementById", "facDuration").Set("innerHTML", duration.String())
 	return nil
 }
 
@@ -197,10 +203,10 @@ func main() {
 		<-time.After(30 * time.Millisecond)
 	}
 
-	// SetupGo to Js Functions
+	// Setup Go to Js Functions
 	registerCallbacks()
 
-	// Wati forever
+	// Wait forever
 	select {}
 }
 
