@@ -7,6 +7,7 @@ spring.datasource.username=[user_db]
 spring.datasource.password=[password_db]
 spring.datasource.driver-class-name=org.postgresql.Driver
 
+# Configuración de HikariCP para la conexión a la base de datos
 # Número mínimo de conexiones en el pool
 spring.datasource.hikari.minimum-idle=10
 # Número máximo de conexiones en el pool
