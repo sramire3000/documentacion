@@ -1,6 +1,6 @@
 # Configuracion de WorkSpace
 
-## Crear Archivo ".code-workspace" en la ruta raiz
+## 1. Crear Archivo ".code-workspace" en la ruta raiz
 
 ### Contendio archivo .code-workspace
 ```
