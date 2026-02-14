@@ -2,9 +2,9 @@
 
 ````
 #Base de datos PostgreSQL
-spring.datasource.url=jdbc:postgresql://localhost:5432/JHTechnologiesSV
-spring.datasource.username=usr_jhtechnologies
-spring.datasource.password=91407AFC5B
+spring.datasource.url=jdbc:postgresql://localhost:5432/[DB]
+spring.datasource.username=[user_db]
+spring.datasource.password=[password_db]
 spring.datasource.driver-class-name=org.postgresql.Driver
 
 # Número mínimo de conexiones en el pool
