@@ -13,7 +13,7 @@ https://docs.aws.amazon.com/corretto/
 https://aws.amazon.com/corretto/
 ````
 
-### Nomenclatura de nombre de microservicio
+### Datos del microservicio API
 ```
 groupId   = sv.jh.springcloud.msvc.products
 packageId = jh-msvc-products
