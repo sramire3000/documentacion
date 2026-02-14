@@ -8,11 +8,11 @@
   "folders": [
     {
       "path": "spring-boot-compras",
-      "name": "Frontend App"
+      "name": "ackend API de compras"
     },
     {
       "path": "spring-boot-ventas",
-      "name": "Backend API"
+      "name": "Backend API de ventas"
     }
   ]
 }
