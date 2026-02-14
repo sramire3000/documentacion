@@ -52,5 +52,31 @@
 ```
 
 ## 4. En cada proyecto crear la carpeta ".vscode"
-## 5. Crear archivo "tasks.json" en la carpeta .vscode
-## 6. Crear archivo "settings.json" en la carpeta .vscode
+
+## 5. Crear archivo "tasks.json" en la carpeta ".vscode"
+```
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Run Compras (dev)",
+      "type": "shell",
+      "command": "./mvnw",
+      "args": [
+        "spring-boot:run"
+      ],
+      "options": {
+        "cwd": "${workspaceFolder}",
+        "env": {
+          "JAVA_TOOL_OPTIONS": "-Xms128m -Xmx384m -XX:MaxMetaspaceSize=96m -XX:MaxDirectMemorySize=32m -XX:+UseG1GC -XX:+UseStringDeduplication"
+        }
+      },
+      "group": "build",
+      "isBackground": true,
+      "problemMatcher": []
+    }
+  ]
+}
+
+```
+## 6. Crear archivo "settings.json" en la carpeta ".vscode"
