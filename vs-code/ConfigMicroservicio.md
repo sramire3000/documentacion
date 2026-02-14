@@ -2,7 +2,7 @@
 
 ## 1. Crear Archivo ".code-workspace" en la ruta raiz
 
-### Contendio archivo .code-workspace
+### Contendio archivo ".code-workspace"
 ```
 {
   "folders": [
