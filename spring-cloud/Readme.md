@@ -25,10 +25,29 @@ Version Java = 21
 ```
 ### Dependencias
 ```
-spring web
-devtools
+Spring Web
+Spring boot Devtools
 JPA
 PostgreSQL Driver
 Cloud Bootstrap spring cloud
+Lombok
+```
+
+## Datos del microservicio Client
+### Spring Iniz
+```
+groupId      = sv.jh.springcloud.msvc.items
+packageId    = jh-msvc-items
+packageName  = sv.jh.springcloud.msvc.items.app
+type         = jar
+Version Java = 21
+```
+### Dependencias
+```
+Spring Web
+spring boot Devtools
+Cloud Bootstrap spring cloud
+Spring Reactive Web
+OpenFeign
 Lombok
 ```
