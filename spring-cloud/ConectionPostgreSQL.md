@@ -7,7 +7,6 @@ spring.datasource.username=[user_db]
 spring.datasource.password=[password_db]
 spring.datasource.driver-class-name=org.postgresql.Driver
 
-# Configuración de HikariCP para la conexión a la base de datos
 # Número mínimo de conexiones en el pool
 spring.datasource.hikari.minimum-idle=10
 # Número máximo de conexiones en el pool
@@ -20,9 +19,11 @@ spring.datasource.hikari.idle-timeout=600000
 spring.datasource.hikari.max-lifetime=1800000
 
 # JPA / Hibernate
+
+# Configuración de Hibernate para la generación automática del esquema de la base de datos
 spring.jpa.hibernate.ddl-auto=update
-# Mostrar las consultas SQL en la consola (opcional, para desarrollo)
-spring.jpa.show-sql=false
+# Mostrar las consultas SQL en la consola (false para PRODUCCIÓN)
+spring.jpa.show-sql=true
 # Formatear las consultas SQL para una mejor legibilidad (opcional)
 spring.jpa.properties.hibernate.format_sql=true
 # Configurar el dialecto de Hibernate para PostgreSQL
