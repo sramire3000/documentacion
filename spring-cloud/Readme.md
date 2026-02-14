@@ -33,6 +33,15 @@ Cloud Bootstrap spring cloud
 Lombok
 ```
 
+### Packages
+````
+controllers
+entities
+implement
+repositories
+services
+````
+
 ## Datos del microservicio Client
 ### Spring Iniz
 ```
