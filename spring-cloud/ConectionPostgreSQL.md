@@ -19,7 +19,6 @@ spring.datasource.hikari.idle-timeout=600000
 spring.datasource.hikari.max-lifetime=1800000
 
 # JPA / Hibernate
-
 # Configuración de Hibernate para la generación automática del esquema de la base de datos
 spring.jpa.hibernate.ddl-auto=update
 # Mostrar las consultas SQL en la consola (false para PRODUCCIÓN)
