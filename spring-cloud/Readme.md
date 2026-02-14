@@ -63,6 +63,7 @@ Spring Reactive Web
 OpenFeign
 Lombok
 Actuator
+Spring Cloud Load Balancer
 ```
 
 ### Packages
