@@ -8,7 +8,7 @@
   "folders": [
     {
       "path": "spring-boot-compras",
-      "name": "ackend API de compras"
+      "name": "Backend API de compras"
     },
     {
       "path": "spring-boot-ventas",
