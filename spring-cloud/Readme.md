@@ -38,7 +38,6 @@ Lombok
 ````
 controllers
 entities
-implement
 repositories
 services
 ````
@@ -69,6 +68,5 @@ Lombok
 models
 controllers
 services
-implement
 clients
 ````
