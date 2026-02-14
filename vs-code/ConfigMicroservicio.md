@@ -32,6 +32,7 @@
       "cwd": "${workspaceFolder}",
       "mainClass": "com.example.spring_boot_compras.SpringBootComprasApplication",
       "projectName": "spring-boot-compras",
+      "vmArgs": "-Xms128m -Xmx384m -XX:MaxMetaspaceSize=96m -XX:MaxDirectMemorySize=32m -XX:+UseG1GC -XX:+UseStringDeduplication",
       "args": "",
       "envFile": "${workspaceFolder}/.env"
     },
@@ -42,11 +43,13 @@
       "cwd": "${workspaceFolder}",
       "mainClass": "com.example.spring_boot_ventas.SpringBootVentasApplication",
       "projectName": "spring-boot-ventas",
+      "vmArgs": "-Xms128m -Xmx384m -XX:MaxMetaspaceSize=96m -XX:MaxDirectMemorySize=32m -XX:+UseG1GC -XX:+UseStringDeduplication",
       "args": "",
       "envFile": "${workspaceFolder}/.env"
     }
   ]
 }
+
 ```
 
 ## 4. En cada proyecto crear la carpeta ".vscode"
