@@ -23,6 +23,7 @@ packageName  = sv.jh.springcloud.msvc.products.app
 type         = jar
 Version Java = 21
 ```
+
 ### Dependencias
 ```
 Spring Web
@@ -43,6 +44,7 @@ services
 ````
 
 ## Datos del microservicio Client
+
 ### Spring Iniz
 ```
 groupId      = sv.jh.springcloud.msvc.items
@@ -51,6 +53,7 @@ packageName  = sv.jh.springcloud.msvc.items.app
 type         = jar
 Version Java = 21
 ```
+
 ### Dependencias
 ```
 Spring Web
@@ -60,3 +63,11 @@ Spring Reactive Web
 OpenFeign
 Lombok
 ```
+
+### Packages
+````
+models
+controllers
+services
+implement
+````
