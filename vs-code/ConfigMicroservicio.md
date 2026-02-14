@@ -16,7 +16,6 @@
     }
   ]
 }
-
 ```
 
 ## 2. Crear la carpeta ".vscode"
@@ -26,7 +25,6 @@
 ```
 {
   "configurations": [
-    
     {
       "type": "java",
       "name": "Spring Boot-SpringBootComprasApplication<spring-boot-compras>",
@@ -77,6 +75,20 @@
     }
   ]
 }
-
 ```
+
 ## 6. Crear archivo "settings.json" en la carpeta ".vscode"
+```
+{
+  "java.configuration.runtimes": [
+    {
+      "name": "JavaSE-17",
+      "path": "${env:JAVA_HOME}",
+      "default": true
+    }
+  ],
+  "java.jdt.ls.java.home": "${env:JAVA_HOME}",
+  "maven.terminal.useJavaHome": true,
+  "java.debug.settings.vmArgs": "-Xms128m -Xmx384m -XX:MaxMetaspaceSize=96m -XX:MaxDirectMemorySize=32m -XX:+UseG1GC -XX:+UseStringDeduplication"
+}
+```
