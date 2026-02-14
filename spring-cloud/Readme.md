@@ -19,6 +19,7 @@ https://aws.amazon.com/corretto/
 ```
 groupId      = sv.jh.springcloud.msvc.products
 packageId    = jh-msvc-products
+packageName  = sv.jh.springcloud.msvc.products
 type         = jar
 Version Java = 21
 ```
