@@ -20,9 +20,19 @@ spring.datasource.hikari.max-lifetime=1800000
 
 # JPA / Hibernate
 spring.jpa.hibernate.ddl-auto=update
-# Configuración de batch para mejorar el rendimiento en operaciones masivas (false PROD)
-spring.jpa.show-sql=true
+# Mostrar las consultas SQL en la consola (opcional, para desarrollo)
+spring.jpa.show-sql=false
+# Formatear las consultas SQL para una mejor legibilidad (opcional)
 spring.jpa.properties.hibernate.format_sql=true
+# Configurar el dialecto de Hibernate para PostgreSQL
 spring.jpa.database-platform=org.hibernate.dialect.PostgreSQLDialect
+# Deshabilitar Open Session in View para evitar problemas de rendimiento y memoria
+spring.jpa.open-in-view=false
+# Configuración de batch para mejorar el rendimiento en operaciones masivas
+spring.jpa.properties.hibernate.jdbc.batch_size=30
+# Configurar el orden de las operaciones de inserción y actualización para optimizar el rendimiento
+spring.jpa.properties.hibernate.order_inserts=true
+# Configurar el orden de las operaciones de actualización para optimizar el rendimiento
+spring.jpa.properties.hibernate.order_updates=true
 
 ````
