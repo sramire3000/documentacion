@@ -30,4 +30,5 @@ devtools
 JPA
 PostgreSQL Driver
 Cloud Bootstrap spring cloud
+Lombok
 ```
