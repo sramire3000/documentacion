@@ -50,3 +50,7 @@
   ]
 }
 ```
+
+## 4. En cada proyecto crear la carpeta ".vscode"
+## 5. Crear archivo "tasks.json" en la carpeta .vscode
+## 6. Crear archivo "settings.json" en la carpeta .vscode
