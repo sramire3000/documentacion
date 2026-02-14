@@ -20,6 +20,7 @@ spring.datasource.hikari.max-lifetime=1800000
 
 # JPA / Hibernate
 spring.jpa.hibernate.ddl-auto=update
+# Configuración de batch para mejorar el rendimiento en operaciones masivas (false PROD)
 spring.jpa.show-sql=true
 spring.jpa.properties.hibernate.format_sql=true
 spring.jpa.database-platform=org.hibernate.dialect.PostgreSQLDialect
