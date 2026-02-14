@@ -335,23 +335,7 @@
 }
 ```
 
-### Crear un Worspace para Trabajar con multiple microservicios
-    Crear un archivo ".code-workspace"
-```bash
-{
-  "folders": [
-    {
-      "path": "demo1",
-      "name": "Frontend App"
-    },
-    {
-      "path": "demo2",
-      "name": "Backend API"
-    }
-  ]
-}
 
-```
 
 
 
