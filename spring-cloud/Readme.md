@@ -32,6 +32,7 @@ JPA
 PostgreSQL Driver
 Cloud Bootstrap spring cloud
 Lombok
+Actuator
 ```
 
 ### Packages
@@ -61,6 +62,7 @@ Cloud Bootstrap spring cloud
 Spring Reactive Web
 OpenFeign
 Lombok
+Actuator
 ```
 
 ### Packages
