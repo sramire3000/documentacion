@@ -30,6 +30,7 @@
       "name": "Spring Boot-SpringBootComprasApplication<spring-boot-compras>",
       "request": "launch",
       "cwd": "${workspaceFolder}",
+      "javaExec": "/usr/lib/jvm/java-17-openjdk-amd64/bin/java",
       "mainClass": "com.example.spring_boot_compras.SpringBootComprasApplication",
       "projectName": "spring-boot-compras",
       "vmArgs": "-Xms128m -Xmx384m -XX:MaxMetaspaceSize=96m -XX:MaxDirectMemorySize=32m -XX:+UseG1GC -XX:+UseStringDeduplication",
@@ -41,6 +42,7 @@
       "name": "Spring Boot-SpringBootVentasApplication<spring-boot-ventas>",
       "request": "launch",
       "cwd": "${workspaceFolder}",
+      "javaExec": "/usr/lib/jvm/java-17-openjdk-amd64/bin/java",
       "mainClass": "com.example.spring_boot_ventas.SpringBootVentasApplication",
       "projectName": "spring-boot-ventas",
       "vmArgs": "-Xms128m -Xmx384m -XX:MaxMetaspaceSize=96m -XX:MaxDirectMemorySize=32m -XX:+UseG1GC -XX:+UseStringDeduplication",
@@ -49,7 +51,6 @@
     }
   ]
 }
-
 ```
 
 ## 4. En cada proyecto crear la carpeta ".vscode"
