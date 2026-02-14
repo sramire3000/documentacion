@@ -1,7 +1,7 @@
 # Configuración de conección de PostgreSQL
 
 ````
-#Base de datos PostgreSQL
+# Base de datos PostgreSQL
 spring.datasource.url=jdbc:postgresql://localhost:5432/[DB]
 spring.datasource.username=[user_db]
 spring.datasource.password=[password_db]
@@ -18,7 +18,7 @@ spring.datasource.hikari.idle-timeout=600000
 # Tiempo máximo de vida de una conexión en el pool (en milisegundos)
 spring.datasource.hikari.max-lifetime=1800000
 
-#JPA / Hibernate
+# JPA / Hibernate
 spring.jpa.hibernate.ddl-auto=update
 spring.jpa.show-sql=true
 spring.jpa.properties.hibernate.format_sql=true
