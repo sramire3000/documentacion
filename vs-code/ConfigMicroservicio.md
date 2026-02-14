@@ -18,3 +18,5 @@
 }
 
 ```
+
+## 2. Crear la carpeta ".vscode"
