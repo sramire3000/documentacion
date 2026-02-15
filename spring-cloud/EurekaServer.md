@@ -30,6 +30,8 @@ server.port=8761
 eureka.client.register-with-eureka=false
 # No necesita obtener el registro de otros servicios, ya que es un servidor Eureka independiente
 eureka.client.fetch-registry=false
+# Deshabilitar la auto-preservación para evitar problemas de registro en entornos locales
+eureka.server.enable-self-preservation=false
 
 # URL/host explícitos para evitar problemas de resolución en local
 eureka.instance.hostname=localhost
@@ -43,6 +45,7 @@ eureka.client.registry-fetch-interval-seconds=30
 eureka.dashboard.enabled=true
 info.app.name=${spring.application.name}
 info.app.port=${server.port}
+
 ````
 
 ### URL
