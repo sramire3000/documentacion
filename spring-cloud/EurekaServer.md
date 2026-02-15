@@ -65,7 +65,7 @@ http://localhost:8761/
 ### Add Properties
 ````
 # Configuracion Eureka Client
-eureka.instance.instance-id=${spring.application.name}:${spring.application.instance_id:${random.value}}
+eureka.instance.instance-id=${spring.cloud.client.hostname}:${spring.application.name}:${random.value}
 eureka.client.service-url.defaultZone=http://localhost:8761/eureka/
 eureka.instance.prefer-ip-address=true
 eureka.client.registry-fetch-interval-seconds=10
