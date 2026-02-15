@@ -11,11 +11,5 @@ Version Java = 21
 
 ### Dependencias
 ```
-Spring Web
-Spring boot Devtools
-JPA
-PostgreSQL Driver
-Cloud Bootstrap spring cloud
-Lombok
-Actuator
+Eureka Server
 ```
