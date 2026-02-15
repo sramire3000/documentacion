@@ -39,6 +39,7 @@ eureka.server.enable-self-preservation=false
 # URL/host explícitos para evitar problemas de resolución en local
 eureka.instance.hostname=localhost
 
+# Configuración de la URL del servidor Eureka para que los clientes puedan registrarse correctamente
 eureka.client.service-url.defaultZone=http://${eureka.instance.hostname}:${server.port}/eureka/
 
 # Preferir IP en lugar de hostname para evitar problemas de resolución en entornos locales
