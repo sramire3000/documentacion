@@ -21,17 +21,26 @@ Eureka Server
 
 ### Properties
 ````
-# Eureka Server configuration
+# Configuración base del servidor
 spring.application.name=jh-eureka-server
-# Server port
 server.port=8761
 
-# Eureka Server specific configuration
-
-# Eureka Server should not register itself as a client
+# Eureka Server standalone (no se registra a sí mismo)
 eureka.client.register-with-eureka=false
-# Eureka Server does not need to fetch registry information from itself
 eureka.client.fetch-registry=false
+
+# URL/host explícitos para evitar problemas de resolución en local
+eureka.instance.hostname=localhost
+eureka.client.service-url.defaultZone=http://${eureka.instance.hostname}:${server.port}/eureka/
+
+# Ajustes recomendados para desarrollo local
+#eureka.server.enable-self-preservation=false
+#eureka.server.eviction-interval-timer-in-ms=10000
+
+# UI e información del servidor
+eureka.dashboard.enabled=true
+info.app.name=${spring.application.name}
+info.app.port=${server.port}
 ````
 
 ### URL
