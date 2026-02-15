@@ -32,15 +32,14 @@ eureka.client.fetch-registry=false
 # URL/host explícitos para evitar problemas de resolución en local
 eureka.instance.hostname=localhost
 eureka.client.service-url.defaultZone=http://${eureka.instance.hostname}:${server.port}/eureka/
-
-# Ajustes recomendados para desarrollo local
-#eureka.server.enable-self-preservation=false
-#eureka.server.eviction-interval-timer-in-ms=10000
+eureka.instance.prefer-ip-address=true
+eureka.client.registry-fetch-interval-seconds=10
 
 # UI e información del servidor
 eureka.dashboard.enabled=true
 info.app.name=${spring.application.name}
 info.app.port=${server.port}
+
 ````
 
 ### URL
