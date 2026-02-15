@@ -13,3 +13,12 @@ Version Java = 21
 ```
 Eureka Server
 ```
+
+### Clase Principal Adicionar
+````
+@EnableEurekaServer
+````
+
+### Properties
+````
+````
