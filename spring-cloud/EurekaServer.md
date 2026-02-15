@@ -3,7 +3,7 @@
 ### Spring Iniz
 ```
 groupId      = sv.jh.springcloud.eureka.server
-packageId    = jh-eureka-server
+artifactId   = jh-eureka-server
 packageName  = sv.jh.springcloud.eureka.server.app
 type         = jar
 Version Java = 21
