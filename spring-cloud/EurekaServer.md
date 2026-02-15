@@ -39,7 +39,7 @@ eureka.client.fetch-registry=false
 http://localhost:8761/
 ````
 
-## Configuracion Cliente
+## Configuración Cliente
 
 ### Add Properties
 ````
