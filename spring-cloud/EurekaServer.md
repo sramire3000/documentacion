@@ -23,21 +23,27 @@ Eureka Server
 ````
 # Configuración base del servidor
 spring.application.name=jh-eureka-server
+
 # Puerto en el que se ejecutará el servidor Eureka
 server.port=8761
 
 # Eureka Server standalone (no se registra a sí mismo)
 eureka.client.register-with-eureka=false
+
 # No necesita obtener el registro de otros servicios, ya que es un servidor Eureka independiente
 eureka.client.fetch-registry=false
+
 # Deshabilitar la auto-preservación para evitar problemas de registro en entornos locales
 eureka.server.enable-self-preservation=false
 
 # URL/host explícitos para evitar problemas de resolución en local
 eureka.instance.hostname=localhost
+
 eureka.client.service-url.defaultZone=http://${eureka.instance.hostname}:${server.port}/eureka/
+
 # Preferir IP en lugar de hostname para evitar problemas de resolución en entornos locales
 eureka.instance.prefer-ip-address=true
+
 # Intervalo de actualización del registro (en segundos)
 eureka.client.registry-fetch-interval-seconds=30
 
