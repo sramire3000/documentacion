@@ -33,6 +33,7 @@ PostgreSQL Driver
 Cloud Bootstrap spring cloud
 Lombok
 Actuator
+Eureka Discovery Client
 ```
 
 ### Packages
