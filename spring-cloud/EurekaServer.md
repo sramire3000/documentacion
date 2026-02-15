@@ -33,3 +33,8 @@ eureka.client.register-with-eureka=false
 # Eureka Server does not need to fetch registry information from itself
 eureka.client.fetch-registry=false
 ````
+
+### URL
+````
+http://localhost:8761/
+````
