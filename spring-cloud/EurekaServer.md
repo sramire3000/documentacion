@@ -38,3 +38,11 @@ eureka.client.fetch-registry=false
 ````
 http://localhost:8761/
 ````
+
+## Configuracion Cliente
+
+### Add Properties
+````
+# Configuracion Eureka Client
+eureka.client.service-url.defaultZone=http://localhost:8761/eureka/
+````
