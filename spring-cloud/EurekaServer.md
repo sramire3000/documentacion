@@ -21,4 +21,15 @@ Eureka Server
 
 ### Properties
 ````
+# Eureka Server configuration
+spring.application.name=jh-eureka-server
+# Server port
+server.port=8761
+
+# Eureka Server specific configuration
+
+# Eureka Server should not register itself as a client
+eureka.client.register-with-eureka=false
+# Eureka Server does not need to fetch registry information from itself
+eureka.client.fetch-registry=false
 ````
