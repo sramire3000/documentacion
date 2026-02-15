@@ -2,9 +2,9 @@
 
 ### Spring Iniz
 ```
-groupId      = sv.jh.springcloud.msvc.products
-packageId    = jh-msvc-products
-packageName  = sv.jh.springcloud.msvc.products.app
+groupId      = sv.jh.springcloud.msvc.eureka
+packageId    = jh-msvc-eureka
+packageName  = sv.jh.springcloud.msvc.eureka.app
 type         = jar
 Version Java = 21
 ```
