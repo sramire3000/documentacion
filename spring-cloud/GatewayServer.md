@@ -141,6 +141,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.cloud.gateway.filter.GatewayFilter;
+import org.springframework.cloud.gateway.filter.OrderedGatewayFilter;
 import org.springframework.cloud.gateway.filter.factory.AbstractGatewayFilterFactory;
 import org.springframework.http.ResponseCookie;
 import org.springframework.stereotype.Component;
@@ -162,7 +163,7 @@ public class SampleCookieGatewayFilterFactory
 
   @Override
   public GatewayFilter apply(ConfigurationCookie config) {
-    return (exchange, chain) -> {
+    return new OrderedGatewayFilter((exchange, chain) -> {
       logger.info("Applying PRE SampleCookieGatewayFilter with config: " + config.getMessage());
       return chain.filter(exchange).then(Mono.fromRunnable(() -> {
         Optional.ofNullable(config.cookieValue).ifPresent(cookie -> {
@@ -170,7 +171,7 @@ public class SampleCookieGatewayFilterFactory
         });
         logger.info("Applying POST SampleCookieGatewayFilter with config: " + config.getMessage());
       }));
-    };
+    }, 100);
 
   }
 
@@ -218,7 +219,6 @@ public class SampleCookieGatewayFilterFactory
   }
 
 }
-
 ````
 
 
