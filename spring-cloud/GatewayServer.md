@@ -15,4 +15,5 @@ Spring Boot Devtools
 Eureka Discovery Client
 Reactive Gateway Spring Cloud Routing
 Spring boot Actuator
+Lombok
 ```
