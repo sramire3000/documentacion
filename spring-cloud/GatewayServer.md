@@ -54,8 +54,7 @@ spring:
                 - Path=/api/products/**     # Predicate: coincide con cualquier URL que empiece por /api/products/
               filters:
                 - StripPrefix=2             # Filtro: elimina los 2 primeros segmentos del path (/api/products)
-                                           #   Ejemplo: /api/products/list  -> destino recibe: /list
-
+                - SampleCookie=Hola mi mensaje personalizado para productos!, user, Andres # Filtro personalizado que agrega una cookie "user" con valor "Andres" y un mensaje personalizado. Se ejecuta después de StripPrefix.
             # -------- Ruta 2: items --------
             - id: jh-msvc-items             # Identificador único de la ruta
               uri: lb://jh-msvc-items       # Servicio "items" resuelto por el registro (Eureka/Consul) con balanceo
