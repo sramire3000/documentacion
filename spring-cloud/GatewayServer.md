@@ -132,3 +132,9 @@ public class SampleGlobalFilter implements GlobalFilter, Ordered {
 }
 ````
 
+## Example Filter Factory
+````
+````
+
+
+
