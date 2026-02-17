@@ -63,6 +63,9 @@ spring:
                 - Path=/api/items/**        # Aplica a cualquier path bajo /api/items/
               filters:
                 - StripPrefix=2             # Elimina "/api/items" y reenvía el resto al servicio
+                - AddRequestHeader=token-request, sdnfjernferhfr  # Agrega un header personalizado "token-reques" con un valor fijo. Se ejecuta después de StripPrefix.
+                - AddResponseHeader=token-response, sdnfjernferhfr  # Agrega un header personalizado "token-response" a la respuesta. Se ejecuta después de que el servicio responda.
+                - AddRequestParameter=param-request, sdnfjernferhfr  # Agrega un parámetro de consulta "param-request" con un valor fijo. Se ejecuta después de StripPrefix.
 
 ````
 
