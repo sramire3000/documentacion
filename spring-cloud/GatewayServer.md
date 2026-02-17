@@ -11,5 +11,7 @@ Version Java = 21
 
 ### Dependencias
 ```
-
+Spring Boot Devtools
+Eureka Discovery Client
+Reactive Gateway Spring Cloud Routing
 ```
