@@ -66,3 +66,69 @@ spring:
                                            #   Ejemplo: /api/items/123  -> destino recibe: /123
 
 ````
+
+## Example de Filtro global
+````
+package sv.jh.springcloud.gateway.server.app.filters;
+
+import java.util.Optional;
+
+import org.springframework.cloud.gateway.filter.GatewayFilterChain;
+import org.springframework.cloud.gateway.filter.GlobalFilter;
+import org.springframework.core.Ordered;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseCookie;
+import org.springframework.stereotype.Component;
+import org.springframework.web.server.ServerWebExchange;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import reactor.core.publisher.Mono;
+
+/** Sample global filter for logging or modifying requests/responses */
+@Component
+public class SampleGlobalFilter implements GlobalFilter, Ordered {
+
+  private final Logger logger = LoggerFactory.getLogger(SampleGlobalFilter.class);
+
+  @Override
+  public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
+    // Log the incoming request URI
+    logger.info("Global filter applied to request: {}", exchange.getRequest().getURI());
+    // Modify the request before it is forwarded to the downstream service
+    logger.info("ejecutandos el filtro antes de request PRE");
+
+    // You can add headers, modify the request body, etc. here
+    ServerWebExchange modifiedExchange = exchange.mutate()
+        .request(builder -> builder.header("token", "abcdefg"))
+        .build();
+
+    return chain.filter(modifiedExchange).then(Mono.fromRunnable(() -> {
+      // Forma Normal de obtener el header token
+      String token = modifiedExchange.getRequest().getHeaders().getFirst("token");
+      if (token != null) {
+        logger.info("Forma Normal token " + token);
+        // Add the token to the response headers
+        exchange.getResponse().getHeaders().add("token", token);
+      }
+      // Forma Reactiva de obtener el header token
+      Optional.ofNullable(modifiedExchange.getRequest().getHeaders().getFirst("token")).ifPresent(t -> {
+        logger.info("Forma Reactiva token " + t);
+        // Add the token to the response headers
+        exchange.getResponse().getHeaders().add("token", t);
+      });
+
+      // Modify the response after the request has been processed
+      logger.info("ejecutandos el filtro despues de request POST");
+      exchange.getResponse().getCookies().add("color", ResponseCookie.from("color", "rojo").build());
+      exchange.getResponse().getHeaders().setContentType(MediaType.TEXT_PLAIN);
+    }));
+  }
+
+  @Override
+  public int getOrder() {
+    return 100; // Set the order of the filter (lower values have higher precedence)
+  }
+}
+````
+
