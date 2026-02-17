@@ -2,14 +2,14 @@
 
 ### Spring Iniz
 ```
-groupId      = sv.jh.springcloud.eureka.server
-artifactId   = jh-eureka-server
-packageName  = sv.jh.springcloud.eureka.server.app
+groupId      = sv.jh.springcloud.gateway.server
+artifactId   = jh-gateway-server
+packageName  = sv.jh.springcloud.gateway.server.app
 type         = jar
 Version Java = 21
 ```
 
 ### Dependencias
 ```
-Eureka Server
+
 ```
