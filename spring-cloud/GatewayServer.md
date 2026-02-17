@@ -18,7 +18,7 @@ Spring boot Actuator
 Lombok
 ```
 
-### Application.properties
+### application.properties
 ````
 # Configuración de la aplicación
 spring.application.name=jh-gateway-server
@@ -38,7 +38,7 @@ management.endpoints.web.exposure.include=*
 management.endpoint.health.show-details=always
 ````
 
-### Application.yml
+### application.yml
 ````
 spring:
   cloud:
