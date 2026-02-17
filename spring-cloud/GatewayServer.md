@@ -62,7 +62,6 @@ spring:
                 - Path=/api/items/**        # Aplica a cualquier path bajo /api/items/
               filters:
                 - StripPrefix=2             # Elimina "/api/items" y reenvía el resto al servicio
-                                           #   Ejemplo: /api/items/123  -> destino recibe: /123
 
 ````
 
