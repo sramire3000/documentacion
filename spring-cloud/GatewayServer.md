@@ -43,19 +43,26 @@ management.endpoint.health.show-details=always
 spring:
   cloud:
     gateway:
+      # Configuración del servidor reactivo (WebFlux) de Spring Cloud Gateway.
       server:
         webflux:
           routes:
-            - id: jh-msvc-products
-              uri: lb://jh-msvc-products
+            # -------- Ruta 1: productos --------
+            - id: jh-msvc-products          # Identificador único de la ruta
+              uri: lb://jh-msvc-products    # URI del destino con discovery + balanceo (Eureka/Consul). "lb://" activa el LoadBalancer
               predicates:
-                - Path=/api/products/**
+                - Path=/api/products/**     # Predicate: coincide con cualquier URL que empiece por /api/products/
               filters:
-                - StripPrefix=2
-            - id: jh-msvc-items
-              uri: lb://jh-msvc-items
+                - StripPrefix=2             # Filtro: elimina los 2 primeros segmentos del path (/api/products)
+                                           #   Ejemplo: /api/products/list  -> destino recibe: /list
+
+            # -------- Ruta 2: items --------
+            - id: jh-msvc-items             # Identificador único de la ruta
+              uri: lb://jh-msvc-items       # Servicio "items" resuelto por el registro (Eureka/Consul) con balanceo
               predicates:
-                - Path=/api/items/**
+                - Path=/api/items/**        # Aplica a cualquier path bajo /api/items/
               filters:
-                - StripPrefix=2
+                - StripPrefix=2             # Elimina "/api/items" y reenvía el resto al servicio
+                                           #   Ejemplo: /api/items/123  -> destino recibe: /123
+
 ````
