@@ -14,4 +14,5 @@ Version Java = 21
 Spring Boot Devtools
 Eureka Discovery Client
 Reactive Gateway Spring Cloud Routing
+Spring boot Actuator
 ```
