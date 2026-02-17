@@ -120,7 +120,7 @@ public class SampleGlobalFilter implements GlobalFilter, Ordered {
       // Modify the response after the request has been processed
       logger.info("ejecutandos el filtro despues de request POST");
       exchange.getResponse().getCookies().add("color", ResponseCookie.from("color", "rojo").build());
-      exchange.getResponse().getHeaders().setContentType(MediaType.TEXT_PLAIN);
+      //exchange.getResponse().getHeaders().setContentType(MediaType.TEXT_PLAIN);
     }));
   }
 
