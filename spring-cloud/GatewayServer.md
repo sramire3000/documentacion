@@ -37,3 +37,25 @@ eureka.client.fetch-registry=true
 management.endpoints.web.exposure.include=*
 management.endpoint.health.show-details=always
 ````
+
+### Application.yml
+````
+spring:
+  cloud:
+    gateway:
+      server:
+        webflux:
+          routes:
+            - id: jh-msvc-products
+              uri: lb://jh-msvc-products
+              predicates:
+                - Path=/api/products/**
+              filters:
+                - StripPrefix=2
+            - id: jh-msvc-items
+              uri: lb://jh-msvc-items
+              predicates:
+                - Path=/api/items/**
+              filters:
+                - StripPrefix=2
+````
