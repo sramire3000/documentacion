@@ -53,6 +53,12 @@ spring:
               uri: lb://jh-msvc-products    # URI del destino con discovery + balanceo (Eureka/Consul). "lb://" activa el LoadBalancer
               predicates:
                 - Path=/api/products/**     # Predicate: coincide con cualquier URL que empiece por /api/products/
+                #- Header=token, \d+         # Opcional: coincide solo si el header "token" tiene un valor con digitos. Se ejecuta antes de los filtros.
+                #- Header=token, 12345       # Opcional: coincide solo si el header "token" tiene el valor "12345". Se ejecuta antes de los filtros.
+                #- Method=GET, POST          # Opcional: coincide solo con solicitudes HTTP GET. Se ejecuta antes de los filtros.
+                #- Query=color, verde        # Opcional: coincide solo si el parámetro de consulta "color" tiene el valor "verde". Se ejecuta antes de los filtros.
+                #- Cookie=color, zul         # Opcional: coincide solo si la cookie "color" tiene el valor "zul". Se ejecuta antes de los filtros.
+                #- Header=Content-Type, application/json # Opcional: coincide solo si el header "Content-Type" es "application/json". Se ejecuta antes de los filtros.
               filters:
                 - StripPrefix=2             # Filtro: elimina los 2 primeros segmentos del path (/api/products)
                 - EjemploCookie=Hola mi mensaje personalizado para productos!, user, Andres # Filtro personalizado que agrega una cookie "user" con valor "Andres" y un mensaje personalizado. Se ejecuta después de StripPrefix.
@@ -66,6 +72,7 @@ spring:
                 - AddRequestHeader=token-request, sdnfjernferhfr  # Agrega un header personalizado "token-reques" con un valor fijo. Se ejecuta después de StripPrefix.
                 - AddResponseHeader=token-response, sdnfjernferhfr  # Agrega un header personalizado "token-response" a la respuesta. Se ejecuta después de que el servicio responda.
                 - AddRequestParameter=param-request, sdnfjernferhfr  # Agrega un parámetro de consulta "param-request" con un valor fijo. Se ejecuta después de StripPrefix.
+                - SetResponseHeader=Content-Type, application/json  # Establece el header "Content-Type" de la respuesta a "application/json". Se ejecuta después de que el servicio responda.
 
 ````
 
