@@ -17,3 +17,23 @@ Reactive Gateway Spring Cloud Routing
 Spring boot Actuator
 Lombok
 ```
+
+### Application.properties
+````
+# Configuración de la aplicación
+spring.application.name=jh-gateway-server
+# Puerto del servidor
+server.port=8090
+
+# Configuracion Eureka Client
+#Instancia en Eureka
+eureka.client.service-url.defaultZone=http://localhost:8761/eureka/
+eureka.instance.prefer-ip-address=true
+eureka.client.registry-fetch-interval-seconds=10
+eureka.client.register-with-eureka=true
+eureka.client.fetch-registry=true
+
+#Habilitar Actuator End Point
+management.endpoints.web.exposure.include=*
+management.endpoint.health.show-details=always
+````
