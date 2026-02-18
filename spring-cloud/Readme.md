@@ -65,6 +65,7 @@ OpenFeign
 Lombok
 Actuator
 Eureka Discovery Client
+Resilience4J
 ```
 
 ### Packages
