@@ -5,7 +5,7 @@
 Resilience4J
 ````
 
-### Configuracion
+### Configuracion a nivel de codigo
 ````
 package sv.jh.springcloud.msvc.items.app;
 
