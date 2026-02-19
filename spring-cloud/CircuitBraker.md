@@ -128,3 +128,31 @@ resilience4j:
         .body(Collections.singletonMap("message", "No se encontró el producto con id: " + id));
   }
 ````
+
+## Utilizando Anotaciones
+````
+  @CircuitBreaker(name = "items", fallbackMethod = "getFallBackmetodProduct")
+  @GetMapping("/details/{id}")
+  public ResponseEntity<?> detalle2(@PathVariable Long id) {
+
+    Optional<ItemDTO> item = service.findById(id);
+
+    if (item.isPresent()) {
+      return ResponseEntity.ok(item.get());
+    }
+
+    return ResponseEntity.status(404)
+        .body(Collections.singletonMap("message", "No se encontró el producto con id: " + id));
+  }
+
+  public ResponseEntity<?> getFallBackmetodProduct(Long id, Throwable e) {
+    logger.info("Error en la llamada al servicio de productos: " + e.getMessage());
+    ProductDTO product = new ProductDTO();
+    product.setId(1L);
+    product.setName("Camara Sony");
+    product.setCreateAt(LocalDate.now());
+    product.setPrice(500.00);
+    ItemDTO item = new ItemDTO(product, 5);
+    return ResponseEntity.ok(item);
+  }
+````
