@@ -11,5 +11,6 @@ Version Java = 21
 
 ### Dependencias
 ```
-
+Spring boot Dev Tools
+Config Server Spring Clound config
 ````
