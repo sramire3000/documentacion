@@ -157,7 +157,7 @@ resilience4j:
   }
 
   @CircuitBreaker(name = "items", fallbackMethod = "getFallBackmetodProduct2")
-  @TimeLimiter(name = "items", fallbackMethod = "getFallBackmetodProduct2")
+  @TimeLimiter(name = "items")
   @GetMapping("/details2/{id}")
   public CompletableFuture<?> detalle3(@PathVariable Long id) {
 
