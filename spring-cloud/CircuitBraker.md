@@ -5,6 +5,20 @@
 Resilience4J
 ````
 
+### Dependencia a nivel de pom.xml
+````
+<dependency>
+        <groupId>org.springframework.cloud</groupId>
+        <artifactId>spring-cloud-starter-circuitbreaker-resilience4j</artifactId>
+</dependency>
+
+<dependency>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-aop</artifactId>
+        <version>3.5.6</version>
+</dependency>
+````
+
 ### Configuracion a nivel de codigo
 ````
 package sv.jh.springcloud.msvc.items.app;
