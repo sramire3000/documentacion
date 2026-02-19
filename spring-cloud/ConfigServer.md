@@ -3,7 +3,7 @@
 ### Spring Iniz
 ```
 groupId      = sv.jh.springcloud.config.server
-artifactId   = jh-gateway-server
+artifactId   = jh-config-server
 packageName  = sv.jh.springcloud.config.server.app
 type         = jar
 Version Java = 21
