@@ -7,11 +7,13 @@ Resilience4J
 
 ### Dependencia a nivel de pom.xml
 ````
+<!-- Circuit Breaker -->
 <dependency>
         <groupId>org.springframework.cloud</groupId>
         <artifactId>spring-cloud-starter-circuitbreaker-resilience4j</artifactId>
 </dependency>
 
+<!-- AOP -->
 <dependency>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-aop</artifactId>
