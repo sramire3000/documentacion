@@ -38,3 +38,14 @@ import org.springframework.cloud.config.server.EnableConfigServer;
 
 @EnableConfigServer
 ````
+
+### application.properties
+````
+# Spring Cloud Config Server name
+spring.application.name=jh-config-server
+# Config Server port
+server.port=8888
+# Git repository location for configuration files
+spring.cloud.config.server.git.uri=file:///C:/temp/spring-cloud-jh-repository
+
+````
