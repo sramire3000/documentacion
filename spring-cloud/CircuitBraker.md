@@ -21,6 +21,8 @@ Resilience4J
 </dependency>
 ````
 
+## CONFIGURACION POR CODIGO Y POR YML
+
 ### Configuracion a nivel de codigo
 ````
 package sv.jh.springcloud.msvc.items.app;
@@ -94,5 +96,35 @@ resilience4j:
     instances:
       items:
         base-config: defecto
+````
 
+### Example de Method
+````
+  import org.springframework.cloud.client.circuitbreaker.CircuitBreakerFactory;
+
+  private final CircuitBreakerFactory cbFactory;
+
+  @GetMapping("/{id}")
+  public ResponseEntity<?> detalle(@PathVariable Long id) {
+    // Sin Circuit Breaker
+    // Optional<ItemDTO> item = service.findById(id);
+
+    // Con Circuit Breaker, usando el método run() para ejecutar la lógica de
+    // negocio
+    Optional<ItemDTO> item = cbFactory.create("items").run(() -> service.findById(id), e -> {
+      logger.info("Error en la llamada al servicio de productos: " + e.getMessage());
+      ProductDTO product = new ProductDTO();
+      product.setId(1L);
+      product.setName("Camara Sony");
+      product.setCreateAt(LocalDate.now());
+      product.setPrice(500.00);
+      return Optional.of(new ItemDTO(product, 5));
+    });
+
+    if (item.isPresent()) {
+      return ResponseEntity.ok(item.get());
+    }
+    return ResponseEntity.status(404)
+        .body(Collections.singletonMap("message", "No se encontró el producto con id: " + id));
+  }
 ````
