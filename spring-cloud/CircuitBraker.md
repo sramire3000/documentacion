@@ -145,6 +145,22 @@ resilience4j:
         .body(Collections.singletonMap("message", "No se encontró el producto con id: " + id));
   }
 
+  @TimeLimiter(name = "items", fallbackMethod = "getFallBackmetodProduct")
+  @GetMapping("/details2/{id}")
+  public CompletableFuture<?> detalle3(@PathVariable Long id) {
+
+    return CompletableFuture.supplyAsync(() -> {
+      Optional<ItemDTO> item = service.findById(id);
+
+      if (item.isPresent()) {
+        return ResponseEntity.ok(item.get());
+      }
+      return ResponseEntity.status(404)
+          .body(Collections.singletonMap("message", "No se encontró el producto con id: " + id));
+    });
+
+  }
+
   public ResponseEntity<?> getFallBackmetodProduct(Long id, Throwable e) {
     logger.info("Error en la llamada al servicio de productos: " + e.getMessage());
     ProductDTO product = new ProductDTO();
