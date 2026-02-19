@@ -145,7 +145,18 @@ resilience4j:
         .body(Collections.singletonMap("message", "No se encontró el producto con id: " + id));
   }
 
-  @TimeLimiter(name = "items", fallbackMethod = "getFallBackmetodProduct")
+  public ResponseEntity<?> getFallBackmetodProduct(Long id, Throwable e) {
+    logger.info("Error en la llamada al servicio de productos: " + e.getMessage());
+    ProductDTO product = new ProductDTO();
+    product.setId(1L);
+    product.setName("Camara Sony");
+    product.setCreateAt(LocalDate.now());
+    product.setPrice(500.00);
+    ItemDTO item = new ItemDTO(product, 5);
+    return ResponseEntity.ok(item);
+  }
+
+  @TimeLimiter(name = "items", fallbackMethod = "getFallBackmetodProduct2")
   @GetMapping("/details2/{id}")
   public CompletableFuture<?> detalle3(@PathVariable Long id) {
 
@@ -161,14 +172,16 @@ resilience4j:
 
   }
 
-  public ResponseEntity<?> getFallBackmetodProduct(Long id, Throwable e) {
+  public CompletableFuture<?> getFallBackmetodProduct2(Long id, Throwable e) {
     logger.info("Error en la llamada al servicio de productos: " + e.getMessage());
-    ProductDTO product = new ProductDTO();
-    product.setId(1L);
-    product.setName("Camara Sony");
-    product.setCreateAt(LocalDate.now());
-    product.setPrice(500.00);
-    ItemDTO item = new ItemDTO(product, 5);
-    return ResponseEntity.ok(item);
+    return CompletableFuture.supplyAsync(() -> {
+      ProductDTO product = new ProductDTO();
+      product.setId(1L);
+      product.setName("Camara Sony");
+      product.setCreateAt(LocalDate.now());
+      product.setPrice(500.00);
+      ItemDTO item = new ItemDTO(product, 5);
+      return ResponseEntity.ok(item);
+    });
   }
 ````
