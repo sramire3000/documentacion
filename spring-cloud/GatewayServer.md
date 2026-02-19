@@ -50,6 +50,27 @@ management.endpoint.health.show-details=always
 
 ### application.yml
 ````
+resilience4j:
+  circuitbreaker:
+    configs:
+      defecto:
+        sliding-window-size: 6
+        failure-rate-threshold: 50
+        wait-duration-in-open-state: 20s
+        permitted-number-of-calls-in-half-open-state: 4
+        slow-call-duration-threshold: 3s
+        slow-call-rate-threshold: 50
+    instances:
+      products:
+        base-config: defecto
+  timelimiter:
+    configs:
+      defecto:
+        timeout-duration: 4s
+    instances:
+      products:
+        base-config: defecto
+
 spring:
   cloud:
     gateway:
@@ -69,6 +90,11 @@ spring:
                 #- Cookie=color, zul         # Opcional: coincide solo si la cookie "color" tiene el valor "zul". Se ejecuta antes de los filtros.
                 #- Header=Content-Type, application/json # Opcional: coincide solo si el header "Content-Type" es "application/json". Se ejecuta antes de los filtros.
               filters:
+                - name: CircuitBreaker # Filtro de Resilience4j para circuit breaker. Se ejecuta antes de los filtros siguientes.
+                  args: # Configuración del circuito para esta ruta
+                    name: products # Nombre del circuito, debe coincidir con el definido en resilience4j.circuitbreaker.instances.products
+                    statusCodes: 500 # Considera error cualquier respuesta con status 500. Se ejecuta antes de los filtros siguientes.
+                    fallbackUri: forward:/api/products-fallback # URI de fallback local en caso de que el circuito esté abierto. Se ejecuta después de los filtros siguientes.
                 - StripPrefix=2             # Filtro: elimina los 2 primeros segmentos del path (/api/products)
                 - EjemploCookie=Hola mi mensaje personalizado para productos!, user, Andres # Filtro personalizado que agrega una cookie "user" con valor "Andres" y un mensaje personalizado. Se ejecuta después de StripPrefix.
             # -------- Ruta 2: items --------
