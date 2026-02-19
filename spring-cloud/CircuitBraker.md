@@ -156,6 +156,7 @@ resilience4j:
     return ResponseEntity.ok(item);
   }
 
+  @CircuitBreaker(name = "items", fallbackMethod = "getFallBackmetodProduct2")
   @TimeLimiter(name = "items", fallbackMethod = "getFallBackmetodProduct2")
   @GetMapping("/details2/{id}")
   public CompletableFuture<?> detalle3(@PathVariable Long id) {
