@@ -18,6 +18,15 @@ Spring boot Actuator
 Lombok
 ```
 
+### Add pom.xml
+````
+  <!-- Circuit Breaker reactor -->
+  <dependency>
+    <groupId>org.springframework.cloud</groupId>
+    <artifactId>spring-cloud-starter-circuitbreaker-reactor-resilience4j</artifactId>
+  </dependency>
+````
+
 ### application.properties
 ````
 # Configuración de la aplicación
