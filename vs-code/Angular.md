@@ -34,7 +34,6 @@ nano extensions.json
 ````
 
 ### Extensions Generales
-- [Auto Close Tag](https://marketplace.visualstudio.com/items?itemName=formulahendry.auto-close-tag)
 - [Auto Import](https://marketplace.visualstudio.com/items?itemName=steoates.autoimport)
 - [Bracket Pair Color DLW](https://marketplace.visualstudio.com/items?itemName=BracketPairColorDLW.bracket-pair-color-dlw)
 - [Activitus Bar](https://marketplace.visualstudio.com/items?itemName=Gruntfuggly.activitusbar)
@@ -201,6 +200,7 @@ nano extensions.json
   },
 }
 ```
+
 
 
 
