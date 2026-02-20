@@ -306,8 +306,9 @@ npm install
 npm run start
 ```
 
-### Run Proyect dev
+### Run Proyect prd
 ```bash
 npm run build
 ```
+
 
