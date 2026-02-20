@@ -297,13 +297,26 @@ Solo adiciona "allowedCommonJsDependencies"
         "build": {
           "builder": "@angular-devkit/build-angular:application",
           "options": {
+            =======>
             "allowedCommonJsDependencies": ["sweetalert2", "crypto-js"]
+            <=======
           }
         }
       }
     }
   }
 }
+```
+
+### Archivo "tsconfig.app.json"
+```bash
+{
+"compilerOptions": {
+=======>
+"resolveJsonModule": true,
+"esModuleInterop": true,
+<=======
+},
 ```
 
 ### Configuracion del archivo "tsconfig.json"
@@ -505,6 +518,7 @@ npm run start
 ```bash
 npm run build
 ```
+
 
 
 
