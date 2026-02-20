@@ -1,5 +1,37 @@
 # Visual Studio Code ANGULAR
 
+## Configuracion de ".vscode"
+
+### crea la carpeta en la termnal
+````
+mkdir .vscode
+````
+
+### crear el archivo de configuracion para extenciones
+````
+nano extensions.json
+````
+
+### Contenido del arhivo "extensions.json"
+````
+{
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=827846
+  "recommendations": [
+    "angular.ng-template",
+    "johnpapa.angular2",
+    "esbenp.prettier-vscode",
+    "dbaeumer.vscode-eslint",
+    "christian-kohler.path-intellisense",
+    "steoates.autoimport",
+    "bradlc.vscode-tailwindcss",
+    "ecmel.vscode-html-css",
+    "eamodio.gitlens",
+    "usernamehw.errorlens",
+    "rangav.vscode-thunder-client",
+    "nrwl.angular-console"
+  ]
+}
+````
 
 ### Extensions Generales
 - [Auto Close Tag](https://marketplace.visualstudio.com/items?itemName=formulahendry.auto-close-tag)
@@ -169,6 +201,7 @@
   },
 }
 ```
+
 
 
 
