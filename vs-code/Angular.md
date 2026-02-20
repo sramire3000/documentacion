@@ -1,5 +1,10 @@
 # Visual Studio Code ANGULAR
 
+## Generar proyecto
+```bash
+ng new my-proyect --routing=false --style=scss
+```
+
 ## Configuracion de ".vscode"
 
 ### Crea la carpeta en la terminal
@@ -498,6 +503,7 @@ npm run start
 ```bash
 npm run build
 ```
+
 
 
 
