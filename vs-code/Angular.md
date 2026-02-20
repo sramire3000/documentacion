@@ -306,9 +306,15 @@ Solo adiciona "allowedCommonJsDependencies"
 }
 ```
 
-
-
-
+### Configuracion del archivo "tsconfig.json"
+solo adiciona la propiedad "resolveJsonModule"
+```bash
+{
+  "compilerOptions": {
+    "resolveJsonModule": true,
+  }
+}
+```
 
 ### Configuracion del archivo "package.json"
 ```bash
@@ -499,6 +505,7 @@ npm run start
 ```bash
 npm run build
 ```
+
 
 
 
