@@ -2,7 +2,7 @@
 
 ## Configuracion de ".vscode"
 
-### crea la carpeta en la termnal
+### Crea la carpeta en la terminal
 ````
 mkdir .vscode
 ````
@@ -46,7 +46,13 @@ nano extensions.json
 }
 ````
 
-### Crear Archivo de ejecucion "launch.json"
+### crear el archivo de ejecución
+````
+nano launch.json
+````
+
+
+### Contenidode  Archivo "launch.json"
 ````
 {
   // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
@@ -191,6 +197,7 @@ nano extensions.json
   },
 }
 ```
+
 
 
 
