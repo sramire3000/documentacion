@@ -343,23 +343,6 @@ solo adiciona la propiedad "resolveJsonModule"
   },
 ```
 
-### Archivo "styles.scss"
-```bash
-/* You can add global styles to this file, and also import other style files */
-$gutter: 1rem; //for primeflex grid system
-@import "assets/layout/styles/layout/layout.scss";
-
-/* PrimeNG */
-@import "../node_modules/primeng/resources/primeng.min.css";
-@import "../node_modules/primeflex/primeflex.scss";
-@import "../node_modules/primeicons/primeicons.css";
-
-/* Demos */
-@import "assets/demo/styles/flags/flags.css";
-@import "assets/demo/styles/badges.scss";
-@import "assets/demo/styles/code.scss";
-```
-
 ## Archivo "proxy.config.json"
 ```bash
 {
@@ -547,6 +530,7 @@ npm run start
 ```bash
 npm run build
 ```
+
 
 
 
