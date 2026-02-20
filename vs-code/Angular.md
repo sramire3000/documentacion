@@ -46,6 +46,30 @@ nano extensions.json
 }
 ````
 
+### Crear Archivo de ejecucion "launch.json"
+````
+{
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "ng serve",
+      "type": "chrome",
+      "request": "launch",
+      "preLaunchTask": "npm: start",
+      "url": "http://localhost:4200/"
+    },
+    {
+      "name": "ng test",
+      "type": "chrome",
+      "request": "launch",
+      "preLaunchTask": "npm: test",
+      "url": "http://localhost:9876/debug.html"
+    }
+  ]
+}
+````
+
 
 ### File settings.json
 ```
@@ -167,6 +191,7 @@ nano extensions.json
   },
 }
 ```
+
 
 
 
