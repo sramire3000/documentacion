@@ -323,8 +323,16 @@ Solo adiciona "allowedCommonJsDependencies"
 solo adiciona la propiedad "resolveJsonModule"
 ```bash
 {
-  "compilerOptions": {
-    "resolveJsonModule": true,
+"compilerOptions": {
+  =======>
+  "resolveJsonModule": true,
+  "esModuleInterop": true,
+  <=======
+  },
+  "angularCompilerOptions": {
+  =======>
+  "strictDomEventTypes": false,
+  <=======
   }
 }
 ```
@@ -518,6 +526,7 @@ npm run start
 ```bash
 npm run build
 ```
+
 
 
 
