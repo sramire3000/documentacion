@@ -166,7 +166,24 @@ nano tasks.json
   // ESLint
   "eslint.validate": ["typescript", "javascript"] // Validar archivos TypeScript y JavaScript con ESLint
 }
+```
 
+### Configuracion del archivo "package.json"
+```bash
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve",
+    "build": "ng build --configuration production --base-href ./",
+    "watch": "ng build --watch --configuration development",
+    "test": "ng test",
+    "lint": "ng lint",
+    "lint:fix": "ng lint --fix",
+    "stats": "ng build --stats-json & webpack-bundle-analyzer dist/my-app/stats.json",
+    "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
+    "build:github": "npm run delete:docs && npm run build:href && npm run copy:dist",
+    "delete:docs": "del docs",
+    "copy:dist": "copyfiles dist/bases/* ./docs -f"
+  },
 ```
 
 ## Despliegue Docker
@@ -310,5 +327,6 @@ npm run start
 ```bash
 npm run build
 ```
+
 
 
