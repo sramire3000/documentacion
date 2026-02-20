@@ -169,7 +169,7 @@ nano tasks.json
 
 ## Instalar Paquetes
 ```bash
-npm install @angular/cdk --save
+npm install @angular/cdk --save (Error)
 npm install @angular/animations --save
 
 npm install font-awesome --save
@@ -177,15 +177,22 @@ npm install moment --save
 npm install jwt-decode --save
 npm install sweetalert2 --save
 
-npm install primeng@15.0.0 --save 
-npm install primeicons --save 
 npm install chart.js --save
 npm install quill --save
-npm install primeflex --save
 
 ng add @angular-eslint/schematics
 npm i prettier prettier-eslint eslint-config-prettier eslint-plugin-prettier -D
 npm install --save-dev webpack-bundle-analyzer
+
+# Angular 15.0.1
+npm install primeng@15.0.0 --save (error)
+
+#Para la version Ng 19.2.20
+npm install primeng@^19 --save 
+npm install primeicons @primeng/themes --save 
+
+npm install primeicons --save 
+npm install primeflex --save
 ```
 
 ## Configuraciones de Archivo en raiz
@@ -549,6 +556,7 @@ npm run start
 ```bash
 npm run build
 ```
+
 
 
 
