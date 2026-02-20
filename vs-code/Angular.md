@@ -40,7 +40,7 @@ nano extensions.json
     "wayou.vscode-todo-highlight",
     "formulahendry.auto-rename-tag",
     "yoavbls.pretty-ts-errors",
-    "vscode-icons-team.vscode-icons",
+    "pkief.material-icon-theme",
     "github.copilot-chat"
   ]
 }
@@ -249,6 +249,7 @@ nano tasks.json
   },
 }
 ```
+
 
 
 
