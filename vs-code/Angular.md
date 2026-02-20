@@ -28,54 +28,24 @@ nano extensions.json
     "eamodio.gitlens",
     "usernamehw.errorlens",
     "rangav.vscode-thunder-client",
-    "nrwl.angular-console"
+    "nrwl.angular-console",
+    "formulahendry.auto-close-tag",
+    "bracketpaircolordlw.bracket-pair-color-dlw",
+    "gruntfuggly.activitusbar",
+    "aaron-bond.better-comments",
+    "aykutsarac.jsoncrack-vscode",
+    "tyriar.lorem-ipsum",
+    "quicktype.quicktype",
+    "jeroen-meijer.pubspec-assist",
+    "wayou.vscode-todo-highlight",
+    "formulahendry.auto-rename-tag",
+    "yoavbls.pretty-ts-errors",
+    "vscode-icons-team.vscode-icons",
+    "github.copilot-chat"
   ]
 }
 ````
 
-### Extensions Generales
-- [Better Comments](https://marketplace.visualstudio.com/items?itemName=aaron-bond.better-comments)
-- [Error Lens](https://marketplace.visualstudio.com/items?itemName=usernamehw.errorlens)
-- [JSON Crack](https://marketplace.visualstudio.com/items?itemName=AykutSarac.jsoncrack-vscode)
-- [Lorem ipsum](https://marketplace.visualstudio.com/items?itemName=Tyriar.lorem-ipsum)
-- [Paste JSON as Code](https://marketplace.visualstudio.com/items?itemName=quicktype.quicktype)
-- [Pubspec Assist](https://marketplace.visualstudio.com/items?itemName=jeroen-meijer.pubspec-assist)
-- [TODO Highlight](https://marketplace.visualstudio.com/items?itemName=wayou.vscode-todo-highlight)
-- [Auto Rename Tag](https://marketplace.visualstudio.com/items?itemName=formulahendry.auto-rename-tag)
-
-### Code Format
-- [Prettier - Code formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
-- [Pretty TypeScript Errors](https://marketplace.visualstudio.com/items?itemName=yoavbls.pretty-ts-errors)
-- [ESLint](https://marketplace.visualstudio.com/items?itemName=dbaeumer.vscode-eslint)
-
-### TypeScript
-- [JavaScript (ES6) code snippets](https://marketplace.visualstudio.com/items?itemName=xabikos.JavaScriptSnippets)
-- [TypeScript Importer](https://marketplace.visualstudio.com/items?itemName=pmneo.tsimporter)
-
-
-### Theme
-- [visualcode-icons](https://marketplace.visualstudio.com/items?itemName=vscode-icons-team.vscode-icons)
-
-### Extenciones de GIT
-- [GitHub Copilot](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot)
-- [GitHub Copilot Chat](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot-chat)
-
-### Angular Global
-- [Angular Language Service](https://marketplace.visualstudio.com/items?itemName=Angular.ng-template)
-- [Angular Schematics](https://marketplace.visualstudio.com/items?itemName=cyrilletuzi.angular-schematics)
-- [angular2-inline](https://marketplace.visualstudio.com/items?itemName=natewallace.angular2-inline)
-
-### Angular 17
-- [Angular 17 Snippets](https://marketplace.visualstudio.com/items?itemName=Mikael.Angular-BeastCode)
-
-### Angular 18
-- [Angular Snippets (Version 18)](https://marketplace.visualstudio.com/items?itemName=johnpapa.Angular2)
-
-### Angular 19
-- [Angular Snippets 2025 - v19](https://marketplace.visualstudio.com/items?itemName=JMGomes.angular-latest-snippets)
-
-### Angular 20
-- [Tailwind CSS IntelliSense](https://marketplace.visualstudio.com/items?itemName=bradlc.vscode-tailwindcss)
 
 ### File settings.json
 ```
@@ -197,6 +167,7 @@ nano extensions.json
   },
 }
 ```
+
 
 
 
