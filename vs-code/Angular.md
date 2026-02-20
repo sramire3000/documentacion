@@ -184,6 +184,7 @@ npm install sweetalert2 --save
 
 npm install chart.js --save
 npm install quill --save
+npm i angular-crypto-js --save
 
 ng add @angular-eslint/schematics
 npm i prettier prettier-eslint eslint-config-prettier eslint-plugin-prettier -D
@@ -503,6 +504,7 @@ npm run start
 ```bash
 npm run build
 ```
+
 
 
 
