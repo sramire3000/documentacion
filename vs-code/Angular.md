@@ -279,6 +279,32 @@ testem.log
 Thumbs.db
 ```
 
+### Configuraciob de archivo "angular.json"
+Solo adiciona "allowedCommonJsDependencies"
+```bash
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "angular-proyect1": {
+      "projectType": "application",
+      "schematics": {},
+      "root": "",
+      "sourceRoot": "src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:application",
+          "options": {
+            "allowedCommonJsDependencies": ["sweetalert2", "crypto-js"]
+          }
+        }
+      }
+    }
+  }
+}
+```
 
 
 
@@ -473,6 +499,7 @@ npm run start
 ```bash
 npm run build
 ```
+
 
 
 
