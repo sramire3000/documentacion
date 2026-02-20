@@ -177,11 +177,11 @@ npm install moment --save
 npm install jwt-decode --save
 npm install sweetalert2 --save
 
-call npm install primeng@15.0.0 --save 
-call npm install primeicons --save 
-call npm install chart.js --save
-call npm install quill --save
-call npm install primeflex --save
+npm install primeng@15.0.0 --save 
+npm install primeicons --save 
+npm install chart.js --save
+npm install quill --save
+npm install primeflex --save
 
 ng add @angular-eslint/schematics
 npm i prettier prettier-eslint eslint-config-prettier eslint-plugin-prettier -D
@@ -549,6 +549,7 @@ npm run start
 ```bash
 npm run build
 ```
+
 
 
 
