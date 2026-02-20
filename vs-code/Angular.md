@@ -2,6 +2,70 @@
 
 ## Configuracion de ".vscode"
 
+### Archivo ".eslintrc.json"
+```bash
+{
+  "root": true,
+  "ignorePatterns": [
+    "projects/**/*"
+  ],
+  "overrides": [
+    {
+      "files": [
+        "*.ts"
+      ],
+      "parserOptions": {
+        "project": [
+          "tsconfig.json"
+        ],
+        "createDefaultProgram": true
+      },
+      "extends": [
+        "plugin:@angular-eslint/recommended",
+        "plugin:@angular-eslint/template/process-inline-templates"
+      ],
+      "rules": {
+        "@angular-eslint/use-lifecycle-interface": [
+          "error"
+        ],        
+        "@angular-eslint/directive-selector": [
+          "error",
+          {
+            "type": "attribute",
+            "prefix": "app",
+            "style": "camelCase"
+          }
+        ],
+        "@angular-eslint/component-selector": [
+          "error",
+          {
+            "type": "element",
+            "prefix": "app",
+            "style": "kebab-case"
+          }
+        ]
+        
+      }
+    },
+    {
+      "files": [
+        "*.html"
+      ],
+      "extends": [
+        "plugin:@angular-eslint/template/recommended"
+      ],
+      "rules": {}
+    }
+  ]
+}
+```
+
+### Archivo ".prettierignore"
+```bash
+dist 
+node_modules 
+```
+
 ### Archivo ".gitignore"
 ```bash
 # See https://docs.github.com/get-started/getting-started-with-git/ignoring-files for more about ignoring files.
@@ -96,7 +160,6 @@ nano extensions.json
 ````
 nano launch.json
 ````
-
 
 ### Contenidode  Archivo "launch.json"
 ````
@@ -403,6 +466,7 @@ npm run start
 ```bash
 npm run build
 ```
+
 
 
 
