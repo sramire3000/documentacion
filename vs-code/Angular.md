@@ -169,6 +169,75 @@ nano tasks.json
 
 ```
 
+## Despliegue Docker
+```bash
+worker_processes  1;
+
+events {
+    worker_connections  1024;
+}
+
+http {
+    include       mime.types;
+    
+    server {
+        listen       9090;
+        server_name  localhost;
+        
+        # Configuración para servir la aplicación Angular con contexto /ArreconsaWeb
+        location /ArreconsaWeb {
+            # Directorio donde está la aplicación Angular
+            alias /usr/share/nginx/html/angular-web-arreconsa;
+            
+            # Es importante establecer el tipo MIME para archivos estáticos
+            index  index.html index.htm;
+            
+            # Reglas para el enrutamiento de Angular (SPA)
+            try_files $uri $uri/ /ArreconsaWeb/index.html;
+            
+            # Opcional: configuración de caché para mejor rendimiento
+            location ~* \.(js|css|png|jpg|jpeg|gif|ico|svg)$ {
+                expires 1y;
+                add_header Cache-Control "public, immutable";
+            }
+        }
+        
+        # Redirección de la raíz a la aplicación (opcional)
+        location = / {
+            return 301 /ArreconsaWeb/;
+        }
+        
+        # Si necesitas acceder a la aplicación también desde la raíz (adicional)
+        location / {
+            root   /usr/share/nginx/html/angular-web-arreconsa;
+            index  index.html index.htm;
+            try_files $uri $uri/ /index.html;
+        }
+    }
+}
+```
+
+### Configuración del Dockerfile
+```bash
+FROM nginx:1.27.2-alpine-slim
+ENV TZ=America/El_Salvador
+
+#Elimina el archivo de confguracion del nginx
+RUN rm -fv /etc/nginx/nginx.conf
+
+#Elimina html de distribucion
+RUN rm -frv /usr/share/nginx/html/* && ls /usr/share/nginx/html/
+
+#Copia la nueva configuracion del nginx
+COPY nginx.conf /etc/nginx/nginx.conf
+
+#Copy compilados Angular
+COPY ./dist /usr/share/nginx/html
+
+EXPOSE 9090
+
+CMD ["nginx", "-g", "daemon off;"]
+```
 
 
 
