@@ -51,6 +51,8 @@
     "git.openRepositoryInParentFolders": "never", // Evita que se abra el repositorio en carpetas padre
     "git.confirmSync": false, // Desactiva la confirmación al sincronizar
     "git.enableSmartCommit": true, // Habilita el commit inteligente
+    "gitlens.ai.model": "vscode", // Configura el modelo de IA para GitLens (si estás usando GitLens)
+    "gitlens.ai.vscode.model": "copilot:gpt-4.1", // Configura el modelo de IA específico para Visual Studio Code (si estás usando GitLens)
 
     // Workbench mejorado
     "workbench.iconTheme": "material-icon-theme", // Cambia el tema de íconos a Material Icon Theme
