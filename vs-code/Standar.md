@@ -7,15 +7,14 @@
     {
       "path": "../fuentes-arreconsa/angular-proyect",
       "name": "Proyecto Angular",
-      "icon": "angular",
     },
     {
       "path": "../fuentes-arreconsa/demo",
       "name": "Demo",
-      "icon": "java",
     },
     {
       "path": ".",
+      "name": "Workspace",
     },
   ],
   "settings": {
@@ -98,5 +97,4 @@
     "explorer.confirmDragAndDrop": false, // Evita la confirmación al arrastrar y soltar archivos
   },
 }
-
 ```
