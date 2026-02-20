@@ -130,7 +130,7 @@ nano tasks.json
 ## Archivo de configuracion Settings
 
 ### File settings.json
-```
+```bash
 {
   // Angular & TypeScript
   "typescript.preferences.autoImportFileExcludePatterns": [
@@ -170,6 +170,11 @@ nano tasks.json
 ```
 
 ## Despliegue Docker
+
+### Bajar imagen Node
+```bash
+docker pull node:24.7.0-alpine
+```
 
 ### Configuracion del archivo "nginx.conf"
 ```bash
@@ -254,6 +259,16 @@ CMD ["npm", "start", "--", "--host=0.0.0.0"]
 
 ```
 
+### Ejecutar con docker compose dev container
+```bash
+docker compose watch angular-dev
+```
+
+### URL Dev
+```bash
+http://localhost:4200
+```
+
 ### Configuración del arcivo "Dockerfile" para PRD
 ```bash
 FROM nginx:1.27.2-alpine-slim
@@ -276,45 +291,13 @@ EXPOSE 9090
 CMD ["nginx", "-g", "daemon off;"]
 ```
 
+### URL Docker
+```bash
+http://200.31.171.18:9090/ArreconsaWeb/api/security/oauth/token
+```
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+## Install librerias
+```bash
+npm install
+```
 
