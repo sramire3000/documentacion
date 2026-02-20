@@ -197,63 +197,6 @@ npm install primeflex --save
 
 ## Configuraciones de Archivo en raiz
 
-### Archivo ".eslintrc.json"
-```bash
-{
-  "root": true,
-  "ignorePatterns": [
-    "projects/**/*"
-  ],
-  "overrides": [
-    {
-      "files": [
-        "*.ts"
-      ],
-      "parserOptions": {
-        "project": [
-          "tsconfig.json"
-        ],
-        "createDefaultProgram": true
-      },
-      "extends": [
-        "plugin:@angular-eslint/recommended",
-        "plugin:@angular-eslint/template/process-inline-templates"
-      ],
-      "rules": {
-        "@angular-eslint/use-lifecycle-interface": [
-          "error"
-        ],        
-        "@angular-eslint/directive-selector": [
-          "error",
-          {
-            "type": "attribute",
-            "prefix": "app",
-            "style": "camelCase"
-          }
-        ],
-        "@angular-eslint/component-selector": [
-          "error",
-          {
-            "type": "element",
-            "prefix": "app",
-            "style": "kebab-case"
-          }
-        ]
-        
-      }
-    },
-    {
-      "files": [
-        "*.html"
-      ],
-      "extends": [
-        "plugin:@angular-eslint/template/recommended"
-      ],
-      "rules": {}
-    }
-  ]
-}
-```
 
 ### Archivo ".prettierignore"
 ```bash
@@ -328,7 +271,7 @@ Solo adiciona "allowedCommonJsDependencies"
           "builder": "@angular-devkit/build-angular:application",
           "options": {
             =======>
-            "allowedCommonJsDependencies": ["sweetalert2", "crypto-js"]
+            "allowedCommonJsDependencies": ["sweetalert2", "crypto-js"],
             <=======
           }
         }
@@ -356,7 +299,6 @@ solo adiciona la propiedad "resolveJsonModule"
 "compilerOptions": {
   =======>
   "resolveJsonModule": true,
-  "esModuleInterop": true,
   <=======
   },
   "angularCompilerOptions": {
@@ -556,6 +498,7 @@ npm run start
 ```bash
 npm run build
 ```
+
 
 
 
