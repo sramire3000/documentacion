@@ -170,6 +170,8 @@ nano tasks.json
 ```
 
 ## Despliegue Docker
+
+### Configuracion del archivo "nginx.conf"
 ```bash
 worker_processes  1;
 
@@ -217,7 +219,7 @@ http {
 }
 ```
 
-### Configuración del Dockerfile
+### Configuración del arcivo "Dockerfile"
 ```bash
 FROM nginx:1.27.2-alpine-slim
 ENV TZ=America/El_Salvador
@@ -238,6 +240,7 @@ EXPOSE 9090
 
 CMD ["nginx", "-g", "daemon off;"]
 ```
+
 
 
 
