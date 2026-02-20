@@ -128,7 +128,7 @@ nano tasks.json
 
 ## Archivo de configuracion Settings
 
-### File settings.json
+### Archivo "settings.json"
 ```bash
 {
   // Angular & TypeScript
@@ -549,6 +549,7 @@ npm run start
 ```bash
 npm run build
 ```
+
 
 
 
