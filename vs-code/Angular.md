@@ -167,6 +167,27 @@ nano tasks.json
 }
 ```
 
+## Instalar Paquetes
+```bash
+npm install @angular/cdk --save
+npm install @angular/animations --save
+
+npm install font-awesome --save
+npm install moment --save
+npm install jwt-decode --save
+npm install sweetalert2 --save
+
+call npm install primeng@15.0.0 --save 
+call npm install primeicons --save 
+call npm install chart.js --save
+call npm install quill --save
+call npm install primeflex --save
+
+ng add @angular-eslint/schematics
+npm i prettier prettier-eslint eslint-config-prettier eslint-plugin-prettier -D
+npm install --save-dev webpack-bundle-analyzer
+```
+
 ## Configuraciones de Archivo en raiz
 
 ### Archivo ".eslintrc.json"
@@ -278,6 +299,8 @@ testem.log
 .DS_Store
 Thumbs.db
 ```
+
+
 
 ### Configuraciob de archivo "angular.json"
 Solo adiciona "allowedCommonJsDependencies"
@@ -526,6 +549,7 @@ npm run start
 ```bash
 npm run build
 ```
+
 
 
 
