@@ -282,6 +282,16 @@ Solo adiciona "allowedCommonJsDependencies"
           }
         }
       }
+      "configurations": {
+           =======>
+           "fileReplacements": [
+                {
+                  "replace": "src/environments/environment.ts",
+                  "with": "src/environments/environment.prod.ts"
+                }
+              ],
+           <=======
+       }
     }
   }
 }
@@ -331,6 +341,39 @@ solo adiciona la propiedad "resolveJsonModule"
     "delete:docs": "del docs",
     "copy:dist": "copyfiles dist/bases/* ./docs -f"
   },
+```
+
+### Archivo "styles.scss"
+```bash
+/* You can add global styles to this file, and also import other style files */
+$gutter: 1rem; //for primeflex grid system
+@import "assets/layout/styles/layout/layout.scss";
+
+/* PrimeNG */
+@import "../node_modules/primeng/resources/primeng.min.css";
+@import "../node_modules/primeflex/primeflex.scss";
+@import "../node_modules/primeicons/primeicons.css";
+
+/* Demos */
+@import "assets/demo/styles/flags/flags.css";
+@import "assets/demo/styles/badges.scss";
+@import "assets/demo/styles/code.scss";
+```
+
+## Archivo "proxy.config.json"
+```bash
+{
+  "/api/*":{
+    "targetArreconsa":"http://200.31.171.18:9090",
+    "targetLocal":"http://localhost:8090",
+    "target":"http://200.31.171.18:9090",
+    "secure": false,
+    "pathRewrite":{
+      "^/servidor": ""
+    },
+    "changeOrigin": true
+  }
+}
 ```
 
 ## Despliegue Docker
@@ -504,6 +547,7 @@ npm run start
 ```bash
 npm run build
 ```
+
 
 
 
