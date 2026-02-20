@@ -323,10 +323,11 @@ npm install
 npm run start
 ```
 
-### Run Proyect prd
+### Crear archivos de compilación para publicar
 ```bash
 npm run build
 ```
+
 
 
 
