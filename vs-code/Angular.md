@@ -301,3 +301,13 @@ http://200.31.171.18:9090/ArreconsaWeb/api/security/oauth/token
 npm install
 ```
 
+### Run Proyect dev
+```bash
+npm run start
+```
+
+### Run Proyect dev
+```bash
+npm run build
+```
+
