@@ -322,6 +322,36 @@ CMD ["npm", "start", "--", "--host=0.0.0.0"]
 
 ```
 
+### Archivo docker-compose.yml
+```
+services:
+  angular-prod:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: docker-angular-arreconsa
+    ports:
+      - '8080:8080'
+
+  angular-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    deploy:
+      resources:
+        limits:
+          memory: 2048M
+        reservations:
+          memory: 1024M
+    ports:
+      - '4200:4200'
+    develop:
+      watch:
+        - action: sync
+          path: .
+          target: /app
+```
+
 ### Ejecutar con docker compose dev container
 ```bash
 docker compose watch angular-dev
@@ -373,6 +403,7 @@ npm run start
 ```bash
 npm run build
 ```
+
 
 
 
