@@ -43,7 +43,7 @@ vscjava.vscode-spring-initializr
 
 ### Para instalas ejecuta desde el PowerShell en el workspace
 ```
- cat extensions.txt | xargs -L 1 code --install-extension
+ cat spring-boot-extensions.txt | xargs -L 1 code --install-extension
 ```
 
 ### File settings.json
@@ -346,6 +346,7 @@ vscjava.vscode-spring-initializr
   "github.copilot.nextEditSuggestions.enabled": true,
 }
 ```
+
 
 
 
