@@ -28,7 +28,7 @@
 }
 ```
 
-## 2. Crear la carpeta ".vscode" por cada microservicio
+## 2. Crear la carpeta ".vscode" en el workspace
 
 ## 3. Crear archivo "launch.json"
 
