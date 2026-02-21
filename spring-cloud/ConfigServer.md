@@ -14,6 +14,7 @@ Version Java = 21
 Spring boot Dev Tools
 Config Server Spring Clound config
 Actuator
+Eureka Client
 ````
 
 ### pom.xml
