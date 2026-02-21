@@ -11,6 +11,11 @@ Node: 24.3.0
 primeng
 ```
 
+## Lista de Versiones de Node con NVM
+```
+nvm list
+```
+
 ## Generar proyecto
 ```bash
 ng new my-proyect --routing=false --style=scss
@@ -541,6 +546,7 @@ npm run start
 ```bash
 npm run build
 ```
+
 
 
 
