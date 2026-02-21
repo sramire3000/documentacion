@@ -2,8 +2,8 @@
 
 ## Versiones de Angular
 ```bash
-Angular CLI: 19.2.20
-Node: 
+Angular CLI: 19.0.2
+Node: 22.5.1
 primeng@^19 
 
 Angular CLI: 20.3.8
@@ -541,6 +541,7 @@ npm run start
 ```bash
 npm run build
 ```
+
 
 
 
