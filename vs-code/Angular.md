@@ -11,9 +11,13 @@ Node: 24.3.0
 primeng
 ```
 
-## Lista de Versiones de Node con NVM
+## Lista de comandos con NVM
 ```
-nvm list
+nvm list: Listar instaladas.
+nvm list available: Listar disponibles para descargar.
+nvm uninstall <version>: Desinstalar.
+nvm install <version>: Instalar
+nvm use <version>: Usar
 ```
 
 ## Generar proyecto
@@ -546,6 +550,7 @@ npm run start
 ```bash
 npm run build
 ```
+
 
 
 
