@@ -9,7 +9,7 @@
 
 ## Instalar Extenciones 
 
-### Crea un archivo a nivel de tu workspace "extensions.txt" 
+### Crea un archivo a nivel de tu workspace "spring-boot-extensions.txt" 
 ```bash
 alefragnani.project-manager
 christian-kohler.path-intellisense
@@ -346,6 +346,7 @@ vscjava.vscode-spring-initializr
   "github.copilot.nextEditSuggestions.enabled": true,
 }
 ```
+
 
 
 
