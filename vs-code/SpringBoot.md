@@ -7,49 +7,44 @@
         MICROSERVICIO 2
 ```
 
-## Iniciar Vscode
-### ubicarse en carpeta principal
-### Crear carpeta a nivel de Proyecto princial ".vscode"
-### crear archivo "extensions.json"
-### Contenido del archivo "extensions.json"
-```bash
-{
-  "recommendations": [
-    "naumovs.color-highlight",
-    "usernamehw.errorlens",
-    "oderwat.indent-rainbow",
-    "rangav.vscode-thunder-client",
-    "gruntfuggly.todo-tree",
-    "redhat.vscode-xml",
-    "redhat.vscode-yaml",
-    "pkief.material-icon-theme",
-    "vscjava.vscode-java-debug",
-    "vscjava.vscode-java-test",
-    "vscjava.vscode-gradle",
-    "redhat.java",
-    "vscjava.vscode-maven",
-    "vscjava.vscode-java-dependency",
-    "github.copilot-chat",
-    "vscjava.vscode-spring-boot-dashboard",
-    "vmware.vscode-spring-boot",
-    "vscjava.vscode-spring-initializr",
-    "vscjava.vscode-java-pack",
-    "vmware.vscode-boot-dev-pack",
-    "vscjava.vscode-lombok",
-    "sonarsource.sonarlint-vscode",
-    "shengchen.vscode-checkstyle",
-    "ms-azuretools.vscode-docker",
-    "humao.rest-client",
-    "ryanluker.vscode-coverage-gutters",
-    "alefragnani.project-manager",
-    "christian-kohler.path-intellisense",
-    "eamodio.gitlens"
-  ]
-}
+## Instalar Extenciones 
 
+### Crea un archivo a nivel de tu workspace "extensions.txt" 
+```bash
+alefragnani.project-manager
+christian-kohler.path-intellisense
+eamodio.gitlens
+github.copilot-chat
+gruntfuggly.todo-tree
+humao.rest-client
+ms-azuretools.vscode-containers
+ms-azuretools.vscode-docker
+oderwat.indent-rainbow
+pkief.material-icon-theme
+rangav.vscode-thunder-client
+redhat.java
+redhat.vscode-xml
+redhat.vscode-yaml
+ryanluker.vscode-coverage-gutters
+shengchen.vscode-checkstyle
+sonarsource.sonarlint-vscode
+vmware.vscode-boot-dev-pack
+vmware.vscode-spring-boot
+vscjava.vscode-gradle
+vscjava.vscode-java-debug
+vscjava.vscode-java-dependency
+vscjava.vscode-java-pack
+vscjava.vscode-java-test
+vscjava.vscode-lombok
+vscjava.vscode-maven
+vscjava.vscode-spring-boot-dashboard
+vscjava.vscode-spring-initializr
 ```
 
-
+### Para instalas ejecuta desde el PowerShell en el workspace
+```
+ cat extensions.txt | xargs -L 1 code --install-extension
+```
 
 ### File settings.json
 ```
@@ -351,6 +346,7 @@
   "github.copilot.nextEditSuggestions.enabled": true,
 }
 ```
+
 
 
 
