@@ -51,4 +51,10 @@
 }
 ```
 
+### Setear el JDK a nivel de consola
+```bash
+### Consola setting jdk
+$env:JAVA_HOME = "C:\software\jdk\jdk-21.0.2"
+$env:Path = "$env:JAVA_HOME\bin;$env:Path"
+```
 
