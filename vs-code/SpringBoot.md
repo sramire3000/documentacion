@@ -1,5 +1,45 @@
 # Visual Studio Code SPRING BOOT
 
+## Estructura de Carpetas
+```bash
+    PROYECTOS_EJEMPLO
+        MICROSERVICIO 1
+        MICROSERVICIO 2
+```
+
+## Iniciar Vscode
+### ubicarse en carpeta principal
+### Crear carpeta a nivel de Proyecto princial ".vscode"
+### crear archivo "extensions.json"
+### Contenido del archivo "extensions.json"
+```bash
+{
+  "recommendations": [
+    "naumovs.color-highlight",
+    "usernamehw.errorlens",
+    "oderwat.indent-rainbow",
+    "rangav.vscode-thunder-client",
+    "gruntfuggly.todo-tree",
+    "redhat.vscode-xml",
+    "redhat.vscode-yaml",
+    "pkief.material-icon-theme",
+    "vscjava.vscode-java-debug",
+    "vscjava.vscode-java-test",
+    "vscjava.vscode-java-pack",
+    "vscjava.vscode-gradle",
+    "redhat.java",
+    "vscjava.vscode-maven",
+    "vscjava.vscode-java-dependency",
+    "github.copilot-chat",
+    "vscjava.vscode-spring-boot-dashboard",
+    "vmware.vscode-spring-boot",
+    "vscjava.vscode-spring-initializr"
+  ]
+}
+```
+
+
+
 ### Extensions
 - [Color Highlight](https://marketplace.visualstudio.com/items?itemName=naumovs.color-highlight)
 - [Error Lens](https://marketplace.visualstudio.com/items?itemName=usernamehw.errorlens)
@@ -334,6 +374,7 @@
   "github.copilot.nextEditSuggestions.enabled": true,
 }
 ```
+
 
 
 
