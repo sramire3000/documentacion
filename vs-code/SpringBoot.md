@@ -25,7 +25,6 @@
     "pkief.material-icon-theme",
     "vscjava.vscode-java-debug",
     "vscjava.vscode-java-test",
-    "vscjava.vscode-java-pack",
     "vscjava.vscode-gradle",
     "redhat.java",
     "vscjava.vscode-maven",
@@ -33,9 +32,21 @@
     "github.copilot-chat",
     "vscjava.vscode-spring-boot-dashboard",
     "vmware.vscode-spring-boot",
-    "vscjava.vscode-spring-initializr"
+    "vscjava.vscode-spring-initializr",
+    "vscjava.vscode-java-pack",
+    "vmware.vscode-boot-dev-pack",
+    "vscjava.vscode-lombok",
+    "sonarsource.sonarlint-vscode",
+    "shengchen.vscode-checkstyle",
+    "ms-azuretools.vscode-docker",
+    "humao.rest-client",
+    "ryanluker.vscode-coverage-gutters",
+    "alefragnani.project-manager",
+    "christian-kohler.path-intellisense",
+    "eamodio.gitlens"
   ]
 }
+
 ```
 
 
@@ -374,6 +385,7 @@
   "github.copilot.nextEditSuggestions.enabled": true,
 }
 ```
+
 
 
 
