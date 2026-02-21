@@ -1,5 +1,15 @@
 # Visual Studio Code ANGULAR
 
+## Versiones de Angular
+```bash
+Angular CLI: 19.2.20
+Node: 
+primeng@^19 
+
+Angular CLI: 20.3.8
+Node: 24.3.0
+```
+
 ## Generar proyecto
 ```bash
 ng new my-proyect --routing=false --style=scss
@@ -530,6 +540,7 @@ npm run start
 ```bash
 npm run build
 ```
+
 
 
 
