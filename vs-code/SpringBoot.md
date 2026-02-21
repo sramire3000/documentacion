@@ -17,7 +17,7 @@
 ### Importar el archivo "Spring Boot.code-profile" en el profile
 
 
-### En archivo creado para guardar la configuracion del Workspace Agregar
+### En la configuración del Workspace adicionar
 ```bash
 "settings": {
 		"window.zoomLevel": 0, // Ajusta el nivel de zoom a tu preferencia
@@ -398,6 +398,7 @@
   "github.copilot.nextEditSuggestions.enabled": true,
 }
 ```
+
 
 
 
