@@ -13,7 +13,7 @@
 ## 1. Crear Archivo ".code-workspace" en la ruta raiz
 
 ### Contendio archivo ".code-workspace"
-```
+```bash
 {
   "folders": [
     {
@@ -109,7 +109,7 @@
 
 ## 3. Crear archivo "launch.json"
 
-```
+```bash
 {
   "configurations": [
     {
@@ -128,3 +128,144 @@
 }
 ```
 
+## 4. Crear archivo "settings.json" en cada proyecto
+```bash
+{
+  // ========== TOKEN COLORS - SYNTAX HIGHLIGHTING ==========
+  "editor.tokenColorCustomizations": {
+    "textMateRules": [
+      {
+        "scope": "comment",
+        "settings": {
+          "fontStyle": "italic",
+          "foreground": "#565f89"
+        }
+      },
+      {
+        "scope": "string",
+        "settings": {
+          "foreground": "#9ece6a"
+        }
+      },
+      {
+        "scope": "keyword, storage.type",
+        "settings": {
+          "foreground": "#bb9af7",
+          "fontStyle": "bold"
+        }
+      },
+      {
+        "scope": "variable.other.object",
+        "settings": {
+          "foreground": "#e0af68"
+        }
+      },
+      {
+        "scope": "entity.name.type.class, entity.name.type.interface",
+        "settings": {
+          "foreground": "#7dcfff",
+          "fontStyle": "bold"
+        }
+      },
+      {
+        "scope": "entity.name.function",
+        "settings": {
+          "foreground": "#7aa2f7"
+        }
+      },
+      {
+        "scope": "constant.numeric",
+        "settings": {
+          "foreground": "#ff9e64"
+        }
+      },
+      {
+        "scope": "annotation",
+        "settings": {
+          "foreground": "#f7768e",
+          "fontStyle": "bold"
+        }
+      }
+    ]
+  },
+  // ========== SEMANTIC HIGHLIGHTING ==========
+  "editor.semanticTokenColorCustomizations": {
+    "enabled": true,
+    "rules": {
+      "class": {
+        "foreground": "#7dcfff",
+        "fontStyle": "bold"
+      },
+      "interface": {
+        "foreground": "#7dcfff",
+        "fontStyle": "italic"
+      },
+      "enum": {
+        "foreground": "#bb9af7"
+      },
+      "typeParameter": {
+        "foreground": "#e0af68"
+      },
+      "method": {
+        "foreground": "#7aa2f7"
+      },
+      "*.spring": {
+        "foreground": "#9ece6a",
+        "fontStyle": "bold"
+      }
+    }
+  },
+  // ========== PRODUCTIVIDAD ==========
+  "files.trimTrailingWhitespace": true,
+  "files.insertFinalNewline": true,
+  "files.trimFinalNewlines": true,
+  // ========== TESTING ==========
+  "java.test.config": {
+    "vmArgs": [
+      "-Dspring.profiles.active=test",
+      "-Xmx1024m"
+    ]
+  },
+  // ========== CONFIGURACIONES ESPECÍFICAS POR LENGUAJE ==========
+  "[java]": {
+    "editor.defaultFormatter": "redhat.java",
+    "editor.suggest.snippetsPreventQuickSuggestions": false,
+    "editor.semanticHighlighting.enabled": true,
+    "editor.codeLens": true,
+    "editor.foldingImportsByDefault": true
+  },
+  "[json]": {
+    "editor.defaultFormatter": "vscode.json-language-features",
+    "editor.quickSuggestions": {
+      "strings": true
+    }
+  },
+  "[properties]": {
+    "editor.defaultFormatter": "redhat.java",
+    "editor.suggest.snippetsPreventQuickSuggestions": false
+  },
+  "[yaml]": {
+    "editor.defaultFormatter": "redhat.vscode-yaml",
+    "editor.tabSize": 2,
+    "editor.autoIndent": "advanced"
+  },
+  "[xml]": {
+    "editor.defaultFormatter": "redhat.vscode-xml"
+  },
+  // ========== JAVA CONFIGURATION ==========
+  "java.compile.nullAnalysis.mode": "automatic",
+  "java.configuration.updateBuildConfiguration": "automatic",
+  "java.debug.settings.onBuildFailureProceed": true,
+  "java.saveActions.organizeImports": true,
+  "java.completion.importOrder": [
+    "java",
+    "javax",
+    "jakarta",
+    "org.springframework",
+    "org.hibernate",
+    "lombok",
+    "com",
+    "#"
+  ],
+}
+```
