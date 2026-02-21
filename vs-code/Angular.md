@@ -8,6 +8,7 @@ primeng@^19
 
 Angular CLI: 20.3.8
 Node: 24.3.0
+primeng
 ```
 
 ## Generar proyecto
@@ -540,6 +541,7 @@ npm run start
 ```bash
 npm run build
 ```
+
 
 
 
