@@ -30,7 +30,7 @@ Created tunnel produccion-tunel with id xxxxxxxx-xxxx-xxxx
 ### PASO 4 — Crear archivo de configuración
 Crea este archivo:
 ```
-C:\cloudflared\config.yml
+C:\Users\[TU_USUARIO]\.cloudflared\config.yml
 ```
 
 Contenido (ajústalo según tus puertos):
