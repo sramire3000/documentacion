@@ -66,6 +66,8 @@ Lombok
 Actuator
 Eureka Discovery Client
 Resilience4J
+Cloud Bootstrap
+Config Client
 ```
 
 ### Packages
