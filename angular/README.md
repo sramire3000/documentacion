@@ -3,10 +3,14 @@
 ## 📦 NVM (Linux / macOS)
 
 🔹 Ver versión de NVM
-```
+```bash
 nvm --version
 ```
 
+🔹 Ver versiones disponibles de Node
+```bash
+nvm ls-remote
+```
 
 
 
@@ -553,6 +557,7 @@ Here are some related projects
 - [Angular](https://angular.dev/overview)
 - [HyperUI](https://hyperui.dev/)
 - [Prime Ng](https://primeng.org/)
+
 
 
 
