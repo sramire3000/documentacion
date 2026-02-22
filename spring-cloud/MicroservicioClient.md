@@ -127,3 +127,26 @@ controllers
 services
 clients
 ````
+
+### applications.properties
+```
+# Configuración del microservicio de items
+spring.application.name=jh-msvc-items
+# Puerto en el que se ejecutará el microservicio
+server.port=8082
+
+
+config.base-url.endpoint.msvc-products=http://jh-msvc-products
+
+# Configuracion Eureka Client
+eureka.client.service-url.defaultZone=http://localhost:8761/eureka/
+eureka.instance.prefer-ip-address=true
+eureka.client.registry-fetch-interval-seconds=10
+eureka.client.register-with-eureka=true
+eureka.client.fetch-registry=true
+
+#Habilitar Actuator End Point
+management.endpoints.web.exposure.include=*
+management.endpoint.health.show-details=always
+
+```
