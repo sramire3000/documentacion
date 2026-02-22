@@ -39,6 +39,54 @@ GoDaddy
 4. Espera propagación (5–30 min normalmente)
 ```
 
+# Cloudflare
+
+### 🔥 PASO 1 — Agregar dominio a Cloudflare
+```
+1. Entra a Cloudflare
+2. Click en Add a site
+3. Escribe tu dominio (ej: midominio.com)
+4. Elige el plan Free
+5. Continúa
+```
+Cloudflare escaneará DNS (no importa si no detecta nada).
+
+🔥 PASO 2 — Cambiar Nameservers en GoDaddy
+Cloudflare te dará 2 nameservers, algo así:
+```
+ns1.cloudflare.com
+ns2.cloudflare.com
+```
+Ahora ve a GoDaddy:
+
+Dominios
+
+Administrar DNS
+
+Nameservers
+
+Cambiar a Custom
+
+Coloca los 2 que te dio Cloudflare
+
+Guarda
+
+⏳ Espera 5–30 minutos (a veces hasta 1 hora).
+
+Cuando esté activo, Cloudflare te mostrará el dominio como Active.
+
+🔥 PASO 3 — Configurar SSL en Cloudflare
+
+En el panel de tu dominio:
+
+SSL/TLS → selecciona:
+
+👉 Full
+
+No uses Flexible.
+
+### 🔥 PASO 4 — Confirmar que todo está listo
+Cuando esté activo, ya podemos crear el túnel desde tu Windows.
 
 
 
