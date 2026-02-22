@@ -92,5 +92,6 @@ cloudflared service uninstall
 
 cloudflared service install --config C:\Users\TU_USUARIO\.cloudflared\config.yml
 
-
+```
 C:\Windows\System32\config\systemprofile\.cloudflared\
+```
