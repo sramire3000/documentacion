@@ -143,6 +143,11 @@ Debe mostrar algo como:
 ```bash
 v22.x.x
 ```
+Update Npm
+```bash
+npm install -g npm@11.10.1
+```
+
 
 🛠 Instalar Angular 21
 ```bash
@@ -696,6 +701,7 @@ Here are some related projects
 - [Angular](https://angular.dev/overview)
 - [HyperUI](https://hyperui.dev/)
 - [Prime Ng](https://primeng.org/)
+
 
 
 
