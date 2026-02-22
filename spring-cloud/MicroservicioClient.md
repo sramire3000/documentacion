@@ -135,7 +135,6 @@ spring.application.name=jh-msvc-items
 # Puerto en el que se ejecutará el microservicio
 server.port=8082
 
-
 config.base-url.endpoint.msvc-products=http://jh-msvc-products
 
 # Configuracion Eureka Client
@@ -149,4 +148,39 @@ eureka.client.fetch-registry=true
 management.endpoints.web.exposure.include=*
 management.endpoint.health.show-details=always
 
+```
+
+### application.yml
+```
+resilience4j:
+  circuitbreaker:
+    configs:
+      defecto:
+        sliding-window-size: 6
+        failure-rate-threshold: 50
+        wait-duration-in-open-state: 20s
+        permitted-number-of-calls-in-half-open-state: 4
+        slow-call-duration-threshold: 3s
+        slow-call-rate-threshold: 50
+    instances:
+      items:
+        base-config: defecto
+  timelimiter:
+    configs:
+      defecto:
+        timeout-duration: 4s
+    instances:
+      items:
+        base-config: defecto
+```
+
+### bootstrap.properties
+```
+# Configuración del microservicio de items
+spring.application.name=jh-msvc-items
+
+# Configuración del servidor de configuración
+spring.cloud.config.uri=http://localhost:8888
+# Configuración del perfil activo
+spring.profiles.active=dev
 ```
