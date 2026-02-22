@@ -12,7 +12,35 @@ nvm --version
 nvm ls-remote
 ```
 
+🔹 Instalar la última versión LTS
+```bash
+nvm install --lts
+```
 
+🔹 Instalar una versión específica
+```bash
+nvm install 20.11.1
+```
+
+🔹 Ver versiones instaladas
+```bash
+nvm ls
+```
+
+🔹 Usar una versión específica
+```bash
+nvm use 20.11.1
+```
+
+🔹 Establecer una versión por defecto
+```bash
+nvm alias default 20.11.1
+```
+
+🔹 Desinstalar una versión
+```bash
+nvm uninstall 18.18.2
+```
 
 ## 🪟 NVM para Windows (nvm-windows)
 
@@ -557,6 +585,7 @@ Here are some related projects
 - [Angular](https://angular.dev/overview)
 - [HyperUI](https://hyperui.dev/)
 - [Prime Ng](https://primeng.org/)
+
 
 
 
