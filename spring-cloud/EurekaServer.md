@@ -67,23 +67,21 @@ eureka.instance.lease-renewal-interval-in-seconds=30
 # SEGURIDAD: Dashboard deshabilitado en producción
 eureka.dashboard.enabled=true
 
-# Logging
-logging.level.root=INFO
-logging.level.com.netflix.eureka=WARN
-logging.level.com.netflix.discovery=WARN
-
 # Información del servidor
 info.app.name=${spring.application.name}
 info.app.description=Service Registry Server
 
 #Logs
 logging.level.root=INFO
+logging.level.com.netflix.eureka=WARN
+logging.level.com.netflix.discovery=WARN
 logging.level.org.springframework.web=INFO
 logging.level.guru.springframework.blogs.controllers=INFO
 logging.level.org.hibernate=ERROR
 logging.file.name=E:/Runtime/JHTechnologiesSV/logs/jh-eureka-server.log
 logging.logback.rollingpolicy.max-history=15
 logging.logback.rollingpolicy.max-file-size=5MB
+
 ````
 
 ### URL
