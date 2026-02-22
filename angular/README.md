@@ -43,6 +43,36 @@ nvm uninstall 18.18.2
 ```
 
 ## 🪟 NVM para Windows (nvm-windows)
+⚠️ En Windows el comando es parecido, pero es otra implementación.
+
+🔹 Ver versión
+```bash
+nvm version
+```
+🔹 Ver versiones disponibles
+```bash
+nvm list available
+```
+
+🔹 Instalar versión
+```bash
+nvm install 20.11.1
+```
+
+🔹 Ver versiones instaladas 
+```bash
+nvm list
+```
+
+🔹 Cambiar versión
+```bash
+nvm use 20.11.1
+```
+
+🔹 Desinstalar versión
+```bash
+nvm uninstall 18.18.2
+```
 
 # Angular
 The framework for building scalable web apps with confidence
@@ -585,6 +615,7 @@ Here are some related projects
 - [Angular](https://angular.dev/overview)
 - [HyperUI](https://hyperui.dev/)
 - [Prime Ng](https://primeng.org/)
+
 
 
 
