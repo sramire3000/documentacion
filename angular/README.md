@@ -1,3 +1,9 @@
+# NVM
+
+## 📦 NVM (Linux / macOS)
+
+## 🪟 NVM para Windows (nvm-windows)
+
 # Angular
 The framework for building scalable web apps with confidence
 
@@ -539,6 +545,7 @@ Here are some related projects
 - [Angular](https://angular.dev/overview)
 - [HyperUI](https://hyperui.dev/)
 - [Prime Ng](https://primeng.org/)
+
 
 
 
