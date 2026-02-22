@@ -88,6 +88,39 @@ nvm use
 ```
 Y automáticamente tomará la versión del archivo.
 
+## 📦 Comandos NVM para instalar Angular 20
+
+🔹 1️⃣ Instalar Node 20 LTS
+```
+nvm install 20
+```
+🔹 2️⃣ Usarlo en tu entorno
+```
+nvm use 20
+```
+🔹 3️⃣ Establecerlo como predeterminado
+```
+nvm alias default 20
+```
+🔹 4️⃣ Verificar versión
+```
+node -v
+```
+Debería mostrar algo como:
+```
+v20.x.x
+
+## 🚀 Instalar Angular 20
+
+🔹 Después de configurar Node:
+```
+npm install -g @angular/cli@20
+```
+🔹 Verificar:
+```
+ng version
+```
+
 # Angular
 The framework for building scalable web apps with confidence
 
@@ -630,6 +663,7 @@ Here are some related projects
 - [Angular](https://angular.dev/overview)
 - [HyperUI](https://hyperui.dev/)
 - [Prime Ng](https://primeng.org/)
+
 
 
 
