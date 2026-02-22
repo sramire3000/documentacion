@@ -74,6 +74,20 @@ nvm use 20.11.1
 nvm uninstall 18.18.2
 ```
 
+💡 Extra útil para proyectos (muy recomendable)
+Crear archivo .nvmrc
+
+Dentro del proyecto:
+```bash
+echo "20.11.1" > .nvmrc
+```
+
+Luego puedes usar:
+```
+nvm use
+```
+Y automáticamente tomará la versión del archivo.
+
 # Angular
 The framework for building scalable web apps with confidence
 
@@ -104,6 +118,7 @@ Node: 18.19.1
 
 ```
 Angular	Node.js	             TypeScript	npm	   Fecha Lanzamiento	Estado
+21.0.x	20.19.0/ 22.12.0/24.0.0	>=5.9.0 <6.0.0	^6.5.3 || ^7.4.0
 v20	    18.19+ / 20.10+ / 22.0+	5.6+	8.11+  Mayo 2025	        PRÓXIMA VERSIÓN
 v19	    18.19+ / 20.10+ / 22.0+	5.4+	8.11+  Nov 2024	            ÚLTIMA ESTABLE
 v18	    18.19+ / 20.10+	        5.4+	8.11+  Mayo 2024	        LTS (hasta 2026)
@@ -615,6 +630,7 @@ Here are some related projects
 - [Angular](https://angular.dev/overview)
 - [HyperUI](https://hyperui.dev/)
 - [Prime Ng](https://primeng.org/)
+
 
 
 
