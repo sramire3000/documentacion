@@ -78,3 +78,19 @@ cloudflared service install
 cloudflared tunnel list
 ```
 
+### Verifica el servicio 
+```
+sc query cloudflared
+```
+
+### Confirma la conexion
+```
+cloudflared tunnel info produccion-tunel
+```
+
+cloudflared service uninstall
+
+cloudflared service install --config C:\Users\TU_USUARIO\.cloudflared\config.yml
+
+
+C:\Windows\System32\config\systemprofile\.cloudflared\
