@@ -47,8 +47,29 @@ ingress:
 
   - service: http_status:404
 ```
-🔹 localhost:80 → Nginx (Angular)
-🔹 localhost:8080 → Tus microservicios
+localhost:80 → Nginx (Angular)
+localhost:8080 → Tus microservicios
+
+### PASO 5 — Crear registros DNS automáticos
+Ejecuta:
+```
+cloudflared tunnel route dns produccion-tunel tudominio.com
+cloudflared tunnel route dns produccion-tunel api.tudominio.com
+```
+
+### PASO 6 — Ejecutar el túnel
+
+```
+cloudflared tunnel run produccion-tunel
+```
+Si todo está bien:
+Tu dominio ya será accesible con HTTPS
+
+### PASO 7 — Instalar como servicio (OBLIGATORIO)
+```
+cloudflared service install
+```
+
 
 
 
