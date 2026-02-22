@@ -28,6 +28,29 @@ Created tunnel produccion-tunel with id xxxxxxxx-xxxx-xxxx
 ```
 
 ### PASO 4 — Crear archivo de configuración
+Crea este archivo:
+```
+C:\cloudflared\config.yml
+```
+
+Contenido (ajústalo según tus puertos):
+```
+tunnel: ID_DEL_TUNEL
+credentials-file: C:\Users\TU_USUARIO\.cloudflared\ID_DEL_TUNEL.json
+
+ingress:
+  - hostname: tudominio.com
+    service: http://localhost:80
+
+  - hostname: api.tudominio.com
+    service: http://localhost:8080
+
+  - service: http_status:404
+```
+🔹 localhost:80 → Nginx (Angular)
+🔹 localhost:8080 → Tus microservicios
+
+
 
 ### Ejecuta este comando y dime EXACTAMENTE qué muestra:
 ```
