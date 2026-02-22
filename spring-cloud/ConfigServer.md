@@ -48,7 +48,7 @@ spring.application.name=jh-config-server
 # Config Server port
 server.port=8888
 
-spring.cloud.config.server.git.basedir=E:/Runtime/JHTechnologiesSV/tmp-base-git
+spring.cloud.config.server.git.basedir=/Runtime/tmp-base-git
 # Git repository location for configuration files
 spring.cloud.config.server.git.uri=https://github.com/sramire3000/spring-cloud-jh-repository.git
 spring.cloud.config.server.git.force-pull=true
@@ -75,7 +75,7 @@ logging.level.root=INFO
 logging.level.org.springframework.web=INFO
 logging.level.guru.springframework.blogs.controllers=INFO
 logging.level.org.hibernate=ERROR
-logging.file.name=E:/Runtime/JHTechnologiesSV/logs/jh-config-server.log
+logging.file.name=/Runtime/logs/jh-config-server.log
 logging.logback.rollingpolicy.max-history=15
 logging.logback.rollingpolicy.max-file-size=5MB
 ````
