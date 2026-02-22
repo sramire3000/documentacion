@@ -2,6 +2,14 @@
 
 ## 📦 NVM (Linux / macOS)
 
+🔹 Ver versión de NVM
+```
+nvm --version
+```
+
+
+
+
 ## 🪟 NVM para Windows (nvm-windows)
 
 # Angular
@@ -545,6 +553,7 @@ Here are some related projects
 - [Angular](https://angular.dev/overview)
 - [HyperUI](https://hyperui.dev/)
 - [Prime Ng](https://primeng.org/)
+
 
 
 
