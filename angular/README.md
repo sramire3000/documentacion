@@ -74,7 +74,7 @@ nvm use 20.11.1
 nvm uninstall 18.18.2
 ```
 
-💡 Extra útil para proyectos (muy recomendable)
+## 💡 Extra útil para proyectos (muy recomendable)
 Crear archivo .nvmrc
 
 Dentro del proyecto:
@@ -630,6 +630,7 @@ Here are some related projects
 - [Angular](https://angular.dev/overview)
 - [HyperUI](https://hyperui.dev/)
 - [Prime Ng](https://primeng.org/)
+
 
 
 
