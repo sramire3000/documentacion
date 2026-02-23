@@ -261,8 +261,6 @@ features/
 ## 🐧 1️⃣ Script para Linux / Ubuntu / WSL / Mac
 
 Guárdalo como:
-```
-create-angular-structure.sh
 ```bash
 create-angular-structure.sh
 ```
