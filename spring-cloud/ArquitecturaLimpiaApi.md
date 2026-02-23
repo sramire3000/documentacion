@@ -5,39 +5,66 @@ Basada en principios de Robert C. Martin y aplicada a Spring Boot.
 
 📁 Estructura de Carpetas
 ```bash
-com.tuempresa.productosapi
+com.tuempresa.productos
 │
-├── domain
-│   ├── model
-│   │     └── Producto.java
-│   ├── repository
-│   │     └── ProductoRepository.java
+├── domain/                         # Núcleo puro
+│   ├── model/
+│   │   └── Producto.java
+│   ├── repository/
+│   │   └── ProductoRepository.java
+│   ├── exception/
+│   │   └── BusinessException.java
+│   └── service/
+│       └── ProductoDomainService.java
 │
-├── application
-│   ├── usecase
-│   │     ├── CrearProductoUseCase.java
-│   │     ├── ObtenerProductoUseCase.java
-│   │     └── ListarProductosUseCase.java
-│   ├── dto
-│   │     ├── ProductoRequestDTO.java
-│   │     └── ProductoResponseDTO.java
+├── application/                    # Casos de uso
+│   ├── usecase/
+│   │   ├── crear/
+│   │   │   ├── CrearProductoUseCase.java
+│   │   │   ├── CrearProductoCommand.java
+│   │   │   └── CrearProductoResponse.java
+│   │   ├── listar/
+│   │   │   └── ListarProductosUseCase.java
+│   │   ├── actualizar/
+│   │   └── eliminar/
+│   │
+│   ├── port/
+│   │   ├── input/
+│   │   └── output/
+│   │       └── ProductoPersistencePort.java
+│   │
+│   └── mapper/
 │
-├── infrastructure
-│   ├── persistence
-│   │     ├── entity
-│   │     │     └── ProductoEntity.java
-│   │     ├── repository
-│   │     │     └── ProductoJpaRepository.java
-│   │     └── adapter
-│   │           └── ProductoRepositoryImpl.java
-│   ├── config
-│   └── exception
+├── infrastructure/                 # Implementaciones técnicas
+│   ├── persistence/
+│   │   ├── entity/
+│   │   │   └── ProductoEntity.java
+│   │   ├── repository/
+│   │   │   └── ProductoJpaRepository.java
+│   │   └── adapter/
+│   │       └── ProductoPersistenceAdapter.java
+│   │
+│   ├── security/
+│   │   ├── config/
+│   │   ├── jwt/
+│   │   ├── filter/
+│   │   └── TenantFilter.java
+│   │
+│   ├── config/
+│   │   ├── OpenApiConfig.java
+│   │   └── JacksonConfig.java
+│   │
+│   └── exception/
+│       └── GlobalExceptionHandler.java
 │
-├── interfaces
-│   └── rest
-│         └── ProductoController.java
+├── interfaces/                     # Adaptadores de entrada
+│   └── rest/
+│       ├── ProductoController.java
+│       └── dto/
+│           ├── ProductoRequestDTO.java
+│           └── ProductoResponseDTO.java
 │
-└── ProductosApiApplication.java
+└── ProductosApplication.java
 ```
 
 ## Ejemplo:
