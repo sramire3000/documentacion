@@ -47,3 +47,15 @@ com.tuempresa.productos
 │
 └── ProductosApplication.java
 ```
+
+## 🔄 Flujo ahora
+```
+Controller
+   ↓
+UseCase
+   ↓
+Repository (Spring Data JPA)
+   ↓
+Base de datos
+```
+
