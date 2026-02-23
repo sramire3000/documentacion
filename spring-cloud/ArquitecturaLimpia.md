@@ -85,6 +85,32 @@ public class Producto {
 ```
 
 ### 🟡 APPLICATION
+ProductoRequest.java
+```
+package com.tuempresa.productos.application.dto;
+
+import lombok.Data;
+
+@Data
+public class ProductoRequest {
+    private String nombre;
+    private Double precio;
+}
+```
+ProductoResponse.java
+```
+package com.tuempresa.productos.application.dto;
+
+import lombok.*;
+
+@Getter
+@AllArgsConstructor
+public class ProductoResponse {
+    private Long id;
+    private String nombre;
+    private Double precio;
+}
+```
 ### 🟠 CASOS DE USO
 ### 🔵 INFRASTRUCTURE
 ### 🌐 WEB
