@@ -300,10 +300,6 @@ mkdir -p $BASE/domain/model
 mkdir -p $BASE/domain/exception
 mkdir -p $BASE/domain/service
 
-touch $BASE/domain/model/Producto.java
-touch $BASE/domain/exception/BusinessException.java
-touch $BASE/domain/service/ProductoDomainService.java
-
 # APPLICATION
 mkdir -p $BASE/application/usecase/crear
 mkdir -p $BASE/application/usecase/listar
@@ -312,15 +308,6 @@ mkdir -p $BASE/application/usecase/eliminar
 mkdir -p $BASE/application/dto
 mkdir -p $BASE/application/mapper
 
-touch $BASE/application/usecase/crear/CrearProductoUseCase.java
-touch $BASE/application/usecase/listar/ListarProductosUseCase.java
-touch $BASE/application/usecase/actualizar/ActualizarProductoUseCase.java
-touch $BASE/application/usecase/eliminar/EliminarProductoUseCase.java
-
-touch $BASE/application/dto/ProductoRequest.java
-touch $BASE/application/dto/ProductoResponse.java
-touch $BASE/application/mapper/ProductoMapper.java
-
 # INFRASTRUCTURE
 mkdir -p $BASE/infrastructure/persistence/entity
 mkdir -p $BASE/infrastructure/persistence/repository
@@ -328,16 +315,9 @@ mkdir -p $BASE/infrastructure/security
 mkdir -p $BASE/infrastructure/config
 mkdir -p $BASE/infrastructure/exception
 
-touch $BASE/infrastructure/persistence/entity/ProductoEntity.java
-touch $BASE/infrastructure/persistence/repository/ProductoRepository.java
-touch $BASE/infrastructure/exception/GlobalExceptionHandler.java
-
 # WEB
 mkdir -p $BASE/web/controller
 touch $BASE/web/controller/ProductoController.java
-
-# MAIN
-touch $BASE/ProductosApplication.java
 
 echo "Estructura creada correctamente 🚀"
 ```
@@ -365,10 +345,6 @@ mkdir %BASE%\domain\model
 mkdir %BASE%\domain\exception
 mkdir %BASE%\domain\service
 
-type nul > %BASE%\domain\model\Producto.java
-type nul > %BASE%\domain\exception\BusinessException.java
-type nul > %BASE%\domain\service\ProductoDomainService.java
-
 REM APPLICATION
 mkdir %BASE%\application\usecase\crear
 mkdir %BASE%\application\usecase\listar
@@ -377,15 +353,6 @@ mkdir %BASE%\application\usecase\eliminar
 mkdir %BASE%\application\dto
 mkdir %BASE%\application\mapper
 
-type nul > %BASE%\application\usecase\crear\CrearProductoUseCase.java
-type nul > %BASE%\application\usecase\listar\ListarProductosUseCase.java
-type nul > %BASE%\application\usecase\actualizar\ActualizarProductoUseCase.java
-type nul > %BASE%\application\usecase\eliminar\EliminarProductoUseCase.java
-
-type nul > %BASE%\application\dto\ProductoRequest.java
-type nul > %BASE%\application\dto\ProductoResponse.java
-type nul > %BASE%\application\mapper\ProductoMapper.java
-
 REM INFRASTRUCTURE
 mkdir %BASE%\infrastructure\persistence\entity
 mkdir %BASE%\infrastructure\persistence\repository
@@ -393,16 +360,9 @@ mkdir %BASE%\infrastructure\security
 mkdir %BASE%\infrastructure\config
 mkdir %BASE%\infrastructure\exception
 
-type nul > %BASE%\infrastructure\persistence\entity\ProductoEntity.java
-type nul > %BASE%\infrastructure\persistence\repository\ProductoRepository.java
-type nul > %BASE%\infrastructure\exception\GlobalExceptionHandler.java
-
 REM WEB
 mkdir %BASE%\web\controller
-type nul > %BASE%\web\controller\ProductoController.java
 
-REM MAIN
-type nul > %BASE%\ProductosApplication.java
 
 echo Estructura creada correctamente 🚀
 pause
