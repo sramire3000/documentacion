@@ -5,45 +5,96 @@
 src/
 │
 ├── app/
-│   ├── core/
-│   │   ├── config/
+│   │
+│   ├── core/                        # Solo una vez en toda la app
+│   │   ├── auth/
+│   │   │   ├── auth.service.ts
+│   │   │   ├── auth.facade.ts
+│   │   │   └── auth.model.ts
+│   │   │
 │   │   ├── guards/
+│   │   │   ├── auth.guard.ts
+│   │   │   └── role.guard.ts
+│   │   │
 │   │   ├── interceptors/
-│   │   ├── services/
+│   │   │   ├── auth.interceptor.ts
+│   │   │   ├── error.interceptor.ts
+│   │   │   └── tenant.interceptor.ts
+│   │   │
+│   │   ├── config/
+│   │   │   ├── api.config.ts
+│   │   │   └── app.config.ts
+│   │   │
+│   │   ├── layout/
+│   │   │   ├── main-layout/
+│   │   │   └── auth-layout/
+│   │   │
 │   │   └── core.providers.ts
 │   │
-│   ├── shared/
+│   ├── shared/                      # Reutilizable y genérico
 │   │   ├── components/
-│   │   ├── directives/
+│   │   │   ├── data-table/
+│   │   │   ├── confirm-dialog/
+│   │   │   ├── modal/
+│   │   │   └── loading-spinner/
+│   │   │
+│   │   ├── ui/                      # Wrappers de librerías UI
 │   │   ├── pipes/
-│   │   ├── ui/
+│   │   ├── directives/
+│   │   ├── validators/
 │   │   └── shared.providers.ts
 │   │
-│   ├── layout/
-│   │   ├── main-layout/
-│   │   └── auth-layout/
+│   ├── features/                    # Aquí vive el negocio real
 │   │
-│   ├── features/
 │   │   ├── productos/
-│   │   │   ├── pages/
-│   │   │   ├── components/
-│   │   │   ├── services/
-│   │   │   ├── models/
-│   │   │   ├── dto/
-│   │   │   ├── state/
+│   │   │   ├── domain/
+│   │   │   │   ├── models/
+│   │   │   │   │   └── producto.model.ts
+│   │   │   │   ├── repositories/
+│   │   │   │   │   └── producto.repository.ts
+│   │   │   │   └── mappers/
+│   │   │   │       └── producto.mapper.ts
+│   │   │   │
+│   │   │   ├── application/
+│   │   │   │   ├── use-cases/
+│   │   │   │   │   ├── crear-producto.usecase.ts
+│   │   │   │   │   ├── listar-productos.usecase.ts
+│   │   │   │   │   └── actualizar-producto.usecase.ts
+│   │   │   │   └── dto/
+│   │   │   │       ├── producto-request.dto.ts
+│   │   │   │       └── producto-response.dto.ts
+│   │   │   │
+│   │   │   ├── infrastructure/
+│   │   │   │   ├── producto-http.repository.ts
+│   │   │   │   └── producto.api.ts
+│   │   │   │
+│   │   │   ├── presentation/
+│   │   │   │   ├── pages/
+│   │   │   │   │   ├── productos-list.page.ts
+│   │   │   │   │   └── producto-form.page.ts
+│   │   │   │   ├── components/
+│   │   │   │   │   └── producto-form.component.ts
+│   │   │   │   └── state/
+│   │   │   │       └── productos.store.ts
+│   │   │   │
 │   │   │   └── productos.routes.ts
 │   │   │
 │   │   ├── ventas/
 │   │   ├── compras/
 │   │   ├── inventario/
-│   │   └── contabilidad/
+│   │   ├── contabilidad/
+│   │   └── administracion/
 │   │
 │   ├── app.routes.ts
-│   └── app.config.ts
+│   ├── app.config.ts
+│   └── main.ts
 │
 ├── environments/
+│   ├── environment.ts
+│   └── environment.prod.ts
 │
-└── main.ts
+├── assets/
+└── styles/
 ```
 
 ### 🔵 1️⃣ Core (Solo una vez en la app)
