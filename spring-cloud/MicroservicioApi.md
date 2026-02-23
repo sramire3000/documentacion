@@ -21,6 +21,7 @@ Cloud Bootstrap spring cloud
 Lombok
 Actuator
 Eureka Discovery Client
+Config Client
 ```
 
 ### Packages
