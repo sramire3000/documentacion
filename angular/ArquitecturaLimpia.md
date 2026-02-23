@@ -215,7 +215,7 @@ export class ProductosListPage {
 ```
 
 🚀 Rutas Lazy Loading
-```
+```bash
 // app.routes.ts
 export const routes: Routes = [
   {
@@ -255,3 +255,65 @@ features/
  ├── ventas/
  └── administracion/
 ```
+
+# ARCHIVOS PARA CREAR ESTRUCTURA
+
+## 🐧 1️⃣ Script para Linux / Ubuntu / WSL / Mac
+
+Guárdalo como:
+```
+create-angular-structure.sh
+```bash
+create-angular-structure.sh
+```
+Contenido:
+```bash
+#!/bin/bash
+
+BASE="src/app"
+
+# Core
+mkdir -p $BASE/core/{auth,guards,interceptors,config,layout/main-layout,layout/auth-layout}
+
+touch $BASE/core/auth/{auth.service.ts,auth.facade.ts,auth.model.ts}
+touch $BASE/core/guards/{auth.guard.ts,role.guard.ts}
+touch $BASE/core/interceptors/{auth.interceptor.ts,error.interceptor.ts,tenant.interceptor.ts}
+touch $BASE/core/config/{api.config.ts,app.config.ts}
+touch $BASE/core/core.providers.ts
+
+# Shared
+mkdir -p $BASE/shared/{components/data-table,components/confirm-dialog,components/modal,components/loading-spinner,ui,pipes,directives,validators}
+
+touch $BASE/shared/shared.providers.ts
+
+# Features base modules
+for feature in productos ventas compras inventario contabilidad administracion
+do
+  mkdir -p $BASE/features/$feature/{domain/models,domain/repositories,domain/mappers}
+  mkdir -p $BASE/features/$feature/{application/use-cases,application/dto}
+  mkdir -p $BASE/features/$feature/infrastructure
+  mkdir -p $BASE/features/$feature/presentation/{pages,components,state}
+
+  touch $BASE/features/$feature/$feature.routes.ts
+done
+
+# App base files
+touch $BASE/app.routes.ts
+touch $BASE/app.config.ts
+touch src/main.ts
+
+# Environments
+mkdir -p src/environments
+touch src/environments/{environment.ts,environment.prod.ts}
+
+echo "✅ Estructura Angular Enterprise creada correctamente."
+```
+
+Dar permisos y ejecutar:
+```bash
+chmod +x create-angular-structure.sh
+./create-angular-structure.sh
+```
+
+## 🪟 2️⃣ Script para Windows (PowerShell)
+
