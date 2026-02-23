@@ -1,6 +1,6 @@
 # ARQUITECTURA LIMPIA
 
-## 📁 Estructura Profesional Recomendada
+### 📁 Estructura Profesional Recomendada
 ```bash
 src/
 │
@@ -44,4 +44,18 @@ src/
 ├── environments/
 │
 └── main.ts
+```
+
+### 🔵 1️⃣ Core (Solo una vez en la app)
+```
+core/
+ ├── interceptors/   → JWT, errores
+ ├── guards/         → auth, permisos
+ ├── services/       → auth.service.ts
+ ├── config/         → api.config.ts
+```
+
+Ejemplo:
+``` TypeScript
+// core/interceptors/auth.interceptor.ts
 ```
