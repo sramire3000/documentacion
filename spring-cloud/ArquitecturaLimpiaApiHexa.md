@@ -1,4 +1,4 @@
-# ARQUITECTURA LIMPIA PARA API
+# ARQUITECTURA LIMPIA PARA API HEXAGONAL
 
 ## 🏗 Arquitectura Recomendada (Clean + Profesional)
 Basada en principios de Robert C. Martin y aplicada a Spring Boot.
