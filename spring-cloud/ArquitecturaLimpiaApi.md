@@ -66,6 +66,139 @@ com.tuempresa.productos
 │
 └── ProductosApplication.java
 ```
+## 🐧 Script para Linux / Mac (bash)
+
+Guárdalo como: crear-estructura.sh
+```bash
+#!/bin/bash
+
+BASE_DIR=src/main/java/com/tuempresa/productos
+
+# Crear directorios
+mkdir -p $BASE_DIR/domain/model
+mkdir -p $BASE_DIR/domain/repository
+mkdir -p $BASE_DIR/domain/exception
+mkdir -p $BASE_DIR/domain/service
+
+mkdir -p $BASE_DIR/application/usecase/crear
+mkdir -p $BASE_DIR/application/usecase/listar
+mkdir -p $BASE_DIR/application/usecase/actualizar
+mkdir -p $BASE_DIR/application/usecase/eliminar
+mkdir -p $BASE_DIR/application/port/input
+mkdir -p $BASE_DIR/application/port/output
+mkdir -p $BASE_DIR/application/mapper
+
+mkdir -p $BASE_DIR/infrastructure/persistence/entity
+mkdir -p $BASE_DIR/infrastructure/persistence/repository
+mkdir -p $BASE_DIR/infrastructure/persistence/adapter
+mkdir -p $BASE_DIR/infrastructure/security/config
+mkdir -p $BASE_DIR/infrastructure/security/jwt
+mkdir -p $BASE_DIR/infrastructure/security/filter
+mkdir -p $BASE_DIR/infrastructure/config
+mkdir -p $BASE_DIR/infrastructure/exception
+
+mkdir -p $BASE_DIR/interfaces/rest/dto
+
+# Crear archivos vacíos
+touch $BASE_DIR/domain/model/Producto.java
+touch $BASE_DIR/domain/repository/ProductoRepository.java
+touch $BASE_DIR/domain/exception/BusinessException.java
+touch $BASE_DIR/domain/service/ProductoDomainService.java
+
+touch $BASE_DIR/application/usecase/crear/CrearProductoUseCase.java
+touch $BASE_DIR/application/usecase/crear/CrearProductoCommand.java
+touch $BASE_DIR/application/usecase/crear/CrearProductoResponse.java
+touch $BASE_DIR/application/usecase/listar/ListarProductosUseCase.java
+touch $BASE_DIR/application/port/output/ProductoPersistencePort.java
+
+touch $BASE_DIR/infrastructure/persistence/entity/ProductoEntity.java
+touch $BASE_DIR/infrastructure/persistence/repository/ProductoJpaRepository.java
+touch $BASE_DIR/infrastructure/persistence/adapter/ProductoPersistenceAdapter.java
+touch $BASE_DIR/infrastructure/security/filter/TenantFilter.java
+touch $BASE_DIR/infrastructure/config/OpenApiConfig.java
+touch $BASE_DIR/infrastructure/config/JacksonConfig.java
+touch $BASE_DIR/infrastructure/exception/GlobalExceptionHandler.java
+
+touch $BASE_DIR/interfaces/rest/ProductoController.java
+touch $BASE_DIR/interfaces/rest/dto/ProductoRequestDTO.java
+touch $BASE_DIR/interfaces/rest/dto/ProductoResponseDTO.java
+
+touch $BASE_DIR/ProductosApplication.java
+
+echo "✅ Estructura creada correctamente"
+```
+
+Dar permisos y ejecutar:
+```bash
+chmod +x crear-estructura.sh
+./crear-estructura.sh
+```
+
+## 🪟 Script para Windows (PowerShell)
+
+Guárdalo como: crear-estructura.ps1
+```bash
+$BASE_DIR = "src/main/java/com/tuempresa/productos"
+
+# Crear directorios
+New-Item -ItemType Directory -Force -Path "$BASE_DIR/domain/model"
+New-Item -ItemType Directory -Force -Path "$BASE_DIR/domain/repository"
+New-Item -ItemType Directory -Force -Path "$BASE_DIR/domain/exception"
+New-Item -ItemType Directory -Force -Path "$BASE_DIR/domain/service"
+
+New-Item -ItemType Directory -Force -Path "$BASE_DIR/application/usecase/crear"
+New-Item -ItemType Directory -Force -Path "$BASE_DIR/application/usecase/listar"
+New-Item -ItemType Directory -Force -Path "$BASE_DIR/application/usecase/actualizar"
+New-Item -ItemType Directory -Force -Path "$BASE_DIR/application/usecase/eliminar"
+New-Item -ItemType Directory -Force -Path "$BASE_DIR/application/port/input"
+New-Item -ItemType Directory -Force -Path "$BASE_DIR/application/port/output"
+New-Item -ItemType Directory -Force -Path "$BASE_DIR/application/mapper"
+
+New-Item -ItemType Directory -Force -Path "$BASE_DIR/infrastructure/persistence/entity"
+New-Item -ItemType Directory -Force -Path "$BASE_DIR/infrastructure/persistence/repository"
+New-Item -ItemType Directory -Force -Path "$BASE_DIR/infrastructure/persistence/adapter"
+New-Item -ItemType Directory -Force -Path "$BASE_DIR/infrastructure/security/config"
+New-Item -ItemType Directory -Force -Path "$BASE_DIR/infrastructure/security/jwt"
+New-Item -ItemType Directory -Force -Path "$BASE_DIR/infrastructure/security/filter"
+New-Item -ItemType Directory -Force -Path "$BASE_DIR/infrastructure/config"
+New-Item -ItemType Directory -Force -Path "$BASE_DIR/infrastructure/exception"
+
+New-Item -ItemType Directory -Force -Path "$BASE_DIR/interfaces/rest/dto"
+
+# Crear archivos
+New-Item -ItemType File -Force -Path "$BASE_DIR/domain/model/Producto.java"
+New-Item -ItemType File -Force -Path "$BASE_DIR/domain/repository/ProductoRepository.java"
+New-Item -ItemType File -Force -Path "$BASE_DIR/domain/exception/BusinessException.java"
+New-Item -ItemType File -Force -Path "$BASE_DIR/domain/service/ProductoDomainService.java"
+
+New-Item -ItemType File -Force -Path "$BASE_DIR/application/usecase/crear/CrearProductoUseCase.java"
+New-Item -ItemType File -Force -Path "$BASE_DIR/application/usecase/crear/CrearProductoCommand.java"
+New-Item -ItemType File -Force -Path "$BASE_DIR/application/usecase/crear/CrearProductoResponse.java"
+New-Item -ItemType File -Force -Path "$BASE_DIR/application/usecase/listar/ListarProductosUseCase.java"
+New-Item -ItemType File -Force -Path "$BASE_DIR/application/port/output/ProductoPersistencePort.java"
+
+New-Item -ItemType File -Force -Path "$BASE_DIR/infrastructure/persistence/entity/ProductoEntity.java"
+New-Item -ItemType File -Force -Path "$BASE_DIR/infrastructure/persistence/repository/ProductoJpaRepository.java"
+New-Item -ItemType File -Force -Path "$BASE_DIR/infrastructure/persistence/adapter/ProductoPersistenceAdapter.java"
+New-Item -ItemType File -Force -Path "$BASE_DIR/infrastructure/security/filter/TenantFilter.java"
+New-Item -ItemType File -Force -Path "$BASE_DIR/infrastructure/config/OpenApiConfig.java"
+New-Item -ItemType File -Force -Path "$BASE_DIR/infrastructure/config/JacksonConfig.java"
+New-Item -ItemType File -Force -Path "$BASE_DIR/infrastructure/exception/GlobalExceptionHandler.java"
+
+New-Item -ItemType File -Force -Path "$BASE_DIR/interfaces/rest/ProductoController.java"
+New-Item -ItemType File -Force -Path "$BASE_DIR/interfaces/rest/dto/ProductoRequestDTO.java"
+New-Item -ItemType File -Force -Path "$BASE_DIR/interfaces/rest/dto/ProductoResponseDTO.java"
+
+New-Item -ItemType File -Force -Path "$BASE_DIR/ProductosApplication.java"
+
+Write-Host "✅ Estructura creada correctamente"
+```
+
+Ejecutar en PowerShell:
+```bash
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+.\crear-estructura.ps1
+```
 
 # Ejemplo:
 ## 📦 com.tuempresa.productos
