@@ -45,6 +45,9 @@ com.tuempresa.productos
 │   └── controller/
 │       └── ProductoController.java
 │
+├── utils/         
+│     └── UseCase.java
+│
 └── ProductosApplication.java
 ```
 
@@ -60,6 +63,32 @@ Base de datos
 ```
 
 ## Ejemplo:
+
+### 🟢 Utils
+UseCase.java
+```
+package com.tuempresa.productos.utils;
+
+import java.lang.annotation.Documented;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+
+import org.springframework.stereotype.Service;
+import org.springframework.validation.annotation.Validated;
+
+@Documented
+@Target(ElementType.TYPE)
+@Retention(RetentionPolicy.RUNTIME)
+@Service
+@Validated
+public @interface UseCase {
+
+}
+
+```
+
 
 ### 🟢 DOMAIN
 BusinessException.java
@@ -158,13 +187,12 @@ CrearProductoUseCase.java
 package com.tuempresa.productos.application.usecase;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.tuempresa.productos.infrastructure.persistence.repository.ProductoRepository;
 import com.tuempresa.productos.application.dto.*;
 import com.tuempresa.productos.application.mapper.ProductoMapper;
 
-@Service
+@UseCase
 @RequiredArgsConstructor
 public class CrearProductoUseCase {
 
@@ -184,13 +212,12 @@ ListarProductosUseCase.java
 package com.tuempresa.productos.application.usecase;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
 import com.tuempresa.productos.infrastructure.persistence.repository.ProductoRepository;
 import com.tuempresa.productos.application.mapper.ProductoMapper;
 
 import java.util.List;
 
-@Service
+@UseCase
 @RequiredArgsConstructor
 public class ListarProductosUseCase {
 
@@ -210,11 +237,10 @@ EliminarProductoUseCase.java
 package com.tuempresa.productos.application.usecase;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import com.tuempresa.productos.infrastructure.persistence.repository.ProductoRepository;
 
-@Service
+@UseCase
 @RequiredArgsConstructor
 public class EliminarProductoUseCase {
 
@@ -309,6 +335,8 @@ Contenido:
 
 BASE="src/main/java/com/tuempresa/productos"
 
+mkdir -p ~$BASE/utils
+
 # DOMAIN
 mkdir -p $BASE/domain/model
 mkdir -p $BASE/domain/exception
@@ -328,6 +356,7 @@ mkdir -p $BASE/infrastructure/persistence/repository
 mkdir -p $BASE/infrastructure/security
 mkdir -p $BASE/infrastructure/config
 mkdir -p $BASE/infrastructure/exception
+
 
 # WEB
 mkdir -p $BASE/web/controller
@@ -353,6 +382,8 @@ Contenido:
 @echo off
 
 set BASE=src\main\java\com\tuempresa\productos
+
+mkdir %BASE%\utils
 
 REM DOMAIN
 mkdir %BASE%\domain\model
