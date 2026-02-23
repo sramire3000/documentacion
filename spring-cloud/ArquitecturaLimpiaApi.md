@@ -200,6 +200,29 @@ Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
 .\crear-estructura.ps1
 ```
 
+### 📦 Dentro del microservicio (si NO quieres módulo separado)
+
+Si lo quieres dentro del mismo microservicio, crea:
+```
+com.tuempresa.productos
+tuempresa-platform/
+│
+├── shared-kernel   👈 librería común
+├── auth-service
+├── productos-service
+├── inventario-service
+├── ventas-service
+└── shared/
+    ├── util/
+    ├── constants/
+    ├── exception/
+    ├── response/
+    ├── security/
+    ├── tenant/
+    └── config/
+```
+
+
 # Ejemplo:
 ## 📦 com.tuempresa.productos
 
