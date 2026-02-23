@@ -270,7 +270,7 @@ import com.tuempresa.productos.application.dto.*;
 import com.tuempresa.productos.application.usecase.*;
 
 @RestController
-@RequestMapping("/productos")
+@RequestMapping("/api/productos")
 @RequiredArgsConstructor
 public class ProductoController {
 
