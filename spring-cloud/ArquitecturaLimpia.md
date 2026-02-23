@@ -62,6 +62,20 @@ Base de datos
 ## Ejemplo:
 
 ### 🟢 DOMAIN
+BusinessException.java
+```
+package com.tuempresa.productos.domain.model;
+
+public class BusinessException extends RuntimeException {
+
+  public BusinessException(String message) {
+    super(message);
+  }
+
+}
+```
+
+
 Producto.java (Modelo de dominio puro)
 ```
 package com.tuempresa.productos.domain.model;
@@ -78,7 +92,7 @@ public class Producto {
 
     public void validar() {
         if (precio <= 0) {
-            throw new RuntimeException("El precio debe ser mayor a 0");
+            throw new BusinessException("El precio debe ser mayor a 0");
         }
     }
 }
