@@ -45,7 +45,11 @@
       "projectName": "spring-boot-compras",
       "vmArgs": "-Xms128m -Xmx384m -XX:MaxMetaspaceSize=96m -XX:MaxDirectMemorySize=32m -XX:+UseG1GC -XX:+UseStringDeduplication",
       "args": "",
-      "envFile": "${workspaceFolder}/.env"
+      "envFile": "${workspaceFolder}/.env",
+      "env": {
+        "GIT_USERNAME": "",
+        "GIT_PASSWORD": ""
+      },
     }
   ]
 }
