@@ -324,7 +324,6 @@ create-angular-structure.ps1
 ```
 Contenido:
 ```bash
-</>PowerShell
 $BASE = "src/app"
 
 # Core
@@ -397,3 +396,15 @@ New-Item -ItemType File -Force -Path `
 
 Write-Output "✅ Estructura Angular Enterprise creada correctamente."
 ```
+
+Ejecutar en PowerShell:
+
+Si da error por políticas:
+```bash
+Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass
+```
+Luego:
+```bash
+.\create-angular-structure.ps1
+```
+
