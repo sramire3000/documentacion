@@ -318,6 +318,82 @@ chmod +x create-angular-structure.sh
 ## 🪟 2️⃣ Script para Windows (PowerShell)
 
 Guárdalo como:
-```bash x
+```bash
+
 create-angular-structure.ps1
+```
+Contenido:
+```bash
+</>PowerShell
+$BASE = "src/app"
+
+# Core
+New-Item -ItemType Directory -Force -Path `
+"$BASE/core/auth",
+"$BASE/core/guards",
+"$BASE/core/interceptors",
+"$BASE/core/config",
+"$BASE/core/layout/main-layout",
+"$BASE/core/layout/auth-layout" | Out-Null
+
+New-Item -ItemType File -Force -Path `
+"$BASE/core/auth/auth.service.ts",
+"$BASE/core/auth/auth.facade.ts",
+"$BASE/core/auth/auth.model.ts",
+"$BASE/core/guards/auth.guard.ts",
+"$BASE/core/guards/role.guard.ts",
+"$BASE/core/interceptors/auth.interceptor.ts",
+"$BASE/core/interceptors/error.interceptor.ts",
+"$BASE/core/interceptors/tenant.interceptor.ts",
+"$BASE/core/config/api.config.ts",
+"$BASE/core/config/app.config.ts",
+"$BASE/core/core.providers.ts" | Out-Null
+
+# Shared
+New-Item -ItemType Directory -Force -Path `
+"$BASE/shared/components/data-table",
+"$BASE/shared/components/confirm-dialog",
+"$BASE/shared/components/modal",
+"$BASE/shared/components/loading-spinner",
+"$BASE/shared/ui",
+"$BASE/shared/pipes",
+"$BASE/shared/directives",
+"$BASE/shared/validators" | Out-Null
+
+New-Item -ItemType File -Force -Path `
+"$BASE/shared/shared.providers.ts" | Out-Null
+
+# Features
+$features = "productos","ventas","compras","inventario","contabilidad","administracion"
+
+foreach ($feature in $features) {
+
+    New-Item -ItemType Directory -Force -Path `
+    "$BASE/features/$feature/domain/models",
+    "$BASE/features/$feature/domain/repositories",
+    "$BASE/features/$feature/domain/mappers",
+    "$BASE/features/$feature/application/use-cases",
+    "$BASE/features/$feature/application/dto",
+    "$BASE/features/$feature/infrastructure",
+    "$BASE/features/$feature/presentation/pages",
+    "$BASE/features/$feature/presentation/components",
+    "$BASE/features/$feature/presentation/state" | Out-Null
+
+    New-Item -ItemType File -Force -Path `
+    "$BASE/features/$feature/$feature.routes.ts" | Out-Null
+}
+
+# App base files
+New-Item -ItemType File -Force -Path `
+"$BASE/app.routes.ts",
+"$BASE/app.config.ts",
+"src/main.ts" | Out-Null
+
+# Environments
+New-Item -ItemType Directory -Force -Path "src/environments" | Out-Null
+New-Item -ItemType File -Force -Path `
+"src/environments/environment.ts",
+"src/environments/environment.prod.ts" | Out-Null
+
+Write-Output "✅ Estructura Angular Enterprise creada correctamente."
 ```
