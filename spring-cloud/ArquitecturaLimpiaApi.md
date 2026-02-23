@@ -99,31 +99,7 @@ mkdir -p $BASE_DIR/infrastructure/exception
 
 mkdir -p $BASE_DIR/interfaces/rest/dto
 
-# Crear archivos vacíos
-touch $BASE_DIR/domain/model/Producto.java
-touch $BASE_DIR/domain/repository/ProductoRepository.java
-touch $BASE_DIR/domain/exception/BusinessException.java
-touch $BASE_DIR/domain/service/ProductoDomainService.java
 
-touch $BASE_DIR/application/usecase/crear/CrearProductoUseCase.java
-touch $BASE_DIR/application/usecase/crear/CrearProductoCommand.java
-touch $BASE_DIR/application/usecase/crear/CrearProductoResponse.java
-touch $BASE_DIR/application/usecase/listar/ListarProductosUseCase.java
-touch $BASE_DIR/application/port/output/ProductoPersistencePort.java
-
-touch $BASE_DIR/infrastructure/persistence/entity/ProductoEntity.java
-touch $BASE_DIR/infrastructure/persistence/repository/ProductoJpaRepository.java
-touch $BASE_DIR/infrastructure/persistence/adapter/ProductoPersistenceAdapter.java
-touch $BASE_DIR/infrastructure/security/filter/TenantFilter.java
-touch $BASE_DIR/infrastructure/config/OpenApiConfig.java
-touch $BASE_DIR/infrastructure/config/JacksonConfig.java
-touch $BASE_DIR/infrastructure/exception/GlobalExceptionHandler.java
-
-touch $BASE_DIR/interfaces/rest/ProductoController.java
-touch $BASE_DIR/interfaces/rest/dto/ProductoRequestDTO.java
-touch $BASE_DIR/interfaces/rest/dto/ProductoResponseDTO.java
-
-touch $BASE_DIR/ProductosApplication.java
 
 echo "✅ Estructura creada correctamente"
 ```
@@ -164,32 +140,6 @@ New-Item -ItemType Directory -Force -Path "$BASE_DIR/infrastructure/config"
 New-Item -ItemType Directory -Force -Path "$BASE_DIR/infrastructure/exception"
 
 New-Item -ItemType Directory -Force -Path "$BASE_DIR/interfaces/rest/dto"
-
-# Crear archivos
-New-Item -ItemType File -Force -Path "$BASE_DIR/domain/model/Producto.java"
-New-Item -ItemType File -Force -Path "$BASE_DIR/domain/repository/ProductoRepository.java"
-New-Item -ItemType File -Force -Path "$BASE_DIR/domain/exception/BusinessException.java"
-New-Item -ItemType File -Force -Path "$BASE_DIR/domain/service/ProductoDomainService.java"
-
-New-Item -ItemType File -Force -Path "$BASE_DIR/application/usecase/crear/CrearProductoUseCase.java"
-New-Item -ItemType File -Force -Path "$BASE_DIR/application/usecase/crear/CrearProductoCommand.java"
-New-Item -ItemType File -Force -Path "$BASE_DIR/application/usecase/crear/CrearProductoResponse.java"
-New-Item -ItemType File -Force -Path "$BASE_DIR/application/usecase/listar/ListarProductosUseCase.java"
-New-Item -ItemType File -Force -Path "$BASE_DIR/application/port/output/ProductoPersistencePort.java"
-
-New-Item -ItemType File -Force -Path "$BASE_DIR/infrastructure/persistence/entity/ProductoEntity.java"
-New-Item -ItemType File -Force -Path "$BASE_DIR/infrastructure/persistence/repository/ProductoJpaRepository.java"
-New-Item -ItemType File -Force -Path "$BASE_DIR/infrastructure/persistence/adapter/ProductoPersistenceAdapter.java"
-New-Item -ItemType File -Force -Path "$BASE_DIR/infrastructure/security/filter/TenantFilter.java"
-New-Item -ItemType File -Force -Path "$BASE_DIR/infrastructure/config/OpenApiConfig.java"
-New-Item -ItemType File -Force -Path "$BASE_DIR/infrastructure/config/JacksonConfig.java"
-New-Item -ItemType File -Force -Path "$BASE_DIR/infrastructure/exception/GlobalExceptionHandler.java"
-
-New-Item -ItemType File -Force -Path "$BASE_DIR/interfaces/rest/ProductoController.java"
-New-Item -ItemType File -Force -Path "$BASE_DIR/interfaces/rest/dto/ProductoRequestDTO.java"
-New-Item -ItemType File -Force -Path "$BASE_DIR/interfaces/rest/dto/ProductoResponseDTO.java"
-
-New-Item -ItemType File -Force -Path "$BASE_DIR/ProductosApplication.java"
 
 Write-Host "✅ Estructura creada correctamente"
 ```
