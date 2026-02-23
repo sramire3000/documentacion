@@ -110,6 +110,78 @@ features/productos/
 
 ## 🧠 Cómo debe estar dividido internamente
 
+📄 Modelo (Dominio frontend)
+```bash
+export interface Producto {
+  id: string;
+  nombre: string;
+  precio: number;
+  stock: number;
+}
+```
 
+📄 DTO (Lo que viene del backend)
+```bash
+export interface ProductoResponseDTO {
+  id: string;
+  nombre: string;
+  precio: number;
+  stock: number;
+}
+```
 
+📄 Servicio (Caso de uso)
+```bash
+@Injectable({ providedIn: 'root' })
+export class ProductosService {
+
+  private http = inject(HttpClient);
+
+  obtenerTodos() {
+    return this.http.get<ProductoResponseDTO[]>('/api/productos');
+  }
+}
+```
+
+📄 Página (Solo UI + coordinación)
+```bash
+@Component({
+  standalone: true,
+  templateUrl: './productos-list.page.html'
+})
+export class ProductosListPage {
+
+  private service = inject(ProductosService);
+
+  productos = signal<Producto[]>([]);
+
+  ngOnInit() {
+    this.service.obtenerTodos().subscribe(data => {
+      this.productos.set(data);
+    });
+  }
+}
+```
+
+🚀 Rutas Lazy Loading
+```
+// app.routes.ts
+export const routes: Routes = [
+  {
+    path: 'productos',
+    loadChildren: () =>
+      import('./features/productos/productos.routes')
+        .then(m => m.PRODUCTOS_ROUTES)
+  }
+];
+```
+
+## 🎯 Reglas de Código Limpio
+- Componentes pequeños
+- Servicios con responsabilidad única
+- Nada de any
+- DTO ≠ Modelo
+- No mezclar lógica de negocio con UI
+- Nombres claros
+- Métodos cortos
 
