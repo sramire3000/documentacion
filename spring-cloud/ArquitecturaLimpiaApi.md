@@ -70,7 +70,7 @@ com.tuempresa.productos
 # Ejemplo:
 ## 📦 com.tuempresa.productos
 
-### 🟢 DOMAIN
+## 🟢 DOMAIN
 📄 domain/model/Producto.java
 ```
 package com.tuempresa.productos.domain.model;
@@ -111,4 +111,136 @@ public class Producto {
 }
 ```
 
+📄 domain/repository/ProductoRepository.java
+```
+package com.tuempresa.productos.domain.repository;
+
+import com.tuempresa.productos.domain.model.Producto;
+
+import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
+
+public interface ProductoRepository {
+
+    Producto guardar(Producto producto);
+
+    Optional<Producto> buscarPorId(UUID id, String tenantId);
+
+    List<Producto> listar(String tenantId);
+
+    void eliminar(UUID id, String tenantId);
+}
+```
+
+📄 domain/exception/BusinessException.java
+```
+package com.tuempresa.productos.domain.exception;
+
+public class BusinessException extends RuntimeException {
+    public BusinessException(String message) {
+        super(message);
+    }
+}
+```
+
+📄 domain/service/ProductoDomainService.java
+```
+package com.tuempresa.productos.domain.service;
+
+import com.tuempresa.productos.domain.model.Producto;
+
+public class ProductoDomainService {
+
+    public void validarStock(Producto producto) {
+        if (producto.getStock() < 0) {
+            throw new RuntimeException("Stock inválido");
+        }
+    }
+}
+```
+
+## 🟡 APPLICATION
+
+📄 application/port/output/ProductoPersistencePort.java
+```
+package com.tuempresa.productos.application.port.output;
+
+import com.tuempresa.productos.domain.model.Producto;
+
+import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
+
+public interface ProductoPersistencePort {
+
+    Producto guardar(Producto producto);
+
+    Optional<Producto> buscarPorId(UUID id, String tenantId);
+
+    List<Producto> listar(String tenantId);
+
+    void eliminar(UUID id, String tenantId);
+}
+```
+
+### CREAR
+📄 CrearProductoCommand.java
+```
+package com.tuempresa.productos.application.usecase.crear;
+
+import java.math.BigDecimal;
+
+public record CrearProductoCommand(
+        String nombre,
+        BigDecimal precio,
+        Integer stock,
+        String tenantId
+) {}
+```
+
+📄 CrearProductoResponse.java
+```
+package com.tuempresa.productos.application.usecase.crear;
+
+import java.util.UUID;
+
+public record CrearProductoResponse(UUID id) {}
+```
+
+📄 CrearProductoUseCase.java
+```
+package com.tuempresa.productos.application.usecase.crear;
+
+import com.tuempresa.productos.application.port.output.ProductoPersistencePort;
+import com.tuempresa.productos.domain.model.Producto;
+import org.springframework.stereotype.Service;
+
+import java.util.UUID;
+
+@Service
+public class CrearProductoUseCase {
+
+    private final ProductoPersistencePort persistencePort;
+
+    public CrearProductoUseCase(ProductoPersistencePort persistencePort) {
+        this.persistencePort = persistencePort;
+    }
+
+    public CrearProductoResponse ejecutar(CrearProductoCommand command) {
+
+        Producto producto = new Producto(
+                UUID.randomUUID(),
+                command.nombre(),
+                command.precio(),
+                command.stock(),
+                command.tenantId()
+        );
+
+        persistencePort.guardar(producto);
+
+        return new CrearProductoResponse(producto.getId());
+    }
+}
+```
 
