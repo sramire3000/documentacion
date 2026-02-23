@@ -474,3 +474,189 @@ public class ProductoController {
 }
 ```
 
+## 🔐 1️⃣ Seguridad JWT Enterprise
+
+📄 JwtService.java
+```
+package com.tuempresa.productos.infrastructure.security.jwt;
+
+import io.jsonwebtoken.*;
+import io.jsonwebtoken.security.Keys;
+import org.springframework.stereotype.Service;
+
+import java.security.Key;
+import java.util.Date;
+
+@Service
+public class JwtService {
+
+    private final String SECRET = "clave-super-secreta-de-32-caracteres-minimo";
+    private final Key key = Keys.hmacShaKeyFor(SECRET.getBytes());
+
+    public String generate(String username) {
+        return Jwts.builder()
+                .setSubject(username)
+                .setIssuedAt(new Date())
+                .setExpiration(new Date(System.currentTimeMillis() + 86400000))
+                .signWith(key)
+                .compact();
+    }
+
+    public String extractUsername(String token) {
+        return Jwts.parserBuilder()
+                .setSigningKey(key)
+                .build()
+                .parseClaimsJws(token)
+                .getBody()
+                .getSubject();
+    }
+}
+```
+
+📄 JwtAuthFilter.java
+```
+package com.tuempresa.productos.infrastructure.security.filter;
+
+import jakarta.servlet.*;
+import jakarta.servlet.http.*;
+import org.springframework.stereotype.Component;
+import org.springframework.web.filter.OncePerRequestFilter;
+
+import java.io.IOException;
+
+@Component
+public class JwtAuthFilter extends OncePerRequestFilter {
+
+    @Override
+    protected void doFilterInternal(HttpServletRequest request,
+                                    HttpServletResponse response,
+                                    FilterChain filterChain)
+            throws ServletException, IOException {
+
+        String header = request.getHeader("Authorization");
+
+        if (header == null || !header.startsWith("Bearer ")) {
+            response.sendError(HttpServletResponse.SC_UNAUTHORIZED);
+            return;
+        }
+
+        filterChain.doFilter(request, response);
+    }
+}
+```
+
+## 🏢 2️⃣ Filtro Multi-Tenant
+
+📄 TenantFilter.java
+```
+package com.tuempresa.productos.infrastructure.security.filter;
+
+import jakarta.servlet.*;
+import jakarta.servlet.http.*;
+import org.springframework.stereotype.Component;
+import org.springframework.web.filter.OncePerRequestFilter;
+
+import java.io.IOException;
+
+@Component
+public class TenantFilter extends OncePerRequestFilter {
+
+    @Override
+    protected void doFilterInternal(HttpServletRequest request,
+                                    HttpServletResponse response,
+                                    FilterChain filterChain)
+            throws ServletException, IOException {
+
+        String tenantId = request.getHeader("X-Tenant-ID");
+
+        if (tenantId == null) {
+            response.sendError(HttpServletResponse.SC_BAD_REQUEST, "Tenant requerido");
+            return;
+        }
+
+        filterChain.doFilter(request, response);
+    }
+}
+```
+
+## 📊 3️⃣ Paginación
+
+Actualizar repositorio:
+```
+Page<ProductoEntity> findByTenantId(String tenantId, Pageable pageable);
+```
+
+UseCase:
+```
+public Page<Producto> ejecutar(String tenantId, Pageable pageable) {
+    return persistencePort.listarPaginado(tenantId, pageable);
+}
+```
+
+Controller:
+```
+@GetMapping
+public Page<ProductoResponseDTO> listar(
+        @RequestHeader("X-Tenant-ID") String tenantId,
+        Pageable pageable) {
+    return listarUseCase.ejecutar(tenantId, pageable)
+            .map(p -> new ProductoResponseDTO(
+                    p.getId(),
+                    p.getNombre(),
+                    p.getPrecio(),
+                    p.getStock()));
+}
+```
+
+## 🕒 4️⃣ Auditoría + Soft Delete
+
+📄 ProductoEntity.java
+```
+@Entity
+@Table(name = "productos")
+public class ProductoEntity {
+
+    @Id
+    private UUID id;
+
+    private String nombre;
+    private BigDecimal precio;
+    private Integer stock;
+
+    private String tenantId;
+
+    private boolean deleted = false;
+
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
+
+    @PrePersist
+    public void prePersist() {
+        createdAt = LocalDateTime.now();
+    }
+
+    @PreUpdate
+    public void preUpdate() {
+        updatedAt = LocalDateTime.now();
+    }
+}
+```
+
+## 🌍 5️⃣ Versionado de API
+
+Cambiar controller:
+```
+@RequestMapping("/api/v1/productos")
+```
+
+## 🐳 6️⃣ Dockerfile Production
+
+📄 Dockerfile
+```
+FROM eclipse-temurin:21-jdk-alpine
+WORKDIR /app
+COPY target/productos.jar app.jar
+ENTRYPOINT ["java","-jar","app.jar"]
+```
+
+
