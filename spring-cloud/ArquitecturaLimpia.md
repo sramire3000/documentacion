@@ -111,8 +111,173 @@ public class ProductoResponse {
     private Double precio;
 }
 ```
-### 🟠 CASOS DE USO
-### 🔵 INFRASTRUCTURE
-### 🌐 WEB
+ProductoMapper.java
+```
+package com.tuempresa.productos.application.mapper;
 
+import org.springframework.stereotype.Component;
+import com.tuempresa.productos.infrastructure.persistence.entity.ProductoEntity;
+import com.tuempresa.productos.application.dto.*;
+
+@Component
+public class ProductoMapper {
+
+    public ProductoEntity toEntity(ProductoRequest request) {
+        ProductoEntity entity = new ProductoEntity();
+        entity.setNombre(request.getNombre());
+        entity.setPrecio(request.getPrecio());
+        return entity;
+    }
+
+    public ProductoResponse toResponse(ProductoEntity entity) {
+        return new ProductoResponse(
+                entity.getId(),
+                entity.getNombre(),
+                entity.getPrecio()
+        );
+    }
+}
+```
+### 🟠 CASOS DE USO
+CrearProductoUseCase.java
+```
+package com.tuempresa.productos.application.usecase;
+
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import com.tuempresa.productos.infrastructure.persistence.repository.ProductoRepository;
+import com.tuempresa.productos.application.dto.*;
+import com.tuempresa.productos.application.mapper.ProductoMapper;
+
+@Service
+@RequiredArgsConstructor
+public class CrearProductoUseCase {
+
+    private final ProductoRepository repository;
+    private final ProductoMapper mapper;
+
+    @Transactional
+    public ProductoResponse ejecutar(ProductoRequest request) {
+        var entity = mapper.toEntity(request);
+        var saved = repository.save(entity);
+        return mapper.toResponse(saved);
+    }
+}
+```
+ListarProductosUseCase.java
+```
+package com.tuempresa.productos.application.usecase;
+
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+import com.tuempresa.productos.infrastructure.persistence.repository.ProductoRepository;
+import com.tuempresa.productos.application.mapper.ProductoMapper;
+
+import java.util.List;
+
+@Service
+@RequiredArgsConstructor
+public class ListarProductosUseCase {
+
+    private final ProductoRepository repository;
+    private final ProductoMapper mapper;
+
+    public List<?> ejecutar() {
+        return repository.findAll()
+                .stream()
+                .map(mapper::toResponse)
+                .toList();
+    }
+}
+```
+EliminarProductoUseCase.java
+```
+package com.tuempresa.productos.application.usecase;
+
+import lombok.RequiredArgsConstructor;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+import com.tuempresa.productos.infrastructure.persistence.repository.ProductoRepository;
+
+@Service
+@RequiredArgsConstructor
+public class EliminarProductoUseCase {
+
+    private final ProductoRepository repository;
+
+    @Transactional
+    public void ejecutar(Long id) {
+        repository.deleteById(id);
+    }
+}
+```
+### 🔵 INFRASTRUCTURE
+ProductoEntity.java
+```
+package com.tuempresa.productos.infrastructure.persistence.entity;
+
+import jakarta.persistence.*;
+import lombok.Data;
+
+@Entity
+@Data
+@Table(name = "productos")
+public class ProductoEntity {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String nombre;
+    private Double precio;
+}
+```
+ProductoRepository.java
+```
+package com.tuempresa.productos.infrastructure.persistence.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+import com.tuempresa.productos.infrastructure.persistence.entity.ProductoEntity;
+
+public interface ProductoRepository extends JpaRepository<ProductoEntity, Long> {
+}
+```
+### 🌐 WEB
+ProductoController.java
+```
+package com.tuempresa.productos.web.controller;
+
+import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.*;
+import java.util.List;
+
+import com.tuempresa.productos.application.dto.*;
+import com.tuempresa.productos.application.usecase.*;
+
+@RestController
+@RequestMapping("/productos")
+@RequiredArgsConstructor
+public class ProductoController {
+
+    private final CrearProductoUseCase crear;
+    private final ListarProductosUseCase listar;
+    private final EliminarProductoUseCase eliminar;
+
+    @PostMapping
+    public ProductoResponse crear(@RequestBody ProductoRequest request) {
+        return crear.ejecutar(request);
+    }
+
+    @GetMapping
+    public List<?> listar() {
+        return listar.ejecutar();
+    }
+
+    @DeleteMapping("/{id}")
+    public void eliminar(@PathVariable Long id) {
+        eliminar.ejecutar(id);
+    }
+}
+```
 
