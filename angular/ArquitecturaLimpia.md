@@ -318,7 +318,6 @@ chmod +x create-angular-structure.sh
 ## 🪟 2️⃣ Script para Windows (PowerShell)
 
 Guárdalo como:
-powershell
-```bash
+```bash x
 create-angular-structure.ps1
 ```
