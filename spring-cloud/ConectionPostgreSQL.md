@@ -37,3 +37,21 @@ spring.jpa.properties.hibernate.order_inserts=true
 spring.jpa.properties.hibernate.order_updates=true
 
 ````
+
+## COMPATIBILIDAD DE TIPOS DE DATOS
+
+### 📌 1️⃣ Tipos Numéricos
+```
+| PostgreSQL         | Java (estándar) | Java (JPA recomendado) | Notas                  |
+| ------------------ | --------------- | ---------------------- | ---------------------- |
+| `smallint`         | `short`         | `Short`                | 2 bytes                |
+| `integer`          | `int`           | `Integer`              | Más común              |
+| `bigint`           | `long`          | `Long`                 | IDs grandes            |
+| `decimal`          | `BigDecimal`    | `BigDecimal`           | Precisión exacta       |
+| `numeric`          | `BigDecimal`    | `BigDecimal`           | Igual que decimal      |
+| `real`             | `float`         | `Float`                | 4 bytes                |
+| `double precision` | `double`        | `Double`               | 8 bytes                |
+| `serial`           | `int`           | `Integer`              | Auto incremento        |
+| `bigserial`        | `long`          | `Long`                 | Auto incremento grande |
+
+```
