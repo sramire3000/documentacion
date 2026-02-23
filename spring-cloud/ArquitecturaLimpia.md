@@ -3,7 +3,7 @@
 ```
 com.tuempresa.productos
 │
-├── domain/                         # Modelo de negocio puro
+├── domain/                         # Núcleo del negocio (sin Spring)
 │   ├── model/
 │   │   └── Producto.java
 │   ├── exception/
@@ -11,12 +11,21 @@ com.tuempresa.productos
 │   └── service/
 │       └── ProductoDomainService.java
 │
-├── application/                    # Lógica de aplicación
-│   ├── service/
-│   │   └── ProductoService.java
+├── application/                    # Casos de uso
+│   ├── usecase/
+│   │   ├── crear/
+│   │   │   └── CrearProductoUseCase.java
+│   │   ├── listar/
+│   │   │   └── ListarProductosUseCase.java
+│   │   ├── actualizar/
+│   │   │   └── ActualizarProductoUseCase.java
+│   │   └── eliminar/
+│   │       └── EliminarProductoUseCase.java
+│   │
 │   ├── dto/
 │   │   ├── ProductoRequest.java
 │   │   └── ProductoResponse.java
+│   │
 │   └── mapper/
 │       └── ProductoMapper.java
 │
@@ -25,17 +34,16 @@ com.tuempresa.productos
 │   │   ├── entity/
 │   │   │   └── ProductoEntity.java
 │   │   └── repository/
-│   │       └── ProductoRepository.java
+│   │       └── ProductoRepository.java   # Spring Data JPA
 │   │
 │   ├── security/
 │   ├── config/
 │   └── exception/
 │       └── GlobalExceptionHandler.java
 │
-├── web/                            # Capa de entrada (Controllers)
-│   ├── controller/
-│   │   └── ProductoController.java
-│   └── dto/
+├── web/                            # Entrada HTTP
+│   └── controller/
+│       └── ProductoController.java
 │
 └── ProductosApplication.java
 ```
