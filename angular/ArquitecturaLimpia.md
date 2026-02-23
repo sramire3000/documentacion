@@ -47,7 +47,7 @@ src/
 ```
 
 ### 🔵 1️⃣ Core (Solo una vez en la app)
-```
+```bash
 core/
  ├── interceptors/   → JWT, errores
  ├── guards/         → auth, permisos
@@ -56,6 +56,60 @@ core/
 ```
 
 Ejemplo:
-``` TypeScript
+```bash
 // core/interceptors/auth.interceptor.ts
 ```
+Aquí va el token JWT para todas las requests.
+
+⚠ Nunca poner lógica de negocio aquí.
+
+### 🟢 2️⃣ Shared (Reutilizable)
+
+Componentes genéricos:
+```bash
+shared/
+ ├── components/
+ │     ├── data-table/
+ │     ├── confirm-dialog/
+ │
+ ├── pipes/
+ ├── directives/
+```
+Ejemplo:
+```
+<app-data-table />
+```
+
+### 🟡 3️⃣ Features (Arquitectura por módulo funcional)
+
+Aquí vive el negocio real.
+Ejemplo: productos
+```bash
+features/productos/
+ ├── pages/
+ │     ├── productos-list.page.ts
+ │     ├── producto-form.page.ts
+ │
+ ├── components/
+ │     ├── producto-form.component.ts
+ │
+ ├── services/
+ │     └── productos.service.ts
+ │
+ ├── models/
+ │     └── producto.model.ts
+ │
+ ├── dto/
+ │     └── producto-response.dto.ts
+ │
+ ├── state/
+ │     └── productos.signal-store.ts
+ │
+ └── productos.routes.ts
+```
+
+## 🧠 Cómo debe estar dividido internamente
+
+
+
+
