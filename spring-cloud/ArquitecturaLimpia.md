@@ -59,3 +59,34 @@ Repository (Spring Data JPA)
 Base de datos
 ```
 
+## Ejemplo:
+
+### 🟢 DOMAIN
+Producto.java (Modelo de dominio puro)
+```
+package com.tuempresa.productos.domain.model;
+
+import lombok.*;
+
+@Getter
+@AllArgsConstructor
+public class Producto {
+
+    private Long id;
+    private String nombre;
+    private Double precio;
+
+    public void validar() {
+        if (precio <= 0) {
+            throw new RuntimeException("El precio debe ser mayor a 0");
+        }
+    }
+}
+```
+
+### 🟡 APPLICATION
+### 🟠 CASOS DE USO
+### 🔵 INFRASTRUCTURE
+### 🌐 WEB
+
+
