@@ -42,6 +42,7 @@ spring.jpa.properties.hibernate.order_updates=true
 
 ### 📌 1️⃣ Tipos Numéricos
 ```
+------------------------------------------------------------------------------------------
 | PostgreSQL         | Java (estándar) | Java (JPA recomendado) | Notas                  |
 | ------------------ | --------------- | ---------------------- | ---------------------- |
 | `smallint`         | `short`         | `Short`                | 2 bytes                |
@@ -53,5 +54,121 @@ spring.jpa.properties.hibernate.order_updates=true
 | `double precision` | `double`        | `Double`               | 8 bytes                |
 | `serial`           | `int`           | `Integer`              | Auto incremento        |
 | `bigserial`        | `long`          | `Long`                 | Auto incremento grande |
-
+------------------------------------------------------------------------------------------
 ```
+
+### 📌 2️⃣ Tipos de Texto
+```
+-------------------------------------------------
+| PostgreSQL   | Java     | Notas               |
+| ------------ | -------- | ------------------- |
+| `char(n)`    | `String` | Longitud fija       |
+| `varchar(n)` | `String` | Más común           |
+| `text`       | `String` | Sin límite práctico |
+| `citext`     | `String` | Case insensitive    |
+-------------------------------------------------
+```
+
+### 📌 3️⃣ Tipos Booleanos
+```
+--------------------------------------
+| PostgreSQL | Java                  |
+| ---------- | --------------------- |
+| `boolean`  | `boolean` / `Boolean` |
+--------------------------------------
+```
+
+### 📌 4️⃣ Fecha y Hora (Muy Importante 🚨)
+```
+----------------------------------------------------------------------------
+| PostgreSQL    | Java moderno (Recomendado)         | Alternativa antigua |
+| ------------- | ---------------------------------- | ------------------- |
+| `date`        | `LocalDate`                        | `java.sql.Date`     |
+| `time`        | `LocalTime`                        | `java.sql.Time`     |
+| `timestamp`   | `LocalDateTime`                    | `Timestamp`         |
+| `timestamptz` | `OffsetDateTime` / `ZonedDateTime` | `Timestamp`         |
+| `interval`    | `Duration` / `Period`              | —                   |
+----------------------------------------------------------------------------
+```
+👉 Recomendación para microservicios modernos:
+Usa siempre java.time.* (Java 8+) y evita java.util.Date.
+
+### 📌 5️⃣ Tipos Binarios
+```
+-------------------------
+| PostgreSQL | Java     |
+| ---------- | -------- |
+| `bytea`    | `byte[]` |
+-------------------------
+```
+
+### 📌 7️⃣ UUID
+```
+-----------------------
+| PostgreSQL | Java   |
+| ---------- | ------ |
+| `uuid`     | `UUID` |
+-----------------------
+```
+Muy recomendado para sistemas multi-cliente como el que estás desarrollando 👌
+
+### 📌 8️⃣ Arreglos
+```
+-----------------------------
+| PostgreSQL  | Java        |
+| ----------- | ----------- |
+| `integer[]` | `Integer[]` |
+| `text[]`    | `String[]`  |
+| `uuid[]`    | `UUID[]`    |
+-----------------------------
+```
+
+### 📌 9️⃣ Enumeraciones
+```
+-----------------------
+| PostgreSQL | Java   |
+| ---------- | ------ |
+| `enum`     | `enum` |
+-----------------------
+```
+Ejemplo:
+SQL
+```
+CREATE TYPE estado AS ENUM ('ACTIVO', 'INACTIVO');
+```
+JAVA
+```
+public enum Estado {
+    ACTIVO,
+    INACTIVO
+}
+```
+
+### 📌 🔟 Tipos Especiales
+```
+-----------------------------
+| PostgreSQL | Java         |
+| ---------- | ------------ |
+| `money`    | `BigDecimal` |
+| `inet`     | `String`     |
+| `cidr`     | `String`     |
+| `macaddr`  | `String`     |
+| `xml`      | `String`     |
+| `tsvector` | `String`     |
+-----------------------------
+```
+
+## 🔥 Recomendación para tu arquitectura limpia en microservicios
+En tus Entities (infraestructura) usa:
+
+- Integer, Long (no primitivos)
+- BigDecimal para dinero
+- UUID para IDs en sistemas multi-tenant
+- LocalDateTime para auditoría
+- jsonb si tienes módulos dinámicos
+- Si quieres, puedo darte ahora:
+
+✅ Tabla optimizada para JPA
+✅ Ejemplo completo de entidad Producto
+✅ Buenas prácticas para PostgreSQL en sistemas SaaS multi-cliente
+✅ Conversión específica usando Spring Data + Hibernate
