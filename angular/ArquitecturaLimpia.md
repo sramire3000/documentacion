@@ -185,3 +185,22 @@ export const routes: Routes = [
 - Nombres claros
 - Métodos cortos
 
+## 🔥 Versión Enterprise (si quieres subir nivel)
+Puedes agregar:
+- state/ con signals
+- domain/ para lógica compleja
+- mappers/
+- facades/
+- Arquitectura tipo Clean frontend
+
+## 📌 Si lo aplicas a tu SaaS
+
+Tu sistema quedaría:
+```bash
+features/
+ ├── contabilidad/
+ ├── inventario/
+ ├── compras/
+ ├── ventas/
+ └── administracion/
+```
