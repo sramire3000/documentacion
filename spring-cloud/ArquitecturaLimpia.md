@@ -5,11 +5,11 @@ sv.jh.springcloud.msvc.seguridad.app
 │
 ├── domain/                         # Núcleo del negocio (sin Spring)
 │   ├── model/
-│   │   └── Producto.java
+│   │   └── Rol.java
 │   ├── exception/
 │   │   └── BusinessException.java
-│   └── service/
-│       └── ProductoDomainService.java
+│   └── service
+│       └── RolDomainService.java
 │
 ├── application/                    # Casos de uso
 │   ├── usecase/
