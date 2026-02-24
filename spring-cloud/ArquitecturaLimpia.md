@@ -380,9 +380,155 @@ public class UpdateRolUseCase {
 ```
 
 ### 🔵 INFRASTRUCTURE
+RolEntity.java
 ```bash
+package sv.jh.springcloud.msvc.seguridad.app.infrastructure.persistence.entity;
+
+import java.util.UUID;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+import lombok.Data;
+
+@Entity
+@Data
+@Table(name = "roles", schema = "seguridad")
+public class RolEntity {
+
+  // El identificador único del rol, generado automáticamente como UUID.
+  @Id
+  @GeneratedValue(strategy = GenerationType.UUID)
+  @Column(name = "pk_idrol", nullable = false, unique = true)
+  private UUID pkIdrol;
+
+  // El nombre del rol, por ejemplo: "ROLE_ADMIN", "ROLE_USER", etc.
+  @Column(name = "name", nullable = false, unique = true, length = 50, columnDefinition = "varchar(50)")
+  private String name;
+
+  // Indica si el rol está activo o no. Un valor de true significa que el
+  // rol está activo, mientras que false indica que está inactivo.
+  @Column(name = "is_active", nullable = false)
+  private Boolean isActive;
+
+  // El nombre de usuario que creó el rol. Este campo es útil para auditoría y
+  @Column(name = "ult_username", length = 50, columnDefinition = "varchar(50)")
+  private String ultUsername;
+
+}
+```
+RolRepository.java
+```bash
+package sv.jh.springcloud.msvc.seguridad.app.infrastructure.persistence.repository;
+
+import java.util.UUID;
+
+import org.springframework.data.repository.CrudRepository;
+
+import sv.jh.springcloud.msvc.seguridad.app.infrastructure.persistence.entity.RolEntity;
+
+public interface RolRepository extends CrudRepository<RolEntity, UUID> {
+
+}
+```
+
+### 🔵 WEB
+RolController.java
+```
+package sv.jh.springcloud.msvc.seguridad.app.web.controller;
+
+import java.util.List;
+import java.util.UUID;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import lombok.RequiredArgsConstructor;
+
+import sv.jh.springcloud.msvc.seguridad.app.application.dto.RolRequest;
+import sv.jh.springcloud.msvc.seguridad.app.application.dto.RolResponse;
+import sv.jh.springcloud.msvc.seguridad.app.application.usecase.create.CreatedRolUseCase;
+import sv.jh.springcloud.msvc.seguridad.app.application.usecase.deleted.DeletedRolUseCase;
+import sv.jh.springcloud.msvc.seguridad.app.application.usecase.list.ListRolesUseCase;
+import sv.jh.springcloud.msvc.seguridad.app.application.usecase.searches.SearchesRolUseCase;
+import sv.jh.springcloud.msvc.seguridad.app.application.usecase.update.UpdateRolUseCase;
+
+@RestController
+@RequestMapping("/api/roles")
+@RequiredArgsConstructor
+public class RolController {
+
+  private final CreatedRolUseCase create;
+  private final UpdateRolUseCase update;
+  private final ListRolesUseCase list;
+  private final DeletedRolUseCase deleted;
+  private final SearchesRolUseCase searchs;
+
+  @GetMapping
+  public ResponseEntity<List<RolResponse>> list() {
+    return ResponseEntity.ok(list.ejecutar());
+  }
+
+  @GetMapping("/{id}")
+  public ResponseEntity<RolResponse> findById(@PathVariable UUID id) {
+    RolResponse response = searchs.findById(id);
+    if (response != null) {
+      return ResponseEntity.ok(response);
+    }
+    return ResponseEntity.notFound().build();
+  }
+
+  @PostMapping
+  public ResponseEntity<RolResponse> create(@RequestBody RolRequest request) {
+    return ResponseEntity.status(HttpStatus.CREATED).body(create.ejecutar(request));
+  }
+
+  @PutMapping("/{id}")
+  public ResponseEntity<RolResponse> update(@PathVariable UUID id, @RequestBody RolRequest request) {
+
+    if (!id.equals(request.getPkIdrol())) {
+      return ResponseEntity.badRequest().build();
+    }
+
+    RolResponse response = searchs.findById(id);
+
+    if (response != null) {
+      return ResponseEntity.ok(update.ejecutar(request));
+    }
+    return ResponseEntity.notFound().build();
+  }
+
+  @DeleteMapping("/{id}")
+  public ResponseEntity<Void> delete(@PathVariable UUID id) {
+
+    // Buscar el rol por su id para validar si existe antes de eliminarlo
+    RolResponse response = searchs.findById(id);
+    // Si el rol existe, se elimina y se devuelve una respuesta con el código de
+    // estado 204 (No Content)
+    if (response != null) {
+      deleted.ejecutar(id);
+      return ResponseEntity.noContent().build();
+    }
+    // Si el rol no existe, se devuelve una respuesta con el código de estado 404
+    return ResponseEntity.notFound().build();
+  }
+
+}
 
 ```
+
 # CREACION DE SCRIPTS
 
 ## 🐧 1️⃣ Script Linux / Mac
