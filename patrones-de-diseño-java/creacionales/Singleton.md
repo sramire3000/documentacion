@@ -35,7 +35,7 @@ public class Configuracion {
   //Opcional
   //Método del Singleton
   public void mostratMensaje() {
-    System.out.prinln("Configuración activa")
+    System.out.prinln("Configuración activa ✔")
   }
 
 }
@@ -45,6 +45,7 @@ Main.java
 ```bash
 public class Main{
   public static void main(String[] args){
+
   }
 }
 ```
