@@ -63,3 +63,71 @@ public class Main{
   }
 }
 ```
+
+## Ejemplo más real:
+
+🔹 Implementación Correcta (Thread Safe con Lazy Initialization)
+```bash
+package com.tuempresa.productos.config;
+
+import java.util.Properties;
+import java.io.InputStream;
+import java.io.IOException;
+
+public class ConfigurationManager {
+
+    private static volatile ConfigurationManager instance;
+    private Properties properties;
+
+    // Constructor privado (nadie puede hacer new)
+    private ConfigurationManager() {
+        properties = new Properties();
+        loadProperties();
+    }
+
+    // Método público para obtener la instancia
+    public static ConfigurationManager getInstance() {
+        if (instance == null) {
+            synchronized (ConfigurationManager.class) {
+                if (instance == null) {
+                    instance = new ConfigurationManager();
+                }
+            }
+        }
+        return instance;
+    }
+
+    private void loadProperties() {
+        try (InputStream input = getClass()
+                .getClassLoader()
+                .getResourceAsStream("application.properties")) {
+
+            if (input != null) {
+                properties.load(input);
+            }
+
+        } catch (IOException e) {
+            throw new RuntimeException("Error cargando configuración", e);
+        }
+    }
+
+    public String getProperty(String key) {
+        return properties.getProperty(key);
+    }
+}
+```
+
+🔹 Cómo se usa en tu aplicación
+```bash
+public class Main {
+
+    public static void main(String[] args) {
+
+        ConfigurationManager config = ConfigurationManager.getInstance();
+
+        String dbUrl = config.getProperty("db.url");
+
+        System.out.println("DB URL: " + dbUrl);
+    }
+}
+```
