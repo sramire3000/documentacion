@@ -48,9 +48,13 @@ public class Main{
 
     // 1er Módulo
     System.out.prinln("Módulo de Autenticación")
+    Configuracion config1 = Configuracion.getInstancia();
+    config1.mostrarMensaje();
 
     // 2do Módulo
     System.out.prinln("Módulo de Reportes")
+    Configuracion config2 = Configuracion.getInstancia();
+    config2.mostrarMensaje();
 
   }
 }
