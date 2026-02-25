@@ -29,6 +29,7 @@ public class Configuracion {
     if ( instancia == null ) {
       instancia = new Configuracion();
     }
+    return instancia;
   }
 
 }
