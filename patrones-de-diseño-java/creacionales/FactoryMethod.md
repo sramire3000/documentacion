@@ -14,3 +14,10 @@ Partes:
 ## Ejemplo de una aplicación de envios.
 
 <img width="1072" height="483" alt="Captura" src="https://github.com/user-attachments/assets/2f43e27e-385d-4dee-9c0f-692172b00e89" />
+
+Envio.java
+```
+pblic inerface Envio {
+
+}
+```
