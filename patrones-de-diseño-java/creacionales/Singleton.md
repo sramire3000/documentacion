@@ -56,6 +56,10 @@ public class Main{
     Configuracion config2 = Configuracion.getInstancia();
     config2.mostrarMensaje();
 
+    //Comprobación
+    System.out.println("¿Ambas referecias en memoria, son iguales?");
+    System.out.println(config1==config2);
+
   }
 }
 ```
