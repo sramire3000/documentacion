@@ -13,4 +13,4 @@ Partes:
 
 ## Ejemplo de una aplicación de envios.
 
-<img width="1072" height="483" alt="image" src="https://github.com/user-attachments/assets/e2a47d2f-bc4f-4499-85d7-4a7d96a70aa5" />
+<img width="1072" height="483" alt="Captura" src="https://github.com/user-attachments/assets/2f43e27e-385d-4dee-9c0f-692172b00e89" />
