@@ -46,6 +46,12 @@ Main.java
 public class Main{
   public static void main(String[] args){
 
+    // 1er Módulo
+    System.out.prinln("Módulo de Autenticación")
+
+    // 2do Módulo
+    System.out.prinln("Módulo de Reportes")
+
   }
 }
 ```
