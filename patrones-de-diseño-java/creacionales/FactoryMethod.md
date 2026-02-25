@@ -64,7 +64,7 @@ public class EnvioMoto implements Envio {
 
 EnvioCreator.java
 ```bash
-public class EnvioCreator {
+public abstract class EnvioCreator {
 
 }
 ```
