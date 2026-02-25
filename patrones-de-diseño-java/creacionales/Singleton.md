@@ -17,6 +17,12 @@ public class Configuracion {
      3. Un Metodo public que sea estatico
   */
 
+  // Constructor privado
+  private Configuracion(){
+    System.out.prinln("Inicializando configuracion en el Sistema")
+  }
+
+
 }
 ```
 
