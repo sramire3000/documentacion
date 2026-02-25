@@ -12,12 +12,14 @@ Configuracion.java
 public class Configuracion {
 
   /* 3 Partes de un Singleton
-     1. Una clase con contructor privado
-     2. Una variable estatica
+     1. Una variable estatica
+     2. Una clase con contructor privado
      3. Un Metodo public que sea estatico
   */
+  // 1. Variable estatica
+  private static Configuracion instancia;
 
-  // Constructor privado
+  // 2. Constructor privado
   private Configuracion() {
     System.out.prinln("Inicializando configuracion en el Sistema")
   }
