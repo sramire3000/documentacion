@@ -7,10 +7,20 @@ Singleton es un patrón de diseño creacional que nos permite asegurarnos de que
 
 ## EJEMPLO:
 
-
+Configuracion.java
 ```bash
+public class Configuracion {
+
+  /* 3 Partes de un Singleton
+     1. Una clase con contructor privado
+     2. Una variable estatica
+     3. Un Metodo public que sea estatico
+  */
+
+}
 ```
-main.java
+
+Main.java
 ```bash
 public class Main{
   public static void main(String[] args){
