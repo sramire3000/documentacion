@@ -18,7 +18,7 @@ public class Configuracion {
   */
 
   // Constructor privado
-  private Configuracion(){
+  private Configuracion() {
     System.out.prinln("Inicializando configuracion en el Sistema")
   }
 
