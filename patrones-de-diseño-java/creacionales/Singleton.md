@@ -7,5 +7,13 @@ Singleton es un patrón de diseño creacional que nos permite asegurarnos de que
 
 ## EJEMPLO:
 
+
 ```bash
+```
+main.java
+```bash
+public class Main{
+  public static void main(String[] args){
+  }
+}
 ```
