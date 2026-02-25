@@ -21,7 +21,7 @@ public class Configuracion {
 
   // 2. Constructor privado
   private Configuracion() {
-    System.out.prinln("Inicializando configuracion en el Sistema")
+    System.out.prinln("Inicializando Configuración en el Sistema")
   }
 
   // 3. Método público que sea estático
@@ -30,6 +30,12 @@ public class Configuracion {
       instancia = new Configuracion();
     }
     return instancia;
+  }
+
+  //Opcional
+  //Método del Singleton
+  public void mostratMensaje() {
+    System.out.prinln("Configuración activa")
   }
 
 }
