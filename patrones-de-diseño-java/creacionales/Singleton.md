@@ -26,7 +26,9 @@ public class Configuracion {
 
   // 3. Método público que sea estático
   public static Configuracion getInstancia() {
-
+    if ( instancia == null ) {
+      instancia = new Configuracion();
+    }
   }
 
 }
