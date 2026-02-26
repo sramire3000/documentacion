@@ -168,6 +168,23 @@ public class TiendaRopa {
 }
 ```
 
+## Método MAIN
+
+```bash
+public class Main {
+    public static void Main(String[] args){
+        
+        //Seleccionamos una familia de productos
+        OutFitFactory factory = new OutFitUrbanoFactory();
+        
+        //Cliente trabaja o va interactuar SIN SABER las clases concretas
+        TiendaRopa tienda = new TiendaRopa(factory);
+        
+        tienda.mostrarOutFit();
+        
+    }
+}
+```
 
 
 
