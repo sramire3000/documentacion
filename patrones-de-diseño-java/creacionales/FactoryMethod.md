@@ -66,6 +66,13 @@ EnvioCreator.java
 ```bash
 public abstract class EnvioCreator {
 
+  //Fatory Method
+  protected abstract Envio crearEnvio();
+
+  //Lógica en común que van a tener todos los tipos de envío
+  public void procesarEnvio() {
+    Envio envio = crearEnvio();
+  }
 }
 ```
 
