@@ -100,7 +100,17 @@ public interface OutFitFactory {
 
 ## Fabrica concreta
 
+OutFitUrbanoFactory.java
+```bash
+```
 
+OutFitEleganteFactory.java
+```bash
+```
+
+OutFitClasicoFactory.java
+```bash
+```
 
 
 
