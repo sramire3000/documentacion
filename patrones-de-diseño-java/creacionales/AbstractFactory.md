@@ -39,8 +39,17 @@ JeanSkinny.java
 ```bash
 ```
 
+RemeraMangaCorta.java
+```bash
+```
 
+RemeraAlCuerpo.java
+```bash
+```
 
+RemeraOversize.java
+```bash
+```
 
 
 
