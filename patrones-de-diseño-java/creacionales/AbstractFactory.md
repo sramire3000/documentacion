@@ -186,6 +186,9 @@ public class Main {
 }
 ```
 
+## Diagrama
+<img width="1392" height="715" alt="image" src="https://github.com/user-attachments/assets/e96e48e1-d09e-43d5-ac0e-0c2aeb61a529" />
+
 
 
 
