@@ -29,26 +29,63 @@ public interface Remera {
 
 JeanCargo.java
 ```bash
+public class JeanCargo implements Jean {
+    @Override
+    public void descripcion() {
+        System.out.println("Jean estilo cargo...");
+    }
+}
 ```
 
 JeanRecto.java
 ```bash
+public class JeanRecto implements Jean {
+    @Override
+    public void descripcion() {
+        System.out.println("Jean estilo recto...");
+    }
+}
 ```
 
 JeanSkinny.java
 ```bash
+public class JeanSkinny implements Jean
+{
+    @Override
+    public void descripcion() {
+        System.out.println("Jean estilo Skinny...");
+    }
+}
 ```
 
 RemeraMangaCorta.java
 ```bash
+public class RemeraMangaCorta implements Remera {
+    @Override
+    public void descripcion() {
+        System.out.println("Remera estilo manga corta...");
+    }    
+}
 ```
 
 RemeraAlCuerpo.java
 ```bash
+public class RemeraAlCuerpo implements Remera {
+    @Override
+    public void descripcion() {
+        System.out.println("Remera estilo al cuerpo...");
+    }    
+}
 ```
 
 RemeraOversize.java
 ```bash
+public class RemeraOversize implements Remera{
+    @Override
+    public void descripcion() {
+        System.out.println("Remera estilo Oversize...");
+    }    
+}
 ```
 
 
