@@ -71,7 +71,8 @@ public abstract class EnvioCreator {
 
   //Lógica en común que van a tener todos los tipos de envío
   public void procesarEnvio() {
-    Envio envio = crearEnvio();
+    Envio envio = crearEnvio(); //Llamara nuestro factory method
+    envio.enviarPaquete();
   }
 }
 ```
