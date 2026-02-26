@@ -92,7 +92,13 @@ public class RemeraOversize implements Remera{
 
 OutFitFactory.java
 ```bash
+public interface OutFitFactory {
+    Jean crearJean();
+    Remera crearRemera();
+}
 ```
+
+## Fabrica concreta
 
 
 
