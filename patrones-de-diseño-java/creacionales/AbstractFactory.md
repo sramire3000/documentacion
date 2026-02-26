@@ -88,7 +88,7 @@ public class RemeraOversize implements Remera{
 }
 ```
 
-## Fabrica Abstracta
+## Fabrica Abstracta o General
 
 OutFitFactory.java
 ```bash
