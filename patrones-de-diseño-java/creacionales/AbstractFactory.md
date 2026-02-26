@@ -132,6 +132,17 @@ public class OutFitEleganteFactory implements OutFitFactory {
 
 OutFitClasicoFactory.java
 ```bash
+public class OutFitClasicoFactory implements OutFitFactory {
+    @Override
+    public Jean crearJean() {
+        return new JeanSkinny();
+    }
+    
+    @Override
+    public Remera crearRemera() {
+    return new RemeraMangaCorta();
+    }     
+}
 ```
 
 
