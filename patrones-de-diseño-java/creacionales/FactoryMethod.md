@@ -29,7 +29,7 @@ EnvioCamion.java
 public class EnvioCamion implements Envio {
 
   @Override
-  public void enviarPaquete {
+  public void enviarPaquete() {
     System.out.println("Enviando paquete mediante camión...");
   }
 
@@ -41,7 +41,7 @@ EnvioCorreo.java
 public class EnvioCorreo implements Envio {
 
   @Override
-  public void enviarPaquete {
+  public void enviarPaquete() {
     System.out.println("Enviando paquete mediante correo postal...");
   }
 
@@ -53,7 +53,7 @@ EnvioMoto.java
 public class EnvioMoto implements Envio {
 
   @Override
-  public void enviarPaquete {
+  public void enviarPaquete() {
     System.out.println("Enviando paquete mediante moto...");
   }
 
