@@ -145,6 +145,12 @@ public class OutFitClasicoFactory implements OutFitFactory {
 }
 ```
 
+## Cliente
+
+TiendaRopa.java
+```bash
+```
+
 
 
 
