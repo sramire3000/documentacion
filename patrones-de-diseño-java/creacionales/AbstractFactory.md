@@ -102,6 +102,17 @@ public interface OutFitFactory {
 
 OutFitUrbanoFactory.java
 ```bash
+public class OutFitUrbanoFactory implements OutFitFactory{
+    @Override
+    public Jean crearJean() {
+        return new JeanCargo();
+    }
+    
+    @Override
+    public Remera crearRemera() {
+    return new RemeraOversize();
+    }    
+}
 ```
 
 OutFitEleganteFactory.java
