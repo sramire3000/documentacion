@@ -108,3 +108,28 @@ pulic class EnvioMotoCreator extends EnvioCreator {
   }
 }
 ```
+
+## Metodo MAIN
+
+Main.java
+```
+public class Main {
+  public static void main(String[] args) {
+
+    EnvioCreator envioCorreo = new EnvioCorreoCreator();
+    envioCorreo.procesarEnvio();
+
+    EnvioCreator envioMoto = new EnvioMotoCreator();
+    envioMoto.procesarEnvio();
+
+    EnvioCreator envioCamion = new EnvioCamionCreator();
+    envioCamion.procesarEnvio();
+   
+  }
+}
+```
+
+
+
+
+
