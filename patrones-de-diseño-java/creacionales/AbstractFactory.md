@@ -172,7 +172,7 @@ public class TiendaRopa {
 
 ```bash
 public class Main {
-    public static void Main(String[] args){
+    public static void main(String[] args){
         
         //Seleccionamos una familia de productos
         OutFitFactory factory = new OutFitUrbanoFactory();
