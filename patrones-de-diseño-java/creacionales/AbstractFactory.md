@@ -149,6 +149,23 @@ public class OutFitClasicoFactory implements OutFitFactory {
 
 TiendaRopa.java
 ```bash
+public class TiendaRopa {
+    
+    private OutFitFactory factory;
+    
+    //Constructor
+    public TiendaRopa(OutFitFactory factory) {
+        this.factory = factory;
+    }
+    
+    public void mostrarOutFit() {
+        Jean jean = factory.crearJean();
+        Remera remera = factory.crearRemera();
+        
+        jean.descripcion();
+        remera.descripcion();
+    }
+}
 ```
 
 
