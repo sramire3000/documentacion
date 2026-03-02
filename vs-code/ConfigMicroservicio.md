@@ -62,3 +62,7 @@ $env:JAVA_HOME = "C:\software\jdk\jdk-21.0.2"
 $env:Path = "$env:JAVA_HOME\bin;$env:Path"
 ```
 
+### Limpiar y compilar proyecto
+```bash
+mvn clean compile
+```
