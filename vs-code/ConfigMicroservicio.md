@@ -9,8 +9,9 @@
 
 ### Importar el archivo "Spring Boot.code-profile" en el profile
 
+## ARCHIVOS A NIVEL DEL WORKSPACE
 
-## 1. Crear Archivo ".code-workspace" en la ruta raiz
+### 1. Crear Archivo ".code-workspace" en la ruta raiz
 
 ### Contendio archivo ".code-workspace"
 ```bash
@@ -28,39 +29,53 @@
 }
 ```
 
-## 2. Crear la carpeta ".vscode" en el workspace
+## Archivos en cada Microservicio
 
-## 3. Crear archivo "launch.json"
-
+### Crear la carpeta ".vscode" en raiz de cada microservicio
+### crear el archivo "launch.json" dentro de la carpeta ".vscode" de cada microservicio
+### Contenido del archivo "launch.json"
 ```bash
 {
   "configurations": [
     {
       "type": "java",
-      "name": "Spring Boot-SpringBootComprasApplication<spring-boot-compras>",
+      "name": "Spring Boot-JhMsvcPrincipalApplication<jh-msvc-principal>",
       "request": "launch",
       "cwd": "${workspaceFolder}",
-      "javaExec": "/usr/lib/jvm/java-17-openjdk-amd64/bin/java",
-      "mainClass": "com.example.spring_boot_compras.SpringBootComprasApplication",
-      "projectName": "spring-boot-compras",
-      "vmArgs": "-Xms128m -Xmx384m -XX:MaxMetaspaceSize=96m -XX:MaxDirectMemorySize=32m -XX:+UseG1GC -XX:+UseStringDeduplication",
+      "mainClass": "sv.jh.springcloud.msvc.principal.app.JhMsvcPrincipalApplication",
+      "projectName": "jh-msvc-principal",
       "args": "",
-      "envFile": "${workspaceFolder}/.env",
-      "env": {
-        "GIT_USERNAME": "",
-        "GIT_PASSWORD": ""
-      },
+      "envFile": "${workspaceFolder}/.env"
     }
   ]
 }
 ```
 
-### Setear el JDK a nivel de consola
-```bash
-### Consola setting jdk
-$env:JAVA_HOME = "C:\software\jdk\jdk-21.0.2"
-$env:Path = "$env:JAVA_HOME\bin;$env:Path"
+## Configuración global en Visual Studio Code
+### Buscar el archivo "settings.json" en el profile que se necesita
+### Adicion la siguiente configuraciones
 ```
+  // ========== JAVA CONFIGURATION ==========
+  "java.compile.nullAnalysis.mode": "automatic",
+  "java.configuration.updateBuildConfiguration": "automatic",
+  "java.debug.settings.onBuildFailureProceed": true,
+  "java.completion.importOrder": [
+    "java",
+    "javax",
+    "jakarta",
+    "org.springframework",
+    "org.hibernate",
+    "lombok",
+    "com",
+    "#"
+  ],
+  "terminal.integrated.env.windows": {
+    "JAVA_HOME": "C:/software/jdk/jdk-21.0.2",
+    "PATH": "C:/software/jdk/jdk-21.0.2/bin;${env:PATH}"
+  },
+```
+
+## Comando de Maven
 
 ### Limpiar y compilar proyecto
 ```bash
