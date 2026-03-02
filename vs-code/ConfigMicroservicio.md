@@ -66,3 +66,12 @@ $env:Path = "$env:JAVA_HOME\bin;$env:Path"
 ```bash
 mvn clean compile
 ```
+### Generar Install
+```bash
+mvn clean install
+```
+
+### Generar JAR
+```bash
+mvn clean package
+```
