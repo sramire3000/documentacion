@@ -45,7 +45,13 @@
       "mainClass": "sv.jh.springcloud.msvc.principal.app.JhMsvcPrincipalApplication",
       "projectName": "jh-msvc-principal",
       "args": "",
+      "vmArgs": "-Xms128m -Xmx384m -XX:MaxMetaspaceSize=96m -XX:MaxDirectMemorySize=32m -XX:+UseG1GC -XX:+UseStringDeduplication",
       "envFile": "${workspaceFolder}/.env"
+      "env": {
+        "GIT_USERNAME": "",
+        "GIT_PASSWORD": ""
+      },
+    }
     }
   ]
 }
