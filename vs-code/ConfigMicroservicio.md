@@ -42,6 +42,7 @@
       "name": "Spring Boot-JhMsvcPrincipalApplication<jh-msvc-principal>",
       "request": "launch",
       "cwd": "${workspaceFolder}",
+      "javaExec": "C:/software/jdk/jdk-21.0.2/bin/java.exe",
       "mainClass": "sv.jh.springcloud.msvc.principal.app.JhMsvcPrincipalApplication",
       "projectName": "jh-msvc-principal",
       "args": "",
