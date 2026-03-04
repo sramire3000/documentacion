@@ -823,3 +823,16 @@ go build -o spring-generator.exe main.go
 -mappers ./src/main/java/com/example/mappers \
 -controllers ./src/main/java/com/example/controllers
 ```
+
+### Ejecutar en Windows
+```bash
+.\spring-generator ^
+-json JH_general_esquema.json ^
+-entities ./src/main/java/com/example/entities ^ 
+-repositories ./src/main/java/com/example/repositories ^ 
+-dtos ./src/main/java/com/example/dtos  ^
+-services ./src/main/java/com/example/services ^ 
+-implementations ./src/main/java/com/example/services/impl ^ 
+-mappers ./src/main/java/com/example/mappers ^
+-controllers ./src/main/java/com/example/controllers
+```
