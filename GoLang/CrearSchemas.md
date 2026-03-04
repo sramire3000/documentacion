@@ -891,3 +891,11 @@ go build -o extractor
 ```bash
 ./extractor -help
 ```
+
+## Uso
+
+### Extract SQLSERVER
+```bash
+# SQL Server con schema dbo (por defecto)
+./extractor -dbtype sqlserver -user sa -password "Password123" -database PruebaDB -schema dbo -output PruebaDB.json
+```
