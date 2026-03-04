@@ -105,9 +105,14 @@ public class {{.ClassName}}Entity {
 
 var idClassTemplate = `package {{.PackageName}};
 
-import lombok.*;
 import java.io.Serializable;
 import java.util.UUID;
+
+import lombok.AllArgsConstructor;
+import lombok.EqualsAndHashCode;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 /**
  * Clase de llave primaria compuesta para {{.ClassName}}
