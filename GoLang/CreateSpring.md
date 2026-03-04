@@ -133,12 +133,13 @@ public class {{.ClassName}}Id implements Serializable {
 
 var repositoryTemplate = `package repositories;
 
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.data.repository.query.QueryByExampleExecutor;
 import org.springframework.stereotype.Repository;
-import entities.{{.ClassName}};
-import java.util.List;
+import {{.PackageName}}.{{.ClassName}};
+{{if .HasCompositePrimaryKey}}import {{.PackageName}}.{{.ClassName}}Id;
+{{end}}{{if eq .IdType "UUID"}}import java.util.UUID;
+{{end}}import java.util.List;
 import java.util.Optional;
 
 /**
@@ -149,42 +150,38 @@ import java.util.Optional;
  * @author Generated on {{.Timestamp}}
  */
 @Repository
-public interface {{.ClassName}}Repository extends JpaRepository<{{.ClassName}}, Long> {
-    {{range .Columns}}
-    {{if eq .ColumnName "name"}}
-    /**
-     * Busca por nombre
-     */
-    Optional<{{$.ClassName}}> findByName(String name);
-    {{end}}
-    {{if eq .ColumnName "email"}}
-    /**
-     * Busca por email
-     */
-    Optional<{{$.ClassName}}> findByEmail(String email);
-    {{end}}
-    {{if eq .ColumnName "is_active"}}
-    /**
-     * Busca registros activos
-     */
-    List<{{$.ClassName}}> findByIsActiveTrue();
+public interface {{.ClassName}}Repository extends CrudRepository<{{.ClassName}}Entity, {{.IdType}}> {
+    {{- range .Columns}}
+    {{- if eq .ColumnName "name"}}
+    // Busca por nombre
+    Optional<{{$.ClassName}}Entity> findByName(String name);
+    {{- end}}
+    {{- if eq .ColumnName "email"}}
     
-    /**
-     * Busca registros inactivos
-     */
-    List<{{$.ClassName}}> findByIsActiveFalse();
-    {{end}}
-    {{if and (eq .ColumnName "username") (eq $.TableName "users")}}
-    /**
-     * Busca por username
-     */
-    Optional<{{$.ClassName}}> findByUsername(String username);
-    {{end}}{{end}}
+    // Busca por email
+    Optional<{{$.ClassName}}Entity> findByEmail(String email);
+    {{- end}}
+    {{- if eq .ColumnName "is_active"}}
     
-    /**
-     * Cuenta registros activos
-     */
-    {{range .Columns}}{{if eq .ColumnName "is_active"}}long countByIsActiveTrue();{{end}}{{end}}
+    // Busca registros activos
+    List<{{$.ClassName}}Entity> findByIsActiveTrue();
+    
+    // Busca registros inactivos
+    List<{{$.ClassName}}Entity> findByIsActiveFalse();
+    {{- end}}
+    {{- if and (eq .ColumnName "username") (eq $.TableName "users")}}
+
+    // Busca por username
+    Optional<{{$.ClassName}}Entity> findByUsername(String username);
+    {{- end}}
+    {{- end}}
+    {{- range .Columns}}
+    {{- if eq .ColumnName "is_active"}}
+
+    // Cuenta registros activos
+    long countByIsActiveTrue();
+    {{- end}}
+    {{- end}}
 }
 `
 
@@ -676,6 +673,7 @@ func generateClasses(table Table, paths OutputPaths, mappersPath, controllersPat
 
 	// Preparar datos para los templates
 	packageName := toPackageName(table.Schema)
+	idType := getIdType(primaryKeyColumns, className)
 	templateData := struct {
 		TableName              string
 		Schema                 string
@@ -686,6 +684,7 @@ func generateClasses(table Table, paths OutputPaths, mappersPath, controllersPat
 		Columns                []ColumnTemplate
 		PrimaryKeyColumns      []ColumnTemplate
 		HasCompositePrimaryKey bool
+		IdType                 string
 		Timestamp              string
 	}{
 		TableName:              table.TableName,
@@ -697,6 +696,7 @@ func generateClasses(table Table, paths OutputPaths, mappersPath, controllersPat
 		Columns:                preparedColumns,
 		PrimaryKeyColumns:      primaryKeyColumns,
 		HasCompositePrimaryKey: len(primaryKeyColumns) > 1,
+		IdType:                 idType,
 		Timestamp:              time.Now().Format("2006-01-02 15:04:05"),
 	}
 
@@ -713,9 +713,9 @@ func generateClasses(table Table, paths OutputPaths, mappersPath, controllersPat
 	}
 
 	// Generar Repository
-	//if err := generateFile(filepath.Join(paths.RepositoriesPath, className+"Repository.java"), repositoryTemplate, templateData); err != nil {
-	//	return err
-	//}
+	if err := generateFile(filepath.Join(paths.RepositoriesPath, className+"Repository.java"), repositoryTemplate, templateData); err != nil {
+		return err
+	}
 
 	// Generar DTO
 	//if err := generateFile(filepath.Join(paths.DTOsPath, className+"DTO.java"), dtoTemplate, templateData); err != nil {
@@ -838,6 +838,21 @@ func getPrimaryKeyColumns(columns []ColumnTemplate) []ColumnTemplate {
 	}
 
 	return primaryKeys
+}
+
+func getIdType(primaryKeyColumns []ColumnTemplate, className string) string {
+	// Si hay más de una columna PK, es una llave compuesta
+	if len(primaryKeyColumns) > 1 {
+		return className + "Id"
+	}
+
+	// Si hay exactamente una columna PK, retornar su tipo Java
+	if len(primaryKeyColumns) == 1 {
+		return primaryKeyColumns[0].JavaType
+	}
+
+	// Fallback a Long si no hay PK definida
+	return "Long"
 }
 
 func sqlToJavaType(sqlType string, precision, scale int) string {
