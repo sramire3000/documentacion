@@ -805,7 +805,11 @@ func toKebabCase(s string) string {
 }
 ```
 
-### Bajar lirerias
+### Compilar
 ```
-go get
+go build -o spring-generator spring-generator.go
+```
+## Uso
+```bash
+./spring-generator -json HRTechnologiesSV_seg_esquema.json -entities ./src/main/java/com/example/entities -repositories ./src/main/java/com/example/repositories -dtos ./src/main/java/com/example/dtos -services ./src/main/java/com/example/services -implementations ./src/main/java/com/example/services/impl -mappers ./src/main/java/com/example/mappers -controllers ./src/main/java/com/example/controllers
 ```
