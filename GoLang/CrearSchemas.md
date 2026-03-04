@@ -877,3 +877,8 @@ require (
 	golang.org/x/text v0.12.0 // indirect
 )
 ```
+### Instalar librerias
+```bash
+# Instalar librerias
+go get
+```
