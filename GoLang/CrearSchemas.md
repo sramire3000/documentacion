@@ -896,7 +896,6 @@ go build -o extractor
 
 ### Extract SQLSERVER
 ```bash
-# SQL Server con schema dbo (por defecto)
 ./extractor -dbtype sqlserver -user sa -password "Password123" -database PruebaDB -schema dbo -output pruebaDB_esquema.json
 ```
 ### Extract MYSQL
