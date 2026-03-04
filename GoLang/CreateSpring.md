@@ -803,5 +803,9 @@ func toCamelCase(s string, capitalizeFirst bool) string {
 func toKebabCase(s string) string {
 	return strings.ReplaceAll(strings.ToLower(s), "_", "-")
 }
+```
 
+### Bajar lirerias
+```
+go get
 ```
