@@ -886,6 +886,10 @@ go get
 ```bash
 go build -o extractor
 ```
+### Compilar Windows
+```bash
+go build -o extractor.exe
+```
 
 ### Ayuda completa
 ```bash
