@@ -807,7 +807,7 @@ func toKebabCase(s string) string {
 
 ### Compilar Windows
 ```
-go build -o spring-generator.exe
+go build -o spring-generator.exe main.go
 ```
 ## Uso
 
