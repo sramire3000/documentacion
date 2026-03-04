@@ -896,24 +896,47 @@ go build -o extractor.exe
 ./extractor -help
 ```
 
-## Uso
+## Uso en Windows
 
 ### Extract SQLSERVER
 ```bash
-./extractor -dbtype sqlserver -user sa -password "Password123" -database PruebaDB -schema dbo -output pruebaDB_esquema.json
+./extractor ^
+-dbtype sqlserver ^
+-user sa ^
+-password "Password123" ^
+-database PruebaDB ^
+-schema dbo ^
+-output pruebaDB_esquema.json
 ```
 ### Extract MYSQL
 ```
-./extractor -dbtype mysql -user root -password "Password123" -database PruebaDB -output pruebaDB_esquema.json
+./extractor ^
+-dbtype mysql ^
+-user root ^
+-password "Password123" ^
+-database PruebaDB ^
+-output pruebaDB_esquema.json
 ```
 
 ### Extract PostgreSQL con schema public
 ```
-./extractor -dbtype postgres -user postgres -password "Password123" -database PruebaDB -schema public -output pruebaDB_esquema.json
+./extractor ^
+-dbtype postgres ^
+-user postgres ^
+-password "Password123" ^
+-database PruebaDB ^
+-schema public ^
+-output pruebaDB_esquema.json
 ```
 
 ### Extract Sybase
 ```
-./extractor -dbtype sybase -user sa -password "Password123" -database PruebaDB -schema dbo -output pruebaDB_esquema.json
+./extractor ^
+-dbtype sybase ^
+-user sa ^
+-password "Password123" ^
+-database PruebaDB ^
+-schema dbo ^
+-output pruebaDB_esquema.json
 ```
 
