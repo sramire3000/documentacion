@@ -879,6 +879,15 @@ require (
 ```
 ### Instalar librerias
 ```bash
-# Instalar librerias
 go get
+```
+
+### Compilar
+```bash
+go build -o extractor
+```
+
+### Ayuda completa
+```bash
+./extractor -help
 ```
