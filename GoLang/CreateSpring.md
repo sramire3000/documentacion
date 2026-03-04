@@ -56,13 +56,22 @@ type OutputPaths struct {
 }
 
 // Templates con Lombok
-var entityTemplate = `package entities;
+var entityTemplate = `package {{.PackageName}};
 
-import lombok.Data;
-import jakarta.persistence.*;
+import java.util.UUID;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
 import java.time.LocalDateTime;
 import java.math.BigDecimal;
-import java.util.UUID;
+
+import lombok.Data;
+import lombok.ToString;
 
 /**
  * Entidad JPA para la tabla {{.Schema}}.{{.TableName}}
@@ -76,7 +85,7 @@ import java.util.UUID;
 @Entity
 @ToString
 @Table(name = "{{.TableName}}", schema = "{{.Schema}}")
-public class {{.ClassName}} {
+public class {{.ClassName}}Entity {
     {{range .Columns}}
     // {{.ColumnName}} - {{.DataType}}{{if .MaxLength}} (max: {{.MaxLength}}){{end}}{{if .IsPrimaryKey}} - PRIMARY KEY{{end}}{{if .IsIdentity}} - AUTO INCREMENT{{end}}
     {{- if .IsPrimaryKey}}
@@ -94,7 +103,7 @@ public class {{.ClassName}} {
 }
 `
 
-var idClassTemplate = `package entities;
+var idClassTemplate = `package {{.PackageName}};
 
 import lombok.*;
 import java.io.Serializable;
@@ -661,9 +670,11 @@ func generateClasses(table Table, paths OutputPaths, mappersPath, controllersPat
 	primaryKeyColumns := getPrimaryKeyColumns(preparedColumns)
 
 	// Preparar datos para los templates
+	packageName := toPackageName(table.Schema)
 	templateData := struct {
 		TableName              string
 		Schema                 string
+		PackageName            string
 		ClassName              string
 		LowerClassName         string
 		KebabCaseName          string
@@ -674,6 +685,7 @@ func generateClasses(table Table, paths OutputPaths, mappersPath, controllersPat
 	}{
 		TableName:              table.TableName,
 		Schema:                 table.Schema,
+		PackageName:            packageName,
 		ClassName:              className,
 		LowerClassName:         lowerClassName,
 		KebabCaseName:          kebabCaseName,
@@ -684,7 +696,7 @@ func generateClasses(table Table, paths OutputPaths, mappersPath, controllersPat
 	}
 
 	// Generar Entity
-	if err := generateFile(filepath.Join(paths.EntitiesPath, className+".java"), entityTemplate, templateData); err != nil {
+	if err := generateFile(filepath.Join(paths.EntitiesPath, className+"Entity.java"), entityTemplate, templateData); err != nil {
 		return err
 	}
 
@@ -880,6 +892,12 @@ func toCamelCase(s string, capitalizeFirst bool) string {
 
 func toKebabCase(s string) string {
 	return strings.ReplaceAll(strings.ToLower(s), "_", "-")
+}
+
+func toPackageName(schema string) string {
+	// Convierte el schema a un nombre de paquete válido
+	// Ejemplo: "ventas" -> "entities.ventas", "seguridad" -> "entities.seguridad"
+	return "entities." + strings.ToLower(strings.ReplaceAll(schema, "-", ""))
 }
 
 ```
