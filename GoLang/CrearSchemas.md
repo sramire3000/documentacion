@@ -882,7 +882,7 @@ require (
 go get
 ```
 
-### Compilar
+### Compilar Linux
 ```bash
 go build -o extractor
 ```
@@ -897,5 +897,20 @@ go build -o extractor
 ### Extract SQLSERVER
 ```bash
 # SQL Server con schema dbo (por defecto)
-./extractor -dbtype sqlserver -user sa -password "Password123" -database PruebaDB -schema dbo -output PruebaDB.json
+./extractor -dbtype sqlserver -user sa -password "Password123" -database PruebaDB -schema dbo -output pruebaDB_esquema.json
 ```
+### Extract MYSQL
+```
+./extractor -dbtype mysql -user root -password "Password123" -database PruebaDB -output pruebaDB_esquema.json
+```
+
+### Extract PostgreSQL con schema public
+```
+./extractor -dbtype postgres -user postgres -password "Password123" -database PruebaDB -schema public -output pruebaDB_esquema.json
+```
+
+### Extract Sybase
+```
+./extractor -dbtype sybase -user sa -password "Password123" -database PruebaDB -schema dbo -output pruebaDB_esquema.json
+```
+
