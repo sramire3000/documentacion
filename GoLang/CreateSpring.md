@@ -58,10 +58,11 @@ type OutputPaths struct {
 // Templates con Lombok
 var entityTemplate = `package entities;
 
-import lombok.*;
-import javax.persistence.*;
+import lombok.Data;
+import jakarta.persistence.*;
 import java.time.LocalDateTime;
 import java.math.BigDecimal;
+import java.util.UUID;
 
 /**
  * Entidad JPA para la tabla {{.Schema}}.{{.TableName}}
@@ -70,23 +71,47 @@ import java.math.BigDecimal;
  * 
  * @author Generated on {{.Timestamp}}
  */
+{{if .HasCompositePrimaryKey}}@IdClass({{.ClassName}}Id.class){{end}} 
+@Data
 @Entity
+@ToString
 @Table(name = "{{.TableName}}", schema = "{{.Schema}}")
+public class {{.ClassName}} {
+    {{range .Columns}}
+    // {{.ColumnName}} - {{.DataType}}{{if .MaxLength}} (max: {{.MaxLength}}){{end}}{{if .IsPrimaryKey}} - PRIMARY KEY{{end}}{{if .IsIdentity}} - AUTO INCREMENT{{end}}
+    {{- if .IsPrimaryKey}}
+    @Id
+    {{- end}}
+    {{- if .IsIdentity}}
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    {{- end}}
+    {{- if .IsUUIDGenerated}}
+    @GeneratedValue(strategy = GenerationType.UUID)
+    {{- end}}
+    @Column(name = "{{.ColumnName}}"{{if not (eq .IsNullable "YES")}}, nullable = false{{end}}{{if .MaxLength}}, length = {{.MaxLength}}{{end}})
+    private {{.JavaType}} {{.FieldName}};
+    {{end}}
+}
+`
+
+var idClassTemplate = `package entities;
+
+import lombok.*;
+import java.io.Serializable;
+import java.util.UUID;
+
+/**
+ * Clase de llave primaria compuesta para {{.ClassName}}
+ *
+ * @author Generated on {{.Timestamp}}
+ */
 @Getter
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
-@ToString
 @EqualsAndHashCode
-public class {{.ClassName}} {
-    {{range .Columns}}
-    /**
-     * {{.ColumnName}} - {{.DataType}}{{if .MaxLength}} (max: {{.MaxLength}}){{end}}{{if .IsPrimaryKey}} - PRIMARY KEY{{end}}{{if .IsIdentity}} - AUTO INCREMENT{{end}}
-     */
-    {{if .IsPrimaryKey}}@Id{{end}}
-    {{if .IsIdentity}}@GeneratedValue(strategy = GenerationType.IDENTITY){{end}}
-    @Column(name = "{{.ColumnName}}"{{if not (eq .IsNullable "YES")}}, nullable = false{{end}}{{if .MaxLength}}, length = {{.MaxLength}}{{end}})
+public class {{.ClassName}}Id implements Serializable {
+    {{range .PrimaryKeyColumns}}
     private {{.JavaType}} {{.FieldName}};
     {{end}}
 }
@@ -632,24 +657,30 @@ func generateClasses(table Table, paths OutputPaths, mappersPath, controllersPat
 	className := toCamelCase(table.TableName, true)
 	lowerClassName := toCamelCase(table.TableName, false)
 	kebabCaseName := toKebabCase(table.TableName)
+	preparedColumns := prepareColumns(table.Columns)
+	primaryKeyColumns := getPrimaryKeyColumns(preparedColumns)
 
 	// Preparar datos para los templates
 	templateData := struct {
-		TableName      string
-		Schema         string
-		ClassName      string
-		LowerClassName string
-		KebabCaseName  string
-		Columns        []ColumnTemplate
-		Timestamp      string
+		TableName              string
+		Schema                 string
+		ClassName              string
+		LowerClassName         string
+		KebabCaseName          string
+		Columns                []ColumnTemplate
+		PrimaryKeyColumns      []ColumnTemplate
+		HasCompositePrimaryKey bool
+		Timestamp              string
 	}{
-		TableName:      table.TableName,
-		Schema:         table.Schema,
-		ClassName:      className,
-		LowerClassName: lowerClassName,
-		KebabCaseName:  kebabCaseName,
-		Columns:        prepareColumns(table.Columns),
-		Timestamp:      time.Now().Format("2006-01-02 15:04:05"),
+		TableName:              table.TableName,
+		Schema:                 table.Schema,
+		ClassName:              className,
+		LowerClassName:         lowerClassName,
+		KebabCaseName:          kebabCaseName,
+		Columns:                preparedColumns,
+		PrimaryKeyColumns:      primaryKeyColumns,
+		HasCompositePrimaryKey: len(primaryKeyColumns) > 1,
+		Timestamp:              time.Now().Format("2006-01-02 15:04:05"),
 	}
 
 	// Generar Entity
@@ -657,35 +688,42 @@ func generateClasses(table Table, paths OutputPaths, mappersPath, controllersPat
 		return err
 	}
 
-	// Generar Repository
-	if err := generateFile(filepath.Join(paths.RepositoriesPath, className+"Repository.java"), repositoryTemplate, templateData); err != nil {
-		return err
+	// Generar clase de ID para llave primaria compuesta
+	if templateData.HasCompositePrimaryKey {
+		if err := generateFile(filepath.Join(paths.EntitiesPath, className+"Id.java"), idClassTemplate, templateData); err != nil {
+			return err
+		}
 	}
+
+	// Generar Repository
+	//if err := generateFile(filepath.Join(paths.RepositoriesPath, className+"Repository.java"), repositoryTemplate, templateData); err != nil {
+	//	return err
+	//}
 
 	// Generar DTO
-	if err := generateFile(filepath.Join(paths.DTOsPath, className+"DTO.java"), dtoTemplate, templateData); err != nil {
-		return err
-	}
+	//if err := generateFile(filepath.Join(paths.DTOsPath, className+"DTO.java"), dtoTemplate, templateData); err != nil {
+	//	return err
+	//}
 
 	// Generar Service Interface
-	if err := generateFile(filepath.Join(paths.ServicesPath, className+"Service.java"), serviceTemplate, templateData); err != nil {
-		return err
-	}
+	//if err := generateFile(filepath.Join(paths.ServicesPath, className+"Service.java"), serviceTemplate, templateData); err != nil {
+	//	return err
+	//}
 
 	// Generar Service Implementation
-	if err := generateFile(filepath.Join(paths.ImplementationsPath, className+"ServiceImpl.java"), serviceImplTemplate, templateData); err != nil {
-		return err
-	}
+	//if err := generateFile(filepath.Join(paths.ImplementationsPath, className+"ServiceImpl.java"), serviceImplTemplate, templateData); err != nil {
+	//	return err
+	//}
 
 	// Generar Mapper
-	if err := generateFile(filepath.Join(mappersPath, className+"Mapper.java"), mapperTemplate, templateData); err != nil {
-		return err
-	}
+	//if err := generateFile(filepath.Join(mappersPath, className+"Mapper.java"), mapperTemplate, templateData); err != nil {
+	//	return err
+	//}
 
 	// Generar Controller
-	if err := generateFile(filepath.Join(controllersPath, className+"Controller.java"), controllerTemplate, templateData); err != nil {
-		return err
-	}
+	//if err := generateFile(filepath.Join(controllersPath, className+"Controller.java"), controllerTemplate, templateData); err != nil {
+	//	return err
+	//}
 
 	return nil
 }
@@ -706,22 +744,30 @@ func generateFile(filename string, templateStr string, data interface{}) error {
 }
 
 type ColumnTemplate struct {
-	ColumnName     string
-	DataType       string
-	IsNullable     string
-	MaxLength      int
-	Precision      int
-	Scale          int
-	IsPrimaryKey   bool
-	IsIdentity     bool
-	DefaultValue   string
-	JavaType       string
-	FieldName      string
-	FieldNameTitle string
+	ColumnName      string
+	DataType        string
+	IsNullable      string
+	MaxLength       int
+	Precision       int
+	Scale           int
+	IsPrimaryKey    bool
+	IsIdentity      bool
+	IsUUIDGenerated bool
+	DefaultValue    string
+	JavaType        string
+	FieldName       string
+	FieldNameTitle  string
 }
 
 func prepareColumns(columns []Column) []ColumnTemplate {
 	var result []ColumnTemplate
+	primaryKeyCount := 0
+
+	for _, col := range columns {
+		if col.IsPrimaryKey {
+			primaryKeyCount++
+		}
+	}
 
 	for _, col := range columns {
 		javaType := sqlToJavaType(col.DataType, col.Precision, col.Scale)
@@ -729,22 +775,52 @@ func prepareColumns(columns []Column) []ColumnTemplate {
 		fieldNameTitle := toCamelCase(col.ColumnName, true)
 
 		result = append(result, ColumnTemplate{
-			ColumnName:     col.ColumnName,
-			DataType:       col.DataType,
-			IsNullable:     col.IsNullable,
-			MaxLength:      col.MaxLength,
-			Precision:      col.Precision,
-			Scale:          col.Scale,
-			IsPrimaryKey:   col.IsPrimaryKey,
-			IsIdentity:     col.IsIdentity,
-			DefaultValue:   col.DefaultValue,
-			JavaType:       javaType,
-			FieldName:      fieldName,
-			FieldNameTitle: fieldNameTitle,
+			ColumnName:      col.ColumnName,
+			DataType:        col.DataType,
+			IsNullable:      col.IsNullable,
+			MaxLength:       col.MaxLength,
+			Precision:       col.Precision,
+			Scale:           col.Scale,
+			IsPrimaryKey:    col.IsPrimaryKey,
+			IsIdentity:      col.IsIdentity,
+			IsUUIDGenerated: shouldGenerateUUID(col, javaType, primaryKeyCount),
+			DefaultValue:    col.DefaultValue,
+			JavaType:        javaType,
+			FieldName:       fieldName,
+			FieldNameTitle:  fieldNameTitle,
 		})
 	}
 
 	return result
+}
+
+func shouldGenerateUUID(col Column, javaType string, primaryKeyCount int) bool {
+	if !col.IsPrimaryKey || col.IsIdentity || javaType != "UUID" {
+		return false
+	}
+
+	defaultValue := strings.ToLower(strings.TrimSpace(col.DefaultValue))
+	if defaultValue == "" {
+		return primaryKeyCount == 1
+	}
+
+	return strings.Contains(defaultValue, "gen_random_uuid") ||
+		strings.Contains(defaultValue, "uuid_generate_v4") ||
+		strings.Contains(defaultValue, "newid(") ||
+		strings.Contains(defaultValue, "newsequentialid(") ||
+		strings.Contains(defaultValue, "random_uuid")
+}
+
+func getPrimaryKeyColumns(columns []ColumnTemplate) []ColumnTemplate {
+	var primaryKeys []ColumnTemplate
+
+	for _, col := range columns {
+		if col.IsPrimaryKey {
+			primaryKeys = append(primaryKeys, col)
+		}
+	}
+
+	return primaryKeys
 }
 
 func sqlToJavaType(sqlType string, precision, scale int) string {
@@ -777,8 +853,10 @@ func sqlToJavaType(sqlType string, precision, scale int) string {
 		return "java.time.LocalDate"
 	case "time":
 		return "java.time.LocalTime"
-	case "char", "varchar", "text", "nchar", "nvarchar", "ntext":
+	case "char", "varchar", "text", "nchar", "nvarchar", "ntext", "character varying":
 		return "String"
+	case "uuid", "uniqueidentifier":
+		return "UUID"
 	case "binary", "varbinary", "image":
 		return "byte[]"
 	default:
@@ -803,6 +881,7 @@ func toCamelCase(s string, capitalizeFirst bool) string {
 func toKebabCase(s string) string {
 	return strings.ReplaceAll(strings.ToLower(s), "_", "-")
 }
+
 ```
 
 ### Compilar Windows
