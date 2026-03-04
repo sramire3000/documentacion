@@ -185,10 +185,44 @@ public interface {{.ClassName}}Repository extends CrudRepository<{{.ClassName}}E
 }
 `
 
-var dtoTemplate = `package dtos;
+var dtoTemplateRequest = `package dtos;
 
-import lombok.*;
-import javax.validation.constraints.*;
+import java.util.UUID;
+
+import lombok.Data;
+
+import java.time.LocalDateTime;
+import java.math.BigDecimal;
+
+
+/**
+ * DTO para {{.ClassName}}
+ * 
+ * <p>Esta clase representa el objeto de transferencia de datos para {{.TableName}}</p>
+ * 
+ * @author Generated on {{.Timestamp}}
+ */
+@Data
+public class {{.ClassName}}Request {
+    {{- range .Columns}}
+    {{- if not .IsNullable}}
+    {{- end}}
+    {{- if eq .DataType "varchar"}}
+caracteres")
+    {{- end}}
+    {{- if or (eq .ColumnName "email") (eq .ColumnName "email_address")}}
+    {{- end}}
+    private {{.JavaType}} {{.FieldName}};
+    {{- end}}
+}
+`
+
+var dtoTemplateResponse = `package dtos;
+
+import java.util.UUID;
+
+import lombok.Data;
+
 import java.time.LocalDateTime;
 import java.math.BigDecimal;
 
@@ -199,20 +233,17 @@ import java.math.BigDecimal;
  * 
  * @author Generated on {{.Timestamp}}
  */
-@Getter
-@Setter
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
-@ToString
-@EqualsAndHashCode
-public class {{.ClassName}}DTO {
-    {{range .Columns}}
-    {{if not .IsNullable}}@NotNull(message = "{{.FieldName}} no puede ser nulo"){{end}}
-    {{if eq .DataType "varchar"}}@Size(max = {{.MaxLength}}, message = "{{.FieldName}} no puede exceder {{.MaxLength}} caracteres"){{end}}
-    {{if or (eq .ColumnName "email") (eq .ColumnName "email_address")}}@Email(message = "Formato de email inválido"){{end}}
+@Data
+public class {{.ClassName}}Response {
+    {{- range .Columns}}
+    {{- if not .IsNullable}}
+    {{- end}}
+    {{- if eq .DataType "varchar"}}
+    {{- end}}
+    {{- if or (eq .ColumnName "email") (eq .ColumnName "email_address")}}
+    {{- end}}
     private {{.JavaType}} {{.FieldName}};
-    {{end}}
+    {{- end}}
 }
 `
 
@@ -717,10 +748,14 @@ func generateClasses(table Table, paths OutputPaths, mappersPath, controllersPat
 		return err
 	}
 
-	// Generar DTO
-	//if err := generateFile(filepath.Join(paths.DTOsPath, className+"DTO.java"), dtoTemplate, templateData); err != nil {
-	//	return err
-	//}
+	// Generar DTO Request
+	if err := generateFile(filepath.Join(paths.DTOsPath, className+"Request.java"), dtoTemplateRequest, templateData); err != nil {
+		return err
+	}
+
+	if err := generateFile(filepath.Join(paths.DTOsPath, className+"Response.java"), dtoTemplateResponse, templateData); err != nil {
+		return err
+	}
 
 	// Generar Service Interface
 	//if err := generateFile(filepath.Join(paths.ServicesPath, className+"Service.java"), serviceTemplate, templateData); err != nil {
@@ -865,6 +900,8 @@ func sqlToJavaType(sqlType string, precision, scale int) string {
 		return "Short"
 	case "tinyint":
 		return "Byte"
+	case "boolean", "bool":
+		return "Boolean"
 	case "bit":
 		return "Boolean"
 	case "decimal", "numeric":
