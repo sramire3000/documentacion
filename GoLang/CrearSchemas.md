@@ -1,8 +1,8 @@
 # Crear Schemas de diferentes bases de datos
 
 ### Crear carpeta "xtrac-sql"
-### Crear archivo main.go
-### Contenido de main.go
+### Crear archivo "main.go"
+### Contenido de "main.go"
 ```bash
 package main
 
