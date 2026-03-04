@@ -1,8 +1,8 @@
 # Create Spring boot
 
 ## Create carpeta "create-spring"
-### Create archivo "spring-generator.go" en la carpeta "create-sprng"
-### Contenido del archivo "spring-generator.go"
+### Create archivo "main.go" en la carpeta "create-sprng"
+### Contenido del archivo "main.go"
 ```bash
 package main
 
