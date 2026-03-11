@@ -63,29 +63,6 @@
 }
 ```
 
-## Configuración global en Visual Studio Code
-### Buscar el archivo "settings.json" en el profile que se necesita
-### Adicion la siguiente configuraciones
-```
-  // ========== JAVA CONFIGURATION ==========
-  "java.compile.nullAnalysis.mode": "automatic",
-  "java.configuration.updateBuildConfiguration": "automatic",
-  "java.debug.settings.onBuildFailureProceed": true,
-  "java.completion.importOrder": [
-    "java",
-    "javax",
-    "jakarta",
-    "org.springframework",
-    "org.hibernate",
-    "lombok",
-    "com",
-    "#"
-  ],
-  "terminal.integrated.env.windows": {
-    "JAVA_HOME": "C:/software/jdk/jdk-21.0.2",
-    "PATH": "C:/software/jdk/jdk-21.0.2/bin;${env:PATH}"
-  },
-```
 
 ## Comando de Maven
 
