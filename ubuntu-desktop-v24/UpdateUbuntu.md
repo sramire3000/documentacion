@@ -19,7 +19,7 @@ sudo apt full-upgrade -y
 sudo apt autoremove -y
 ```
 
-### 5. Opcional) Actualizar la distribución completa  
+### 5. (Opcional) Actualizar la distribución completa  
 Si quieres pasar de una versión a otra (por ejemplo, de Ubuntu 23.10 a 24.04), usa:
 ```
 sudo do-release-upgrade
