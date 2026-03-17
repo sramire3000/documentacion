@@ -1,3 +1,5 @@
+# EJEMPLO DE AGENTS PARA LA DEFINICIÓN DE REGLAS
+
 # Guía de mejores Prácticas - NombreProyecto (Kotlin Multiplataforma) 
 
 ## 1. General
