@@ -77,6 +77,6 @@ El sistema está diseñado para ser escalable, seguro y fácil de usar, permitie
 ```
 
 # IA
-- [AGENTES.md Un formato sencillo y abierto para guiar a los agentes de codificación, utilizado por más de 60.000 proyectos de código abierto](https://agents.md/)
-- [Skills are reusable capabilities for AI agents. Install them with a single command to enhance your agents with access to procedural knowledge](https://skills.sh/)
+- [AGENTES.md Un formato sencillo y abierto para guiar a los agentes de codificación,](https://agents.md/)
+- [Skills are reusable capabilities for AI agents.](https://skills.sh/)
 - [ClaudeCode](https://claude.com/product/claude-code)
