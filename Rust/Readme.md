@@ -26,3 +26,8 @@ rustc --version
 ```
 rustc nombrePrograma.rs
 ```
+
+### Crear proyecto con Cargo
+```
+cargo new hello_cargo
+```
