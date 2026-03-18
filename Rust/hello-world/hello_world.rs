@@ -1,3 +1,7 @@
+/*
+Este es un comentario de bloque
+*/
 fn main() {
-    println!("hola mundo, como estan?!")
+    //Este es un comentario
+    println!("hola mundo, como estan?!");
 }
