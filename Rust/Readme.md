@@ -50,3 +50,7 @@ cargo run
 ```
 cargo check
 ```
+### Build con optimizaciones
+```
+cargo build --release
+```
