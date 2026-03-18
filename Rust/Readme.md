@@ -31,3 +31,7 @@ rustc nombrePrograma.rs
 ```
 cargo new hello_cargo
 ```
+### Crear un proyecto tipo libreria
+```
+cargo new hello_cargo_lib --lib
+```
