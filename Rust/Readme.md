@@ -40,3 +40,8 @@ cargo new hello_cargo_lib --lib
 ```
 cargo build
 ```
+
+### Compila y ejecuta
+```
+cargo run
+```
