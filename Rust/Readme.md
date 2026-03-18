@@ -35,3 +35,8 @@ cargo new hello_cargo
 ```
 cargo new hello_cargo_lib --lib
 ```
+
+### Build con Cargo
+```
+cargo build
+```
