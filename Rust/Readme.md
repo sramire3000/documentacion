@@ -22,3 +22,7 @@ cargo --version
 ```
 rustc --version
 ```
+### Compilar un programa
+```
+rustc nombrePrograma.rs
+```
