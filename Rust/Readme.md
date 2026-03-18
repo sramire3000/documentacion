@@ -14,3 +14,7 @@ rustup --version
 ```
 cargo --version
 ```
+### Version compilador
+```
+rustc --version
+```
