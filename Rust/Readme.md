@@ -45,3 +45,8 @@ cargo build
 ```
 cargo run
 ```
+
+### Verificar si compila el proyecto
+```
+cargo check
+```
