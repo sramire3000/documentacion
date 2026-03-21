@@ -19,3 +19,12 @@ sudo apt install aria2
 aria2c https://ejemplo.com/archivo.iso
 ```
 
+### 🚀 Descarga acelerada con múltiples conexiones
+```
+aria2c -x 16 https://ejemplo.com/archivo.iso
+```
+
+### 🔄 Reanudar descargas interrumpidas
+```
+aria2c -c https://ejemplo.com/archivo.iso
+```
