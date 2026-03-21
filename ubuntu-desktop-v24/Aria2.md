@@ -1,4 +1,4 @@
-#aria2 (línea de comandos avanzada)
+# aria2 (línea de comandos avanzada)
 Tipo: Gestor de descargas ligero y potente.
 
 Características:
