@@ -2,6 +2,33 @@
 
 - [Lenguaje Go](https://go.dev/)
 
+## Tipos de datos en Go
+
+### Básicos
+- int, int8, int16, int32, int64
+- uint, uint8, uint16, uint32, uint64, uintptr
+- float32, float64
+- complex64, complex128
+- byte (alias de uint8)
+- rune (alias de int32, usado para Unicode)
+- string (cadenas inmutables)
+- bool (true/false)
+
+### Compuestos
+- array (colección de tamaño fijo)
+- slice (colección dinámica)
+- struct (agrupación de campos)
+- map (pares clave-valor)
+
+### Referencia
+- pointer (referencia a memoria)
+- function (funciones como valores)
+- interface (conjunto de métodos)
+
+### Especiales
+- nil (valor nulo)
+- error (manejo de errores)
+
 ## Install
 
 ### Create file "GO.code-profile" 
@@ -44,32 +71,7 @@ Nota: El espacio de trabajo se encuentra en la variable GOPATH, en el espacio de
 3. go mod init ejemplo.com/mi_proyecto
 
 
-## Tipos de datos en Go
 
-### Básicos
-- int, int8, int16, int32, int64
-- uint, uint8, uint16, uint32, uint64, uintptr
-- float32, float64
-- complex64, complex128
-- byte (alias de uint8)
-- rune (alias de int32, usado para Unicode)
-- string (cadenas inmutables)
-- bool (true/false)
-
-### Compuestos
-- array (colección de tamaño fijo)
-- slice (colección dinámica)
-- struct (agrupación de campos)
-- map (pares clave-valor)
-
-### Referencia
-- pointer (referencia a memoria)
-- function (funciones como valores)
-- interface (conjunto de métodos)
-
-### Especiales
-- nil (valor nulo)
-- error (manejo de errores)
 
 
 
