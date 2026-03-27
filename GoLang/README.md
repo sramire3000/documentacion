@@ -65,7 +65,6 @@ Nota: El espacio de trabajo se encuentra en la variable GOPATH, en el espacio de
 7. Probar código: go test
 8. Formatear código: go fmt
 
-
 ## 📂 Crear un proyecto
 
 1. mkdir mi_proyecto
@@ -73,8 +72,15 @@ Nota: El espacio de trabajo se encuentra en la variable GOPATH, en el espacio de
 3. go mod init ejemplo.com/mi_proyecto
 
 
+### Ejecutar aplicacion 
+```
+go run
+```
 
-
+### Build
+```
+go build main.go
+```
 
 
 ## Configuración WASM
