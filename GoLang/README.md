@@ -70,6 +70,8 @@ Nota: El espacio de trabajo se encuentra en la variable GOPATH, en el espacio de
 1. mkdir mi_proyecto
 2. cd mi_proyecto
 3. go mod init [nombre_modulo]
+4. go mod tidy
+
 
 ### Descargar paquetes de terceros
 ```
