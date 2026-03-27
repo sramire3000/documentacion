@@ -69,15 +69,57 @@ Nota: El espacio de trabajo se encuentra en la variable GOPATH, en el espacio de
 
 1. mkdir mi_proyecto
 2. cd mi_proyecto
-3. go mod init ejemplo.com/mi_proyecto
+3. go mod init [nombre_modulo]
 
+### Descargar paquetes de terceros
+```
+go get [ruta_o_nombre_paquete]
+```
+
+### Listado de paquetes de terceros
+```
+# Framework web rápido y eficiente
+go get -u github.com/gin-gonic/gin
+
+# Enrutador HTTP avanzado
+go get -u github.com/gorilla/mux
+
+# Construcción de CLI (línea de comandos)
+go get -u github.com/spf13/cobra
+
+# Manejo de configuración
+go get -u github.com/spf13/viper
+
+# ORM para bases de datos
+go get -u gorm.io/gorm
+go get -u gorm.io/driver/postgres   # Ejemplo: driver para PostgreSQL
+go get -u gorm.io/driver/mysql      # Ejemplo: driver para MySQL
+
+# Logging estructurado
+go get -u github.com/sirupsen/logrus
+
+# Logging de alto rendimiento
+go get -u go.uber.org/zap
+
+# Testing con aserciones y mocks
+go get -u github.com/stretchr/testify
+
+# Microservicios y arquitectura distribuida
+go get -u github.com/go-kit/kit
+
+# Enrutador HTTP ligero
+go get -u github.com/go-chi/chi/v5
+
+```
 
 ### Ejecutar aplicacion 
+
 ```
 go run
 ```
 
 ### Build
+
 ```
 go build main.go
 ```
