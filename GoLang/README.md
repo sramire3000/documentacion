@@ -114,7 +114,13 @@ go get -u github.com/go-chi/chi/v5
 
 # Uso de variables y datos
 
-
+### Declaracion de variables
+### Declaracion de constantes
+### Tipos de datos basicos
+### Valores predeterminados
+### Conversiones de datos
+### Paquete fmt
+### Operadores aritmeticos y paquete math
 
 ### Ejecutar aplicacion 
 
