@@ -2,6 +2,10 @@
 
 ## Configuración WASM
 
+
+
+
+
 ### Crear carpeta .vscode
 ### crear archivo settings.json
 ````
