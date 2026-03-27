@@ -35,10 +35,15 @@ go env	            Muestra variables de entorno relacionadas con Go.
 7. Probar código: go test
 8. Formatear código: go fmt
 
+
+### 📂 Crear un proyecto
+
+1. mkdir mi_proyecto
+2. cd mi_proyecto
+3. go mod init ejemplo.com/mi_proyecto
+
+
 ## Configuración WASM
-
-
-
 
 
 ### Crear carpeta .vscode
