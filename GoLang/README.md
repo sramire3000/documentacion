@@ -23,7 +23,8 @@ go fmt archivo.go	Formatea el código siguiendo las convenciones de estilo de Go
 go version	        Muestra la versión instalada de Go.
 go env	            Muestra variables de entorno relacionadas con Go.
 ```
-Nota: El espacio de trabajo se encuentra en la variable GOPATH
+Nota: El espacio de trabajo se encuentra en la variable GOPATH, 
+      en el espacion de trabajo crear la carpeta "src" 
 
 ## 🔑 Flujo típico de trabajo en Go
 
