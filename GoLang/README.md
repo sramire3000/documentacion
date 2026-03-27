@@ -10,7 +10,7 @@
 ```
 import profile in VsCode
 
-### 📌 Comandos esenciales de Go
+## 📌 Comandos esenciales de Go
 ```
 go run archivo.go	Compila y ejecuta directamente un archivo Go sin generar binario.
 go build	        Compila el código y genera un ejecutable en el directorio actual.
@@ -24,7 +24,7 @@ go version	        Muestra la versión instalada de Go.
 go env	            Muestra variables de entorno relacionadas con Go.
 ```
 
-### 🔑 Flujo típico de trabajo en Go
+## 🔑 Flujo típico de trabajo en Go
 
 1. Inicializar proyecto: go mod init nombre_modulo
 2. Escribir código en archivos .go
@@ -36,11 +36,40 @@ go env	            Muestra variables de entorno relacionadas con Go.
 8. Formatear código: go fmt
 
 
-### 📂 Crear un proyecto
+## 📂 Crear un proyecto
 
 1. mkdir mi_proyecto
 2. cd mi_proyecto
 3. go mod init ejemplo.com/mi_proyecto
+
+
+## Tipos de datos en Go
+
+### Básicos
+- int, int8, int16, int32, int64
+- uint, uint8, uint16, uint32, uint64, uintptr
+- float32, float64
+- complex64, complex128
+- byte (alias de uint8)
+- rune (alias de int32, usado para Unicode)
+- string (cadenas inmutables)
+- bool (true/false)
+
+### Compuestos
+- array (colección de tamaño fijo)
+- slice (colección dinámica)
+- struct (agrupación de campos)
+- map (pares clave-valor)
+
+### Referencia
+- pointer (referencia a memoria)
+- function (funciones como valores)
+- interface (conjunto de métodos)
+
+### Especiales
+- nil (valor nulo)
+- error (manejo de errores)
+
 
 
 ## Configuración WASM
