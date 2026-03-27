@@ -112,6 +112,10 @@ go get -u github.com/go-chi/chi/v5
 
 ```
 
+# Uso de variables y datos
+
+
+
 ### Ejecutar aplicacion 
 
 ```
