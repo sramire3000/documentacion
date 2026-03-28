@@ -15,6 +15,12 @@ import profile in VsCode
 Select ALL
 ```
 
+### Install Make en Windows
+PowerShell (Admin)
+```
+ choco install make
+```
+
 ## Tipos de datos en Go
 
 ### Básicos
