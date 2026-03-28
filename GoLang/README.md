@@ -21,6 +21,11 @@ PowerShell (Admin)
  choco install make
 ```
 
+### Install Make en linux
+https://www.gnu.org/software/make/
+```
+```
+
 ## Tipos de datos en Go
 
 ### Básicos
