@@ -2,6 +2,7 @@
 
 ## Docker Image go
 ```
+docker pull golang:1.18-alpine
 docker pull golang:1.20-alpine
 ```
 
