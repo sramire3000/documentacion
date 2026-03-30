@@ -184,7 +184,7 @@ go mod init test
 GOOS=js GOARCH=wasm go build -o test.wasm
 ````
 
-# Curso
+# Curso Working with Microservices in Go (Golang)
 
 ## Crear modulo
 ```
