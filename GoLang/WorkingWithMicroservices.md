@@ -10,4 +10,7 @@ go mod init broker
 # Paquete de enrutamiento
 go get github.com/go-chi/chi/v5
 go get github.com/go-chi/chi/v5/middleware
-go get gi
+ go get github.com/go-chi/cors
+```
+
+
