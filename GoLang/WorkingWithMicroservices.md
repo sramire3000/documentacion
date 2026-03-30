@@ -1,10 +1,15 @@
 # Curso Working with Microservices in Go
 
+## Docker Image go
+```
+docker pull golang:1.20-alpine
+```
 
 ## Crear modulo
 ```
 go mod init broker
 ```
+
 
 ## Instalar Paquetes en el curso
 ```
