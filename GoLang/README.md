@@ -183,3 +183,14 @@ go mod init test
 ````
 GOOS=js GOARCH=wasm go build -o test.wasm
 ````
+
+# Curso
+
+## Crear modulo
+```
+go mod init broker
+```
+## Instalar Paquetes en el curso
+```
+go get github.com/go-chi/chi/v5
+```
