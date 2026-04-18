@@ -110,8 +110,15 @@ Para que una sea la fija siempre: sdk default java 17.0.10-tem
 ```
 ### Install Angular
 ```
-1. Instalar NVM (Node Version Manager)
+# 1. Instalar NVM (Node Version Manager)
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+
+# 2. Instalar las diferentes versiones de Node
+nvm install 18  # Para proyectos de Angular un poco más antiguos
+nvm install 20  # Versión LTS actual (Recomendada para Angular 17/18)
+nvm install 22  # Versión más reciente
+
+
 ```
 
 
