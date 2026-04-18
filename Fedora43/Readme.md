@@ -78,24 +78,31 @@ sudo rm /etc/yum.repos.d/github-desktop.repo
 rm github-desktop.rpm
 ```
 
-### Instalar las 3 versiones de JDK
-```
-sudo dnf list java-*-openjdk-devel
-java-21-openjdk-devel.x86_64     1:21.0.10.0.7-2.fc43   updates
-java-25-openjdk-devel.x86_64     1:25.0.2.0.10-5.fc43   updates
-java-latest-openjdk-devel.x86_64 1:26.0.0.0.35-0.2.fc43 updates
-
-sudo dnf install java-21-openjdk-devel.x86_64 -y
-sudo dnf install java-25-openjdk-devel.x86_64 -y
-sudo dnf install java-latest-openjdk-devel.x86_64 -y
-```
 
 ### Instalar SDKMAN! Para Uso del JDK
 ```
+# Install SDKMAN
 curl -s "https://get.sdkman.io" | bash
-### Reinicia terminal y ejecuta:
+
+# Reinicia terminal y ejecuta:
 source "$HOME/.sdkman/bin/sdkman-init.sh"
+
+# Instalar Java 17 (Temurin es muy estable)
+sdk install java 17.0.10-tem
+
+# Instalar Java 21
+sdk install java 21.0.2-tem
+
+# Para las versiones 25 y 26, te recomiendo usar las que ya bajaste con DNF 
+# para no duplicar espacio, pero si quieres manejarlas todas con SDKMAN:
+sdk install java 25-open
+
+# Uso
+Para usar la 17: sdk use java 17.0.10-tem
+Para usar la 21: sdk use java 21.0.2-tem
+Para que una sea la fija siempre: sdk default java 17.0.10-tem
 ```
+
 
 
 
