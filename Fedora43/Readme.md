@@ -71,8 +71,8 @@ git config --global user.email "tu_correo@ejemplo.com"
 ```
 
 # Install GithubDesktop
-- [Download](curl -L https://github.com/shiftkey/desktop/releases/download/release-3.4.9-linux1/GitHubDesktop-linux-x86_64-3.4.9-linux1.rpm -o github-desktop.rpm)
 ```
+curl -L https://github.com/shiftkey/desktop/releases/download/release-3.4.9-linux1/GitHubDesktop-linux-x86_64-3.4.9-linux1.rpm -o github-desktop.rpm
 sudo dnf install ./github-desktop.rpm -y
 sudo rm /etc/yum.repos.d/github-desktop.repo
 rm github-desktop.rpm
