@@ -87,6 +87,9 @@ curl -s "https://get.sdkman.io" | bash
 # Reinicia terminal y ejecuta:
 source "$HOME/.sdkman/bin/sdkman-init.sh"
 
+# Ver lista disponibles
+sdk list java
+
 # Instalar Java 17 (Temurin es muy estable)
 sdk install java 17.0.10-tem
 
@@ -96,6 +99,9 @@ sdk install java 21.0.2-tem
 # Para las versiones 25 y 26, te recomiendo usar las que ya bajaste con DNF 
 # para no duplicar espacio, pero si quieres manejarlas todas con SDKMAN:
 sdk install java 25-open
+
+# Ver la version en uso
+sdk current java
 
 # Uso
 Para usar la 17: sdk use java 17.0.10-tem
