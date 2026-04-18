@@ -200,7 +200,18 @@ fvm list
 fvm releases
 ```
 
+## Install DBeaver (Gestión de Bases de Datos)
 ```
+# Importar la llave GPG
+sudo rpm --import https://dbeaver.io/debs/checkout.gpg.key
+
+# Agregar el repositorio
+sudo dnf config-manager --add-repo https://dbeaver.io/files/dbeaver-ce.repo
+
+# Instalar
+sudo dnf install dbeaver-ce -y
+```
+
 
 
 
