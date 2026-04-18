@@ -141,6 +141,11 @@ sudo tar -zxvf ~/Downloads/android-studio-*.tar.gz -C /opt/
 
 # Darle permisos a tu usuario para que pueda actualizarse solo
 sudo chown -R $USER:$USER /opt/android-studio
+
+3. Ejecuta el instalador por primera vez:
+opt/android-studio/bin/studio.sh
+
+
 ```
 
 ### Insall Flutter
@@ -158,6 +163,10 @@ fvm install 3.19.0
 cd ~/tu-proyecto-flutter
 fvm use stable
 
+Configuración para Flutter (Paso Crítico)
+flutter config --android-studio-dir /opt/android-studio
+flutter config --android-sdk ~/Android/Sdk
+
 Esto creará una carpeta oculta .fvm en tu proyecto con un enlace simbólico a la versión elegida.
 
 # Ver versiones instaladas:
@@ -165,6 +174,8 @@ fvm list
 
 # Ver versiones disponibles para bajar:
 fvm releases
+
+
 ```
 
 
