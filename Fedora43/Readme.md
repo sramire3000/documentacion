@@ -10,27 +10,31 @@
 sudo passwd root
 ```
 
-# Update fedora
+### Update fedora
 ```
 sudo dnf upgrade –refresh
 ```
 
-# Update paquetes flatpak
+### Update paquetes flatpak
 ```
 flatpak update
 ```
 
-# Verfifica actualizaciones de firmware
+### Verfifica actualizaciones de firmware
 ```
 fwipdmgr get-updates
 ```
 
-# Install htop
+### Install htop
 ```
 sudo dnf install htop
 ```
 
-# Install nano
+### Install nano
 ```
 sudo dnf install nano
 ```
+
+
+
+
