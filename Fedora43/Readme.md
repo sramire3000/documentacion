@@ -150,15 +150,6 @@ opt/android-studio/bin/studio.sh
 
 ### Insall Flutter
 ```
-# 1. Install fvm
-npm install -g fvm
-
-# 2. Instalar la versión estable más reciente
-fvm install stable
-
-# 3. Instalar una versión específica (ejemplo: 3.19.0)
-fvm install 3.19.0
-
 4. Configurar un proyecto con una versión específica
 cd ~/tu-proyecto-flutter
 fvm use stable
@@ -178,7 +169,16 @@ fvm releases
 
 ```
 
+# Despues de instalar flutter
+dart pub global activate fvm
+echo 'export PATH="$PATH:$HOME/.pub-cache/bin"' >> ~/.bashrc
+source ~/.bashrc
+fvm --version
+fvm install stable
+fvm use stable
 
+fvm install 3.22.0
+fvm use 3.22.0
 
 
 
