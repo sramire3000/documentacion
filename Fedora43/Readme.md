@@ -35,6 +35,13 @@ sudo dnf install htop
 sudo dnf install nano
 ```
 
+# Install Soporte de video
+```
+sudo dnf install https://mirrors.rpmfusion.org/ -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/ -E %fedora).noarch.rpm -y
+sudo dnf update -y
+sudo dnf install intel-media-driver -y
+```
+
 
 
 
