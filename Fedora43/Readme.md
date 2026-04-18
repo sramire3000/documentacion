@@ -169,17 +169,37 @@ fvm releases
 
 ```
 
-# Despues de instalar flutter
+## Instalar FVM despues de flutter
+
+### Install
 ```
 dart pub global activate fvm
 echo 'export PATH="$PATH:$HOME/.pub-cache/bin"' >> ~/.bashrc
 source ~/.bashrc
 fvm --version
+```
+
+### Install la version mas estable
+```
 fvm install stable
 fvm use stable
+```
 
+### Instalar la version 3.22.0 
+```
 fvm install 3.22.0
 fvm use 3.22.0
+```
+
+### Ver Instalados
+```
+fvm list
+```
+### Ver disponibles
+```
+fvm releases
+```
+
 ```
 
 
