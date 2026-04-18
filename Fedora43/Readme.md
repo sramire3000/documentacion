@@ -3,3 +3,9 @@
 
 - [Download](https://download.fedoraproject.org/pub/fedora/linux/releases/43/Workstation/x86_64/iso/Fedora-Workstation-Live-43-1.6.x86_64.iso)
 
+## Configuracion
+
+### Cambiar el Password Root
+```
+sudo passwd root
+```
