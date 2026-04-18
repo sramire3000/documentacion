@@ -118,7 +118,12 @@ nvm install 18  # Para proyectos de Angular un poco más antiguos
 nvm install 20  # Versión LTS actual (Recomendada para Angular 17/18)
 nvm install 22  # Versión más reciente
 
+# 3. Cambiarse de version de Node
+nvm use 14
+npm install -g @angular/cli@14
 
+# Cuando lances el servidor de desarrollo, puedes limitar el uso de memoria para que no compita con tus 32GB de RAM y deje aire al CPU:
+node --max-old-space-size=4096 ./node_modules/@angular/cli/bin/ng serve
 ```
 
 
