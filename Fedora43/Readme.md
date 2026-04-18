@@ -63,7 +63,12 @@ sudo dnf config-manager addrepo --from-repofile=https://brave-browser-rpm-releas
 sudo dnf install brave-browser -y
 ```
 
-
+### Install git
+```
+sudo dnf install git -y
+git config --global user.name "tu_nombre"
+git config --global user.email "tu_correo@ejemplo.com"
+```
 
 
 
