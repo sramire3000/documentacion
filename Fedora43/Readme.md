@@ -70,12 +70,17 @@ git config --global user.name "tu_nombre"
 git config --global user.email "tu_correo@ejemplo.com"
 ```
 
-# Install GithubDesktop
+### Install GithubDesktop
 ```
 curl -L https://github.com/shiftkey/desktop/releases/download/release-3.4.9-linux1/GitHubDesktop-linux-x86_64-3.4.9-linux1.rpm -o github-desktop.rpm
 sudo dnf install ./github-desktop.rpm -y
 sudo rm /etc/yum.repos.d/github-desktop.repo
 rm github-desktop.rpm
+```
+
+### Instalar las 3 versiones de JDK
+```
+sudo dnf install java-17-openjdk-devel java-21-openjdk-devel java-latest-openjdk-devel -y
 ```
 
 
