@@ -202,14 +202,11 @@ fvm releases
 
 ## Install DBeaver (Gestión de Bases de Datos)
 ```
-# Importar la llave GPG
-sudo rpm --import https://dbeaver.io/debs/checkout.gpg.key
+# Asegurarnos de que flathub esté configurado
+flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 
-# Agregar el repositorio
-sudo dnf config-manager --add-repo https://dbeaver.io/files/dbeaver-ce.repo
-
-# Instalar
-sudo dnf install dbeaver-ce -y
+# Instalar DBeaver Community Edition
+flatpak install flathub io.dbeaver.DBeaverCommunity -y
 ```
 
 
