@@ -80,7 +80,14 @@ rm github-desktop.rpm
 
 ### Instalar las 3 versiones de JDK
 ```
-sudo dnf install java-17-openjdk-devel java-21-openjdk-devel java-latest-openjdk-devel -y
+sudo dnf list java-*-openjdk-devel
+java-21-openjdk-devel.x86_64     1:21.0.10.0.7-2.fc43   updates
+java-25-openjdk-devel.x86_64     1:25.0.2.0.10-5.fc43   updates
+java-latest-openjdk-devel.x86_64 1:26.0.0.0.35-0.2.fc43 updates
+
+sudo dnf install java-21-openjdk-devel.x86_64 -y
+sudo dnf install java-25-openjdk-devel.x86_64 -y
+sudo dnf install java-latest-openjdk-devel.x86_64 -y
 ```
 
 
