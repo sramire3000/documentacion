@@ -90,6 +90,13 @@ sudo dnf install java-25-openjdk-devel.x86_64 -y
 sudo dnf install java-latest-openjdk-devel.x86_64 -y
 ```
 
+### Instalar SDKMAN! Para Uso del JDK
+```
+curl -s "https://get.sdkman.io" | bash
+### Reinicia terminal y ejecuta:
+source "$HOME/.sdkman/bin/sdkman-init.sh"
+```
+
 
 
 
