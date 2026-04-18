@@ -42,6 +42,15 @@ sudo dnf update -y
 sudo dnf install intel-media-driver -y
 ```
 
+# Install Vosual Studio Code
+- [Download](https://vscode.download.prss.microsoft.com/dbazure/download/stable/560a9dba96f961efea7b1612916f89e5d5d4d679/code-1.116.0-1776214233.el8.x86_64.rpm)
+```
+sudo dnf install ./code*.rmp
+```
+
+
+
+
 
 
 
