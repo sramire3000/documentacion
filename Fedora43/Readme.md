@@ -126,6 +126,30 @@ npm install -g @angular/cli@14
 node --max-old-space-size=4096 ./node_modules/@angular/cli/bin/ng serve
 ```
 
+### Insall Flutter
+```
+# 1. Install fvm
+npm install -g fvm
+
+# 2. Instalar la versión estable más reciente
+fvm install stable
+
+# 3. Instalar una versión específica (ejemplo: 3.19.0)
+fvm install 3.19.0
+
+4. Configurar un proyecto con una versión específica
+cd ~/tu-proyecto-flutter
+fvm use stable
+
+Esto creará una carpeta oculta .fvm en tu proyecto con un enlace simbólico a la versión elegida.
+
+# Ver versiones instaladas:
+fvm list
+
+# Ver versiones disponibles para bajar:
+fvm releases
+```
+
 
 
 
