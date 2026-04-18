@@ -126,6 +126,23 @@ npm install -g @angular/cli@14
 node --max-old-space-size=4096 ./node_modules/@angular/cli/bin/ng serve
 ```
 
+### Install Android Studio
+```
+# 1. Descarga de Android Studio
+ Ve al sitio oficial: developer.android.com/studio.
+ Descarga el archivo .tar.gz para Linux.
+
+# 2. Instalación en el sistema
+# Crear la carpeta en /opt (estándar para apps externas)
+sudo mkdir /opt/android-studio
+
+# Descomprimir el archivo ahí
+sudo tar -zxvf ~/Downloads/android-studio-*.tar.gz -C /opt/
+
+# Darle permisos a tu usuario para que pueda actualizarse solo
+sudo chown -R $USER:$USER /opt/android-studio
+```
+
 ### Insall Flutter
 ```
 # 1. Install fvm
