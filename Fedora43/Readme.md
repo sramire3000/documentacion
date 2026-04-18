@@ -170,6 +170,7 @@ fvm releases
 ```
 
 # Despues de instalar flutter
+```
 dart pub global activate fvm
 echo 'export PATH="$PATH:$HOME/.pub-cache/bin"' >> ~/.bashrc
 source ~/.bashrc
@@ -179,6 +180,7 @@ fvm use stable
 
 fvm install 3.22.0
 fvm use 3.22.0
+```
 
 
 
