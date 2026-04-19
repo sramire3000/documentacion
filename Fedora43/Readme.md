@@ -136,14 +136,30 @@ node --max-old-space-size=4096 ./node_modules/@angular/cli/bin/ng serve
 nvm install 18.10
 nvm use 18.10
 npm install -g @angular/cli@15.0.1
+```
 
+### Instalar dependencias
+```
+# Instalar dependencias
+npm install
+```
+
+
+### Crear Archivo para el uso de NVM
+```
 # Crear el archivo ".nvmrc" dentro de tu proyecto
 # Adicion la version
 v18.10.0
 # Comando para el uso
 nvm use
-# Instalar dependencias
-npm install
+```
+
+### Optimizacion de Angular Runtime
+```
+# Edite el archivo "package.json" y haga el siguiente cambio
+  "scripts": {
+    "start": "node --max-old-space-size=4096 ./node_modules/@angular/cli/bin/ng serve",
+  },
 ```
 
 ### Install Android Studio
