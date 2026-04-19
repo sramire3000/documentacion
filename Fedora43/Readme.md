@@ -341,3 +341,8 @@ sudo dnf install ./google-chrome-stable_current_x86_64.rpm -y
 ```
 sudo dnf install p7zip p7zip-plugins -y
 ```
+
+## Install onlyoffice
+```
+flatpak install flathub org.onlyoffice.desktopeditors -y
+```
