@@ -144,7 +144,6 @@ npm install -g @angular/cli@15.0.1
 npm install
 ```
 
-
 ### Crear Archivo para el uso de NVM
 ```
 # Crear el archivo ".nvmrc" dentro de tu proyecto
@@ -180,8 +179,6 @@ sudo chown -R $USER:$USER /opt/android-studio
 
 3. Ejecuta el instalador por primera vez:
 opt/android-studio/bin/studio.sh
-
-
 ```
 
 ### Insall Flutter
