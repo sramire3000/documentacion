@@ -401,7 +401,13 @@ AddVMOption -Dsun.java2d.uiScale=2
 AddVMOption -Dglass.gtk.uiScale=2
 ```
 
-## Códecs multimedia: 
+
+## Códecs multimedia:
+La mejor opción: Navegador Web (Firefox o Chrome)
+Netflix funciona perfectamente a través de navegadores modernos en Linux. Solo debes asegurarte de lo siguiente:
+
+Activar DRM: Cuando entres a Netflix en Firefox, verás un aviso en la parte superior preguntando si quieres "Activar DRM". Debes aceptar para que el contenido protegido se pueda reproducir.
+
 Fedora, por cuestiones de licencias, no incluye ciertos códecs por defecto. Es vital instalar los códecs multimedia de RPM Fusion. Puedes hacerlo con estos comandos en la terminal:
 ```bash
 sudo dnf install ffmpeg-free libavcodec-freeworld
