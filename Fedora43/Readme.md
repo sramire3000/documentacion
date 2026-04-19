@@ -336,3 +336,8 @@ docker run hello-world
 wget https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
 sudo dnf install ./google-chrome-stable_current_x86_64.rpm -y
 ```
+
+## Install p7zip
+```
+sudo dnf install p7zip p7zip-plugins -y
+```
