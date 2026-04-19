@@ -113,7 +113,7 @@ Para que una sea la fija siempre: sdk default java 17.0.10-tem
 sdk install maven
 ```
 
-### Install Angular
+## Install Angular
 ```
 # 1. Instalar NVM (Node Version Manager)
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
@@ -131,11 +131,17 @@ npm install -g @angular/cli@14
 node --max-old-space-size=4096 ./node_modules/@angular/cli/bin/ng serve
 ```
 
-### Angular 15
+## Install Angular 15
 ```
 nvm install 18.10
 nvm use 18.10
 npm install -g @angular/cli@15.0.1
+
+# Crear el archivo ".nvmrc" dentro de tu proyecto
+# Adicion la version
+v18.10.0
+# Comando para el uso
+nvm use
 ```
 
 ### Install Android Studio
