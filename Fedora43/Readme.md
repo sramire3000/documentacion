@@ -200,8 +200,10 @@ fvm list
 
 # Ver versiones disponibles para bajar:
 fvm releases
-
-
+```
+### Dejar por defecto
+```
+fvm global 3.19.3
 ```
 
 ## Instalar FVM despues de flutter
