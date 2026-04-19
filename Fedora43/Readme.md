@@ -388,3 +388,16 @@ https://github.com/jgraph/drawio-desktop/releases/download/v29.7.8/drawio-x86_64
 # Install
 sudo dnf install ./drawio-x86_64-29.7.8.rpm
 ```
+## Orcle Data Modeler
+```
+# install
+sudo rpm -ivh --nodigest --nosignature datamodeler-21.4.2.059.0838-1.noarch.rpm
+
+#Config
+sudo nano /opt/datamodeler/datamodeler/bin/datamodeler.conf
+
+# Add
+AddVMOption -Dsun.java2d.uiScale=2
+AddVMOption -Dglass.gtk.uiScale=2
+
+```
