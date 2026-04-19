@@ -201,6 +201,12 @@ fvm list
 # Ver versiones disponibles para bajar:
 fvm releases
 ```
+
+### Install librerias compilacion Flutter
+```
+sudo dnf install clang cmake ninja-build gtk3-devel -y
+```
+
 ### Dejar por defecto
 ```
 fvm global 3.19.3
@@ -353,3 +359,13 @@ flatpak install flathub org.onlyoffice.desktopeditors -y
 ```
 flatpak install flathub org.keepassxc.KeePassXC -y
 ```
+
+# Un tip de oro para tu Dell i7
+Como vas a consumir APIs, asegúrate de que cuando corras tu app por primera vez, el firewall de Fedora no bloquee las peticiones. Si notas que la app en el emulador no llega a tu API local, puedes darle permiso temporalmente:
+
+```Bash
+sudo firewall-cmd --permanent --add-port=8080/tcp
+sudo firewall-cmd --reload
+```
+
+
