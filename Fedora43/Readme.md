@@ -209,7 +209,10 @@ flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flat
 flatpak install flathub io.dbeaver.DBeaverCommunity -y
 ```
 
-
+## Install Postman
+```
+flatpak install flathub com.getpostman.Postman -y
+```
 
 
 
