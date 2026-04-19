@@ -283,3 +283,11 @@ ALTER USER hsr PASSWORD 'tu_clave';
 exit
 ```
 
+### Install PgAdmin4
+```
+# 1. Asegurar que flathub esté activo
+flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
+
+# 2. Instalar pgAdmin 4
+flatpak install flathub org.pgadmin.pgadmin4 -y
+```
