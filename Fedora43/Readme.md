@@ -68,6 +68,8 @@ sudo dnf install brave-browser -y
 sudo dnf install git -y
 git config --global user.name "tu_nombre"
 git config --global user.email "tu_correo@ejemplo.com"
+git config --global credential.helper store
+
 ```
 
 ### Install GithubDesktop
