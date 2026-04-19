@@ -108,6 +108,11 @@ Para usar la 17: sdk use java 17.0.10-tem
 Para usar la 21: sdk use java 21.0.2-tem
 Para que una sea la fija siempre: sdk default java 17.0.10-tem
 ```
+## Install Maven
+```
+sdk install maven
+```
+
 ### Install Angular
 ```
 # 1. Instalar NVM (Node Version Manager)
