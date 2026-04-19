@@ -377,6 +377,14 @@ flatpak install flathub com.github.dail8859.NotepadNext -y
 # Download
 https://github.com/rustdesk/rustdesk/releases/download/1.4.6/rustdesk-1.4.6-0.x86_64.rpm
 
-#Install
+# Install
 sudo dnf install ./rustdesk-1.x.x-x86_64.rpm
+```
+## Install Draw.io
+```
+# Dowload
+https://github.com/jgraph/drawio-desktop/releases/download/v29.7.8/drawio-x86_64-29.7.8.rpm
+
+# Install
+sudo dnf install ./drawio-x86_64-29.7.8.rpm
 ```
