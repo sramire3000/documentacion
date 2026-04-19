@@ -308,3 +308,25 @@ sudo dnf remove docker \
                   docker-engine-selinux \
                   docker-engine
 ```
+2. Configurar el repositorio oficial
+```
+sudo dnf -y install dnf-plugins-core
+sudo dnf-3 config-manager --add-repo https://download.docker.com/linux/fedora/docker-ce.repo
+```
+3. Instalar Docker y Docker Compose
+```
+sudo dnf install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
+```
+4. Configuración de Post-Instalación (Vital)
+```
+sudo systemctl start docker
+sudo systemctl enable docker
+
+sudo groupadd docker
+sudo usermod -aG docker $USER
+```
+
+### Test
+```
+docker run hello-world
+```
