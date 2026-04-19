@@ -399,5 +399,10 @@ sudo nano /opt/datamodeler/datamodeler/bin/datamodeler.conf
 # Add
 AddVMOption -Dsun.java2d.uiScale=2
 AddVMOption -Dglass.gtk.uiScale=2
+```
 
+## Códecs multimedia: 
+Fedora, por cuestiones de licencias, no incluye ciertos códecs por defecto. Es vital instalar los códecs multimedia de RPM Fusion. Puedes hacerlo con estos comandos en la terminal:
+```bash
+sudo dnf install ffmpeg-free libavcodec-freeworld
 ```
