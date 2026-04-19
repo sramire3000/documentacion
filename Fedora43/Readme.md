@@ -346,3 +346,8 @@ sudo dnf install p7zip p7zip-plugins -y
 ```
 flatpak install flathub org.onlyoffice.desktopeditors -y
 ```
+
+## Install Keepass
+```
+flatpak install flathub org.keepassxc.KeePassXC -y
+```
