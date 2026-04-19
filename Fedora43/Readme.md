@@ -252,6 +252,25 @@ flatpak install flathub com.getpostman.Postman -y
 
 ```
 sudo dnf install -y postgresql-server postgresql-contrib
+sudo postgresql-setup --initdb
+sudo systemctl start postgresql
+sudo systemctl enable postgresql
+sudo systemctl status postgresql
 ```
+### Crear el usuario
+```
+# Entrar al entorno del superusuario de Postgres
+sudo -i -u postgres
 
+# Crear tu usuario (usa el nombre 'hsr' para que coincida con tu Linux)
+createuser --interactive
+# Nombre del rol: hsr
+# ¿Será superusuario? y
+
+# Crear una base de datos inicial para tus pruebas
+createdb hsr
+
+# Salir del entorno de postgres
+exit
+```
 
