@@ -270,6 +270,15 @@ createuser --interactive
 # Crear una base de datos inicial para tus pruebas
 createdb hsr
 
+# Entrar a la consola de Postgres con tu usuario
+psql
+
+# Ejecutar este comando dentro de la consola (cambia 'tu_clave' por la que quieras)
+ALTER USER hsr PASSWORD 'tu_clave';
+
+# Salir de la consola
+\q
+
 # Salir del entorno de postgres
 exit
 ```
