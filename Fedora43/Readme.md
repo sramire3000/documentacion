@@ -368,4 +368,7 @@ sudo firewall-cmd --permanent --add-port=8080/tcp
 sudo firewall-cmd --reload
 ```
 
-
+## Notepad ++
+```
+flatpak install flathub com.github.dail8859.NotepadNext -y
+```
