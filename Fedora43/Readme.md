@@ -291,3 +291,20 @@ flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flat
 # 2. Instalar pgAdmin 4
 flatpak install flathub org.pgadmin.pgadmin4 -y
 ```
+
+## Install Docker engine
+
+1. Desinstalar versiones viejas
+Fedora a veces trae podman o versiones antiguas. Vamos a limpiar:
+```
+sudo dnf remove docker \
+                  docker-client \
+                  docker-client-latest \
+                  docker-common \
+                  docker-latest \
+                  docker-latest-logrotate \
+                  docker-logrotate \
+                  docker-selinux \
+                  docker-engine-selinux \
+                  docker-engine
+```
