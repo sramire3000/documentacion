@@ -248,6 +248,10 @@ flatpak install flathub io.dbeaver.DBeaverCommunity -y
 ```
 flatpak install flathub com.getpostman.Postman -y
 ```
+## Instalar PostgreSQL
 
+```
+sudo dnf install -y postgresql-server postgresql-contrib
+```
 
 
