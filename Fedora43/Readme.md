@@ -142,6 +142,8 @@ npm install -g @angular/cli@15.0.1
 v18.10.0
 # Comando para el uso
 nvm use
+# Instalar dependencias
+npm install
 ```
 
 ### Install Android Studio
