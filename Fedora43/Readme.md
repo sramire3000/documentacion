@@ -131,6 +131,13 @@ npm install -g @angular/cli@14
 node --max-old-space-size=4096 ./node_modules/@angular/cli/bin/ng serve
 ```
 
+### Angular 15
+```
+nvm install 18.10
+nvm use 18.10
+npm install -g @angular/cli@15.0.1
+```
+
 ### Install Android Studio
 ```
 # 1. Descarga de Android Studio
