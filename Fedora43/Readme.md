@@ -372,3 +372,11 @@ sudo firewall-cmd --reload
 ```
 flatpak install flathub com.github.dail8859.NotepadNext -y
 ```
+## Install RustDesk
+```
+# Download
+https://github.com/rustdesk/rustdesk/releases/download/1.4.6/rustdesk-1.4.6-0.x86_64.rpm
+
+#Install
+sudo dnf install ./rustdesk-1.x.x-x86_64.rpm
+```
