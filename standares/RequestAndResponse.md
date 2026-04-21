@@ -1,6 +1,8 @@
 # Formato Standar de comuncion entre el Front y el Back
 
-## Clase Java en Spring Boot
+## En Spring Boot
+
+### Java
 ```Java
 public class ApiResponse<T> {
     private boolean success;
@@ -24,5 +26,15 @@ public class ApiResponse<T> {
     "precio": 25.50
   },
   "timestamp": "2026-04-20T22:45:00"
+}
+```
+
+### Formato JSON de error
+```JSON
+{
+  "success": false,
+  "message": "El producto con ID 99 no existe",
+  "data": null,
+  "timestamp": "2026-04-20T22:46:12"
 }
 ```
