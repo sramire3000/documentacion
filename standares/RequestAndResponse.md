@@ -132,13 +132,14 @@ crearProducto(producto: any): Observable<ApiResponse<number>> {
 }
 ```
 
-
+## Códigos de Estado HTTP
+No confíes solo en el booleano success. Spring Boot debe devolver el código HTTP apropiado:
 ```
-Situación,Código HTTP,Uso
-Lectura exitosa,200 OK,GET estándar.
-Creación exitosa,201 Created,Después de un POST.
-Error de cliente,400 Bad Request,Datos de entrada inválidos.
-No autorizado,401 Unauthorized,Falta token o login.
-No encontrado,404 Not Found,Recurso inexistente.
-Error de servidor,500 Internal Error,Excepciones no controladas.
+Situación             ,Código HTTP       , Uso
+Lectura exitosa       ,200 OK            ,GET estándar.
+Creación exitosa      ,201 Created       ,Después de un POST.
+Error de cliente      ,400 Bad Request   ,Datos de entrada inválidos.
+No autorizado         ,401 Unauthorized  ,Falta token o login.
+No encontrado         ,404 Not Found     ,Recurso inexistente.
+Error de servidor     ,500 Internal Error,Excepciones no controladas.
 ```
