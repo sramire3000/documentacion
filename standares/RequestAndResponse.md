@@ -2,7 +2,21 @@
 
 ## En Spring Boot
 
-### Java
+### Manejo Global de Errores (Spring Boot)
+Usa @RestControllerAdvice para capturar excepciones y transformarlas automáticamente en tu formato ApiResponse.
+```
+@RestControllerAdvice
+public class GlobalExceptionHandler {
+
+    @ExceptionHandler(ResourceNotFoundException.class)
+    public ResponseEntity<ApiResponse<Void>> handleNotFound(ResourceNotFoundException ex) {
+        ApiResponse<Void> response = new ApiResponse<>(false, ex.getMessage(), null, LocalDateTime.now());
+        return new ResponseEntity<>(response, HttpStatus.NOT_FOUND);
+    }
+}
+```
+
+### Clase Java
 ```Java
 public class ApiResponse<T> {
     private boolean success;
