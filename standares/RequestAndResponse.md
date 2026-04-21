@@ -52,6 +52,12 @@ public class ApiResponse<T> {
   "timestamp": "2026-04-20T22:46:12"
 }
 ```
+
+### El DTO (Request Body) Java
+```
+public record ProductoRequest(String nombre, Double precio) {}
+```
+
 ### El Controlador (Spring Boot)
 Utilizamos ResponseEntity junto con nuestra clase ApiResponse para asegurar que el JSON de salida siempre tenga la misma estructura.
 ```
@@ -93,4 +99,46 @@ public class ProductoController {
         }
     }
 }
+```
+
+## En Angular
+
+### Interface TypeScript
+```
+export interface ApiResponse<T> {
+  success: boolean;
+  message: string;
+  data: T;
+  timestamp: string;
+}
+```
+
+### Uso en un Servicio TypeScript
+```
+getProducts(): Observable<ApiResponse<Product[]>> {
+  return this.http.get<ApiResponse<Product[]>>(`${this.apiUrl}/products`);
+}
+```
+
+### El Servicio en Angular TypeScript
+En el frontend, el servicio recibiría la respuesta y podrías acceder directamente a .data para obtener la información útil.
+```
+// producto.service.ts
+import { HttpClient } from '@angular/common/http';
+import { ApiResponse } from './models/api-response'; // La interface que definimos antes
+
+crearProducto(producto: any): Observable<ApiResponse<number>> {
+  return this.http.post<ApiResponse<number>>('/api/productos', producto);
+}
+```
+
+
+```
+Situación,Código HTTP,Uso
+Lectura exitosa,200 OK,GET estándar.
+Creación exitosa,201 Created,Después de un POST.
+Error de cliente,400 Bad Request,Datos de entrada inválidos.
+No autorizado,401 Unauthorized,Falta token o login.
+No encontrado,404 Not Found,Recurso inexistente.
+Error de servidor,500 Internal Error,Excepciones no controladas.
 ```
