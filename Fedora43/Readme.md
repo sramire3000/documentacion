@@ -5,65 +5,65 @@
 
 ## Configuracion
 
-### Cambiar el Password Root
+## Cambiar el Password Root
 ```
 sudo passwd root
 ```
 
-### Update fedora
+## Update fedora
 ```
 sudo dnf upgrade –refresh
 ```
 
-### Update paquetes flatpak
+## Update paquetes flatpak
 ```
 flatpak update
 ```
 
-### Verfifica actualizaciones de firmware
+## Verfifica actualizaciones de firmware
 ```
 fwipdmgr get-updates
 ```
 
-### Install htop
+## Install htop
 ```
 sudo dnf install htop
 ```
 
-### Install nano
+## Install nano
 ```
 sudo dnf install nano
 ```
 
-### Install Soporte de video
+## Install Soporte de video
 ```
 sudo dnf install https://mirrors.rpmfusion.org/ -E %fedora).noarch.rpm https://mirrors.rpmfusion.org/ -E %fedora).noarch.rpm -y
 sudo dnf update -y
 sudo dnf install intel-media-driver -y
 ```
 
-## Install Software
+# Install Software
 
-### Install Visual Studio Code
+## Install Visual Studio Code
 - [Download](https://vscode.download.prss.microsoft.com/dbazure/download/stable/560a9dba96f961efea7b1612916f89e5d5d4d679/code-1.116.0-1776214233.el8.x86_64.rpm)
 ```
 sudo dnf install ./code*.rmp
 ```
 
-### Install Golang
+## Install Golang
 ```
 sudo dnf install golang -y
 go version
 ```
 
-### Install Brave Navegador
+## Install Brave Navegador
 ```
 sudo dnf install -y dnf-plugins-core
 sudo dnf config-manager addrepo --from-repofile=https://brave-browser-rpm-release.s3.brave.com/brave-browser.repo
 sudo dnf install brave-browser -y
 ```
 
-### Install git
+## Install git
 ```
 sudo dnf install git -y
 git config --global user.name "tu_nombre"
@@ -72,7 +72,7 @@ git config --global credential.helper store
 
 ```
 
-### Install GithubDesktop
+## Install GithubDesktop
 ```
 curl -L https://github.com/shiftkey/desktop/releases/download/release-3.4.9-linux1/GitHubDesktop-linux-x86_64-3.4.9-linux1.rpm -o github-desktop.rpm
 sudo dnf install ./github-desktop.rpm -y
@@ -80,8 +80,7 @@ sudo rm /etc/yum.repos.d/github-desktop.repo
 rm github-desktop.rpm
 ```
 
-
-### Instalar SDKMAN! Para Uso del JDK
+## Instalar SDKMAN! Para Uso del JDK
 ```
 # Install SDKMAN
 curl -s "https://get.sdkman.io" | bash
@@ -163,7 +162,7 @@ nvm use
   },
 ```
 
-### Install Android Studio
+## Install Android Studio
 ```
 # 1. Descarga de Android Studio
  Ve al sitio oficial: developer.android.com/studio.
@@ -380,6 +379,7 @@ https://github.com/rustdesk/rustdesk/releases/download/1.4.6/rustdesk-1.4.6-0.x8
 # Install
 sudo dnf install ./rustdesk-1.x.x-x86_64.rpm
 ```
+
 ## Install Draw.io
 ```
 # Dowload
@@ -388,6 +388,7 @@ https://github.com/jgraph/drawio-desktop/releases/download/v29.7.8/drawio-x86_64
 # Install
 sudo dnf install ./drawio-x86_64-29.7.8.rpm
 ```
+
 ## Orcle Data Modeler
 ```
 # install
