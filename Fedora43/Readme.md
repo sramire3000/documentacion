@@ -412,8 +412,14 @@ Fedora, por cuestiones de licencias, no incluye ciertos códecs por defecto. Es 
 ```bash
 sudo dnf install ffmpeg-free libavcodec-freeworld
 ```
+
 ## Instala Spotify
 ```
 flatpak remote-add --if-not-exists flathub https://flathub.org/repo/flathub.flatpakrepo
 flatpak install flathub com.spotify.Client
+```
+
+## Insalar TEAMS
+```
+flatpak install flathub com.github.IsmaelMartinez.teams_for_linux
 ```
