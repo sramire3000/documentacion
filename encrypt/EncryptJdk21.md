@@ -69,6 +69,14 @@ crypto.ecc.key-name=
 crypto.ecc.public-key=
 crypto.ecc.private-key=
 ```
+### Paquetes
+````
+- config
+- util
+- controller
+- service
+````
+
 ### Clase de configuracion "CryptoProperties.java"
 ````
 package com.example.demo_encrypt.app.config;
