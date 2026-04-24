@@ -1,4 +1,4 @@
-# Encriptación con Spring Boot JDK21
+# Encriptación con Spring Boot 4.0 y JDK21
 
 ## 🔐 Encriptación más segura según el propósito
 - ✅ 1. AES‑256 (simétrica) — la más segura en la práctica
