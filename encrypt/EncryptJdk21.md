@@ -43,6 +43,22 @@
 
 ## Códificado para el método 3
 
+### Adicionando dependencias al archivo "pom.xml"
+````
+<!-- Bouncy Castle para ECC y otras operaciones criptográficas -->
+<dependency>
+   <groupId>org.bouncycastle</groupId>
+   <artifactId>bcprov-jdk18on</artifactId>
+   <version>1.76</version>
+</dependency>
+<!-- Conversión Base64 y utilidades -->
+<dependency>
+   <groupId>commons-codec</groupId>
+   <artifactId>commons-codec</artifactId>
+   <version>1.16.0</version>
+</dependency>
+````
+
 ### Archivo "application.properties"
 ```
 # crypto.ecc.key-name -> Identificador de las llaves
