@@ -693,7 +693,7 @@ Copia estos archivos y adapta según tu proyecto.
 
 ````
 
-### Integracion
+### Archivo "ANGULAR_INTEGRATION.md"
 ````
 # 🔐 INTEGRACIÓN ANGULAR + SPRING BOOT ENCRIPTACIÓN HÍBRIDA
 
