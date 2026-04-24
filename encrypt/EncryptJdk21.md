@@ -40,3 +40,7 @@ ECC o RSA → intercambio seguro de clave
 AES‑256 → cifrado del contenido
 
 ✅ Este enfoque es considerado el más seguro en la industria
+
+## Códificado para el método 3
+
+
