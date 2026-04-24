@@ -43,4 +43,15 @@
 
 ## Códificado para el método 3
 
+### Archivo "application.properties"
+```
+# crypto.ecc.key-name -> Identificador de las llaves
+# crypto.ecc.public-key -> Se usa para CIFRAR (puede ser compartida públicamente)
+# crypto.ecc.private-key -> Se usa para DESCIFRAR (CONFIDENCIAL - no compartir)
+
+crypto.ecc.key-name=
+crypto.ecc.public-key=
+crypto.ecc.private-key=
+```
+
 
