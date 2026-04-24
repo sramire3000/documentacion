@@ -77,9 +77,8 @@ crypto.ecc.private-key=
 - service
 ````
 
-### Clase de configuracion "CryptoProperties.java"
+### Clase de configuracion "CryptoProperties.java" en el paquete config
 ````
-package com.example.demo_encrypt.app.config;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
@@ -129,9 +128,8 @@ public class CryptoProperties {
   private Ecc ecc = new Ecc();
 }
 ````
-### Clase de  "CryptoUtils.java"
+### Clase de  "CryptoUtils.java" en el paquete util
 ````
-package com.example.demo_encrypt.app.util;
 
 import java.security.KeyFactory;
 import java.security.KeyPair;
@@ -323,9 +321,8 @@ public class CryptoUtils {
 }
 ````
 
-### Clase de servicio "EncryptionService.java"
+### Clase de servicio "EncryptionService.java" en el paquete service
 ````
-package com.example.demo_encrypt.app.service;
 
 import java.security.PrivateKey;
 import java.security.PublicKey;
@@ -443,9 +440,8 @@ public class EncryptionService {
 }
 ````
 
-### Clase "EncryptionController.java" Controller de Ejemplo
+### Clase "EncryptionController.java" Controller de Ejemplo en el paquete controller
 ````
-package com.example.demo_encrypt.app.controller;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -647,7 +643,6 @@ public class EncryptionController {
 
 ### La clase "GenerateKeysApp.java" debe estar ubicada donde esta la clase de inicio de la aplicación
 ````
-package com.example.demo_encrypt.app;
 
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
