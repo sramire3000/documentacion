@@ -17,7 +17,7 @@
 
    👉 Hoy en día, AES‑256 es considerado prácticamente irrompible con la tecnología actual.
 
-✅ 2. RSA‑4096 o ECC (asimétrica) — para intercambio de claves
+- ✅ 2. RSA‑4096 o ECC (asimétrica) — para intercambio de claves
    Estos algoritmos no suelen cifrar datos grandes, sino que se usan para intercambiar claves de forma segura.
    🔹 RSA‑4096
 
@@ -32,7 +32,7 @@
 
   👉 Actualmente ECC es considerada más robusta y eficiente que RSA.
 
-✅ 3. Combinación híbrida (la mejor práctica)
+- ✅ 3. Combinación híbrida (la mejor práctica)
    La forma más segura real es la que se usa en HTTPS y otros sistemas modernos:
    Flujo típico:
 
