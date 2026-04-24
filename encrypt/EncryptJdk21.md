@@ -1,6 +1,6 @@
 # Encriptación con Spring Boot JDK21
 
-## 🔐 Encriptación más segura según el propósito
+## - 🔐 Encriptación más segura según el propósito
 ✅ 1. AES‑256 (simétrica) — la más segura en la práctica
    AES (Advanced Encryption Standard) con claves de 256 bits es el estándar más utilizado y confiable.
    Por qué es segura:
