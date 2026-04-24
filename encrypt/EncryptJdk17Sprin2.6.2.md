@@ -320,3 +320,121 @@ public class CryptoUtils {
   }
 }
 ````
+
+### La Clase "EncryptionService.java" en el paquete service
+````
+import java.security.PrivateKey;
+import java.security.PublicKey;
+
+import org.springframework.stereotype.Service;
+
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+
+import com.example.demo_encrypt.app.config.CryptoProperties;
+import com.example.demo_encrypt.app.util.CryptoUtils;
+
+/**
+ * Servicio de encriptación que integra CryptoUtils con la configuración de
+ * Spring.
+ *
+ * Proporciona métodos de alto nivel para cifrar/descifrar datos usando la
+ * configuración
+ * cargada desde application.properties.
+ */
+@Service
+@RequiredArgsConstructor
+@Slf4j
+public class EncryptionService {
+
+  /**
+   * DTO con información sobre las llaves (no expone la clave privada).
+   */
+  @lombok.Data
+  @lombok.Builder
+  public static class KeyInfo {
+    private String keyName;
+    private String algorithm;
+    private String dataEncryption;
+    private String status;
+  }
+
+  private final CryptoProperties cryptoProperties;
+
+  /**
+   * Cifra un texto plano usando encriptación híbrida (ECC + AES-256).
+   *
+   * La clave pública se carga desde las propiedades configuradas.
+   *
+   * @param plaintext texto a cifrar
+   * @return datos cifrados en formato Base64
+   * @throws RuntimeException si hay error en la encriptación
+   */
+  public String encrypt(String plaintext) {
+    try {
+      log.debug("Iniciando encriptación de datos");
+
+      // Cargar clave pública desde propiedades
+      PublicKey publicKey = CryptoUtils.base64ToPublicKey(
+          cryptoProperties.getEcc().getPublicKey());
+
+      // Cifrar con método híbrido
+      byte[] encryptedBytes = CryptoUtils.encryptHybrid(plaintext, publicKey);
+
+      // Convertir a Base64 para transmisión
+      String encrypted = CryptoUtils.bytesToBase64(encryptedBytes);
+      log.info("Encriptación completada exitosamente");
+
+      return encrypted;
+    } catch (Exception e) {
+      log.error("Error en encriptación", e);
+      throw new RuntimeException("Error en encriptación: " + e.getMessage(), e);
+    }
+  }
+
+  /**
+   * Descifra datos que fueron cifrados con el método encrypt().
+   *
+   * La clave privada se carga desde las propiedades configuradas.
+   *
+   * @param encryptedBase64 datos cifrados en formato Base64
+   * @return texto plano descifrado
+   * @throws RuntimeException si hay error en la desencriptación
+   */
+  public String decrypt(String encryptedBase64) {
+    try {
+      log.debug("Iniciando desencriptación de datos");
+
+      // Cargar clave privada desde propiedades
+      PrivateKey privateKey = CryptoUtils.base64ToPrivateKey(
+          cryptoProperties.getEcc().getPrivateKey());
+
+      // Convertir de Base64
+      byte[] encryptedBytes = CryptoUtils.base64ToBytes(encryptedBase64);
+
+      // Descifrar con método híbrido
+      String decrypted = CryptoUtils.decryptHybrid(encryptedBytes, privateKey);
+      log.info("Desencriptación completada exitosamente");
+
+      return decrypted;
+    } catch (Exception e) {
+      log.error("Error en desencriptación", e);
+      throw new RuntimeException("Error en desencriptación: " + e.getMessage(), e);
+    }
+  }
+
+  /**
+   * Obtiene información sobre las llaves configuradas.
+   *
+   * @return objeto con información de las llaves (sin exponer la privada)
+   */
+  public KeyInfo getKeyInfo() {
+    return KeyInfo.builder()
+        .keyName(cryptoProperties.getEcc().getKeyName())
+        .algorithm("ECC - secp256r1 (256 bits)")
+        .dataEncryption("AES-256-CBC")
+        .status("Configurado y listo")
+        .build();
+  }
+}
+````
