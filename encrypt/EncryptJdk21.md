@@ -443,5 +443,207 @@ public class EncryptionService {
 }
 ````
 
+### Clase "EncryptionController.java" Controller de Ejemplo
+````
+package com.example.demo_encrypt.app.controller;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+
+import com.example.demo_encrypt.app.service.EncryptionService;
+
+/**
+ * Controlador REST que demuestra el uso de encriptación híbrida.
+ *
+ * Endpoints:
+ * - POST /api/encrypt -> Cifra un mensaje
+ * - POST /api/decrypt -> Descifra un mensaje
+ * - GET /api/key-info -> Información sobre las llaves
+ */
+@RestController
+@RequestMapping("/api")
+@RequiredArgsConstructor
+@Slf4j
+public class EncryptionController {
+
+  /**
+   * DTO para solicitud de encriptación.
+   */
+  @lombok.Data
+  public static class EncryptRequest {
+    private String message;
+  }
+
+  /**
+   * DTO para solicitud de desencriptación.
+   */
+  @lombok.Data
+  public static class DecryptRequest {
+    private String encrypted;
+  }
+
+  private final EncryptionService encryptionService;
+
+  /**
+   * Cifra un mensaje usando encriptación híbrida.
+   *
+   * Ejemplo de uso:
+   * POST http://localhost:8080/api/encrypt
+   * Content-Type: application/json
+   *
+   * {
+   * "message": "Este es un mensaje secreto"
+   * }
+   *
+   * @param request con el campo "message" a cifrar
+   * @return objeto con "encrypted" (datos cifrados en Base64)
+   */
+  @PostMapping("/encrypt")
+  public ResponseEntity<Map<String, Object>> encrypt(@RequestBody EncryptRequest request) {
+    log.info("Solicitud de encriptación recibida");
+
+    if (request.getMessage() == null || request.getMessage().isBlank()) {
+      return ResponseEntity.badRequest().body(Map.of(
+          "error", "El campo 'message' es obligatorio"));
+    }
+
+    try {
+      String encrypted = encryptionService.encrypt(request.getMessage());
+
+      Map<String, Object> response = new HashMap<>();
+      response.put("original", request.getMessage());
+      response.put("encrypted", encrypted);
+      response.put("algorithm", "ECC-4096 + AES-256-CBC");
+      response.put("status", "Éxito");
+
+      log.info("Encriptación completada exitosamente");
+      return ResponseEntity.ok(response);
+    } catch (Exception e) {
+      log.error("Error en encriptación", e);
+      return ResponseEntity.internalServerError().body(Map.of(
+          "error", "Error en encriptación: " + e.getMessage()));
+    }
+  }
+
+  /**
+   * Descifra un mensaje que fue cifrado con el endpoint /encrypt.
+   *
+   * Ejemplo de uso:
+   * POST http://localhost:8080/api/decrypt
+   * Content-Type: application/json
+   *
+   * {
+   * "encrypted": "BASE64_ENCRYPTED_DATA_HERE"
+   * }
+   *
+   * @param request con el campo "encrypted" (datos en Base64)
+   * @return objeto con "decrypted" (mensaje original)
+   */
+  @PostMapping("/decrypt")
+  public ResponseEntity<Map<String, Object>> decrypt(@RequestBody DecryptRequest request) {
+    log.info("Solicitud de desencriptación recibida");
+
+    if (request.getEncrypted() == null || request.getEncrypted().isBlank()) {
+      return ResponseEntity.badRequest().body(Map.of(
+          "error", "El campo 'encrypted' es obligatorio"));
+    }
+
+    try {
+      String decrypted = encryptionService.decrypt(request.getEncrypted());
+
+      Map<String, Object> response = new HashMap<>();
+      response.put("decrypted", decrypted);
+      response.put("algorithm", "ECC-4096 + AES-256-CBC");
+      response.put("status", "Éxito");
+
+      log.info("Desencriptación completada exitosamente");
+      return ResponseEntity.ok(response);
+    } catch (Exception e) {
+      log.error("Error en desencriptación", e);
+      return ResponseEntity.internalServerError().body(Map.of(
+          "error", "Error en desencriptación: " + e.getMessage()));
+    }
+  }
+
+  // ==================== DTOs de Solicitud ====================
+
+  /**
+   * Obtiene información sobre la configuración criptográfica.
+   *
+   * Ejemplo de uso:
+   * GET http://localhost:8080/api/key-info
+   *
+   * @return información sobre las llaves y algoritmos configurados
+   */
+  @GetMapping("/key-info")
+  public ResponseEntity<Map<String, Object>> getKeyInfo() {
+    log.info("Solicitud de información de llaves");
+
+    try {
+      EncryptionService.KeyInfo keyInfo = encryptionService.getKeyInfo();
+
+      Map<String, Object> response = new HashMap<>();
+      response.put("keyName", keyInfo.getKeyName());
+      response.put("keyAlgorithm", keyInfo.getAlgorithm());
+      response.put("dataEncryption", keyInfo.getDataEncryption());
+      response.put("status", keyInfo.getStatus());
+      response.put("security", "Nivel de seguridad: 128 bits (equivalente)");
+
+      log.info("Información de llaves obtenida");
+      return ResponseEntity.ok(response);
+    } catch (Exception e) {
+      log.error("Error al obtener información de llaves", e);
+      return ResponseEntity.internalServerError().body(Map.of(
+          "error", "Error: " + e.getMessage()));
+    }
+  }
+
+  /**
+   * Ejemplo de cifrado de un JSON/objeto más complejo.
+   *
+   * Ejemplo de uso:
+   * POST http://localhost:8080/api/encrypt-json
+   * Content-Type: application/json
+   *
+   * {
+   * "message": "{\"usuario\": \"admin\", \"password\": \"secreta123\"}"
+   * }
+   *
+   * @param request con JSON a cifrar
+   * @return datos cifrados
+   */
+  @PostMapping("/encrypt-json")
+  public ResponseEntity<Map<String, Object>> encryptJson(@RequestBody EncryptRequest request) {
+    log.info("Solicitud de encriptación de JSON recibida");
+
+    try {
+      String encrypted = encryptionService.encrypt(request.getMessage());
+
+      Map<String, Object> response = new HashMap<>();
+      response.put("originalJson", request.getMessage());
+      response.put("encrypted", encrypted);
+      response.put("note", "Cualquier tipo de datos (texto, JSON, XML, etc.) se puede cifrar");
+      response.put("status", "Éxito");
+
+      return ResponseEntity.ok(response);
+    } catch (Exception e) {
+      log.error("Error en encriptación", e);
+      return ResponseEntity.internalServerError().body(Map.of(
+          "error", "Error: " + e.getMessage()));
+    }
+  }
+}
+````
+
 
 
