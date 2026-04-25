@@ -36,7 +36,7 @@ fwipdmgr get-updates
 
 ## Install htop
 ```
-sudo dnf install htop
+sudo dnf install faatfetch htop
 ```
 
 ## Install nano
