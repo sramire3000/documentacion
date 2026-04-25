@@ -12,7 +12,7 @@ sudo passwd root
 
 ### Localizar Repos mas rapidos
 ```
-sudo nano /etc/dnf/dnf.comf
+sudo nano /etc/dnf/dnf.conf
 
 # Add
 fastestmirror=True
