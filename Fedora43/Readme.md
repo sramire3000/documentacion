@@ -10,6 +10,15 @@
 sudo passwd root
 ```
 
+### Localizar Repos mas rapidos
+```
+sudo nano /etc/dnf/dfnf.comf
+
+# Add
+fastestmirror=True
+max_parallel_download=10
+```
+
 ## Update fedora
 ```
 sudo dnf upgrade –refresh
