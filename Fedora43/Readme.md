@@ -439,9 +439,9 @@ flatpak install flathub com.github.IsmaelMartinez.teams_for_linux
 instalar
 ```
 # Desempacar
-tar -zxvf TIBCOJaspersoftStudio-6.x.x-linux-x86_64.tgz
+tar -zxvf js-studiocomm_6.20.6_linux_x86_64.tgz
 # Mover
-sudo mv JaspersoftStudio-6.x.x /opt/jaspersoftstudio
+sudo mv js-studiocomm_6.20.6 /opt/jaspersoftstudio
 # Ejecutar
 cd /opt/jaspersoftstudio
 ./Jaspersoft\ Studio
