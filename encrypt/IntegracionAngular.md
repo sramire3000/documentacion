@@ -193,15 +193,14 @@ export class CryptoService {
 
 ### Modo de Uso
 ```
+//Método Constructor
+constructor(
+  private readonly _cryptoService: CryptoService,
+) {}
 
-  //Método Constructor
-  constructor(
-    private readonly _cryptoService: CryptoService,
-  ) {}
-
-    const usuarioCodigo = String(this._sessionStorage.getValue('user') ?? '');
-    const usuarioCodigoCifrado = await this._cryptoService.encriptar(
-      usuarioCodigo
-    );
+const usuarioCodigo = String(this._sessionStorage.getValue('user') ?? '');
+const usuarioCodigoCifrado = await this._cryptoService.encriptar(
+  usuarioCodigo
+);
 ```
 
