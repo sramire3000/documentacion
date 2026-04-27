@@ -5,6 +5,40 @@
 npm install tweetnacl tweetnacl-util
 ```
 
+### Archivo "package.json" instalacion manual
+```
+  "dependencies": {
+    "@angular/animations": "^15.2.9",
+    "@angular/cdk": "^15.2.9",
+    "@angular/common": "^15.0.0",
+    "@angular/compiler": "^15.0.0",
+    "@angular/core": "^15.0.0",
+    "@angular/forms": "^15.0.0",
+    "@angular/platform-browser": "^15.0.0",
+    "@angular/platform-browser-dynamic": "^15.0.0",
+    "@angular/router": "^15.0.0",
+    "bcryptjs": "^3.0.2",
+    "chart.js": "^4.3.0",
+    "copyfiles": "^2.4.1",
+    "crypto-js": "^4.1.1",
+    "del-cli": "^5.0.0",
+    "font-awesome": "^4.7.0",
+    "jwt-decode": "^3.1.2",
+    "moment": "^2.29.4",
+    "primeflex": "^3.3.1",
+    "primeicons": "^6.0.1",
+    "primeng": "^15.1.0",
+    "quill": "^1.3.7",
+    "rxjs": "~7.5.0",
+    "sweetalert2": "^11.7.12",
+    "tslib": "^2.3.0",
+    "tweetnacl": "^1.0.3",
+    "tweetnacl-util": "^0.15.1",
+    "uuid": "^9.0.0",
+    "zone.js": "~0.12.0"
+  },
+```
+
 ### Archivo "crypto.service.ts"
 ```
 import { Injectable } from '@angular/core';
