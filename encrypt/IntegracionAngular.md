@@ -1,5 +1,10 @@
 # Integracion con Angular
 
+### Instalar paquetes
+```
+npm install tweetnacl tweetnacl-util
+```
+
 ### Archivo "ANGULAR_CODE_TEMPLATES.md"
 ````
 # 🚀 CÓDIGO COPY-PASTE - ANGULAR + SPRING BOOT ENCRIPTACIÓN
