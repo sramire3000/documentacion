@@ -554,3 +554,133 @@ public class GenDepartamentoProcessor implements ItemProcessor<GenDepartamento, 
   }
 }
 ```
+
+### Archivo "GenColorReader.java" en el paquete "batch.reader"
+```
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import javax.sql.DataSource;
+
+import org.springframework.batch.infrastructure.item.database.JdbcCursorItemReader;
+import org.springframework.batch.infrastructure.item.database.builder.JdbcCursorItemReaderBuilder;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
+
+import com.example.demo_spring_batch.app.model.GenColor;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+/**
+ * Reader que lee desde SQL Server con NOLOCK para evitar bloqueos en origen.
+ */
+@Component
+public class GenColorReader {
+
+  private static final Logger log = LoggerFactory.getLogger(GenColorReader.class);
+
+  /**
+   * Query con NOLOCK para lectura no bloqueante en SQL Server.
+   */
+  private static final String SQL = "SELECT color_id, color_descripcion, color_estado, usuario_codigo, " +
+      "user_create, user_modify, fch_create, fch_modify " +
+      "FROM dbo.gen_colores WITH (NOLOCK) " +
+      "ORDER BY color_id";
+
+  public JdbcCursorItemReader<GenColor> reader(@Qualifier("sqlServerDataSource") DataSource dataSource) {
+    log.info("Configurando reader para gen_colores desde SQL Server");
+    return new JdbcCursorItemReaderBuilder<GenColor>()
+        .name("genColorReader")
+        .dataSource(dataSource)
+        .sql(SQL)
+        .rowMapper(this::mapRow)
+        .build();
+  }
+
+  private GenColor mapRow(ResultSet rs, int rowNum) throws SQLException {
+    return GenColor.builder()
+        .colorId(rs.getInt("color_id"))
+        .colorDescripcion(rs.getString("color_descripcion"))
+        .colorEstado(rs.getString("color_estado"))
+        .usuarioCodigo(rs.getString("usuario_codigo"))
+        .userCreate(rs.getString("user_create"))
+        .userModify(rs.getString("user_modify"))
+        .fchCreate(rs.getTimestamp("fch_create") != null
+            ? rs.getTimestamp("fch_create").toLocalDateTime()
+            : null)
+        .fchModify(rs.getTimestamp("fch_modify") != null
+            ? rs.getTimestamp("fch_modify").toLocalDateTime()
+            : null)
+        .build();
+  }
+}
+```
+
+### Archivo "GenDepartamentoReader.java" en el paquete "batch.reader"
+```
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+import javax.sql.DataSource;
+
+import org.springframework.batch.infrastructure.item.database.JdbcCursorItemReader;
+import org.springframework.batch.infrastructure.item.database.builder.JdbcCursorItemReaderBuilder;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
+
+import com.example.demo_spring_batch.app.model.GenDepartamento;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+/**
+ * Reader que lee desde SQL Server con NOLOCK para evitar bloqueos en origen.
+ */
+@Component
+public class GenDepartamentoReader {
+
+  private static final Logger log = LoggerFactory.getLogger(GenDepartamentoReader.class);
+
+  /**
+   * Query con NOLOCK para lectura no bloqueante en SQL Server.
+   */
+  private static final String SQL = "SELECT departamento_id, departamento_descripcion, departamento_estado, pais_id, " +
+      "usuario_codigo, user_create, user_modify, fch_create, fch_modify " +
+      "FROM dbo.gen_departamentos WITH (NOLOCK) " +
+      "ORDER BY departamento_id";
+
+  public JdbcCursorItemReader<GenDepartamento> reader(@Qualifier("sqlServerDataSource") DataSource dataSource) {
+    log.info("Configurando reader para gen_departamentos desde SQL Server");
+    return new JdbcCursorItemReaderBuilder<GenDepartamento>()
+        .name("genDepartamentoReader")
+        .dataSource(dataSource)
+        .sql(SQL)
+        .rowMapper(this::mapRow)
+        .build();
+  }
+
+  private GenDepartamento mapRow(ResultSet rs, int rowNum) throws SQLException {
+    return GenDepartamento.builder()
+        .departamentoId(rs.getInt("departamento_id"))
+        .departamentoDescripcion(rs.getString("departamento_descripcion"))
+        .departamentoEstado(rs.getString("departamento_estado"))
+        .paisId(rs.getInt("pais_id"))
+        .usuarioCodigo(rs.getString("usuario_codigo"))
+        .userCreate(rs.getString("user_create"))
+        .userModify(rs.getString("user_modify"))
+        .fchCreate(rs.getTimestamp("fch_create") != null
+            ? rs.getTimestamp("fch_create").toLocalDateTime()
+            : null)
+        .fchModify(rs.getTimestamp("fch_modify") != null
+            ? rs.getTimestamp("fch_modify").toLocalDateTime()
+            : null)
+        .build();
+  }
+}
+```
+
+
+
+
+
