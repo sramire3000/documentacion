@@ -420,8 +420,6 @@ public class MigrationStartupRunner implements ApplicationRunner {
 
 ### Archivo "PostgresDdlInitializer.java" en el paquete "config"
 ```
-package com.example.demo_spring_batch.app.config;
-
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
