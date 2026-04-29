@@ -256,15 +256,6 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.transaction.PlatformTransactionManager;
 
-import com.example.demo_spring_batch.app.batch.processor.GenColorProcessor;
-import com.example.demo_spring_batch.app.batch.processor.GenDepartamentoProcessor;
-import com.example.demo_spring_batch.app.batch.reader.GenColorReader;
-import com.example.demo_spring_batch.app.batch.reader.GenDepartamentoReader;
-import com.example.demo_spring_batch.app.batch.writer.GenColorWriter;
-import com.example.demo_spring_batch.app.batch.writer.GenDepartamentoWriter;
-import com.example.demo_spring_batch.app.model.GenColor;
-import com.example.demo_spring_batch.app.model.GenDepartamento;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -562,8 +553,6 @@ public class PostgresDdlInitializer implements ApplicationRunner {
 import org.springframework.batch.infrastructure.item.ItemProcessor;
 import org.springframework.stereotype.Component;
 
-import com.example.demo_spring_batch.app.model.GenColor;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -590,8 +579,6 @@ public class GenColorProcessor implements ItemProcessor<GenColor, GenColor> {
 ```
 import org.springframework.batch.infrastructure.item.ItemProcessor;
 import org.springframework.stereotype.Component;
-
-import com.example.demo_spring_batch.app.model.GenDepartamento;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -627,8 +614,6 @@ import org.springframework.batch.infrastructure.item.database.JdbcCursorItemRead
 import org.springframework.batch.infrastructure.item.database.builder.JdbcCursorItemReaderBuilder;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
-
-import com.example.demo_spring_batch.app.model.GenColor;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -690,8 +675,6 @@ import org.springframework.batch.infrastructure.item.database.builder.JdbcCursor
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
-import com.example.demo_spring_batch.app.model.GenDepartamento;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -749,8 +732,6 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
-import com.example.demo_spring_batch.app.model.GenColor;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -799,8 +780,6 @@ import org.springframework.batch.infrastructure.item.ItemWriter;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
-
-import com.example.demo_spring_batch.app.model.GenDepartamento;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
