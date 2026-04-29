@@ -96,8 +96,6 @@ migration.tables=gen_departamentos,gen_colores
 # Por defecto: todos los dias a las 02:00 AM
 # =============================================
 migration.scheduler.cron=0 0 2 * * ?
-
-
 ```
 
 
