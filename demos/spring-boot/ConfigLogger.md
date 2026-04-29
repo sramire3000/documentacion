@@ -21,3 +21,13 @@ logging.level.org.hibernate=INFO
 logging.level.org.hibernate.SQL=DEBUG
 
 ```
+
+### Forma de Usar
+```
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+private static final Logger log = LoggerFactory.getLogger(GenColorProcessor.class);
+
+log.debug("Procesando color_id={} descripcion={}", item.getColorId(), item.getColorDescripcion());
+```
