@@ -1,4 +1,4 @@
-# Configuracion logger
+# Configuración logger
 
 ## Archivo "application.properties"
 ```
