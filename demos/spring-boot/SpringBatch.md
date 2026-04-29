@@ -62,16 +62,16 @@ server.port=8080
 # DATASOURCE ORIGEN - SQL Server 2017
 # =============================================
 spring.datasource.sqlserver.jdbc-url=jdbc:sqlserver://localhost:1433;databaseName=Arreconsa;encrypt=false;trustServerCertificate=true
-spring.datasource.sqlserver.username=sa
-spring.datasource.sqlserver.password=TuPasswordFuerte123!
+spring.datasource.sqlserver.username=
+spring.datasource.sqlserver.password=
 spring.datasource.sqlserver.driver-class-name=com.microsoft.sqlserver.jdbc.SQLServerDriver
 
 # =============================================
 # DATASOURCE DESTINO - PostgreSQL
 # =============================================
 spring.datasource.postgres.jdbc-url=jdbc:postgresql://localhost:5432/Arreconsa
-spring.datasource.postgres.username=postgres
-spring.datasource.postgres.password=password
+spring.datasource.postgres.username=
+spring.datasource.postgres.password=
 spring.datasource.postgres.driver-class-name=org.postgresql.Driver
 
 # =============================================
