@@ -849,3 +849,45 @@ public class MigrationScheduler {
 ```
 @EnableScheduling
 ```
+
+## Notas
+
+### Parámetros de migración
+
+```properties
+# Cantidad de registros por chunk (configurable sin recompilar)
+migration.chunk-size=5
+
+# Cron de ejecución (por defecto: todos los días a las 02:00 AM)
+migration.scheduler.cron=0 0 2 * * ?
+```
+
+**Ejemplos de cron:**
+
+| Expresión              | Descripción                     |
+|------------------------|---------------------------------|
+| `0 0 2 * * ?`          | Todos los días a las 02:00 AM   |
+| `0 0 */6 * * ?`        | Cada 6 horas                    |
+| `0 0 8 ? * MON-FRI`    | Lunes a viernes a las 08:00 AM  |
+| `0 */30 * * * ?`       | Cada 30 minutos                 |
+
+---
+
+## Flujo del job
+
+```
+[Scheduler Cron]
+      ↓
+[migrationJob]
+      ↓
+[truncateStep]         → TRUNCATE gen_colores, gen_departamentos en PostgreSQL
+      ↓
+[migrateGenColoresStep]      → Lee SQL Server (NOLOCK) → Procesa → Inserta PostgreSQL
+      ↓
+[migrateGenDepartamentosStep] → Lee SQL Server (NOLOCK) → Procesa → Inserta PostgreSQL
+```
+
+---
+
+
+
