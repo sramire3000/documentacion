@@ -1,4 +1,4 @@
-# Spring Batch
+# Spring Batch Jdk 21 + Spring boot 4.0.6
 
 ## Configuracion
 
