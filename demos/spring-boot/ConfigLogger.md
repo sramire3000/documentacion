@@ -5,20 +5,28 @@
 # =============================================
 # LOGGING
 # =============================================
-logging.level.com.example.demo_spring_batch=INFO
+logging.level.com.example.demo_test=INFO
 logging.level.org.springframework.web=INFO
-logging.level.guru.springframework.blogs.controllers=INFO
-logging.level.org.springframework.batch=INFO
-logging.pattern.dateformat="dd-MM-yyyy HH:mm:ss.SSSZ"
 logging.pattern.console=%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n
 logging.pattern.file=%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n
+logging.pattern.dateformat="dd-MM-yyyy HH:mm:ss.SSSZ"
+logging.level.guru.springframework.blogs.controllers=INFO
+
+# Ubicacion
 logging.file.name=logs/graphql.log
+
+# Tamano de archivo
 logging.logback.rollingpolicy.max-file-size=10MB
+
+# Historico
 logging.logback.rollingpolicy.max-history=30
 
 # Suppress Hibernate logging
 logging.level.org.hibernate=INFO
 logging.level.org.hibernate.SQL=DEBUG
+
+# Spring batch
+logging.level.org.springframework.batch=INFO
 
 ```
 
