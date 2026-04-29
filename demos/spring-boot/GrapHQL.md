@@ -169,4 +169,248 @@ public class UserEntity implements Serializable {
 }
 ```
 
+### Archivo "VendedorEntity.java"
+```
+import java.io.Serializable;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
+@Entity(name = "Vendedor")
+@Table(name = "vendedores")
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
+@ToString
+public class VendedorEntity implements Serializable {
+
+  private static final long serialVersionUID = 1L;
+
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
+  private String name;
+}
+```
+
+### Archivo "UserRepository.java"ç
+```
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.example.demo_graphql.app.entities.UserEntity;
+
+public interface UserRepository extends JpaRepository<UserEntity, Long> {
+
+}
+```
+
+### Archivo "VendedorRepository.java"
+```
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.example.demo_graphql.app.entities.VendedorEntity;
+
+public interface VendedorRepository extends JpaRepository<VendedorEntity, Long> {
+
+}
+```
+
+### Archivo "UserService.java"
+```
+import java.util.List;
+
+import com.example.demo_graphql.app.object.type.User;
+
+public interface UserService {
+
+  List<User> findAll();
+
+  User findById(Long id);
+
+  User save(User user);
+
+  User update(User user);
+
+  void deleteById(Long id);
+}
+```
+
+### Archivo "VendedorService.java"
+```
+import java.util.List;
+
+import com.example.demo_graphql.app.object.type.Vendedor;
+
+public interface VendedorService {
+  List<Vendedor> findAll();
+
+  Vendedor findById(Long id);
+
+  Vendedor save(Vendedor vendedor);
+
+  Vendedor update(Vendedor vendedor);
+
+  void deleteById(Long id);
+}
+```
+
+### Archivo "UserMapper.java"
+```
+import com.example.demo_graphql.app.entities.UserEntity;
+import com.example.demo_graphql.app.object.type.User;
+
+public class UserMapper {
+
+  public static UserEntity userToEntity(User user) {
+    return new UserEntity(user.getId(), user.getName(), user.getSurname(), user.getEmail());
+  }
+
+  public static User entityToUser(UserEntity userEntity) {
+    return new User(userEntity.getId(), userEntity.getName(), userEntity.getSurname(), userEntity.getEmail());
+  }
+}
+```
+
+### Archivo "VendedorMapper.java"
+```
+import com.example.demo_graphql.app.entities.VendedorEntity;
+import com.example.demo_graphql.app.object.type.Vendedor;
+
+public class VendedorMapper {
+
+  public static VendedorEntity vendedorToEntity(Vendedor vendedor) {
+    return new VendedorEntity(vendedor.getId(), vendedor.getName());
+  }
+
+  public static Vendedor entityToVendedor(VendedorEntity vendedorEntity) {
+    return new Vendedor(vendedorEntity.getId(), vendedorEntity.getName());
+  }
+
+}
+```
+
+### Archivo "UserServiceImpl.java"
+```
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.springframework.stereotype.Service;
+
+import com.example.demo_graphql.app.mappers.UserMapper;
+import com.example.demo_graphql.app.object.type.User;
+import com.example.demo_graphql.app.repository.UserRepository;
+import com.example.demo_graphql.app.services.UserService;
+
+@Service
+public class UserServiceImpl implements UserService {
+
+  private final UserRepository userRepository;
+
+  public UserServiceImpl(UserRepository userRepository) {
+    this.userRepository = userRepository;
+  }
+
+  @Override
+  public List<User> findAll() {
+    return userRepository.findAll().stream()
+        .map(UserMapper::entityToUser)
+        .collect(Collectors.toList());
+  }
+
+  @Override
+  public User findById(Long id) {
+    return userRepository.findById(id)
+        .map(UserMapper::entityToUser)
+        .orElse(null);
+  }
+
+  @Override
+  public User save(User user) {
+    return UserMapper.entityToUser(userRepository.save(UserMapper.userToEntity(user)));
+  }
+
+  @Override
+  public User update(User user) {
+    return userRepository.findById(user.getId()).map(existing -> {
+      if (user.getName() != null)
+        existing.setName(user.getName());
+      if (user.getSurname() != null)
+        existing.setSurname(user.getSurname());
+      if (user.getEmail() != null)
+        existing.setEmail(user.getEmail());
+      return UserMapper.entityToUser(userRepository.save(existing));
+    }).orElse(null);
+  }
+
+  @Override
+  public void deleteById(Long id) {
+    userRepository.deleteById(id);
+  }
+
+}
+```
+
+### Archivo "VendedorServiceImpl.java"
+```
+import java.util.List;
+import java.util.stream.Collectors;
+
+import org.springframework.stereotype.Service;
+
+import com.example.demo_graphql.app.mappers.VendedorMapper;
+import com.example.demo_graphql.app.object.type.Vendedor;
+import com.example.demo_graphql.app.repository.VendedorRepository;
+import com.example.demo_graphql.app.services.VendedorService;
+
+@Service
+public class VendedorServiceImpl implements VendedorService {
+
+  private final VendedorRepository vendedorRepository;
+
+  public VendedorServiceImpl(VendedorRepository vendedorRepository) {
+    this.vendedorRepository = vendedorRepository;
+  }
+
+  @Override
+  public List<Vendedor> findAll() {
+    return vendedorRepository.findAll().stream()
+        .map(VendedorMapper::entityToVendedor)
+        .collect(Collectors.toList());
+  }
+
+  @Override
+  public Vendedor findById(Long id) {
+    return vendedorRepository.findById(id)
+        .map(VendedorMapper::entityToVendedor)
+        .orElse(null);
+  }
+
+  @Override
+  public Vendedor save(Vendedor vendedor) {
+    return VendedorMapper.entityToVendedor(vendedorRepository.save(VendedorMapper.vendedorToEntity(vendedor)));
+  }
+
+  @Override
+  public Vendedor update(Vendedor vendedor) {
+    return vendedorRepository.findById(vendedor.getId()).map(existing -> {
+      if (vendedor.getName() != null)
+        existing.setName(vendedor.getName());
+      return VendedorMapper.entityToVendedor(vendedorRepository.save(existing));
+    }).orElse(null);
+  }
+
+  @Override
+  public void deleteById(Long id) {
+    vendedorRepository.deleteById(id);
+  }
+
+}
+```
