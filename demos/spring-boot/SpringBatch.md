@@ -10,12 +10,6 @@
   <artifactId>spring-boot-starter-batch</artifactId>
 </dependency>
 
-<!-- Actuator: health, info, metricas y estado del batch -->
-<dependency>
-  <groupId>org.springframework.boot</groupId>
-  <artifactId>spring-boot-starter-actuator</artifactId>
-</dependency>
-
 <!-- Spring JDBC (JdbcTemplate + TransactionManager) -->
 <dependency>
   <groupId>org.springframework.boot</groupId>
@@ -63,18 +57,6 @@
 # SERVIDOR WEB
 # =============================================
 server.port=8080
-
-# =============================================
-# ACTUATOR
-# =============================================
-# Expone: health, info, metrics, batch jobs y env
-management.endpoints.web.exposure.include=health,info,metrics,env,batches
-management.endpoint.health.show-details=always
-management.endpoint.health.show-components=always
-management.info.env.enabled=true
-info.app.name=demo-spring-batch
-info.app.description=Migracion SQL Server 2017 -> PostgreSQL
-info.app.version=1.0.0
 
 # =============================================
 # DATASOURCE ORIGEN - SQL Server 2017
