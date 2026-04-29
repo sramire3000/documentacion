@@ -98,7 +98,7 @@ migration.tables=gen_departamentos,gen_colores
 migration.scheduler.cron=0 0 2 * * ?
 ```
 
-## Paquetes
+### Paquetes
 ```
 -batch.processor
 -batch.reader
@@ -107,6 +107,70 @@ migration.scheduler.cron=0 0 2 * * ?
 -model
 -scheduler
 ```
+
+## Programas JAVA
+
+### Archivo "DataSourceConfig.java" en el paquete "config"
+```
+import javax.sql.DataSource;
+
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.jdbc.DataSourceBuilder;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
+import org.springframework.jdbc.core.JdbcTemplate;
+
+/**
+ * Configuracion de fuentes de datos.
+ * - sqlServerDataSource: origen (SQL Server 2017), lectura sin bloqueos
+ * (NOLOCK).
+ * - postgresDataSource: destino (PostgreSQL), primario para Spring Batch
+ * metadata.
+ */
+@Configuration
+public class DataSourceConfig {
+
+  /**
+   * DataSource para SQL Server (origen).
+   * Se configura con las propiedades spring.datasource.sqlserver.*
+   */
+  @Bean(name = "sqlServerDataSource")
+  @ConfigurationProperties(prefix = "spring.datasource.sqlserver")
+  public DataSource sqlServerDataSource() {
+    return DataSourceBuilder.create().build();
+  }
+
+  /**
+   * DataSource para PostgreSQL (destino).
+   * Se configura como primario para que Spring Batch use este para sus metadatos.
+   */
+  @Primary
+  @Bean(name = "postgresDataSource")
+  @ConfigurationProperties(prefix = "spring.datasource.postgres")
+  public DataSource postgresDataSource() {
+    return DataSourceBuilder.create().build();
+  }
+
+  /**
+   * JdbcTemplate para operaciones en SQL Server.
+   */
+  @Bean(name = "sqlServerJdbcTemplate")
+  public JdbcTemplate sqlServerJdbcTemplate(@Qualifier("sqlServerDataSource") DataSource dataSource) {
+    return new JdbcTemplate(dataSource);
+  }
+
+  /**
+   * JdbcTemplate para operaciones en PostgreSQL.
+   */
+  @Bean(name = "postgresJdbcTemplate")
+  public JdbcTemplate postgresJdbcTemplate(@Qualifier("postgresDataSource") DataSource dataSource) {
+    return new JdbcTemplate(dataSource);
+  }
+}
+```
+
 
 
 
