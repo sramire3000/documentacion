@@ -433,3 +433,40 @@ flatpak install flathub com.spotify.Client
 ```
 flatpak install flathub com.github.IsmaelMartinez.teams_for_linux
 ```
+
+### Jasper Report 
+
+instalar
+```
+# Desempacar
+tar -zxvf js-studiocomm_6.20.6_linux_x86_64.tgz
+# Mover
+sudo mv js-studiocomm_6.20.6 /opt/jaspersoftstudio
+# Ejecutar
+cd /opt/jaspersoftstudio
+./Jaspersoft\ Studio
+```
+
+Shorcut
+```
+# Crear archivo
+nano ~/.local/share/applications/jaspersoft.desktop
+
+# Adicionar contenido
+[Desktop Entry]
+Name=Jaspersoft Studio
+Comment=Diseñador de reportes Jasper
+# Ejecutamos el script de shell en lugar del binario directamente
+Exec=/opt/jaspersoftstudio/runjss.sh
+Icon=/opt/jaspersoftstudio/icon.png
+Terminal=false
+Type=Application
+Categories=Development;IDE;
+Path=/opt/jaspersoftstudio
+StartupNotify=true
+
+
+#Permisos
+chmod +x ~/.local/share/applications/jaspersoft.desktop
+```
+

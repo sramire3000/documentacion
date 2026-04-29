@@ -131,192 +131,196 @@ public class CryptoProperties {
 
 ### La clase "CryptoUtils.java" en el paquete util
 ````
+import java.nio.charset.StandardCharsets;
 import java.security.KeyFactory;
 import java.security.KeyPair;
 import java.security.KeyPairGenerator;
-import java.security.NoSuchAlgorithmException;
+import java.security.MessageDigest;
 import java.security.PrivateKey;
 import java.security.PublicKey;
 import java.security.SecureRandom;
-import java.security.Security;
+import java.security.interfaces.ECPublicKey;
 import java.security.spec.ECGenParameterSpec;
+import java.security.spec.ECPoint;
+import java.security.spec.ECPublicKeySpec;
 import java.security.spec.PKCS8EncodedKeySpec;
 import java.security.spec.X509EncodedKeySpec;
+import java.util.Arrays;
 
 import javax.crypto.Cipher;
-import javax.crypto.KeyGenerator;
+import javax.crypto.KeyAgreement;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 
-import org.apache.commons.codec.binary.Base64;
-import org.bouncycastle.jce.provider.BouncyCastleProvider;
-import org.bouncycastle.jce.spec.IESParameterSpec;
-
-/**
- * Clase de utilidad para operaciones criptográficas seguras.
- * Implementa encriptación híbrida: ECC + AES-256
- */
 public class CryptoUtils {
 
-  private static final String ALGORITHM_AES = "AES/CBC/PKCS5Padding";
-  private static final int AES_KEY_SIZE = 256;
-  private static final int IV_SIZE = 16;
-  private static final String ECC_CURVE = "secp256r1";
-  private static final int ECIES_MAC_KEY_SIZE = 128;
+  private static final byte[] MAGIC = new byte[] { 0x46, 0x45, 0x56, 0x32 }; // FEV2
+  private static final int MAGIC_LEN = 4;
+  private static final int EPH_RAW_LEN = 65; // uncompressed EC point: 0x04 + X(32) + Y(32)
+  private static final int IV_LEN = 16;
 
-  static {
-    Security.addProvider(new BouncyCastleProvider());
+  public static String decryptHybridV2(byte[] encryptedData, PrivateKey serverPrivateKey) throws Exception {
+    if (encryptedData == null || encryptedData.length < (MAGIC_LEN + EPH_RAW_LEN + IV_LEN + 16)) {
+      throw new IllegalArgumentException("Payload V2 invalido: longitud insuficiente");
+    }
+
+    // 1) Validar magic FEV2
+    for (int i = 0; i < MAGIC_LEN; i++) {
+      if (encryptedData[i] != MAGIC[i]) {
+        throw new IllegalArgumentException("Payload no es V2 (magic mismatch)");
+      }
+    }
+
+    // 2) Extraer ephPubRaw, iv, ciphertext
+    int offset = MAGIC_LEN;
+    byte[] ephRaw = Arrays.copyOfRange(encryptedData, offset, offset + EPH_RAW_LEN);
+    offset += EPH_RAW_LEN;
+
+    byte[] iv = Arrays.copyOfRange(encryptedData, offset, offset + IV_LEN);
+    offset += IV_LEN;
+
+    byte[] ciphertext = Arrays.copyOfRange(encryptedData, offset, encryptedData.length);
+
+    // 3) Reconstruir PublicKey efimera desde punto raw (secp256r1)
+    PublicKey ephPublicKey = rawP256ToPublicKey(ephRaw, serverPrivateKey);
+
+    // 4) ECDH + SHA-256(sharedSecret) => AES-256
+    KeyAgreement ka = KeyAgreement.getInstance("ECDH");
+    ka.init(serverPrivateKey);
+    ka.doPhase(ephPublicKey, true);
+    byte[] sharedSecret = ka.generateSecret();
+
+    byte[] aesKeyBytes = java.security.MessageDigest.getInstance("SHA-256").digest(sharedSecret);
+    SecretKey aesKey = new SecretKeySpec(aesKeyBytes, "AES");
+
+    // 5) AES/CBC/PKCS5Padding decrypt
+    Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
+    cipher.init(Cipher.DECRYPT_MODE, aesKey, new IvParameterSpec(iv));
+    byte[] plain = cipher.doFinal(ciphertext);
+
+    return new String(plain, StandardCharsets.UTF_8);
   }
 
-  // ==================== GENERACIÓN DE LLAVES ====================
+  public static byte[] encryptHybridV2(String plaintext, PublicKey recipientPublicKey) throws Exception {
+    // 1) Ephemeral EC keypair P-256
+    KeyPairGenerator kpg = KeyPairGenerator.getInstance("EC");
+    kpg.initialize(new ECGenParameterSpec("secp256r1"), new SecureRandom());
+    KeyPair eph = kpg.generateKeyPair();
+
+    // 2) ECDH shared secret
+    KeyAgreement ka = KeyAgreement.getInstance("ECDH");
+    ka.init(eph.getPrivate());
+    ka.doPhase(recipientPublicKey, true);
+    byte[] sharedSecret = ka.generateSecret();
+
+    // 3) AES-256 key = SHA-256(sharedSecret)
+    byte[] aesKeyBytes = MessageDigest.getInstance("SHA-256").digest(sharedSecret);
+    SecretKey aesKey = new SecretKeySpec(aesKeyBytes, "AES");
+
+    // 4) AES/CBC/PKCS5Padding
+    byte[] iv = new byte[IV_LEN];
+    new SecureRandom().nextBytes(iv);
+
+    Cipher cipher = Cipher.getInstance("AES/CBC/PKCS5Padding");
+    cipher.init(Cipher.ENCRYPT_MODE, aesKey, new IvParameterSpec(iv));
+    byte[] ciphertext = cipher.doFinal(plaintext.getBytes(StandardCharsets.UTF_8));
+
+    // 5) Export ephemeral public key as raw uncompressed point (65 bytes)
+    byte[] ephRaw = ecPublicKeyToRaw((ECPublicKey) eph.getPublic());
+
+    // 6) Build payload: MAGIC(4) + ephRaw(65) + iv(16) + ciphertext
+    byte[] out = new byte[MAGIC.length + ephRaw.length + iv.length + ciphertext.length];
+    int o = 0;
+    System.arraycopy(MAGIC, 0, out, o, MAGIC.length);
+    o += MAGIC.length;
+    System.arraycopy(ephRaw, 0, out, o, ephRaw.length);
+    o += ephRaw.length;
+    System.arraycopy(iv, 0, out, o, iv.length);
+    o += iv.length;
+    System.arraycopy(ciphertext, 0, out, o, ciphertext.length);
+
+    return out;
+  }
+
+  public static String encryptHybridV2Base64(String plaintext, PublicKey recipientPublicKey) throws Exception {
+    return java.util.Base64.getEncoder().encodeToString(encryptHybridV2(plaintext, recipientPublicKey));
+  }
+
+  // ==================== MÉTODOS AUXILIARES ====================
 
   public static KeyPair generateECCKeyPair() throws Exception {
-    KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance("EC", "BC");
-    ECGenParameterSpec ecSpec = new ECGenParameterSpec(ECC_CURVE);
-    keyPairGenerator.initialize(ecSpec, new SecureRandom());
-    return keyPairGenerator.generateKeyPair();
+    KeyPairGenerator kpg = KeyPairGenerator.getInstance("EC");
+    kpg.initialize(new ECGenParameterSpec("secp256r1"), new SecureRandom());
+    return kpg.generateKeyPair();
   }
-
-  public static SecretKey generateAESKey() throws NoSuchAlgorithmException {
-    KeyGenerator keyGenerator = KeyGenerator.getInstance("AES");
-    keyGenerator.init(AES_KEY_SIZE, new SecureRandom());
-    return keyGenerator.generateKey();
-  }
-
-  public static byte[] generateIV() {
-    byte[] iv = new byte[IV_SIZE];
-    new SecureRandom().nextBytes(iv);
-    return iv;
-  }
-
-  // ==================== CIFRADO AES-256 ====================
-
-  public static byte[] encryptAES(String plaintext, SecretKey secretKey) throws Exception {
-    Cipher cipher = Cipher.getInstance(ALGORITHM_AES, "BC");
-    byte[] iv = generateIV();
-    IvParameterSpec ivSpec = new IvParameterSpec(iv);
-
-    cipher.init(Cipher.ENCRYPT_MODE, secretKey, ivSpec);
-    byte[] encryptedData = cipher.doFinal(plaintext.getBytes("UTF-8"));
-
-    byte[] result = new byte[iv.length + encryptedData.length];
-    System.arraycopy(iv, 0, result, 0, iv.length);
-    System.arraycopy(encryptedData, 0, result, iv.length, encryptedData.length);
-
-    return result;
-  }
-
-  public static String decryptAES(byte[] encryptedData, SecretKey secretKey) throws Exception {
-    byte[] iv = new byte[IV_SIZE];
-    System.arraycopy(encryptedData, 0, iv, 0, IV_SIZE);
-
-    byte[] ciphertext = new byte[encryptedData.length - IV_SIZE];
-    System.arraycopy(encryptedData, IV_SIZE, ciphertext, 0, ciphertext.length);
-
-    Cipher cipher = Cipher.getInstance(ALGORITHM_AES, "BC");
-    IvParameterSpec ivSpec = new IvParameterSpec(iv);
-    cipher.init(Cipher.DECRYPT_MODE, secretKey, ivSpec);
-
-    byte[] decryptedData = cipher.doFinal(ciphertext);
-    return new String(decryptedData, "UTF-8");
-  }
-
-  // ==================== CIFRADO ASIMÉTRICO ECC ====================
-
-  public static byte[] encryptECC(byte[] plaintext, PublicKey publicKey) throws Exception {
-    Cipher cipher = Cipher.getInstance("ECIES", "BC");
-    IESParameterSpec iesSpec = new IESParameterSpec(null, null, ECIES_MAC_KEY_SIZE);
-    cipher.init(Cipher.ENCRYPT_MODE, publicKey, iesSpec, new SecureRandom());
-    return cipher.doFinal(plaintext);
-  }
-
-  public static byte[] decryptECC(byte[] encryptedData, PrivateKey privateKey) throws Exception {
-    Cipher cipher = Cipher.getInstance("ECIES", "BC");
-    IESParameterSpec iesSpec = new IESParameterSpec(null, null, ECIES_MAC_KEY_SIZE);
-    cipher.init(Cipher.DECRYPT_MODE, privateKey, iesSpec);
-    return cipher.doFinal(encryptedData);
-  }
-
-  // ==================== FLUJO HÍBRIDO COMPLETO ====================
-
-  public static byte[] encryptHybrid(String plaintext, PublicKey eccPublicKey) throws Exception {
-    SecretKey aesKey = generateAESKey();
-    byte[] encryptedData = encryptAES(plaintext, aesKey);
-    byte[] encryptedAESKey = encryptECC(aesKey.getEncoded(), eccPublicKey);
-
-    byte[] result = new byte[4 + encryptedAESKey.length + encryptedData.length];
-    result[0] = (byte) ((encryptedAESKey.length >> 24) & 0xFF);
-    result[1] = (byte) ((encryptedAESKey.length >> 16) & 0xFF);
-    result[2] = (byte) ((encryptedAESKey.length >> 8) & 0xFF);
-    result[3] = (byte) (encryptedAESKey.length & 0xFF);
-
-    System.arraycopy(encryptedAESKey, 0, result, 4, encryptedAESKey.length);
-    System.arraycopy(encryptedData, 0, result, 4 + encryptedAESKey.length, encryptedData.length);
-
-    return result;
-  }
-
-  public static String decryptHybrid(byte[] encryptedData, PrivateKey eccPrivateKey) throws Exception {
-    int keyLength = ((encryptedData[0] & 0xFF) << 24) |
-        ((encryptedData[1] & 0xFF) << 16) |
-        ((encryptedData[2] & 0xFF) << 8) |
-        (encryptedData[3] & 0xFF);
-
-    byte[] encryptedAESKey = new byte[keyLength];
-    System.arraycopy(encryptedData, 4, encryptedAESKey, 0, keyLength);
-
-    byte[] ciphertext = new byte[encryptedData.length - 4 - keyLength];
-    System.arraycopy(encryptedData, 4 + keyLength, ciphertext, 0, ciphertext.length);
-
-    byte[] decryptedAESKeyBytes = decryptECC(encryptedAESKey, eccPrivateKey);
-    SecretKey aesKey = new SecretKeySpec(decryptedAESKeyBytes, 0, decryptedAESKeyBytes.length, "AES");
-
-    return decryptAES(ciphertext, aesKey);
-  }
-
-  // ==================== CONVERSIÓN DE FORMATOS ====================
 
   public static String publicKeyToBase64(PublicKey publicKey) {
-    return Base64.encodeBase64String(publicKey.getEncoded());
+    return java.util.Base64.getEncoder().encodeToString(publicKey.getEncoded());
   }
 
   public static String privateKeyToBase64(PrivateKey privateKey) {
-    return Base64.encodeBase64String(privateKey.getEncoded());
+    return java.util.Base64.getEncoder().encodeToString(privateKey.getEncoded());
   }
 
   public static PublicKey base64ToPublicKey(String base64Key) throws Exception {
     if (base64Key == null || base64Key.isBlank()) {
       throw new IllegalArgumentException("La clave pública ECC está vacía o no configurada");
     }
-    byte[] decodedKey = Base64.decodeBase64(base64Key);
-    if (decodedKey == null || decodedKey.length == 0) {
-      throw new IllegalArgumentException("La clave pública ECC no tiene un Base64 válido");
-    }
-    X509EncodedKeySpec spec = new X509EncodedKeySpec(decodedKey);
-    KeyFactory kf = KeyFactory.getInstance("EC", "BC");
-    return kf.generatePublic(spec);
+    byte[] decodedKey = java.util.Base64.getDecoder().decode(base64Key);
+    KeyFactory kf = KeyFactory.getInstance("EC");
+    return kf.generatePublic(new X509EncodedKeySpec(decodedKey));
   }
 
   public static PrivateKey base64ToPrivateKey(String base64Key) throws Exception {
     if (base64Key == null || base64Key.isBlank()) {
       throw new IllegalArgumentException("La clave privada ECC está vacía o no configurada");
     }
-    byte[] decodedKey = Base64.decodeBase64(base64Key);
-    if (decodedKey == null || decodedKey.length == 0) {
-      throw new IllegalArgumentException("La clave privada ECC no tiene un Base64 válido");
-    }
-    PKCS8EncodedKeySpec spec = new PKCS8EncodedKeySpec(decodedKey);
-    KeyFactory kf = KeyFactory.getInstance("EC", "BC");
-    return kf.generatePrivate(spec);
-  }
-
-  public static String bytesToBase64(byte[] data) {
-    return Base64.encodeBase64String(data);
+    byte[] decodedKey = java.util.Base64.getDecoder().decode(base64Key);
+    KeyFactory kf = KeyFactory.getInstance("EC");
+    return kf.generatePrivate(new PKCS8EncodedKeySpec(decodedKey));
   }
 
   public static byte[] base64ToBytes(String base64String) {
-    return Base64.decodeBase64(base64String);
+    return java.util.Base64.getDecoder().decode(base64String);
+  }
+
+  private static PublicKey rawP256ToPublicKey(byte[] ephRaw, PrivateKey serverPrivateKey) throws Exception {
+    if (ephRaw.length != EPH_RAW_LEN || ephRaw[0] != 0x04) {
+      throw new IllegalArgumentException("Clave publica efimera invalida");
+    }
+
+    java.security.interfaces.ECPrivateKey ecPriv = (java.security.interfaces.ECPrivateKey) serverPrivateKey;
+    java.security.spec.ECParameterSpec params = ecPriv.getParams();
+
+    byte[] xBytes = Arrays.copyOfRange(ephRaw, 1, 33);
+    byte[] yBytes = Arrays.copyOfRange(ephRaw, 33, 65);
+
+    java.math.BigInteger x = new java.math.BigInteger(1, xBytes);
+    java.math.BigInteger y = new java.math.BigInteger(1, yBytes);
+
+    ECPoint point = new ECPoint(x, y);
+    ECPublicKeySpec pubSpec = new ECPublicKeySpec(point, params);
+    KeyFactory kf = KeyFactory.getInstance("EC");
+    return kf.generatePublic(pubSpec);
+  }
+
+  private static byte[] ecPublicKeyToRaw(ECPublicKey pub) {
+    byte[] x = toFixed(pub.getW().getAffineX().toByteArray(), 32);
+    byte[] y = toFixed(pub.getW().getAffineY().toByteArray(), 32);
+    byte[] raw = new byte[EPH_RAW_LEN];
+    raw[0] = 0x04;
+    System.arraycopy(x, 0, raw, 1, 32);
+    System.arraycopy(y, 0, raw, 33, 32);
+    return raw;
+  }
+
+  private static byte[] toFixed(byte[] v, int len) {
+    byte[] out = new byte[len];
+    int srcPos = Math.max(0, v.length - len);
+    int copyLen = Math.min(v.length, len);
+    System.arraycopy(v, srcPos, out, len - copyLen, copyLen);
+    return out;
   }
 }
 ````
@@ -331,8 +335,8 @@ import org.springframework.stereotype.Service;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
-import com.example.demo_encrypt.app.config.CryptoProperties;
-import com.example.demo_encrypt.app.util.CryptoUtils;
+import sv.com.arreconsa.springboot.app.logistica.config.CryptoProperties;
+import sv.com.arreconsa.springboot.app.logistica.utils.CryptoUtils;
 
 /**
  * Servicio de encriptación que integra CryptoUtils con la configuración de
@@ -345,7 +349,7 @@ import com.example.demo_encrypt.app.util.CryptoUtils;
 @Service
 @RequiredArgsConstructor
 @Slf4j
-public class EncryptionService {
+public class EncryptionServiceImpl {
 
   /**
    * DTO con información sobre las llaves (no expone la clave privada).
@@ -372,23 +376,19 @@ public class EncryptionService {
    */
   public String encrypt(String plaintext) {
     try {
-      log.debug("Iniciando encriptación de datos");
+      log.debug("Iniciando encriptación V2 de datos");
 
-      // Cargar clave pública desde propiedades
       PublicKey publicKey = CryptoUtils.base64ToPublicKey(
           cryptoProperties.getEcc().getPublicKey());
 
-      // Cifrar con método híbrido
-      byte[] encryptedBytes = CryptoUtils.encryptHybrid(plaintext, publicKey);
+      // V2: MAGIC(4) + ephPubRaw(65) + iv(16) + ciphertext
+      String encrypted = CryptoUtils.encryptHybridV2Base64(plaintext, publicKey);
 
-      // Convertir a Base64 para transmisión
-      String encrypted = CryptoUtils.bytesToBase64(encryptedBytes);
-      log.info("Encriptación completada exitosamente");
-
+      log.info("Encriptación V2 completada exitosamente");
       return encrypted;
     } catch (Exception e) {
-      log.error("Error en encriptación", e);
-      throw new RuntimeException("Error en encriptación: " + e.getMessage(), e);
+      log.error("Error en encriptación V2", e);
+      throw new RuntimeException("Error en encriptación V2: " + e.getMessage(), e);
     }
   }
 
@@ -403,22 +403,11 @@ public class EncryptionService {
    */
   public String decrypt(String encryptedBase64) {
     try {
-      log.debug("Iniciando desencriptación de datos");
-
-      // Cargar clave privada desde propiedades
-      PrivateKey privateKey = CryptoUtils.base64ToPrivateKey(
-          cryptoProperties.getEcc().getPrivateKey());
-
-      // Convertir de Base64
+      PrivateKey privateKey = CryptoUtils.base64ToPrivateKey(cryptoProperties.getEcc().getPrivateKey());
       byte[] encryptedBytes = CryptoUtils.base64ToBytes(encryptedBase64);
 
-      // Descifrar con método híbrido
-      String decrypted = CryptoUtils.decryptHybrid(encryptedBytes, privateKey);
-      log.info("Desencriptación completada exitosamente");
-
-      return decrypted;
+      return CryptoUtils.decryptHybridV2(encryptedBytes, privateKey);
     } catch (Exception e) {
-      log.error("Error en desencriptación", e);
       throw new RuntimeException("Error en desencriptación: " + e.getMessage(), e);
     }
   }
@@ -436,7 +425,9 @@ public class EncryptionService {
         .status("Configurado y listo")
         .build();
   }
+
 }
+
 ````
 
 ### La clase "EncryptionController.java" en el paquete controller
@@ -445,6 +436,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -454,7 +446,7 @@ import org.springframework.web.bind.annotation.RestController;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
-import com.example.demo_encrypt.app.service.EncryptionService;
+import  sv.com.arreconsa.springboot.app.logistica.implments.EncryptionServiceImpl;
 
 /**
  * Controlador REST que demuestra el uso de encriptación híbrida.
@@ -465,7 +457,7 @@ import com.example.demo_encrypt.app.service.EncryptionService;
  * - GET /api/key-info -> Información sobre las llaves
  */
 @RestController
-@RequestMapping("/api")
+@CrossOrigin(origins = "*")
 @RequiredArgsConstructor
 @Slf4j
 public class EncryptionController {
@@ -486,7 +478,7 @@ public class EncryptionController {
     private String encrypted;
   }
 
-  private final EncryptionService encryptionService;
+  private final EncryptionServiceImpl encryptionService;
 
   /**
    * Cifra un mensaje usando encriptación híbrida.
@@ -584,7 +576,7 @@ public class EncryptionController {
     log.info("Solicitud de información de llaves");
 
     try {
-      EncryptionService.KeyInfo keyInfo = encryptionService.getKeyInfo();
+      EncryptionServiceImpl.KeyInfo keyInfo = encryptionService.getKeyInfo();
 
       Map<String, Object> response = new HashMap<>();
       response.put("keyName", keyInfo.getKeyName());
@@ -650,7 +642,7 @@ import java.security.PublicKey;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-import com.example.demo_encrypt.app.util.CryptoUtils;
+import sv.com.arreconsa.springboot.app.logistica.utils.CryptoUtils;
 
 /**
  * Aplicación utilitaria para generar nuevas llaves ECC.
