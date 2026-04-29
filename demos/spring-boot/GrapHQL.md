@@ -1,4 +1,4 @@
-# Demo GrapHQL + Spring boot + JPA + H2 
+# Demo GrapHQL + Spring boot + JPA + H2 + jdk 21
 
 ## Configuraciones
 
