@@ -43,7 +43,7 @@
 -mappers
 -object.type
 -repository
--servives
+-services
 ```
 
 ### Archivo "application.properties"
