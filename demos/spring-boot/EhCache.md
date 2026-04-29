@@ -54,3 +54,45 @@ cache.color.evict.initial-delay-ms=500
 ```
 
 ### Programas JAVA
+
+### La clase EhCacheConfig
+```
+import java.util.Date;
+
+import org.springframework.cache.CacheManager;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.EnableCaching;
+import org.springframework.cache.concurrent.ConcurrentMapCacheManager;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.scheduling.annotation.Scheduled;
+
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
+@Configuration
+@EnableCaching
+@EnableScheduling
+public class EhCacheConfig {
+
+  /*
+   * n = Numero de minutos
+   *
+   * fixedDelay = n * 60 * 1000
+   *
+   */
+  @CacheEvict(allEntries = true, value = "colorCache")
+  @Scheduled(fixedDelayString = "${cache.color.evict.fixed-delay-ms:60000}", initialDelayString = "${cache.color.evict.initial-delay-ms:500}")
+  public void reportCacheEvictColor() {
+    System.out.println("Flush Cache Color " + new Date());
+  }
+
+  @Bean
+  CacheManager cacheManager() {
+    log.trace("Creating cache manager.");
+    // return new ConcurrentMapCacheManager("userCache","colorCache");
+    return new ConcurrentMapCacheManager("colorCache");
+  }
+}
+```
