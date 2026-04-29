@@ -614,30 +614,8 @@ services:
     cpus: 0.5
 ```
 
-## Documentarión
+# Documentación
 
-# Demo GraphQL con Spring Boot
-
-
-
-## Dependencias
-```
-<!-- Begin Graphql -->
-<dependency>
-    <groupId>com.graphql-java</groupId>
-    <artifactId>graphql-java</artifactId>
-    <version>16.2</version>
-    <scope>compile</scope>
-</dependency>
-
-<dependency>
-    <groupId>com.graphql-java</groupId>
-    <artifactId>graphql-java-spring-boot-starter-webmvc</artifactId>
-    <version>1.0</version>
-    <scope>compile</scope>
-</dependency>
-<!-- End Graphql -->
-```
 
 ---
 
