@@ -496,5 +496,61 @@ public class PostgresDdlInitializer implements ApplicationRunner {
 }
 ```
 
+### Archivo "GenColorProcessor.java" en el paquete "batch.processor"
+```
+import org.springframework.batch.infrastructure.item.ItemProcessor;
+import org.springframework.stereotype.Component;
 
+import com.example.demo_spring_batch.app.model.GenColor;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+/**
+ * Processor para GenColor.
+ * Aqui se puede aplicar transformaciones o validaciones entre lectura y
+ * escritura.
+ */
+@Component
+public class GenColorProcessor implements ItemProcessor<GenColor, GenColor> {
+
+  private static final Logger log = LoggerFactory.getLogger(GenColorProcessor.class);
+
+  @Override
+  public GenColor process(GenColor item) {
+    log.debug("Procesando color_id={} descripcion={}", item.getColorId(), item.getColorDescripcion());
+    // En este caso no se aplica transformacion: se migra tal cual.
+    return item;
+  }
+}
+```
+
+### Archivo "GenDepartamentoProcessor.java" en el paquete "batch.processor"
+```
+import org.springframework.batch.infrastructure.item.ItemProcessor;
+import org.springframework.stereotype.Component;
+
+import com.example.demo_spring_batch.app.model.GenDepartamento;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+/**
+ * Processor para GenDepartamento.
+ * Aqui se puede aplicar transformaciones o validaciones entre lectura y
+ * escritura.
+ */
+@Component
+public class GenDepartamentoProcessor implements ItemProcessor<GenDepartamento, GenDepartamento> {
+
+  private static final Logger log = LoggerFactory.getLogger(GenDepartamentoProcessor.class);
+
+  @Override
+  public GenDepartamento process(GenDepartamento item) {
+    log.debug("Procesando departamento_id={} descripcion={}", item.getDepartamentoId(),
+        item.getDepartamentoDescripcion());
+    // En este caso no se aplica transformacion: se migra tal cual.
+    return item;
+  }
+}
+```
