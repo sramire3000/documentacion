@@ -680,7 +680,108 @@ public class GenDepartamentoReader {
 }
 ```
 
+### Archivo "GenColorWriter.java" en el paquete "batch.writer"
+```
+import org.springframework.batch.infrastructure.item.Chunk;
+import org.springframework.batch.infrastructure.item.ItemWriter;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Component;
 
+import com.example.demo_spring_batch.app.model.GenColor;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+/**
+ * Writer que inserta registros de gen_colores en PostgreSQL.
+ */
+@Component
+public class GenColorWriter implements ItemWriter<GenColor> {
+
+  private static final Logger log = LoggerFactory.getLogger(GenColorWriter.class);
+
+  private static final String INSERT_SQL = "INSERT INTO gen_colores (color_id, color_descripcion, color_estado, usuario_codigo, "
+      +
+      "user_create, user_modify, fch_create, fch_modify) " +
+      "VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+
+  private final JdbcTemplate jdbcTemplate;
+
+  public GenColorWriter(@Qualifier("postgresJdbcTemplate") JdbcTemplate jdbcTemplate) {
+    this.jdbcTemplate = jdbcTemplate;
+  }
+
+  @Override
+  public void write(Chunk<? extends GenColor> chunk) {
+    log.info("Escribiendo chunk de {} registros en gen_colores (PostgreSQL)", chunk.size());
+    for (GenColor item : chunk) {
+      jdbcTemplate.update(INSERT_SQL,
+          item.getColorId(),
+          item.getColorDescripcion(),
+          item.getColorEstado(),
+          item.getUsuarioCodigo(),
+          item.getUserCreate(),
+          item.getUserModify(),
+          item.getFchCreate(),
+          item.getFchModify());
+    }
+    log.debug("Chunk escrito exitosamente: {} registros gen_colores", chunk.size());
+  }
+}
+```
+
+### Archivo "GenDepartamentoWriter.java" en el paquete "batch.writer"
+```
+import org.springframework.batch.infrastructure.item.Chunk;
+import org.springframework.batch.infrastructure.item.ItemWriter;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Component;
+
+import com.example.demo_spring_batch.app.model.GenDepartamento;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+/**
+ * Writer que inserta registros de gen_departamentos en PostgreSQL.
+ */
+@Component
+public class GenDepartamentoWriter implements ItemWriter<GenDepartamento> {
+
+  private static final Logger log = LoggerFactory.getLogger(GenDepartamentoWriter.class);
+
+  private static final String INSERT_SQL = "INSERT INTO gen_departamentos (departamento_id, departamento_descripcion, departamento_estado, "
+      +
+      "pais_id, usuario_codigo, user_create, user_modify, fch_create, fch_modify) " +
+      "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+  private final JdbcTemplate jdbcTemplate;
+
+  public GenDepartamentoWriter(@Qualifier("postgresJdbcTemplate") JdbcTemplate jdbcTemplate) {
+    this.jdbcTemplate = jdbcTemplate;
+  }
+
+  @Override
+  public void write(Chunk<? extends GenDepartamento> chunk) {
+    log.info("Escribiendo chunk de {} registros en gen_departamentos (PostgreSQL)", chunk.size());
+    for (GenDepartamento item : chunk) {
+      jdbcTemplate.update(INSERT_SQL,
+          item.getDepartamentoId(),
+          item.getDepartamentoDescripcion(),
+          item.getDepartamentoEstado(),
+          item.getPaisId(),
+          item.getUsuarioCodigo(),
+          item.getUserCreate(),
+          item.getUserModify(),
+          item.getFchCreate(),
+          item.getFchModify());
+    }
+    log.debug("Chunk escrito exitosamente: {} registros gen_departamentos", chunk.size());
+  }
+}
+```
 
 
 
