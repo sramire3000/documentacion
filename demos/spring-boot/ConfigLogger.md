@@ -1,5 +1,6 @@
 # Configuracion logger
 
+## Archivo "application.properties"
 ```
 # =============================================
 # LOGGING
