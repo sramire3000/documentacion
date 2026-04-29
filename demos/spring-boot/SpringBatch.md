@@ -863,15 +863,17 @@ migration.scheduler.cron=0 0 2 * * ?
 ```
 
 **Ejemplos de cron:**
-
+------------------------------------------------------------
 | Expresión              | Descripción                     |
 |------------------------|---------------------------------|
 | `0 0 2 * * ?`          | Todos los días a las 02:00 AM   |
+| `0 0 2 ? * SUN`        | Todos los domingos a las 2am    |
+| `0 */1 * * * ?`        | Cada minuto                     |
+| `0 */15 * * * ?`       | Cada 15 minutos                 |
 | `0 0 */6 * * ?`        | Cada 6 horas                    |
 | `0 0 8 ? * MON-FRI`    | Lunes a viernes a las 08:00 AM  |
 | `0 */30 * * * ?`       | Cada 30 minutos                 |
-
----
+------------------------------------------------------------
 
 ## Flujo del job
 
