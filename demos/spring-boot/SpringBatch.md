@@ -783,5 +783,69 @@ public class GenDepartamentoWriter implements ItemWriter<GenDepartamento> {
 }
 ```
 
+### Archivo "MigrationScheduler.java" en el pquete "scheduler"
+```
+import java.time.LocalDateTime;
+import java.util.Set;
 
+import org.springframework.batch.core.job.Job;
+import org.springframework.batch.core.job.JobExecution;
+import org.springframework.batch.core.job.parameters.JobParameter;
+import org.springframework.batch.core.job.parameters.JobParameters;
+import org.springframework.batch.core.launch.JobOperator;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.scheduling.annotation.Scheduled;
+import org.springframework.stereotype.Component;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+/**
+ * Scheduler que lanza el job de migracion segun el cron configurado en
+ * properties.
+ * Por defecto: todos los dias a las 02:00 AM.
+ * Configurable via: migration.scheduler.cron
+ *
+ * El JobParameters incluye la fecha/hora de ejecucion para garantizar que
+ * Spring Batch
+ * no rechace ejecuciones consecutivas (cada ejecucion es unica).
+ */
+@Component
+public class MigrationScheduler {
+
+  private static final Logger log = LoggerFactory.getLogger(MigrationScheduler.class);
+
+  private final JobOperator jobOperator;
+  private final Job migrationJob;
+
+  public MigrationScheduler(JobOperator jobOperator,
+      @Qualifier("migrationJob") Job migrationJob) {
+    this.jobOperator = jobOperator;
+    this.migrationJob = migrationJob;
+  }
+
+  /**
+   * Lanza el job de migracion segun el cron configurado.
+   * El cron es configurable mediante la propiedad: migration.scheduler.cron
+   */
+  @Scheduled(cron = "${migration.scheduler.cron}")
+  public void launchMigration() {
+    log.info("Scheduler activado - Iniciando job de migracion: {}", LocalDateTime.now());
+    try {
+      Set<JobParameter<?>> parameters = Set.of(
+          new JobParameter<>("executionTime", LocalDateTime.now().toString(), String.class));
+      JobParameters jobParameters = new JobParameters(parameters);
+
+      JobExecution execution = jobOperator.start(migrationJob, jobParameters);
+      log.info("Job finalizado con status: {}", execution.getStatus());
+    } catch (Exception e) {
+      log.error("Error al ejecutar el job de migracion: {}", e.getMessage(), e);
+    }
+  }
+}
+```
+
+### En la clase "main" habilitar el Scheduling
+```
+@EnableScheduling
+```
