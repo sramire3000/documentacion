@@ -233,4 +233,34 @@ public class ColorController {
 }
 ```
 
+### La clase "LoadData"
+```
+
+import jakarta.annotation.PostConstruct;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+public class LoadData {
+  @Autowired
+  private IColorService colorService;
+
+  @PostConstruct
+  public void load() {
+    System.out.println("Load........");
+    colorService.create("ROJO");
+    colorService.create("AMARILLO");
+    colorService.create("AZUL");
+    colorService.create("NEGRO");
+    colorService.create("AZUL");
+    colorService.create("BLANCO");
+    colorService.create("NEGRO");
+    colorService.create("VERDE");
+
+  }
+}
+
+```
+
 
