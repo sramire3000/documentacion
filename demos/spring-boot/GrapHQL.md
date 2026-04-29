@@ -239,7 +239,7 @@ public class VendedorEntity implements Serializable {
 }
 ```
 
-### Archivo "UserRepository.java"ç
+### Archivo "UserRepository.java"
 ```
 import org.springframework.data.jpa.repository.JpaRepository;
 
