@@ -2,28 +2,57 @@
 
 ## Archivo "Dockerfile" con JDK 21
 ```
-FROM maven:3.9.9-eclipse-temurin-21 AS build
+# ─── Stage 1: Build ───────────────────────────────────────────────────────────
+FROM eclipse-temurin:21-jdk-alpine AS builder
 
-WORKDIR /build
+WORKDIR /workspace
 
-COPY pom.xml .
+# Copiar descriptor de dependencias primero para aprovechar la caché de capas
+COPY mvnw pom.xml ./
+COPY .mvn .mvn
+
+# Descargar dependencias sin compilar el código fuente
+RUN ./mvnw dependency:go-offline -q
+
+# Copiar código fuente y compilar
 COPY src ./src
+RUN ./mvnw package -DskipTests -q
 
-RUN mvn clean package -DskipTests
+# Spring Boot 3.3+ / 4.x: jarmode=tools extract genera lib/ + jar delgado
+RUN java -Djarmode=tools -jar target/*.jar extract --destination extracted
 
-FROM eclipse-temurin:21-jre-jammy
+# ─── Stage 2: Runtime ─────────────────────────────────────────────────────────
+FROM eclipse-temurin:21-jre-alpine AS runtime
+
+# Usuario no-root por seguridad (OWASP A05)
+RUN addgroup -S appgroup && adduser -S appuser -G appgroup
 
 WORKDIR /app
 
-COPY --from=build /build/target/*.jar app.jar
+# lib/ cambia raramente → capa separada para mejor cache de Docker
+COPY --from=builder --chown=appuser:appgroup /workspace/extracted/lib/ ./lib/
+# Jar delgado con solo el código de la aplicación
+COPY --from=builder --chown=appuser:appgroup /workspace/extracted/*.jar ./app.jar
 
-# El Salvador time zone and JVM memory settings based on container limits.
-ENV TZ=America/El_Salvador
-ENV JAVA_TOOL_OPTIONS="-XX:MaxRAMPercentage=70.0 -Duser.timezone=America/El_Salvador"
+# Directorio de logs
+RUN mkdir -p /app/logs && chown appuser:appgroup /app/logs
+
+USER appuser
 
 EXPOSE 8080
 
-ENTRYPOINT ["java", "-jar", "/app/app.jar"]
+# -XX:MaxRAMPercentage=70.0  → JVM usa como máximo el 70% de la RAM del contenedor
+# -XX:InitialRAMPercentage=50.0 → JVM inicia con el 50% para arranque estable
+# -XX:+UseG1GC               → GC eficiente para cargas batch de larga duración
+# -XX:+UseContainerSupport   → Activa detección automática de límites del contenedor
+ENTRYPOINT ["java", \
+  "-XX:+UseContainerSupport", \
+  "-XX:MaxRAMPercentage=70.0", \
+  "-XX:InitialRAMPercentage=50.0", \
+  "-XX:+UseG1GC", \
+  "-Djava.security.egd=file:/dev/./urandom", \
+  "-jar", "app.jar"]
+
 ```
 
 ## Archivo "docker-compose.yml"
