@@ -1,6 +1,8 @@
 # Spring Batch
 
-## Adicionar al archivo "pom.xml"
+## Configuracion
+
+### Adicionar al archivo "pom.xml"
 ```
 <!-- Spring Batch -->
 <dependency>
