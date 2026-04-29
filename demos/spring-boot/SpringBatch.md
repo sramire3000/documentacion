@@ -110,6 +110,69 @@ migration.scheduler.cron=0 0 2 * * ?
 
 ## Programas JAVA
 
+### Archivo "GenColor.java" en el paquete "model"
+```
+import java.time.LocalDateTime;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+/**
+ * Modelo compartido para la tabla gen_colores.
+ * Utilizado tanto para la lectura desde SQL Server como para la escritura en
+ * PostgreSQL.
+ */
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+public class GenColor {
+
+  private Integer colorId;
+  private String colorDescripcion;
+  private String colorEstado;
+  private String usuarioCodigo;
+  private String userCreate;
+  private String userModify;
+  private LocalDateTime fchCreate;
+  private LocalDateTime fchModify;
+}
+```
+
+### Archivo "GenDepartamento.java" en el paquete "model"
+```
+import java.time.LocalDateTime;
+
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+/**
+ * Modelo compartido para la tabla gen_departamentos.
+ * Utilizado tanto para la lectura desde SQL Server como para la escritura en
+ * PostgreSQL.
+ */
+@Data
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+public class GenDepartamento {
+
+  private Integer departamentoId;
+  private String departamentoDescripcion;
+  private String departamentoEstado;
+  private Integer paisId;
+  private String usuarioCodigo;
+  private String userCreate;
+  private String userModify;
+  private LocalDateTime fchCreate;
+  private LocalDateTime fchModify;
+}
+```
+
 ### Archivo "DataSourceConfig.java" en el paquete "config"
 ```
 import javax.sql.DataSource;
