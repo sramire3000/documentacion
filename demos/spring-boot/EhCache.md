@@ -55,7 +55,7 @@ cache.color.evict.initial-delay-ms=500
 
 ### Programas JAVA
 
-### La clase EhCacheConfig
+### La clase "EhCacheConfig"
 ```
 import java.util.Date;
 
@@ -96,3 +96,141 @@ public class EhCacheConfig {
   }
 }
 ```
+
+### La Clase "ColorEntity"
+```
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Table;
+
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
+@NoArgsConstructor // genera un constructor sin argumentos, uno vacío
+@AllArgsConstructor // genera un constructor para todos los atributos de la clase.
+@Data // Metodos Setters
+@EqualsAndHashCode // genera los métodos equals y hashcode.
+@ToString // genera el método toString.
+@Entity(name = "ColorEntity") // Nombre de la Entidad
+@Table(name = "colores")
+public class ColorEntity {
+  // Key
+  @Id // Llave Primaria
+  @GeneratedValue(strategy = GenerationType.IDENTITY) // Estrategia de generacion
+  private Long color_id; // Key
+
+  // Descripción del color
+  @NotNull(message = "Este campo es requerido, Descripción del color.")
+  @Size(min = 1, max = 75, message = "El Descripción del color debe tener de 1 a 75 caracteres.")
+  @Column(name = "color_descripcion", length = 75, columnDefinition = "char(75)", nullable = false)
+  private String color_descripcion;
+}
+```
+
+### La interface "IColorEntityRepository"
+```
+import org.springframework.data.jpa.repository.JpaRepository;
+
+public interface IColorEntityRepository extends JpaRepository<ColorEntity, Long> {
+
+}
+```
+
+### La interface "IColorService"
+```
+import java.util.List;
+public interface IColorService {
+  List<ColorEntity> getAll();
+
+  void create(String descripcion);
+}
+```
+
+### La clase "ColorServiceImpl"
+```
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.Caching;
+import org.springframework.stereotype.Service;
+
+import com.example.demo_ehCache.app.entities.ColorEntity;
+import com.example.demo_ehCache.app.repository.IColorEntityRepository;
+import com.example.demo_ehCache.app.services.IColorService;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+@Service
+public class ColorServiceImpl implements IColorService {
+
+  private static final Logger LOGGER = LoggerFactory.getLogger(ColorServiceImpl.class);
+
+  @Autowired
+  IColorEntityRepository repo;
+
+  @Override
+  @Cacheable(value = "colorCache")
+  public List<ColorEntity> getAll() {
+    LOGGER.info("Obteniendo todos los usuarios de la  BD");
+
+    List<ColorEntity> list = repo.findAll();
+    return list;
+  }
+
+  @Override
+  @Caching(evict = {
+      @CacheEvict(value = "colorCache", allEntries = true),
+  })
+  public void create(String descripcion) {
+    ColorEntity color = new ColorEntity();
+    color.setColor_id(null);
+    color.setColor_descripcion(descripcion);
+
+    repo.save(color);
+
+  }
+
+}
+```
+
+### La clase "ColorController"
+```
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+@RequestMapping(value = "/color")
+public class ColorController {
+  @Autowired
+  private IColorService colorService;
+
+  // Buscar todos
+  @GetMapping
+  public List<ColorEntity> getAll() {
+
+    List<ColorEntity> resultado = colorService.getAll();
+
+    return resultado;
+
+  }
+}
+```
+
+
