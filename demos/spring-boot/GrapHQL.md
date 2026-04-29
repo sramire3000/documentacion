@@ -41,7 +41,7 @@
 -graphql
 -implement
 -mappers
--object
+-object.type
 -repository
 -servives
 ```
@@ -134,6 +134,44 @@ type Mutation {
 ```
 
 ## programas JAVA
+
+### Archivo "User.java" en la carpeta type
+```
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
+public class User {
+
+  private Long id;
+  private String name;
+  private String surname;
+  private String email;
+
+}
+```
+
+### Archivo "Vendedor.java"
+```
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
+public class Vendedor {
+  private Long id;
+  private String name;
+}
+```
 
 ### Archivo "UserEntity.java"
 ```
@@ -410,6 +448,128 @@ public class VendedorServiceImpl implements VendedorService {
   @Override
   public void deleteById(Long id) {
     vendedorRepository.deleteById(id);
+  }
+
+}
+```
+
+### Archivo "UserGraphQLController.java" en la carpeta "graphql"
+```
+
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.graphql.data.method.annotation.Argument;
+import org.springframework.graphql.data.method.annotation.MutationMapping;
+import org.springframework.graphql.data.method.annotation.QueryMapping;
+import org.springframework.stereotype.Controller;
+
+import com.example.demo_graphql.app.object.type.User;
+import com.example.demo_graphql.app.services.UserService;
+
+@Controller
+public class UserGraphQLController {
+
+  private final UserService userService;
+
+  public UserGraphQLController(UserService userService) {
+    this.userService = userService;
+  }
+
+  @QueryMapping
+  public List<User> users() {
+    return userService.findAll();
+  }
+
+  @QueryMapping
+  public User user(@Argument Long id) {
+    return userService.findById(id);
+  }
+
+  @MutationMapping
+  public User createUser(@Argument Map<String, Object> input) {
+    User user = new User(
+        null,
+        (String) input.get("name"),
+        (String) input.get("surname"),
+        (String) input.get("email"));
+    return userService.save(user);
+  }
+
+  @MutationMapping
+  public User updateUser(@Argument Map<String, Object> input) {
+    Long id = Long.valueOf(input.get("id").toString());
+    User user = new User(
+        id,
+        (String) input.get("name"),
+        (String) input.get("surname"),
+        (String) input.get("email"));
+    return userService.update(user);
+  }
+
+  @MutationMapping
+  public Boolean deleteUser(@Argument Long id) {
+    userService.deleteById(id);
+    return true;
+  }
+
+}
+```
+
+### Archivo "VendedorGraphQLController.java" en la carpeta "graphql"
+```
+
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.graphql.data.method.annotation.Argument;
+import org.springframework.graphql.data.method.annotation.MutationMapping;
+import org.springframework.graphql.data.method.annotation.QueryMapping;
+import org.springframework.stereotype.Controller;
+
+import com.example.demo_graphql.app.object.type.Vendedor;
+import com.example.demo_graphql.app.services.VendedorService;
+
+@Controller
+public class VendedorGraphQLController {
+
+  private final VendedorService vendedorService;
+
+  public VendedorGraphQLController(VendedorService vendedorService) {
+    this.vendedorService = vendedorService;
+  }
+
+  @QueryMapping
+  public List<Vendedor> vendedores() {
+    return vendedorService.findAll();
+  }
+
+  @QueryMapping
+  public Vendedor vendedor(@Argument Long id) {
+    return vendedorService.findById(id);
+  }
+
+  @MutationMapping
+  public Vendedor createVendedor(@Argument Map<String, Object> input) {
+    Vendedor vendedor = new Vendedor(
+        null,
+        (String) input.get("name"));
+    return vendedorService.save(vendedor);
+  }
+
+  @MutationMapping
+  public Vendedor updateVendedor(@Argument Map<String, Object> input) {
+    Long id = Long.valueOf(input.get("id").toString());
+    Vendedor vendedor = new Vendedor(
+        id,
+        (String) input.get("name"));
+    return vendedorService.update(vendedor);
+  }
+
+  @MutationMapping
+  public Boolean deleteVendedor(@Argument Long id) {
+    vendedorService.deleteById(id);
+    return true;
   }
 
 }
