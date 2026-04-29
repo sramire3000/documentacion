@@ -850,9 +850,9 @@ public class MigrationScheduler {
 @EnableScheduling
 ```
 
-## Notas
+# Notas :
 
-### Parámetros de migración
+## Parámetros de migración
 
 ```properties
 # Cantidad de registros por chunk (configurable sin recompilar)
@@ -889,7 +889,7 @@ migration.scheduler.cron=0 0 2 * * ?
 [migrateGenDepartamentosStep] → Lee SQL Server (NOLOCK) → Procesa → Inserta PostgreSQL
 ```
 
----
+
 
 
 
