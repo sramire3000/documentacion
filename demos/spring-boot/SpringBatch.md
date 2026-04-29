@@ -98,6 +98,15 @@ migration.tables=gen_departamentos,gen_colores
 migration.scheduler.cron=0 0 2 * * ?
 ```
 
+## Paquetes
+```
+-batch.processor
+-batch.reader
+-batch.writer
+-config
+-model
+-scheduler
+```
 
 
 
