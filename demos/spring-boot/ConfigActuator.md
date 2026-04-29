@@ -1,4 +1,4 @@
-# Actuator
+# Actuator health, info, metricas y estado del batch
 
 ## Archivo "pom.xml"
 ```
@@ -9,7 +9,7 @@
 </dependency>
 ```
 
-## Achivo properties
+## Achivo "application.properties"
 ```
 # =============================================
 # ACTUATOR
