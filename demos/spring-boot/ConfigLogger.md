@@ -5,9 +5,6 @@
 # =============================================
 # LOGGING
 # =============================================
-# =============================================
-# LOGGING
-# =============================================
 logging.level.com.example.demo_spring_batch=INFO
 logging.level.org.springframework.web=INFO
 logging.level.guru.springframework.blogs.controllers=INFO
