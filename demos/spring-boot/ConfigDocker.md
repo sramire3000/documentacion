@@ -66,11 +66,24 @@ services:
     ports:
       - "8080:8080"
     environment:
+      # JVM timezone
       TZ: America/El_Salvador
+      # JAVA options
       JAVA_TOOL_OPTIONS: "-XX:MaxRAMPercentage=70.0 -Duser.timezone=America/El_Salvador"
-    mem_limit: 1g
-    cpus: 0.5
+    volumes:
+      - app_logs:/app/logs
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: 1G
+        reservations:
+          cpus: "0.25"
+          memory: 512M
     restart: unless-stopped
+
+volumes:
+  app_logs:
 ```
 
 ## Archivo "subirDocker.cmd"
