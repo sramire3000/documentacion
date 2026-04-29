@@ -40,3 +40,15 @@
   <scope>runtime</scope>
 </dependency>
 ```
+
+### Archivo "application.properties"
+```
+#JPA
+spring.jpa.show-sql=true
+#Habilita las consultas nativas
+logging.level.org.hibernate.sql=debug
+
+# Cache eviction schedule (milliseconds)
+cache.color.evict.fixed-delay-ms=60000
+cache.color.evict.initial-delay-ms=500
+```
