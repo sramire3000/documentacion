@@ -574,3 +574,208 @@ public class VendedorGraphQLController {
 
 }
 ```
+
+## Docker
+
+### Archivo "Dockerfile"
+```
+FROM maven:3.9.9-eclipse-temurin-21 AS build
+WORKDIR /app
+
+COPY pom.xml .
+COPY src ./src
+
+RUN mvn -DskipTests package
+
+FROM eclipse-temurin:21-jre
+WORKDIR /app
+
+ENV JAVA_TOOL_OPTIONS="-XX:MaxRAMPercentage=70.0 -XX:ActiveProcessorCount=2 -XX:TieredStopAtLevel=1"
+
+COPY --from=build /app/target/*.jar app.jar
+
+EXPOSE 8080
+
+ENTRYPOINT ["java", "-jar", "/app/app.jar"]
+```
+
+### Archivo "docker-compose.yml"
+```
+services:
+  demo-graphql:
+    container_name: demo-graphql
+    restart: unless-stopped
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    mem_limit: 1g
+    cpus: 0.5
+```
+
+## Documentarión
+
+# Demo GraphQL con Spring Boot
+
+
+
+## Dependencias
+```
+<!-- Begin Graphql -->
+<dependency>
+    <groupId>com.graphql-java</groupId>
+    <artifactId>graphql-java</artifactId>
+    <version>16.2</version>
+    <scope>compile</scope>
+</dependency>
+
+<dependency>
+    <groupId>com.graphql-java</groupId>
+    <artifactId>graphql-java-spring-boot-starter-webmvc</artifactId>
+    <version>1.0</version>
+    <scope>compile</scope>
+</dependency>
+<!-- End Graphql -->
+```
+
+---
+
+## URLs disponibles
+
+| URL | Descripción |
+|-----|-------------|
+| `POST http://localhost:8081/graphql` | Endpoint principal GraphQL |
+| `GET  http://localhost:8081/graphiql` | UI interactiva GraphiQL |
+| `GET  http://localhost:8081/h2-console` | Consola H2 en memoria |
+
+---
+
+## Queries — User
+
+### Obtener todos los usuarios
+```graphql
+query {
+    users {
+        id
+        name
+        surname
+        email
+    }
+}
+```
+
+### Obtener usuario por ID
+```graphql
+query {
+    user(id: 1) {
+        id
+        name
+        surname
+        email
+    }
+}
+```
+
+---
+
+## Mutations — User
+
+### Crear usuario
+```graphql
+mutation {
+    createUser(input: {
+        name: "John"
+        surname: "Doe"
+        email: "john.doe@example.com"
+    }) {
+        id
+        name
+        surname
+        email
+    }
+}
+```
+
+### Actualizar usuario
+```graphql
+mutation {
+    updateUser(input: {
+        id: 1
+        name: "John Updated"
+        email: "john.updated@example.com"
+    }) {
+        id
+        name
+        surname
+        email
+    }
+}
+```
+
+### Eliminar usuario
+```graphql
+mutation {
+    deleteUser(id: 1)
+}
+```
+
+---
+
+## Queries — Vendedor
+
+### Obtener todos los vendedores
+```graphql
+query {
+    vendedores {
+        id
+        name
+    }
+}
+```
+
+### Obtener vendedor por ID
+```graphql
+query {
+    vendedor(id: 1) {
+        id
+        name
+    }
+}
+```
+
+---
+
+## Mutations — Vendedor
+
+### Crear vendedor
+```graphql
+mutation {
+    createVendedor(input: {
+        name: "Carlos"
+    }) {
+        id
+        name
+    }
+}
+```
+
+### Actualizar vendedor
+```graphql
+mutation {
+    updateVendedor(input: {
+        id: 1
+        name: "Carlos Updated"
+    }) {
+        id
+        name
+    }
+}
+```
+
+### Eliminar vendedor
+```graphql
+mutation {
+    deleteVendedor(id: 1)
+}
+```
