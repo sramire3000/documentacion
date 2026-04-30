@@ -2,7 +2,7 @@
 
 ## Archivo "pom.xml" add standard
 ```
-<!-- ACTUATOR -->
+<!-- Actuator: health, info, metricas y estado del batch -->
 <dependency>
   <groupId>org.springframework.boot</groupId>
   <artifactId>spring-boot-starter-actuator</artifactId>
