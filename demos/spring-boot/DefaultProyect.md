@@ -198,16 +198,20 @@ import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Configuration;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 @Configuration
 public class Load {
+
+  private static final Logger log = LoggerFactory.getLogger(Load.class);
 
   @Value("${usuario_db}")
   private String usuarioDb;
 
   @PostConstruct
   public void imprimirUsuarioDb() {
-    System.out.println("usuario_db: " + usuarioDb);
+    log.info("usuario_db => {}", usuarioDb);
   }
-
 }
 ```
