@@ -45,8 +45,13 @@
       <artifactId>jasypt-spring-boot-starter</artifactId>
       <version>3.0.5</version>
   </dependency>
+```
 
-
+### Adicionar el nombre del micro en el pom.xml
+```
+<build>
+	<finalName>app</finalName>
+</build>
 ```
 
 ### archivo de configuracion de "application.properties"
