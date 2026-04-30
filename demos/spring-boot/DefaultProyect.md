@@ -2,34 +2,92 @@
 
 ## Archivo "pom.xml" add standard
 ```
-<!-- Actuator: health, info, metricas y estado del batch -->
-<dependency>
-  <groupId>org.springframework.boot</groupId>
-  <artifactId>spring-boot-starter-actuator</artifactId>
-</dependency>
+<dependencies>
 
-<!-- DEVTOOLS -->
-<dependency>
-  <groupId>org.springframework.boot</groupId>
-  <artifactId>spring-boot-devtools</artifactId>
-  <scope>runtime</scope>
-  <optional>true</optional>
-</dependency>
+  <!-- Actuator: health, info, metricas y estado del batch -->
+  <dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-actuator</artifactId>
+  </dependency>
+  
+  <!-- DEVTOOLS -->
+  <dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-devtools</artifactId>
+    <scope>runtime</scope>
+    <optional>true</optional>
+  </dependency>
+  
+  <!-- LOMBOK -->
+  <dependency>
+    <groupId>org.projectlombok</groupId>
+    <artifactId>lombok</artifactId>
+    <optional>true</optional>
+  </dependency>
+  
+  <!-- Begin javax.validation -->
+  <dependency>
+    <groupId>javax.validation</groupId>
+    <artifactId>validation-api</artifactId>
+    <version>2.0.1.Final</version>
+  </dependency>
+  <!-- End javax.validation -->
 
-<!-- LOMBOK -->
-<dependency>
-  <groupId>org.projectlombok</groupId>
-  <artifactId>lombok</artifactId>
-  <optional>true</optional>
-</dependency>
+</dependencies>
 
-<!-- Begin javax.validation -->
-<dependency>
-  <groupId>javax.validation</groupId>
-  <artifactId>validation-api</artifactId>
-  <version>2.0.1.Final</version>
-</dependency>
-<!-- End javax.validation -->
+  <build>
+  <finalName>app</finalName>
+  <plugins>
+    <plugin>
+      <groupId>org.springframework.boot</groupId>
+      <artifactId>spring-boot-maven-plugin</artifactId>
+      <configuration>
+        <excludes>
+          <exclude>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+          </exclude>
+        </excludes>
+      </configuration>
+    </plugin>
+    <plugin>
+      <groupId>org.apache.maven.plugins</groupId>
+      <artifactId>maven-compiler-plugin</artifactId>
+      <executions>
+        <execution>
+          <id>default-compile</id>
+          <phase>compile</phase>
+          <goals>
+            <goal>compile</goal>
+          </goals>
+          <configuration>
+            <annotationProcessorPaths>
+              <path>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+              </path>
+            </annotationProcessorPaths>
+          </configuration>
+        </execution>
+        <execution>
+          <id>default-testCompile</id>
+          <phase>test-compile</phase>
+          <goals>
+            <goal>testCompile</goal>
+          </goals>
+          <configuration>
+            <annotationProcessorPaths>
+              <path>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok</artifactId>
+              </path>
+            </annotationProcessorPaths>
+          </configuration>
+        </execution>
+      </executions>
+    </plugin>
+  </plugins>
+</build>
 ```
 
 ### archivo de configuracion de "application.properties"
