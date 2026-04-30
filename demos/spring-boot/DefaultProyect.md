@@ -79,6 +79,10 @@
           <configuration>
             <annotationProcessorPaths>
               <path>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-configuration-processor</artifactId>
+              </path>
+              <path>
                 <groupId>org.projectlombok</groupId>
                 <artifactId>lombok</artifactId>
               </path>
@@ -104,6 +108,8 @@
     </plugin>
   </plugins>
 </build>
+
+
 ```
 
 ### archivo de configuracion de "application.properties"
