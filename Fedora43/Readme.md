@@ -470,8 +470,15 @@ StartupNotify=true
 chmod +x ~/.local/share/applications/jaspersoft.desktop
 ```
 
-## Permisos para bottle
+## Install Bottle
 ```
+# Add Repo
+flatpak remote-add --if-not-exists flathub https://dl.flathub.org/repo/flathub.flatpakrepo
+
+# Install
+flatpak install flathub com.usebottles.bottles
+
+# Permisos
 sudo flatpak override com.usebottles.bottles --filesystem=home
 ```
 
