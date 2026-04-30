@@ -159,6 +159,26 @@ spring.datasource.password=ENC(QVBJMTAyMw==)
 ### Metodo de encriptar
 -[Download direct](https://repo1.maven.org/maven2/org/jasypt/jasypt/1.9.3/jasypt-1.9.3.jar)
 
+Usar la utilidad de línea de comandos de Jasypt:
+
+### Linux
+```bash
+java -cp jasypt-1.9.3.jar org.jasypt.intf.cli.JasyptPBEStringEncryptionCLI \
+  input="valor_a_encriptar" \
+  password="mi_clave_secreta" \
+  algorithm=PBEWITHHMACSHA512ANDAES_256 \
+  ivGeneratorClassName=org.jasypt.iv.RandomIvGenerator
+```
+
+### Windows
+```bash
+java -cp jasypt-1.9.3.jar org.jasypt.intf.cli.JasyptPBEStringEncryptionCLI `
+  input="valor_a_encriptar" `
+  password="mi_clave_secreta" `
+  algorithm=PBEWITHHMACSHA512ANDAES_256 `
+  ivGeneratorClassName=org.jasypt.iv.RandomIvGenerator
+```
+
 ### test Main
 ```
 	public static void main(String[] args) {
