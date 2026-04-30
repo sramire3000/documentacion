@@ -190,9 +190,7 @@ log.debug("Procesando color_id={} descripcion={}", item.getColorId(), item.getCo
 {
   "configurations": [
     {
-      "cwd": "${workspaceFolder}",
       "vmArgs": "-Xms128m -Xmx384m -XX:MaxMetaspaceSize=96m -XX:MaxDirectMemorySize=32m -XX:+UseG1GC -XX:+UseStringDeduplication",
-      "envFile": "${workspaceFolder}/.env"
       "env": {
         "GIT_USERNAME": "",
         "GIT_PASSWORD": ""
