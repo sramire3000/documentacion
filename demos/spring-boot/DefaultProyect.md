@@ -11,11 +11,17 @@
 ```
 <dependencies>
 
-  <!-- Actuator: health, info, metricas y estado del batch -->
+  <!-- Begin Actuator: health, info, metricas -->
   <dependency>
     <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-actuator</artifactId>
   </dependency>
+  <dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-actuator-test</artifactId>
+    <scope>test</scope>
+  </dependency>
+  <!-- End Actuator: health, info, metricas y estado del batch -->
   
   <!-- DEVTOOLS -->
   <dependency>
@@ -32,13 +38,17 @@
     <optional>true</optional>
   </dependency>
   
-  <!-- Begin javax.validation -->
+  <!-- Begin validation -->
   <dependency>
-    <groupId>javax.validation</groupId>
-    <artifactId>validation-api</artifactId>
-    <version>2.0.1.Final</version>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-validation</artifactId>
   </dependency>
-  <!-- End javax.validation -->
+  <dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-validation-test</artifactId>
+    <scope>test</scope>
+  </dependency>
+  <!-- End validation -->
 
 </dependencies>
 
