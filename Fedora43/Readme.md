@@ -470,3 +470,9 @@ StartupNotify=true
 chmod +x ~/.local/share/applications/jaspersoft.desktop
 ```
 
+## Permisos para bottle
+```
+sudo flatpak override com.usebottles.bottles --filesystem=home
+```
+
+
