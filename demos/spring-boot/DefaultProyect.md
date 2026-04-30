@@ -91,6 +91,14 @@ logging.logback.rollingpolicy.max-file-size=10MB
 logging.logback.rollingpolicy.max-history=30
 
 # =============================================
+# JASYPT
+# =============================================
+# Algoritmo de encriptación
+jasypt.encryptor.algorithm=PBEWITHHMACSHA512ANDAES_256
+# Generador de vector de inicialización (IV) aleatorio
+jasypt.encryptor.iv-generator-classname=org.jasypt.iv.RandomIvGenerator
+
+# =============================================
 # Spring batch (Si se usa)
 # =============================================
 logging.level.org.springframework.batch=INFO
@@ -138,16 +146,6 @@ log.debug("Procesando color_id={} descripcion={}", item.getColorId(), item.getCo
 
 ## Add Encripter application.properties
 ```
-# =============================================
-# JASYPT
-# =============================================
-# Algoritmo de encriptación
-jasypt.encryptor.algorithm=PBEWITHHMACSHA512ANDAES_256
-# Generador de vector de inicialización (IV) aleatorio
-jasypt.encryptor.iv-generator-classname=org.jasypt.iv.RandomIvGenerator
-
-
-
 spring.datasource.username=ENC(U0VSVkVSTkFN)
 spring.datasource.password=ENC(QVBJMTAyMw==)
 ```
