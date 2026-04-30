@@ -1,4 +1,4 @@
-# Default pom.xml
+# Default Pom.xml y Properties
 
 ## Archivo "pom.xml" add standard
 ```
