@@ -139,3 +139,9 @@ log.debug("Procesando color_id={} descripcion={}", item.getColorId(), item.getCo
   ]
 }
 ```
+
+## Add Encripter application.properties
+```
+spring.datasource.username=ENC(U0VSVkVSTkFN)
+spring.datasource.password=ENC(QVBJMTAyMw==)
+```
