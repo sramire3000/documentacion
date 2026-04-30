@@ -77,7 +77,6 @@ info.app.version=1.0.0
 logging.level.[paquete_principal]=INFO
 logging.level.org.springframework.web=INFO
 logging.pattern.console=%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n
-logging.pattern.file=%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n
 logging.pattern.dateformat="dd-MM-yyyy HH:mm:ss.SSSZ"
 logging.level.guru.springframework.blogs.controllers=INFO
 
