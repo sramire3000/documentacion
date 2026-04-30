@@ -22,4 +22,12 @@
   <artifactId>lombok</artifactId>
   <optional>true</optional>
 </dependency>
+
+<!-- Begin javax.validation -->
+<dependency>
+  <groupId>javax.validation</groupId>
+  <artifactId>validation-api</artifactId>
+  <version>2.0.1.Final</version>
+</dependency>
+<!-- End javax.validation -->
 ```
