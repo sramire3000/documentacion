@@ -56,6 +56,14 @@
     <optional>true</optional>
   </dependency>
 
+  <!-- JASYPT Encriptacion para Usuario/Clave en propertie de DB -->
+  <dependency>
+      <groupId>com.github.ulisesbocchio</groupId>
+      <artifactId>jasypt-spring-boot-starter</artifactId>
+      <version>3.0.5</version>
+  </dependency>
+
+
 </dependencies>
 
 <build>
