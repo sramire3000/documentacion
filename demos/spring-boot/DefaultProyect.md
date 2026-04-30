@@ -173,8 +173,8 @@ java -cp jasypt-1.9.3.jar org.jasypt.intf.cli.JasyptPBEStringEncryptionCLI \
 ### Windows
 ```bash
 java -cp jasypt-1.9.3.jar org.jasypt.intf.cli.JasyptPBEStringEncryptionCLI `
-  input="valor_a_encriptar" `
-  password="mi_clave_secreta" `
+  input=dba_3 `
+  password=mi_clave_super_secreta `
   algorithm=PBEWITHHMACSHA512ANDAES_256 `
   ivGeneratorClassName=org.jasypt.iv.RandomIvGenerator
 ```
