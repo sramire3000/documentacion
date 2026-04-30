@@ -197,7 +197,7 @@ public class DemoApplication {
 		String zonaSistema = ZoneId.systemDefault().getId();
 
 		log.info("");
-		log.info("<=============================START {} =============================>",
+		log.info("<============================= START {} =============================>",
 				env.getProperty("spring.application.name").toUpperCase());
 		log.info("Memoria JVM al iniciar maxima   : {} ", formatMemory(memoriaMaximaBytes));
 		log.info("Memoria JVM al iniciar minima   : {} ", formatMemory(memoriaMinimaBytes));
@@ -205,7 +205,7 @@ public class DemoApplication {
 		log.info("Formato de fecha configurado    : {} ", formatoFecha);
 		log.info("Zona horaria activa             : {} ", zonaHoraria);
 		log.info("SystemDefault                   : {} :", zonaSistema);
-		log.info("<==============================================================================>");
+		log.info("<===============================================================================>");
 		log.info("");
 	}
 
