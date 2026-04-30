@@ -164,3 +164,21 @@ password="mi_clave_super_secreta" `
 algorithm=PBEWITHHMACSHA512ANDAES_256
 
 ```
+
+### test Main
+```
+	public static void main(String[] args) {
+		SpringApplication.run(DemoMultiDbApplication.class, args);
+
+		StandardPBEStringEncryptor encryptor = new StandardPBEStringEncryptor();
+		encryptor.setPassword("mi_clave_super_secreta");
+		encryptor.setAlgorithm("PBEWITHHMACSHA512ANDAES_256");
+		encryptor.setIvGenerator(new org.jasypt.iv.RandomIvGenerator());
+
+		String usuario = "db_user";
+		String encriptado = encryptor.encrypt(usuario);
+
+		System.out.println("ENC(" + encriptado + ")");
+
+	}
+```
