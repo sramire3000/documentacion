@@ -50,4 +50,39 @@ info.app.name=demo-spring-batch
 info.app.description=Migracion SQL Server 2017 -> PostgreSQL
 info.app.version=1.0.0
 
+# =============================================
+# LOGGING
+# =============================================
+logging.level.com.example.demo_test=INFO
+logging.level.org.springframework.web=INFO
+logging.pattern.console=%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n
+logging.pattern.file=%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n
+logging.pattern.dateformat="dd-MM-yyyy HH:mm:ss.SSSZ"
+logging.level.guru.springframework.blogs.controllers=INFO
+
+# Ubicacion
+logging.file.name=logs/graphql.log
+
+# Tamano de archivo
+logging.logback.rollingpolicy.max-file-size=10MB
+
+# Historico
+logging.logback.rollingpolicy.max-history=30
+
+# Suppress Hibernate logging
+logging.level.org.hibernate=INFO
+logging.level.org.hibernate.SQL=DEBUG
+
+# Spring batch
+logging.level.org.springframework.batch=INFO
+```
+
+### Forma de Usar logger
+```
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+private static final Logger log = LoggerFactory.getLogger(GenColorProcessor.class);
+
+log.debug("Procesando color_id={} descripcion={}", item.getColorId(), item.getColorDescripcion());
 ```
