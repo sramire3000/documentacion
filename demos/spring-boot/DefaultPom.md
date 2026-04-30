@@ -31,3 +31,23 @@
 </dependency>
 <!-- End javax.validation -->
 ```
+
+### archivo de configuracion de "application.properties"
+```
+
+# Puerto del servidor
+server.port=8080
+
+# =============================================
+# ACTUATOR
+# =============================================
+# Expone: health, info, metrics, batch jobs y env
+management.endpoints.web.exposure.include=health,info,metrics,env,batches
+management.endpoint.health.show-details=always
+management.endpoint.health.show-components=always
+management.info.env.enabled=true
+info.app.name=demo-spring-batch
+info.app.description=Migracion SQL Server 2017 -> PostgreSQL
+info.app.version=1.0.0
+
+```
