@@ -35,7 +35,7 @@
 
 </dependencies>
 
-  <build>
+<build>
   <finalName>app</finalName>
   <plugins>
     <plugin>
