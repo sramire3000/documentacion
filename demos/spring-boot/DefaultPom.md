@@ -69,12 +69,19 @@ logging.logback.rollingpolicy.max-file-size=10MB
 # Historico
 logging.logback.rollingpolicy.max-history=30
 
-# Suppress Hibernate logging
+# Suppress Hibernate logging (Si se usa)
 logging.level.org.hibernate=INFO
 logging.level.org.hibernate.SQL=DEBUG
 
-# Spring batch
+# Spring batch (Si se usa)
 logging.level.org.springframework.batch=INFO
+
+#JPA (Si se usa)
+spring.jpa.show-sql=true
+#Habilita las consultas nativas
+logging.level.org.hibernate.sql=debug
+
+
 ```
 
 ### Forma de Usar logger
