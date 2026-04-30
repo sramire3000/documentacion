@@ -22,21 +22,6 @@
   </dependency>
   <!-- End Actuator: health, info, metricas y estado del batch -->
   
-  <!-- DEVTOOLS -->
-  <dependency>
-    <groupId>org.springframework.boot</groupId>
-    <artifactId>spring-boot-devtools</artifactId>
-    <scope>runtime</scope>
-    <optional>true</optional>
-  </dependency>
-  
-  <!-- LOMBOK -->
-  <dependency>
-    <groupId>org.projectlombok</groupId>
-    <artifactId>lombok</artifactId>
-    <optional>true</optional>
-  </dependency>
-  
   <!-- Begin validation -->
   <dependency>
     <groupId>org.springframework.boot</groupId>
