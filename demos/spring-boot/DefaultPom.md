@@ -53,7 +53,7 @@ info.app.version=1.0.0
 # =============================================
 # LOGGING
 # =============================================
-logging.level.com.example.demo_test=INFO
+logging.level.[paquete_principal]=INFO
 logging.level.org.springframework.web=INFO
 logging.pattern.console=%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n
 logging.pattern.file=%d{yyyy-MM-dd HH:mm:ss} [%thread] %-5level %logger{36} - %msg%n
@@ -61,7 +61,7 @@ logging.pattern.dateformat="dd-MM-yyyy HH:mm:ss.SSSZ"
 logging.level.guru.springframework.blogs.controllers=INFO
 
 # Ubicacion
-logging.file.name=logs/graphql.log
+logging.file.name=logs/[nombre_archivo_log].log
 
 # Tamano de archivo
 logging.logback.rollingpolicy.max-file-size=10MB
