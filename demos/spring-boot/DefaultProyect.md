@@ -153,3 +153,8 @@ jasypt.encryptor.iv-generator-classname=org.jasypt.iv.RandomIvGenerator
 spring.datasource.username=ENC(U0VSVkVSTkFN)
 spring.datasource.password=ENC(QVBJMTAyMw==)
 ```
+
+### Metodo de encriptar
+```
+java -jar jasypt-spring-boot.jar input="db_user" password="mi_clave_super_secreta"
+```
