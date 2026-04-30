@@ -3,7 +3,7 @@
 ## Spring Initializr
 -[URL](https://start.spring.io/)
 
-<img width="1378" height="868" alt="image" src="https://github.com/user-attachments/assets/21c7b602-f75b-4960-8c35-4454068bf168" />
+<img width="1359" height="863" alt="image" src="https://github.com/user-attachments/assets/573911fa-5259-4eff-a685-85c6d081ed17" />
 
 
 ## Archivo "pom.xml" add standard
