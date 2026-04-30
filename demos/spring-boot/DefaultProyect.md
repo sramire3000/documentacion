@@ -145,7 +145,9 @@ log.debug("Procesando color_id={} descripcion={}", item.getColorId(), item.getCo
 # =============================================
 # JASYPT
 # =============================================
+# Algoritmo de encriptación
 jasypt.encryptor.algorithm=PBEWITHHMACSHA512ANDAES_256
+# Generador de vector de inicialización (IV) aleatorio
 jasypt.encryptor.iv-generator-classname=org.jasypt.iv.RandomIvGenerator
 
 
