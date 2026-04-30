@@ -8,8 +8,6 @@
 
 ## Archivo "pom.xml" add standard
 ```
-<dependencies>
-
   <!-- Begin Actuator: health, info, metricas -->
   <dependency>
     <groupId>org.springframework.boot</groupId>
@@ -47,13 +45,6 @@
       <artifactId>jasypt-spring-boot-starter</artifactId>
       <version>3.0.5</version>
   </dependency>
-
-
-</dependencies>
-
-<build>
-  <finalName>app</finalName>
-</build>
 
 
 ```
