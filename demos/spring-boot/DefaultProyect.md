@@ -269,7 +269,7 @@ public class Load {
 ```
 
 ## JAR para prueba de email
--[Download FakeSMTP es un servidor SMTP falso gratuito](http://nilhcem.github.io/FakeSMTP/downloads/fakeSMTP-latest.zip)
+-[Download FakeSMTP es un servidor SMTP gratuito](http://nilhcem.github.io/FakeSMTP/downloads/fakeSMTP-latest.zip)
 
 <img width="658" height="457" alt="image" src="https://github.com/user-attachments/assets/b4f5a71f-cb8f-4a4d-887c-f745dd62f037" />
 
