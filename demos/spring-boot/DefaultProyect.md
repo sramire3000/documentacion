@@ -49,6 +49,13 @@
   </dependency>
   <!-- End validation -->
 
+  <!-- CONFIGURATION PROCESSOR -->
+  <dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-configuration-processor</artifactId>
+    <optional>true</optional>
+  </dependency>
+
 </dependencies>
 
 <build>
