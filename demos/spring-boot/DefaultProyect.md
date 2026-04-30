@@ -132,7 +132,9 @@ log.debug("Procesando color_id={} descripcion={}", item.getColorId(), item.getCo
       "vmArgs": "-Xms128m -Xmx384m -XX:MaxMetaspaceSize=96m -XX:MaxDirectMemorySize=32m -XX:+UseG1GC -XX:+UseStringDeduplication",
       "envFile": "${workspaceFolder}/.env",
       "env": {
-        "jasypt.encryptor.password":"hello"
+        "input":"secret",
+        "password" :"mi_clave_super_secreta",
+        "jasypt.encryptor.password":"hello",
      },
     }
     }
@@ -142,6 +144,12 @@ log.debug("Procesando color_id={} descripcion={}", item.getColorId(), item.getCo
 
 ## Add Encripter application.properties
 ```
+# =============================================
+# JASYPT
+# =============================================
+jasypt.encryptor.algorithm=PBEWITHHMACSHA512ANDAES_256
+jasypt.encryptor.iv-generator-classname=org.jasypt.iv.RandomIvGenerator
+
 spring.datasource.username=ENC(U0VSVkVSTkFN)
 spring.datasource.password=ENC(QVBJMTAyMw==)
 ```
