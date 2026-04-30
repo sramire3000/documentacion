@@ -34,7 +34,6 @@
 
 ### archivo de configuracion de "application.properties"
 ```
-
 # Puerto del servidor
 server.port=8080
 
@@ -69,21 +68,24 @@ logging.logback.rollingpolicy.max-file-size=10MB
 # Historico
 logging.logback.rollingpolicy.max-history=30
 
-
 # =============================================
 # Spring batch (Si se usa)
 # =============================================
 logging.level.org.springframework.batch=INFO
 
-
 # =============================================
-# JPA y Hibernate (Si se usa)
+# Hibernate (Si se usa)
 # =============================================
-spring.jpa.show-sql=true
 logging.level.org.hibernate.sql=debug
 logging.level.org.hibernate=INFO
 logging.level.org.hibernate.SQL=DEBUG
 
+# =============================================
+# JPA (Si se usa)
+# =============================================
+spring.jpa.defer-datasource-initialization=true
+spring.jpa.show-sql=true
+spring.jpa.hibernate.ddl-auto=create-drop
 ```
 
 ### Forma de Usar logger
