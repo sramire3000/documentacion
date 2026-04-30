@@ -155,6 +155,12 @@ spring.datasource.password=ENC(QVBJMTAyMw==)
 ```
 
 ### Metodo de encriptar
+-[Download direct](https://repo1.maven.org/maven2/org/jasypt/jasypt/1.9.3/jasypt-1.9.3.jar)
 ```
-java -jar jasypt-spring-boot.jar input="db_user" password="mi_clave_super_secreta"
+
+java -cp jasypt-1.9.3.jar org.jasypt.intf.cli.JasyptPBEStringEncryptionCLI ^
+input="db_user" ^
+password="mi_clave_super_secreta" ^
+algorithm=PBEWITHHMACSHA512ANDAES_256
+
 ```
