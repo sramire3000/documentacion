@@ -132,9 +132,7 @@ log.debug("Procesando color_id={} descripcion={}", item.getColorId(), item.getCo
       "vmArgs": "-Xms128m -Xmx384m -XX:MaxMetaspaceSize=96m -XX:MaxDirectMemorySize=32m -XX:+UseG1GC -XX:+UseStringDeduplication",
       "env": {
         "jasypt.encryptor.password":"hello"
-        "GIT_USERNAME": "",
-        "GIT_PASSWORD": ""
-      },
+     },
     }
     }
   ]
