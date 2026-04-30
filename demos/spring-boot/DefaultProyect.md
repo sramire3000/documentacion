@@ -86,7 +86,7 @@ logging.pattern.dateformat="dd-MM-yyyy HH:mm:ss.SSSZ"
 logging.level.guru.springframework.blogs.controllers=INFO
 
 # Ubicacion
-logging.file.name=logs/[nombre_archivo_log].log
+logging.file.name=logs/${spring.application.name}.log
 
 # Tamano de archivo
 logging.logback.rollingpolicy.max-file-size=10MB
