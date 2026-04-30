@@ -171,7 +171,61 @@ java -cp jasypt-1.9.3.jar org.jasypt.intf.cli.JasyptPBEStringEncryptionCLI \
   ivGeneratorClassName=org.jasypt.iv.RandomIvGenerator
 ```
 
-### Para genrar claves por el Main
+### Info al iniciar el Microservicio
+```
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+public class DemoApplication {
+
+	private static final Logger log = LoggerFactory.getLogger(DemoApplication.class);
+
+	public static void main(String[] args) {
+		Runtime runtime = Runtime.getRuntime();
+		MemoryUsage heapUsage = ManagementFactory.getMemoryMXBean().getHeapMemoryUsage();
+		long memoriaMaximaBytes = runtime.maxMemory();
+		long memoriaMinimaBytes = heapUsage.getInit();
+		long memoriaDisponibleBytes = runtime.freeMemory();
+
+		SpringApplication app = new SpringApplication(DemoApplication.class);
+		app.setWebApplicationType(WebApplicationType.SERVLET);
+		ConfigurableApplicationContext context = app.run(args);
+		Environment env = context.getEnvironment();
+
+		String formatoFecha = env.getProperty("logging.pattern.dateformat", "yyyy-MM-dd HH:mm:ss.SSSZ");
+		String zonaHoraria = TimeZone.getDefault().getID();
+		String zonaSistema = ZoneId.systemDefault().getId();
+
+		log.info("");
+		log.info("<=============================START {} =============================>",
+				env.getProperty("spring.application.name").toUpperCase());
+		log.info("Memoria JVM al iniciar maxima   : {} ", formatMemory(memoriaMaximaBytes));
+		log.info("Memoria JVM al iniciar minima   : {} ", formatMemory(memoriaMinimaBytes));
+		log.info("Memoria JVM disponible          : {} ", formatMemory(memoriaDisponibleBytes));
+		log.info("Formato de fecha configurado    : {} ", formatoFecha);
+		log.info("Zona horaria activa             : {} ", zonaHoraria);
+		log.info("SystemDefault                   : {} :", zonaSistema);
+		log.info("<==============================================================================>");
+		log.info("");
+	}
+
+	private static long bytesToMb(long bytes) {
+		return bytes / (1024 * 1024);
+	}
+
+	private static String formatMemory(long bytes) {
+		if (bytes < 0) {
+			return "N/A";
+		}
+		return bytesToMb(bytes) + " MB (" + bytes + " bytes)";
+	}
+
+}
+
+
+```
+
+### Para generar claves por el Main
 ```
 	public static void main(String[] args) {
 		SpringApplication.run(DemoMultiDbApplication.class, args);
