@@ -25,6 +25,13 @@ com.example.demo_multi_db
 ## Archivo "pom.xml"
 ```
 
+		<!-- CONFIGURATION PROCESSOR -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-configuration-processor</artifactId>
+			<optional>true</optional>
+		</dependency>
+
 		<!-- JASYPT Encriptacion para Usuario/Clave en propertie de DB -->
 		<dependency>
 			<groupId>com.github.ulisesbocchio</groupId>
