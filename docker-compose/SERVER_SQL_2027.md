@@ -40,13 +40,14 @@ volumes:
 
 ## Crear un Usuario admin
 ```
--- 1. Crear el Login a nivel de instancia
+-- Creamos el login desactivando la validación de políticas
 CREATE LOGIN [NombreDeTuUsuario] 
-WITH PASSWORD = 'TuPasswordSeguro123', 
-CHECK_EXPIRATION = OFF, 
-CHECK_POLICY = ON;
+WITH PASSWORD = 'PasswordSimple123', -- Aquí pones la que quieras
+CHECK_POLICY = OFF,                  -- Desactiva la complejidad
+CHECK_EXPIRATION = OFF;              -- Evita que caduque
+GO
 
--- 2. Asignar el rol de sysadmin (Privilegios totales)
+-- Asignamos los permisos de Admin
 ALTER SERVER ROLE [sysadmin] 
 ADD MEMBER [NombreDeTuUsuario];
 GO
