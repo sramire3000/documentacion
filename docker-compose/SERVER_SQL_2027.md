@@ -37,3 +37,21 @@ services:
 volumes:
   mssql_data:
 ```
+
+## Crear un Usuario admin
+```
+-- 1. Crear el Login a nivel de instancia
+CREATE LOGIN [NombreDeTuUsuario] 
+WITH PASSWORD = 'TuPasswordSeguro123', 
+CHECK_EXPIRATION = OFF, 
+CHECK_POLICY = ON;
+
+-- 2. Asignar el rol de sysadmin (Privilegios totales)
+ALTER SERVER ROLE [sysadmin] 
+ADD MEMBER [NombreDeTuUsuario];
+GO
+```
+
+
+
+
