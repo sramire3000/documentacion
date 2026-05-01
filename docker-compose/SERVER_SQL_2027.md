@@ -40,17 +40,32 @@ volumes:
 
 ## Crear un Usuario admin
 ```
--- Creamos el login desactivando la validación de políticas
-CREATE LOGIN [NombreDeTuUsuario] 
-WITH PASSWORD = 'TuPasswordFuerte123!', -- Aquí pones la que quieras
-CHECK_POLICY = OFF,                  -- Desactiva la complejidad
-CHECK_EXPIRATION = OFF;              -- Evita que caduque
-GO
+-- =============================================
+-- CONFIGURACIÓN: Define tus credenciales aquí
+-- =============================================
+DECLARE @Usuario   NVARCHAR(128) = 'HRAMIREZ'
+DECLARE @Password  NVARCHAR(128) = 'Clave123' -- Al ser CHECK_POLICY = OFF, puede ser simple
+-- =============================================
 
--- Asignamos los permisos de Admin
-ALTER SERVER ROLE [sysadmin] 
-ADD MEMBER [NombreDeTuUsuario];
-GO
+DECLARE @SQL NVARCHAR(MAX)
+
+-- 1. Construir y ejecutar la creación del Login
+SET @SQL = 'CREATE LOGIN [' + @Usuario + '] 
+            WITH PASSWORD = ''' + @Password + ''', 
+            CHECK_POLICY = OFF, 
+            CHECK_EXPIRATION = OFF;'
+
+PRINT 'Creando Login: ' + @Usuario
+EXEC sp_executesql @SQL
+
+-- 2. Construir y ejecutar la asignación de Sysadmin
+SET @SQL = 'ALTER SERVER ROLE [sysadmin] ADD MEMBER [' + @Usuario + '];'
+
+PRINT 'Asignando permisos de sysadmin...'
+EXEC sp_executesql @SQL
+
+PRINT 'Proceso completado con éxito.'
+
 ```
 
 ## Crear un usuario de servicio
