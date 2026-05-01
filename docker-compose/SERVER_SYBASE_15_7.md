@@ -65,3 +65,33 @@ EXEC sp_role 'grant', 'sa_role', @Usuario
 PRINT 'Proceso completado. El usuario tiene permisos de sa_role.'
 
 ```
+
+## Crear un usuario de servicio
+```
+-- =============================================
+-- CONFIGURACIÓN: Cambia estos valores
+-- =============================================
+DECLARE @Usuario   VARCHAR(128) SELECT @Usuario = 'UsrServiceArreconsa'
+DECLARE @Password  VARCHAR(128) SELECT @Password = 'TuPasswordFuerte123!'
+DECLARE @BaseDatos VARCHAR(128) SELECT @BaseDatos = 'Arreconsa'
+-- =============================================
+
+-- 1. Crear el Login a nivel de Servidor
+EXEC sp_addlogin @Usuario, @Password, @BaseDatos
+GO
+
+-- 2. Entrar a la BD y crear el usuario
+USE Arreconsa -- Nota: Sybase no permite variables en el comando USE directamente
+GO
+DECLARE @Usuario VARCHAR(128) SELECT @Usuario = 'UsrServiceArreconsa'
+EXEC sp_adduser @Usuario, @Usuario
+GO
+
+-- 3. Asignar permisos DML (Sybase no usa roles db_datareader por defecto como SQL Server)
+-- Se recomienda dar permisos directos o crear un grupo.
+GRANT SELECT, INSERT, UPDATE, DELETE TO UsrServiceArreconsa
+GO
+
+PRINT 'Usuario de servicio creado y con permisos DML asignados.'
+GO
+```
