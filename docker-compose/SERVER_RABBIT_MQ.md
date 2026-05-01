@@ -1,0 +1,62 @@
+# Docker Composer RabbitMQ
+
+### File .env
+```
+RABBITMQ_USER=guest
+RABBITMQ_PASS=guest
+RABBITMQ_SERVER=server-rabbit-mq
+RABBITMQ_PORT1=5672
+RABBITMQ_PORT2=15672
+```
+
+### Create folder
+```
+mkdir -p rabbitmq_data
+sudo chmod 777 rabbitmq_data
+
+mkdir -p rabbitmq_logs
+sudo chmod 777 rabbitmq_logs
+
+mkdir -p rabbitmq_mnesia
+sudo chmod 777 rabbitmq_mnesia
+```
+
+
+### File docker-compose.yaml
+```
+services:
+
+  service-rabbitmq-server:
+    container_name: ${RABBITMQ_SERVER}
+    image: rabbitmq:3.10.25-management-alpine
+    deploy:
+       resources:
+           limits:
+             cpus: '1.5'
+             memory: 500M
+           reservations:
+             cpus: '1.0'
+             memory: 200M
+    ports:
+      - ${RABBITMQ_PORT1}:5672
+      - ${RABBITMQ_PORT2}:15672
+    restart: unless-stopped
+    environment:
+      RABBITMQ_ERLANG_COOKIE: "rabbitcookie"
+      RABBITMQ_DEFAULT_USER: ${RABBITMQ_USER}
+      RABBITMQ_DEFAULT_PASS: ${RABBITMQ_PASS}
+    volumes:
+       - rabbitmq_data:/var/lib/rabbitmq
+       - rabbitmq_logs:/var/log/rabbitmq
+       - rabbitmq_mnesia:/var/lib/rabbitmq/mnesia
+
+
+volumes:
+  rabbitmq_data:
+    driver: local
+  rabbitmq_logs:
+    driver: local
+  rabbitmq_mnesia:
+    driver: local
+```
+
