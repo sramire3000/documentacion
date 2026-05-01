@@ -16,8 +16,8 @@ docker load -i nombre_del_respaldo.tar
 docker volume prune
 ```
 
-### Imagenes
+### Limpiar imágenes huérfanas (Dangling)
 ```
 docker images -f "dangling=true"
-docker image prune -a
+docker image prune 
 ```
