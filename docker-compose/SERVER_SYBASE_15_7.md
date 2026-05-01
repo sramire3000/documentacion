@@ -94,4 +94,29 @@ GO
 
 PRINT 'Usuario de servicio creado y con permisos DML asignados.'
 GO
+``
+
+## Eliminar un usuario
+```
+-- =============================================
+-- CONFIGURACIÓN: Usuario a borrar
+-- =============================================
+DECLARE @Usuario VARCHAR(128) SELECT @Usuario = 'UsrServiceArreconsa'
+-- =============================================
+
+-- 1. Eliminar de la base de datos específica
+-- Debes estar en la BD para ejecutar sp_dropuser
+USE Arreconsa
+GO
+EXEC sp_dropuser 'UsrServiceArreconsa'
+GO
+
+-- 2. Eliminar el Login del servidor
+USE master
+GO
+EXEC sp_droplogin 'UsrServiceArreconsa'
+GO
+
+PRINT 'Usuario eliminado correctamente del servidor y la base de datos.'
+GO
 ```
