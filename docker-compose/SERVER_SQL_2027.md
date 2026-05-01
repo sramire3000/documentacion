@@ -55,43 +55,39 @@ GO
 
 ## Crear un usuario de servicio
 ```
+-- =============================================
+-- CONFIGURACIÓN: Cambia estos valores
+-- =============================================
+DECLARE @Usuario   NVARCHAR(128) = 'NuevoUsuarioServicio';
+DECLARE @Password  NVARCHAR(128) = 'ClaveFacil123';
+DECLARE @BaseDatos NVARCHAR(128) = 'BaseDatos';
+-- =============================================
+
 -- 1. Crear el Login a nivel de Servidor
--- Usamos CHECK_POLICY = OFF solo si necesitas una clave simple, 
--- pero es mejor usar una compleja y dejarlo en ON.
-CREATE LOGIN [User_App_Servicio] 
-WITH PASSWORD = 'ClaveSegura_2026!', 
-CHECK_POLICY = ON, 
-CHECK_EXPIRATION = OFF;
-GO
+DECLARE @sqlLogin NVARCHAR(MAX) = 
+'CREATE LOGIN [' + @Usuario + '] 
+ WITH PASSWORD = ''' + @Password + ''', 
+ CHECK_POLICY = OFF, 
+ CHECK_EXPIRATION = OFF;
+ ALTER LOGIN [' + @Usuario + '] ENABLE;';
 
--- 2. Cambiar al contexto de tu Base de Datos
-USE [TuBaseDeDatos]; 
-GO
+EXEC sp_executesql @sqlLogin;
 
--- 3. Crear el Usuario en la Base de Datos vinculado al Login
-CREATE USER [User_App_Servicio] FOR LOGIN [User_App_Servicio];
-GO
+-- 2. Crear el Usuario en la Base de Datos y asignar Roles
+DECLARE @sqlUser NVARCHAR(MAX) = 
+'USE [' + @BaseDatos + ']; 
+ CREATE USER [' + @Usuario + '] FOR LOGIN [' + @Usuario + '];
+ ALTER ROLE [db_datareader] ADD MEMBER [' + @Usuario + '];
+ ALTER ROLE [db_datawriter] ADD MEMBER [' + @Usuario + '];';
 
--- 4. Asignar roles de lectura y escritura
--- db_datareader: Permite SELECT en todas las tablas
-ALTER ROLE [db_datareader] ADD MEMBER [User_App_Servicio];
+EXEC sp_executesql @sqlUser;
 
--- db_datawriter: Permite INSERT, UPDATE, DELETE en todas las tablas
-ALTER ROLE [db_datawriter] ADD MEMBER [User_App_Servicio];
-GO
+-- 3. Prueba de Verificación
+PRINT 'Usuario creado exitosamente. Verificando...';
+EXEC ('USE [' + @BaseDatos + ']; EXECUTE AS LOGIN = ''' + @Usuario + '''; 
+       SELECT USER_NAME() AS [Usuario_Actual], DB_NAME() AS [Base_Actual]; 
+       REVERT;');
 
-ALTER LOGIN [User_App_Servicio] ENABLE;
-GO
-
-ALTER LOGIN [User_App_Servicio] 
-WITH PASSWORD = 'ClaveSegura_2026!', 
-CHECK_POLICY = OFF, 
-CHECK_EXPIRATION = OFF;
-GO
-
-EXECUTE AS LOGIN = 'User_App_Servicio';
-SELECT USER_NAME() AS CurrentUser, DB_NAME() AS CurrentDatabase;
-REVERT; -- Vuelve a ser tu usuario administrador
 ```
 
 ## Elimnar un usuario
