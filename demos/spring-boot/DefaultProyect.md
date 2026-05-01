@@ -204,7 +204,7 @@ public class DemoApplication {
 		log.info("Memoria JVM disponible          : {} ", formatMemory(memoriaDisponibleBytes));
 		log.info("Formato de fecha configurado    : {} ", formatoFecha);
 		log.info("Zona horaria activa             : {} ", zonaHoraria);
-		log.info("SystemDefault                   : {} :", zonaSistema);
+		log.info("SystemDefault                   : {} ", zonaSistema);
 		log.info("<===============================================================================>");
 		log.info("");
 	}
