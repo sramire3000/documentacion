@@ -51,8 +51,8 @@ volumes:
 -- =============================================
 -- CONFIGURACIÓN: Define tus credenciales aquí
 -- =============================================
-SET @Usuario  = 'HRAMIREZ';
-SET @Password = 'Clave123';
+SET @Usuario  = 'UsrAdmin';
+SET @Password = 'TuPasswordFuerte123';
 SET @Host     = '%'; -- '%' permite conexión desde cualquier IP. Usa 'localhost' para local.
 -- =============================================
 
