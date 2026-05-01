@@ -53,6 +53,34 @@ ADD MEMBER [NombreDeTuUsuario];
 GO
 ```
 
+## Crear un usuario de servicio
+```
+-- 1. Crear el Login a nivel de Servidor
+-- Usamos CHECK_POLICY = OFF solo si necesitas una clave simple, 
+-- pero es mejor usar una compleja y dejarlo en ON.
+CREATE LOGIN [User_App_Servicio] 
+WITH PASSWORD = 'ClaveSegura_2026!', 
+CHECK_POLICY = ON, 
+CHECK_EXPIRATION = OFF;
+GO
+
+-- 2. Cambiar al contexto de tu Base de Datos
+USE [TuBaseDeDatos]; 
+GO
+
+-- 3. Crear el Usuario en la Base de Datos vinculado al Login
+CREATE USER [User_App_Servicio] FOR LOGIN [User_App_Servicio];
+GO
+
+-- 4. Asignar roles de lectura y escritura
+-- db_datareader: Permite SELECT en todas las tablas
+ALTER ROLE [db_datareader] ADD MEMBER [User_App_Servicio];
+
+-- db_datawriter: Permite INSERT, UPDATE, DELETE en todas las tablas
+ALTER ROLE [db_datawriter] ADD MEMBER [User_App_Servicio];
+GO
+```
+
 
 
 
