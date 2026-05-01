@@ -94,6 +94,27 @@ SELECT USER_NAME() AS CurrentUser, DB_NAME() AS CurrentDatabase;
 REVERT; -- Vuelve a ser tu usuario administrador
 ```
 
+## Elimnar un usuario
+```
+EXEC sp_MSforeachdb '
+    USE [?];
+    IF EXISTS (SELECT * FROM sys.database_principals WHERE name = ''User_App_Servicio'')
+    BEGIN
+        PRINT ''Eliminando en: '' + DB_NAME();
+        DROP USER [User_App_Servicio];
+    END
+';
+
+
+USE [master];
+GO
+
+IF EXISTS (SELECT * FROM sys.server_principals WHERE name = 'User_App_Servicio')
+BEGIN
+    DROP LOGIN [User_App_Servicio];
+END
+GO
+```
 
 
 
