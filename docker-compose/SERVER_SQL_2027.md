@@ -104,7 +104,7 @@ EXEC ('USE [' + @BaseDatos + ']; EXECUTE AS LOGIN = ''' + @Usuario + ''';
        REVERT;')
 ```
 
-## Elimnar un usuario
+## Eliminar un usuario
 ```
 -- =============================================
 -- CONFIGURACIÓN: Escribe aquí el usuario a borrar
