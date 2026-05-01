@@ -42,7 +42,7 @@ volumes:
 ```
 -- Creamos el login desactivando la validación de políticas
 CREATE LOGIN [NombreDeTuUsuario] 
-WITH PASSWORD = 'PasswordSimple123', -- Aquí pones la que quieras
+WITH PASSWORD = 'TuPasswordFuerte123!', -- Aquí pones la que quieras
 CHECK_POLICY = OFF,                  -- Desactiva la complejidad
 CHECK_EXPIRATION = OFF;              -- Evita que caduque
 GO
