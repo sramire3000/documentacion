@@ -44,3 +44,24 @@ volumes:
   # pero tu comando usa un bind-mount (carpeta local).
   sybase_data:
 ```
+
+## Crear un Usuario admin 
+```
+-- =============================================
+-- CONFIGURACIÓN: Define tus credenciales aquí
+-- =============================================
+DECLARE @Usuario  VARCHAR(128) SELECT @Usuario = 'UserAdmin'
+DECLARE @Password VARCHAR(128) SELECT @Password = 'TuClaveSecreta!'
+-- =============================================
+
+-- 1. Crear el Login en el servidor
+EXEC sp_addlogin @Usuario, @Password
+
+
+-- 2. Asignar el rol de Administrador de Sistema (sa_role)
+EXEC sp_role 'grant', 'sa_role', @Usuario
+
+
+PRINT 'Proceso completado. El usuario tiene permisos de sa_role.'
+
+```
