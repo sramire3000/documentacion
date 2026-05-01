@@ -79,6 +79,19 @@ ALTER ROLE [db_datareader] ADD MEMBER [User_App_Servicio];
 -- db_datawriter: Permite INSERT, UPDATE, DELETE en todas las tablas
 ALTER ROLE [db_datawriter] ADD MEMBER [User_App_Servicio];
 GO
+
+ALTER LOGIN [User_App_Servicio] ENABLE;
+GO
+
+ALTER LOGIN [User_App_Servicio] 
+WITH PASSWORD = 'ClaveSegura_2026!', 
+CHECK_POLICY = OFF, 
+CHECK_EXPIRATION = OFF;
+GO
+
+EXECUTE AS LOGIN = 'User_App_Servicio';
+SELECT USER_NAME() AS CurrentUser, DB_NAME() AS CurrentDatabase;
+REVERT; -- Vuelve a ser tu usuario administrador
 ```
 
 
