@@ -15,12 +15,28 @@ mkdir -p letsencrypt
 sudo chmod 777 letsencrypt
 ```
 
+## Crear archivo ".env"
+```
+NGINX_CONTAINER_NAME=nginx_proxy
+NGINX_CONTAINER_MEM_LIMIT=2g
+NGINX_CONTAINER_MEM_RESERV=1g
+```
+
 ### File docker-compose.yaml
 ```
 services:
   app:
     image: 'jc21/nginx-proxy-manager:latest'
-    restart: always
+    container_name: ${NGINX_CONTAINER_NAME}
+    restart: unless-stopped
+    deploy:
+      resources:
+        limits:
+          cpus: "0.5"
+          memory: ${NGINX_CONTAINER_MEM_LIMIT}
+        reservations:
+          cpus: "0.1"
+          memory: ${NGINX_CONTAINER_MEM_RESERV}    
     ports:
       # These ports are in format <host-port>:<container-port>
       - '80:80' # Public HTTP Port
