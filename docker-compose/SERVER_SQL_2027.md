@@ -58,9 +58,9 @@ GO
 -- =============================================
 -- CONFIGURACIÓN: Cambia estos valores
 -- =============================================
-DECLARE @Usuario   NVARCHAR(128) = 'NuevoUsuarioServicio';
-DECLARE @Password  NVARCHAR(128) = 'ClaveFacil123';
-DECLARE @BaseDatos NVARCHAR(128) = 'BaseDatos';
+DECLARE @Usuario   NVARCHAR(128) = 'UsrServiceArreconsa'
+DECLARE @Password  NVARCHAR(128) = 'ClaveFacil123'
+DECLARE @BaseDatos NVARCHAR(128) = 'Arreconsa'
 -- =============================================
 
 -- 1. Crear el Login a nivel de Servidor
@@ -69,25 +69,24 @@ DECLARE @sqlLogin NVARCHAR(MAX) =
  WITH PASSWORD = ''' + @Password + ''', 
  CHECK_POLICY = OFF, 
  CHECK_EXPIRATION = OFF;
- ALTER LOGIN [' + @Usuario + '] ENABLE;';
+ ALTER LOGIN [' + @Usuario + '] ENABLE;'
 
-EXEC sp_executesql @sqlLogin;
+EXEC sp_executesql @sqlLogin
 
 -- 2. Crear el Usuario en la Base de Datos y asignar Roles
 DECLARE @sqlUser NVARCHAR(MAX) = 
 'USE [' + @BaseDatos + ']; 
  CREATE USER [' + @Usuario + '] FOR LOGIN [' + @Usuario + '];
  ALTER ROLE [db_datareader] ADD MEMBER [' + @Usuario + '];
- ALTER ROLE [db_datawriter] ADD MEMBER [' + @Usuario + '];';
+ ALTER ROLE [db_datawriter] ADD MEMBER [' + @Usuario + '];'
 
-EXEC sp_executesql @sqlUser;
+EXEC sp_executesql @sqlUser
 
 -- 3. Prueba de Verificación
-PRINT 'Usuario creado exitosamente. Verificando...';
+PRINT 'Usuario creado exitosamente. Verificando...'
 EXEC ('USE [' + @BaseDatos + ']; EXECUTE AS LOGIN = ''' + @Usuario + '''; 
        SELECT USER_NAME() AS [Usuario_Actual], DB_NAME() AS [Base_Actual]; 
-       REVERT;');
-
+       REVERT;')
 ```
 
 ## Elimnar un usuario
