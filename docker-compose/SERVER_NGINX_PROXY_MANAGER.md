@@ -20,6 +20,8 @@ sudo chmod 777 letsencrypt
 NGINX_CONTAINER_NAME=nginx_proxy
 NGINX_CONTAINER_MEM_LIMIT=2g
 NGINX_CONTAINER_MEM_RESERV=1g
+
+NGINX_PORT=81
 ```
 
 ### File docker-compose.yaml
@@ -41,7 +43,7 @@ services:
       # These ports are in format <host-port>:<container-port>
       - '80:80' # Public HTTP Port
       - '443:443' # Public HTTPS Port
-      - '81:81' # Admin Web Port
+      - '${NGINX_PORT}:81' # Admin Web Port
       # Add any other Stream port you want to expose
       # - '21:21' # FTP
 
