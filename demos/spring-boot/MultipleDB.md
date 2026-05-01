@@ -5,6 +5,8 @@
 com.example.demo_multi_db
 |- domain
 |- application
+|- bootstrap
+|  |- DemoMultiDbApplication.java
 |- infrastructure
 |  |- persistence
 |  |  |- sqlserver
