@@ -60,3 +60,6 @@ volumes:
     driver: local
 ```
 
+## URL WEB
+
+-[Admin RabbitMQ](http://localhost:15672/)
