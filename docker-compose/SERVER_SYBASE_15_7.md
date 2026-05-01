@@ -73,7 +73,7 @@ PRINT 'Proceso completado. El usuario tiene permisos de sa_role.'
 -- =============================================
 DECLARE @Usuario   VARCHAR(128) SELECT @Usuario = 'UsrServiceArreconsa'
 DECLARE @Password  VARCHAR(128) SELECT @Password = 'TuPasswordFuerte123!'
-DECLARE @BaseDatos VARCHAR(128) SELECT @BaseDatos = 'Arreconsa'
+DECLARE @BaseDatos VARCHAR(128) SELECT @BaseDatos = 'master'
 -- =============================================
 
 -- 1. Crear el Login a nivel de Servidor
