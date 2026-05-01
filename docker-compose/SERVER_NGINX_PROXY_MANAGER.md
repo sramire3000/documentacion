@@ -13,6 +13,7 @@ sudo chmod 777 data
 
 mkdir -p letsencrypt
 sudo chmod 777 letsencrypt
+
 ```
 
 ## Crear archivo ".env"
@@ -20,8 +21,11 @@ sudo chmod 777 letsencrypt
 NGINX_CONTAINER_NAME=nginx_proxy
 NGINX_CONTAINER_MEM_LIMIT=2g
 NGINX_CONTAINER_MEM_RESERV=1g
-
 NGINX_PORT=81
+
+Email=admin@example.com
+Password=changeme
+
 ```
 
 ### File docker-compose.yaml
