@@ -94,7 +94,7 @@ GO
 
 PRINT 'Usuario de servicio creado y con permisos DML asignados.'
 GO
-``
+```
 
 ## Eliminar un usuario
 ```
