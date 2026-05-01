@@ -91,24 +91,42 @@ EXEC ('USE [' + @BaseDatos + ']; EXECUTE AS LOGIN = ''' + @Usuario + ''';
 
 ## Elimnar un usuario
 ```
-EXEC sp_MSforeachdb '
-    USE [?];
-    IF EXISTS (SELECT * FROM sys.database_principals WHERE name = ''User_App_Servicio'')
+-- =============================================
+-- CONFIGURACIÓN: Escribe aquí el usuario a borrar
+-- =============================================
+DECLARE @UsuarioABorrar NVARCHAR(128) = 'UsrServiceArreconsa'
+-- =============================================
+
+DECLARE @DynamicSQL NVARCHAR(MAX)
+
+-- 1. Eliminar el usuario de todas las Bases de Datos
+-- Usamos sp_MSforeachdb pero construyendo el comando con la variable
+SET @DynamicSQL = '
+EXEC sp_MSforeachdb ''
+    IF EXISTS (SELECT 1 FROM [?].sys.database_principals WHERE name = ''''' + @UsuarioABorrar + ''''')
     BEGIN
-        PRINT ''Eliminando en: '' + DB_NAME();
-        DROP USER [User_App_Servicio];
+        PRINT ''''Eliminando usuario [' + @UsuarioABorrar + '] de la base de datos: [?]'''';
+        DECLARE @dropUser NVARCHAR(MAX) = ''''USE [?]; DROP USER [' + @UsuarioABorrar + '];'''';
+        EXEC sp_executesql @dropUser;
     END
-';
+'';'
 
+EXEC sp_executesql @DynamicSQL
 
-USE [master];
-GO
-
-IF EXISTS (SELECT * FROM sys.server_principals WHERE name = 'User_App_Servicio')
+-- 2. Eliminar el Login del Servidor
+SET @DynamicSQL = '
+IF EXISTS (SELECT 1 FROM sys.server_principals WHERE name = ''' + @UsuarioABorrar + ''')
 BEGIN
-    DROP LOGIN [User_App_Servicio];
+    PRINT ''Eliminando Login [' + @UsuarioABorrar + '] del servidor...'';
+    DROP LOGIN [' + @UsuarioABorrar + '];
 END
-GO
+ELSE
+BEGIN
+    PRINT ''El Login [' + @UsuarioABorrar + '] no existe o ya fue eliminado.'';
+END'
+
+EXEC sp_executesql @DynamicSQL
+
 ```
 
 
