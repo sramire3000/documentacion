@@ -144,5 +144,20 @@ EXEC sp_executesql @DynamicSQL
 
 ```
 
+## Usuario logeados
+```
+SELECT 
+    s.session_id,
+    s.login_name,
+    s.host_name,
+    s.program_name,
+    d.name AS database_name,
+    s.status,
+    s.login_time
+FROM sys.dm_exec_sessions s
+INNER JOIN sys.databases d ON s.database_id = d.database_id
+WHERE s.is_user_process = 1; -- Filtra para no ver procesos internos del sistema
+```
+
 
 
