@@ -43,8 +43,8 @@ volumes:
 -- =============================================
 -- CONFIGURACIÓN: Define tus credenciales aquí
 -- =============================================
-DECLARE @Usuario   NVARCHAR(128) = 'HRAMIREZ'
-DECLARE @Password  NVARCHAR(128) = 'Clave123' -- Al ser CHECK_POLICY = OFF, puede ser simple
+DECLARE @Usuario   NVARCHAR(128) = 'UsrAdminArreconsa'
+DECLARE @Password  NVARCHAR(128) = 'TuPasswordFuerte123' -- Al ser CHECK_POLICY = OFF, puede ser simple
 -- =============================================
 
 DECLARE @SQL NVARCHAR(MAX)
