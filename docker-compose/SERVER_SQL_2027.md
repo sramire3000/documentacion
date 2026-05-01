@@ -59,7 +59,7 @@ GO
 -- CONFIGURACIÓN: Cambia estos valores
 -- =============================================
 DECLARE @Usuario   NVARCHAR(128) = 'UsrServiceArreconsa'
-DECLARE @Password  NVARCHAR(128) = 'ClaveFacil123'
+DECLARE @Password  NVARCHAR(128) = 'TuPasswordFuerte123!'
 DECLARE @BaseDatos NVARCHAR(128) = 'Arreconsa'
 -- =============================================
 
