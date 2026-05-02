@@ -197,3 +197,296 @@ app.jpa.sybase.hibernate.dialect=org.hibernate.community.dialect.SybaseASELegacy
 app.jpa.sybase.show-sql=true
 app.jpa.sybase.format-sql=true
 ```
+
+## Congiguraciones del DataSources JAVA
+
+### Archivo "MySqlJpaConfig.java"
+```
+package com.example.demo_multi_db.infrastructure.persistence.config;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.sql.DataSource;
+
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.jdbc.DataSourceBuilder;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.core.env.Environment;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.orm.jpa.JpaTransactionManager;
+import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
+import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
+import org.springframework.transaction.PlatformTransactionManager;
+
+import com.zaxxer.hikari.HikariDataSource;
+
+@Configuration
+@EnableJpaRepositories(basePackages = "com.example.demo_multi_db.infrastructure.persistence.mysql.repository", entityManagerFactoryRef = "mysqlEntityManagerFactory", transactionManagerRef = "mysqlTransactionManager")
+public class MySqlJpaConfig {
+
+  private final Environment environment;
+
+  public MySqlJpaConfig(Environment environment) {
+    this.environment = environment;
+  }
+
+  @Bean(name = "mysqlDataSource")
+  @ConfigurationProperties(prefix = "app.jpa.mysql")
+  public DataSource mysqlDataSource() {
+    return DataSourceBuilder.create().type(HikariDataSource.class).build();
+  }
+
+  @Bean(name = "mysqlEntityManagerFactory")
+  public LocalContainerEntityManagerFactoryBean mysqlEntityManagerFactory(
+      @Qualifier("mysqlDataSource") DataSource mysqlDataSource) {
+
+    LocalContainerEntityManagerFactoryBean factoryBean = new LocalContainerEntityManagerFactoryBean();
+    factoryBean.setDataSource(mysqlDataSource);
+    factoryBean.setPackagesToScan("com.example.demo_multi_db.infrastructure.persistence.mysql.entity");
+    factoryBean.setPersistenceUnitName("mysqlPersistenceUnit");
+    factoryBean.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
+    factoryBean.setJpaPropertyMap(buildJpaProperties("app.jpa.mysql"));
+    return factoryBean;
+  }
+
+  @Bean(name = "mysqlTransactionManager")
+  public PlatformTransactionManager mysqlTransactionManager(
+      @Qualifier("mysqlEntityManagerFactory") LocalContainerEntityManagerFactoryBean mysqlEmf) {
+    return new JpaTransactionManager(mysqlEmf.getObject());
+  }
+
+  private Map<String, Object> buildJpaProperties(String prefix) {
+    Map<String, Object> properties = new HashMap<>();
+    properties.put("hibernate.hbm2ddl.auto", environment.getProperty(prefix + ".hibernate.ddl-auto", "none"));
+    properties.put("hibernate.dialect", environment.getProperty(prefix + ".hibernate.dialect"));
+    properties.put("hibernate.show_sql", environment.getProperty(prefix + ".show-sql", "true"));
+    properties.put("hibernate.format_sql", environment.getProperty(prefix + ".format-sql", "true"));
+    return properties;
+  }
+}
+```
+
+### Archivo "PostgresJpaConfig.java"
+```
+package com.example.demo_multi_db.infrastructure.persistence.config;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.sql.DataSource;
+
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.jdbc.DataSourceBuilder;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.core.env.Environment;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.orm.jpa.JpaTransactionManager;
+import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
+import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
+import org.springframework.transaction.PlatformTransactionManager;
+
+import com.zaxxer.hikari.HikariDataSource;
+
+@Configuration
+@EnableJpaRepositories(basePackages = "com.example.demo_multi_db.infrastructure.persistence.postgres.repository", entityManagerFactoryRef = "postgresEntityManagerFactory", transactionManagerRef = "postgresTransactionManager")
+public class PostgresJpaConfig {
+
+  private final Environment environment;
+
+  public PostgresJpaConfig(Environment environment) {
+    this.environment = environment;
+  }
+
+  @Bean(name = "postgresDataSource")
+  @ConfigurationProperties(prefix = "app.jpa.postgres")
+  public DataSource postgresDataSource() {
+    return DataSourceBuilder.create().type(HikariDataSource.class).build();
+  }
+
+  @Bean(name = "postgresEntityManagerFactory")
+  public LocalContainerEntityManagerFactoryBean postgresEntityManagerFactory(
+      @Qualifier("postgresDataSource") DataSource postgresDataSource) {
+
+    LocalContainerEntityManagerFactoryBean factoryBean = new LocalContainerEntityManagerFactoryBean();
+    factoryBean.setDataSource(postgresDataSource);
+    factoryBean.setPackagesToScan("com.example.demo_multi_db.infrastructure.persistence.postgres.entity");
+    factoryBean.setPersistenceUnitName("postgresPersistenceUnit");
+    factoryBean.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
+    factoryBean.setJpaPropertyMap(buildJpaProperties("app.jpa.postgres"));
+    return factoryBean;
+  }
+
+  @Bean(name = "postgresTransactionManager")
+  public PlatformTransactionManager postgresTransactionManager(
+      @Qualifier("postgresEntityManagerFactory") LocalContainerEntityManagerFactoryBean postgresEmf) {
+    return new JpaTransactionManager(postgresEmf.getObject());
+  }
+
+  private Map<String, Object> buildJpaProperties(String prefix) {
+    Map<String, Object> properties = new HashMap<>();
+    properties.put("hibernate.hbm2ddl.auto", environment.getProperty(prefix + ".hibernate.ddl-auto", "none"));
+    properties.put("hibernate.dialect", environment.getProperty(prefix + ".hibernate.dialect"));
+    properties.put("hibernate.show_sql", environment.getProperty(prefix + ".show-sql", "true"));
+    properties.put("hibernate.format_sql", environment.getProperty(prefix + ".format-sql", "true"));
+    return properties;
+  }
+}
+```
+
+### Archivo "SqlServerJpaConfig.java"
+```
+package com.example.demo_multi_db.infrastructure.persistence.config;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.sql.DataSource;
+
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.jdbc.DataSourceBuilder;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Primary;
+import org.springframework.core.env.Environment;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.orm.jpa.JpaTransactionManager;
+import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
+import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
+import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
+
+import com.zaxxer.hikari.HikariDataSource;
+
+@Configuration
+@EnableTransactionManagement
+@EnableJpaRepositories(basePackages = "com.example.demo_multi_db.infrastructure.persistence.sqlserver.repository", entityManagerFactoryRef = "sqlServerEntityManagerFactory", transactionManagerRef = "sqlServerTransactionManager")
+public class SqlServerJpaConfig {
+
+  private final Environment environment;
+
+  public SqlServerJpaConfig(Environment environment) {
+    this.environment = environment;
+  }
+
+  @Primary
+  @Bean(name = "sqlServerDataSource")
+  @ConfigurationProperties(prefix = "app.jpa.sqlserver")
+  public DataSource sqlServerDataSource() {
+    return DataSourceBuilder.create().type(HikariDataSource.class).build();
+  }
+
+  @Primary
+  @Bean(name = "sqlServerEntityManagerFactory")
+  public LocalContainerEntityManagerFactoryBean sqlServerEntityManagerFactory(
+      @Qualifier("sqlServerDataSource") DataSource sqlServerDataSource) {
+
+    LocalContainerEntityManagerFactoryBean factoryBean = new LocalContainerEntityManagerFactoryBean();
+    factoryBean.setDataSource(sqlServerDataSource);
+    factoryBean.setPackagesToScan("com.example.demo_multi_db.infrastructure.persistence.sqlserver.entity");
+    factoryBean.setPersistenceUnitName("sqlServerPersistenceUnit");
+    factoryBean.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
+    factoryBean.setJpaPropertyMap(buildJpaProperties("app.jpa.sqlserver"));
+    return factoryBean;
+  }
+
+  @Primary
+  @Bean(name = "sqlServerTransactionManager")
+  public PlatformTransactionManager sqlServerTransactionManager(
+      @Qualifier("sqlServerEntityManagerFactory") LocalContainerEntityManagerFactoryBean sqlServerEmf) {
+    return new JpaTransactionManager(sqlServerEmf.getObject());
+  }
+
+  private Map<String, Object> buildJpaProperties(String prefix) {
+    Map<String, Object> properties = new HashMap<>();
+    properties.put("hibernate.hbm2ddl.auto", environment.getProperty(prefix + ".hibernate.ddl-auto", "none"));
+    properties.put("hibernate.dialect", environment.getProperty(prefix + ".hibernate.dialect"));
+    properties.put("hibernate.show_sql", environment.getProperty(prefix + ".show-sql", "true"));
+    properties.put("hibernate.format_sql", environment.getProperty(prefix + ".format-sql", "true"));
+    return properties;
+  }
+}
+```
+
+### Archivo "SybaseJpaConfig.java"
+```
+package com.example.demo_multi_db.infrastructure.persistence.config;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.sql.DataSource;
+
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.boot.jdbc.DataSourceBuilder;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.core.env.Environment;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
+import org.springframework.orm.jpa.JpaTransactionManager;
+import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
+import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
+import org.springframework.transaction.PlatformTransactionManager;
+
+import com.zaxxer.hikari.HikariDataSource;
+
+@Configuration
+@EnableJpaRepositories(basePackages = "com.example.demo_multi_db.infrastructure.persistence.sybase.repository", entityManagerFactoryRef = "sybaseEntityManagerFactory", transactionManagerRef = "sybaseTransactionManager")
+public class SybaseJpaConfig {
+
+  private final Environment environment;
+
+  public SybaseJpaConfig(Environment environment) {
+    this.environment = environment;
+  }
+
+  @Bean(name = "sybaseDataSource")
+  @ConfigurationProperties(prefix = "app.jpa.sybase")
+  public HikariDataSource sybaseDataSource() {
+    HikariDataSource ds = DataSourceBuilder.create().type(HikariDataSource.class).build();
+    // jTDS 1.3.1 implementa JDBC 3.0 (no JDBC 4.0), por lo que HikariCP no puede
+    // usar Connection.isValid(). Se fuerza una query SQL para validar conexiones.
+    if (ds.getConnectionTestQuery() == null) {
+      ds.setConnectionTestQuery("SELECT 1");
+    }
+    return ds;
+  }
+
+  @Bean(name = "sybaseEntityManagerFactory")
+  public LocalContainerEntityManagerFactoryBean sybaseEntityManagerFactory(
+      @Qualifier("sybaseDataSource") DataSource sybaseDataSource) {
+
+    LocalContainerEntityManagerFactoryBean factoryBean = new LocalContainerEntityManagerFactoryBean();
+    factoryBean.setDataSource(sybaseDataSource);
+    factoryBean.setPackagesToScan("com.example.demo_multi_db.infrastructure.persistence.sybase.entity");
+    factoryBean.setPersistenceUnitName("sybasePersistenceUnit");
+    factoryBean.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
+    factoryBean.setJpaPropertyMap(buildJpaProperties("app.jpa.sybase"));
+    return factoryBean;
+  }
+
+  @Bean(name = "sybaseTransactionManager")
+  public PlatformTransactionManager sybaseTransactionManager(
+      @Qualifier("sybaseEntityManagerFactory") LocalContainerEntityManagerFactoryBean sybaseEmf) {
+    return new JpaTransactionManager(sybaseEmf.getObject());
+  }
+
+  private Map<String, Object> buildJpaProperties(String prefix) {
+    Map<String, Object> properties = new HashMap<>();
+    properties.put("hibernate.hbm2ddl.auto", environment.getProperty(prefix + ".hibernate.ddl-auto", "none"));
+    properties.put("hibernate.dialect", environment.getProperty(prefix + ".hibernate.dialect"));
+    properties.put("hibernate.show_sql", environment.getProperty(prefix + ".show-sql", "true"));
+    properties.put("hibernate.format_sql", environment.getProperty(prefix + ".format-sql", "true"));
+    return properties;
+  }
+}
+```
+
+## NOTA: Si solo hay una configuracion de base datos colocar @Promary a cada metodo y si son mas solo una configuracion puede llevar @Promary
+
