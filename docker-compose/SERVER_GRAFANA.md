@@ -73,7 +73,7 @@ En la URL del Data Source, usa http://prometheus:9090 (gracias a la red de Docke
 
 Importar Dashboard: Puedes usar el ID 11378 en la sección de "Import" de Grafana para obtener un panel preconfigurado excelente para Spring Boot.
 
-##Para obtener un monitoreo con un acabado profesional y técnico, lo ideal es importar tableros que ya han sido probados y optimizados por la comunidad. Para microservicios desarrollados con Spring Boot y Micrometer, existen opciones que ofrecen visualizaciones avanzadas de la JVM, el recolector de basura (GC), hilos y rendimiento de HTTP.
+## Para obtener un monitoreo con un acabado profesional y técnico, lo ideal es importar tableros que ya han sido probados y optimizados por la comunidad. Para microservicios desarrollados con Spring Boot y Micrometer, existen opciones que ofrecen visualizaciones avanzadas de la JVM, el recolector de basura (GC), hilos y rendimiento de HTTP.
 
 Aquí tienes las mejores opciones y cómo configurarlas:
 
