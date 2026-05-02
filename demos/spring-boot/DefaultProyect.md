@@ -231,12 +231,14 @@ echo "Paquetes creados exitosamente bajo $ROOT"
 ```
 @echo off
 
-set BASE=%ROOT%
+cls
 
-# Bootstrap
+set BASE=%cd%
+
+REM Bootstrap
 mkdir "%BASE%\bootstrap"
 
-# Applicaton
+REM Applicaton
 mkdir "%BASE%\application"
 mkdir "%BASE%\application\color"
 mkdir "%BASE%\application\color\dto"
@@ -251,7 +253,7 @@ mkdir "%BASE%\application\departamento\usecase\impl"
 mkdir "%BASE%\application\report\port"
 mkdir "%BASE%\application\usecase"
 
-#Domain
+REM Domain
 mkdir "%BASE%\domain"
 mkdir "%BASE%\domain\color"
 mkdir "%BASE%\domain\color\exception"
@@ -263,7 +265,7 @@ mkdir "%BASE%\domain\departamento\exception"
 mkdir "%BASE%\domain\departamento\model"
 mkdir "%BASE%\domain\departamento\repository"
 
-# Infrastructure
+REM Infrastructure
 mkdir "%BASE%\infrastructure"
 mkdir "%BASE%\infrastructure\config"
 mkdir "%BASE%\infrastructure\email"
@@ -285,18 +287,17 @@ mkdir "%BASE%\infrastructure\persistence\sybase\adapter"
 mkdir "%BASE%\infrastructure\persistence\sybase\repository"
 mkdir "%BASE%\infrastructure\persistence\sybase\entity"
 
-# Web
+REM Web
 mkdir "%BASE%\infrastructure\web\controller"
 mkdir "%BASE%\infrastructure\web\exception"
 
-# Shared
+REM Shared
 mkdir "%BASE%\shared"
 mkdir "%BASE%\shared\exception"
 
 
-echo Paquetes creados exitosamente bajo %ROOT%
+echo Paquetes creados exitosamente bajo %cd%
 pause
-
 ```
 
 ### Info al iniciar el Microservicio
