@@ -171,6 +171,11 @@ java -cp jasypt-1.9.3.jar org.jasypt.intf.cli.JasyptPBEStringEncryptionCLI \
   ivGeneratorClassName=org.jasypt.iv.RandomIvGenerator > encript.txt
 ```
 
+## Crear Carpetas de arquitectura Limpia como ejemplo al iniciar
+```
+mkdir -p domain/color/model domain/color/repository domain/color/exception domain/departamento/model domain/departamento/repository domain/departamento/exception application/color application/departamento application/report application/usecase infrastructure/persistence/sqlserver/entity infrastructure/persistence/sqlserver/repository infrastructure/persistence/sqlserver/adapter infrastructure/persistence/postgres/entity infrastructure/persistence/postgres/repository infrastructure/persistence/postgres/adapter infrastructure/persistence/mysql/entity infrastructure/persistence/mysql/repository infrastructure/persistence/mysql/adapter infrastructure/web/controller infrastructure/web/exception resources/reports shared
+```
+
 ### Info al iniciar el Microservicio
 ```
 import org.slf4j.Logger;
