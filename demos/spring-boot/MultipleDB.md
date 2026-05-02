@@ -488,5 +488,7 @@ public class SybaseJpaConfig {
 }
 ```
 
-## NOTA: Si solo hay una configuracion de base datos colocar @Primary a cada metodo y si son mas solo una configuracion puede llevar @Primary
+## NOTA: 
+ Si solo hay una configuración de base datos colocar @Primary a cada método y si son mas solo una configuración puede llevar @Primary
+
 
