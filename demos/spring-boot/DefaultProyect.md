@@ -171,7 +171,9 @@ java -cp jasypt-1.9.3.jar org.jasypt.intf.cli.JasyptPBEStringEncryptionCLI \
   ivGeneratorClassName=org.jasypt.iv.RandomIvGenerator > encript.txt
 ```
 
-## Crear Carpetas de arquitectura Limpia como ejemplo al iniciar crea el archivo "crearPaquetes.sh" y otorga permisos este se debe ejecutar en consola donde esta el metodo main
+## Crear Carpetas de arquitectura Limpia como ejemplo al iniciar 
+
+### crea el archivo "crearPaquetes.sh" para linux
 ```
 #!/bin/bash
 
@@ -223,6 +225,78 @@ mkdir -p "$BASE/infrastructure/web/exception"
 mkdir -p "$BASE/shared/exception"
 
 echo "Paquetes creados exitosamente bajo $ROOT"
+```
+
+### crea el archivo "crearPaquetes.bat" para Windows
+```
+@echo off
+
+set BASE=%ROOT%
+
+# Bootstrap
+mkdir "%BASE%\bootstrap"
+
+# Applicaton
+mkdir "%BASE%\application"
+mkdir "%BASE%\application\color"
+mkdir "%BASE%\application\color\dto"
+mkdir "%BASE%\application\color\service"
+mkdir "%BASE%\application\color\usecase\impl"
+
+mkdir "%BASE%\application\departamento"
+mkdir "%BASE%\application\departamento\dto"
+mkdir "%BASE%\application\departamento\service"
+mkdir "%BASE%\application\departamento\usecase\impl"
+
+mkdir "%BASE%\application\report\port"
+mkdir "%BASE%\application\usecase"
+
+#Domain
+mkdir "%BASE%\domain"
+mkdir "%BASE%\domain\color"
+mkdir "%BASE%\domain\color\exception"
+mkdir "%BASE%\domain\color\model"
+mkdir "%BASE%\domain\color\repository"
+
+mkdir "%BASE%\domain\departamento"
+mkdir "%BASE%\domain\departamento\exception"
+mkdir "%BASE%\domain\departamento\model"
+mkdir "%BASE%\domain\departamento\repository"
+
+# Infrastructure
+mkdir "%BASE%\infrastructure"
+mkdir "%BASE%\infrastructure\config"
+mkdir "%BASE%\infrastructure\email"
+mkdir "%BASE%\infrastructure\persistence\config"
+mkdir "%BASE%\infrastructure\persistence\mysql"
+mkdir "%BASE%\infrastructure\persistence\mysql\adapter"
+mkdir "%BASE%\infrastructure\persistence\mysql\repository"
+mkdir "%BASE%\infrastructure\persistence\mysql\entity"
+mkdir "%BASE%\infrastructure\persistence\postgres"
+mkdir "%BASE%\infrastructure\persistence\postgres\adapter"
+mkdir "%BASE%\infrastructure\persistence\postgres\repository"
+mkdir "%BASE%\infrastructure\persistence\postgres\entity"
+mkdir "%BASE%\infrastructure\persistence\sqlserver"
+mkdir "%BASE%\infrastructure\persistence\sqlserver\adapter"
+mkdir "%BASE%\infrastructure\persistence\sqlserver\repository"
+mkdir "%BASE%\infrastructure\persistence\sqlserver\entity"
+mkdir "%BASE%\infrastructure\persistence\sybase"
+mkdir "%BASE%\infrastructure\persistence\sybase\adapter"
+mkdir "%BASE%\infrastructure\persistence\sybase\repository"
+mkdir "%BASE%\infrastructure\persistence\sybase\entity"
+
+# Web
+mkdir "%BASE%\infrastructure\web\controller"
+mkdir "%BASE%\infrastructure\web\exception"
+
+# Shared
+mkdir "%BASE%\shared"
+mkdir "%BASE%\shared\exception"
+
+
+echo Paquetes creados exitosamente bajo %ROOT%
+pause
+
 ```
 
 ### Info al iniciar el Microservicio
