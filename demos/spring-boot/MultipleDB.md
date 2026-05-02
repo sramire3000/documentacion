@@ -95,4 +95,105 @@ com.example.demo_multi_db
 
 ## Archuvo "application.properties"
 ```
+# =============================================
+# JASYPT
+# =============================================
+# Algoritmo de encriptación
+jasypt.encryptor.algorithm=PBEWITHHMACSHA512ANDAES_256
+# Generador de vector de inicialización (IV) aleatorio
+jasypt.encryptor.iv-generator-classname=org.jasypt.iv.RandomIvGenerator
+
+# =============================================
+# Hibernate (Si se usa)
+# =============================================
+logging.level.org.hibernate.sql=debug
+logging.level.org.hibernate=INFO
+logging.level.org.hibernate.SQL=DEBUG
+
+# =============================================
+# JPA (Si se usa)
+# =============================================
+spring.jpa.defer-datasource-initialization=true
+spring.jpa.open-in-view=false
+
+# =============================================
+# DATASOURCE - SQL Server 2017
+# =============================================
+app.jpa.sqlserver.jdbc-url=jdbc:sqlserver://host.docker.internal:1433;databaseName=Arreconsa;encrypt=false;trustServerCertificate=true
+app.jpa.sqlserver.username=ENC(SynWXXW3P48VAglqBzbH2fwo0EJxn31rHVGYqlhV+pA/oE6//IR6FRZjnuytc5RV)
+app.jpa.sqlserver.password=ENC(zqdtOH9UuSjQvFrU2LQmE/qjRPglvRSNgMAV2xWMGPB5ik9FTyRVtKMeCbDnSgKR)
+app.jpa.sqlserver.driver-class-name=com.microsoft.sqlserver.jdbc.SQLServerDriver
+app.jpa.sqlserver.minimum-idle=2
+app.jpa.sqlserver.maximum-pool-size=10
+app.jpa.sqlserver.connection-timeout=30000
+app.jpa.sqlserver.validation-timeout=5000
+app.jpa.sqlserver.idle-timeout=600000
+app.jpa.sqlserver.max-lifetime=1800000
+app.jpa.sqlserver.keepalive-time=300000
+app.jpa.sqlserver.pool-name=SqlServerPool
+app.jpa.sqlserver.hibernate.ddl-auto=none
+app.jpa.sqlserver.hibernate.dialect=org.hibernate.dialect.SQLServerDialect
+app.jpa.sqlserver.show-sql=true
+app.jpa.sqlserver.format-sql=true
+
+# =============================================
+# DATASOURCE - PostgreSQL
+# =============================================
+app.jpa.postgres.jdbc-url=jdbc:postgresql://host.docker.internal:5432/Arreconsa
+app.jpa.postgres.username=ENC(SynWXXW3P48VAglqBzbH2fwo0EJxn31rHVGYqlhV+pA/oE6//IR6FRZjnuytc5RV)
+app.jpa.postgres.password=ENC(zqdtOH9UuSjQvFrU2LQmE/qjRPglvRSNgMAV2xWMGPB5ik9FTyRVtKMeCbDnSgKR)
+app.jpa.postgres.driver-class-name=org.postgresql.Driver
+app.jpa.postgres.minimum-idle=2
+app.jpa.postgres.maximum-pool-size=10
+app.jpa.postgres.connection-timeout=30000
+app.jpa.postgres.validation-timeout=5000
+app.jpa.postgres.idle-timeout=600000
+app.jpa.postgres.max-lifetime=1800000
+app.jpa.postgres.keepalive-time=300000
+app.jpa.postgres.pool-name=PostgresPool
+app.jpa.postgres.hibernate.ddl-auto=none
+app.jpa.postgres.hibernate.dialect=org.hibernate.dialect.PostgreSQLDialect
+app.jpa.postgres.show-sql=true
+app.jpa.postgres.format-sql=true
+
+# =============================================
+# DATASOURCE - Mysql
+# =============================================
+app.jpa.mysql.jdbc-url=jdbc:mysql://host.docker.internal:3307/Arreconsa?allowPublicKeyRetrieval=true&useSSL=false
+app.jpa.mysql.username=ENC(SynWXXW3P48VAglqBzbH2fwo0EJxn31rHVGYqlhV+pA/oE6//IR6FRZjnuytc5RV)
+app.jpa.mysql.password=ENC(zqdtOH9UuSjQvFrU2LQmE/qjRPglvRSNgMAV2xWMGPB5ik9FTyRVtKMeCbDnSgKR)
+app.jpa.mysql.driver-class-name=com.mysql.cj.jdbc.Driver
+app.jpa.mysql.minimum-idle=2
+app.jpa.mysql.maximum-pool-size=10
+app.jpa.mysql.connection-timeout=30000
+app.jpa.mysql.validation-timeout=5000
+app.jpa.mysql.idle-timeout=600000
+app.jpa.mysql.max-lifetime=1800000
+app.jpa.mysql.keepalive-time=300000
+app.jpa.mysql.pool-name=MySqlPool
+app.jpa.mysql.hibernate.ddl-auto=none
+app.jpa.mysql.hibernate.dialect=org.hibernate.dialect.MySQLDialect
+app.jpa.mysql.show-sql=true
+app.jpa.mysql.format-sql=true
+
+# =============================================
+# DATASOURCE - Sybase
+# =============================================
+app.jpa.sybase.jdbc-url=jdbc:jtds:sybase://host.docker.internal:5000/master
+app.jpa.sybase.username=ENC(Pd8UFqx/6VwQZzU4spIcxrvbXKt3IwZ74el9hyVV1nQjKMGbsuDbRkfCvHgVhNgC)
+app.jpa.sybase.password=ENC(XLE/HFJ8GkJ7CkVpms9Ghatj3PlxbmxK2etWV+LvE1jU3dY2GtZhy0G31ooWSg/Y)
+app.jpa.sybase.driver-class-name=net.sourceforge.jtds.jdbc.Driver
+app.jpa.sybase.connection-test-query=SELECT 1
+app.jpa.sybase.minimum-idle=2
+app.jpa.sybase.maximum-pool-size=10
+app.jpa.sybase.connection-timeout=30000
+app.jpa.sybase.validation-timeout=5000
+app.jpa.sybase.idle-timeout=600000
+app.jpa.sybase.max-lifetime=1800000
+app.jpa.sybase.keepalive-time=300000
+app.jpa.sybase.pool-name=SybasePool
+app.jpa.sybase.hibernate.ddl-auto=none
+app.jpa.sybase.hibernate.dialect=org.hibernate.community.dialect.SybaseASELegacyDialect
+app.jpa.sybase.show-sql=true
+app.jpa.sybase.format-sql=true
 ```
