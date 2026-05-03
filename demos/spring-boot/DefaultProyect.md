@@ -178,6 +178,8 @@ java -cp jasypt-1.9.3.jar org.jasypt.intf.cli.JasyptPBEStringEncryptionCLI ^
   algorithm=PBEWITHHMACSHA512ANDAES_256 ^
   ivGeneratorClassName=org.jasypt.iv.RandomIvGenerator > encript.txt
 
+echo Archivo generado encript.txt con la ecriptacion
+
 ```
 
 ### Linux
