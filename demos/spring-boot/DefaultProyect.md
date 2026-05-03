@@ -153,7 +153,7 @@ spring.datasource.password=ENC(QVBJMTAyMw==)
 
 Usar la utilidad de línea de comandos de Jasypt:
 
-### Windows
+### Encriptar en Windows crea un archivo "encriptar.bat"
 ```bash
 @echo off
 
