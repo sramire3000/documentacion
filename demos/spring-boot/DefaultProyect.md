@@ -185,13 +185,43 @@ echo Archivo generado encript.txt con la ecriptacion
 
 ```
 
-### Linux
+### Script para linux "encriptar.sh"
 ```bash
-java -cp jasypt-1.9.3.jar org.jasypt.intf.cli.JasyptPBEStringEncryptionCLI \
-  input="valor_a_encriptar" \
-  password="mi_clave_secreta" \
+#!/bin/bash
+
+# Limpiar la pantalla
+clear
+
+# Asignar argumentos a variables
+CLAVE_SECRETA=$1
+PASSWORD=$2
+
+# Validar el primer argumento
+if [ -z "$CLAVE_SECRETA" ]; then
+    echo "Debes de enviar la clave secreta"
+    echo "Ejemplo: ./encriptar.sh tu_clave_secreta"
+    exit 1
+fi
+
+# Validar el segundo argumento
+if [ -z "$PASSWORD" ]; then
+    echo "Debes de enviar el password para poder encriptarse"
+    echo "Ejemplo: ./encriptar.sh admin"
+    exit 1
+fi
+
+# Ejecutar el comando Java
+# NOTA: Asegúrate de que la ruta al .jar sea correcta para tu sistema Linux
+java -cp "/opt/jasypt/jasypt-1.9.3.jar" org.jasypt.intf.cli.JasyptPBEStringEncryptionCLI \
+  input="$PASSWORD" \
+  password="$CLAVE_SECRETA" \
   algorithm=PBEWITHHMACSHA512ANDAES_256 \
   ivGeneratorClassName=org.jasypt.iv.RandomIvGenerator > encript.txt
+
+# Mostrar resultados en pantalla
+echo "Tu clave secreta = $CLAVE_SECRETA"
+echo "Input            = $PASSWORD"
+echo "Archivo generado encript.txt con la encriptación"
 ```
 
 ## Crear Carpetas de arquitectura Limpia como ejemplo al iniciar 
