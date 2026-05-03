@@ -162,7 +162,7 @@ SET PASSWORD=%2
 
 if "%CLAVE_SECRETA%"=="" (
    echo debes de enviar la clave secreta
-   echo Ejemplo: encriptar.bat admin
+   echo Ejemplo: encriptar.bat tu_clave_secreta
    exit /b 1
 )
 
