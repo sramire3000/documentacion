@@ -50,7 +50,7 @@
 ### Adicionar el nombre del micro en el pom.xml
 ```
 <build>
-	<finalName>app</finalName>
+	<finalName>${project.name}</finalName>
 </build>
 ```
 
