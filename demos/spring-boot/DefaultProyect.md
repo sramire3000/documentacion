@@ -155,11 +155,29 @@ Usar la utilidad de línea de comandos de Jasypt:
 
 ### Windows
 ```bash
-java -cp jasypt-1.9.3.jar org.jasypt.intf.cli.JasyptPBEStringEncryptionCLI `
-  input=dba_3 `
-  password=mi_clave_super_secreta `
-  algorithm=PBEWITHHMACSHA512ANDAES_256 `
+@echo off
+
+SET CLAVE_SECRETA=%1
+SET PASSWORD=%2
+
+if "%CLAVE_SECRETA%"=="" (
+   echo debes de enviar la clave secreta
+   echo Ejemplo: encriptar.bat admin
+   exit /b 1
+)
+
+if "%PASSWORD%"=="" (
+   echo debes de enviar el password para poder encriptarse
+   echo Ejemplo: encriptar.bat admin
+   exit /b 1
+)
+
+java -cp jasypt-1.9.3.jar org.jasypt.intf.cli.JasyptPBEStringEncryptionCLI ^
+  input=%PASSWORD% ^
+  password=%CLAVE_SECRETA% ^
+  algorithm=PBEWITHHMACSHA512ANDAES_256 ^
   ivGeneratorClassName=org.jasypt.iv.RandomIvGenerator > encript.txt
+
 ```
 
 ### Linux
