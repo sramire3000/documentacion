@@ -1,6 +1,6 @@
 # Programacion orientada a aspectos
 
-## Archivo "pom.xml" Version spring 4.0.6
+## Archivo "pom.xml" version spring 4.0.6
 ```
 <!-- AOP -->
 <dependency>
