@@ -26,14 +26,7 @@ git config --global credential.helper manager
 git config --global credential.helper manager-core
 ```
 
-## Repositorio clonar
-
-|                 Comando               |           Descripción                 |
-|---------------------------------------|---------------------------------------|
-|git clone [url_git]                    | Clonar un repositorio                 |
-|git clone -b [nombre_branch] [url_git] | Clonar un repositorio rama especigica |               |
-
-
+## Repositorio 
 
 ### …or create a new repository on the command line
 ```
@@ -45,6 +38,13 @@ git branch -M master
 git remote add origin [url_git]
 git push -u origin master
 ```
+
+##3 Clonar repo
+|                 Comando               |           Descripción                 |
+|---------------------------------------|---------------------------------------|
+|git clone [url_git]                    | Clonar un repositorio                 |
+|git clone -b [nombre_branch] [url_git] | Clonar un repositorio rama especigica |               |
+
 
 ### …or push an existing repository from the command line
 ```
