@@ -3,8 +3,6 @@
 # Download
 -[Download Windows](https://git-scm.com/)
 
-
-
 ## Version de git
 ```
 git --version
@@ -25,6 +23,7 @@ git config --global credential.helper manager
 ```
 git config --global credential.helper manager-core
 ```
+
 
 ## Branch
 
