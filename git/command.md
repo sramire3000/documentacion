@@ -39,20 +39,18 @@ git remote add origin [url_git]
 git push -u origin master
 ```
 
-##3 Clonar repo
+### Clonar repo
 |                 Comando               |           Descripción                 |
 |---------------------------------------|---------------------------------------|
 |git clone [url_git]                    | Clonar un repositorio                 |
 |git clone -b [nombre_branch] [url_git] | Clonar un repositorio rama especifico |               |
 
-
-### …or push an existing repository from the command line
+…or push an existing repository from the command line
 ```
 git remote add origin [url_git]
 git branch -M master
 git push -u origin master
 ```
-
 
 ## Comandos
 
