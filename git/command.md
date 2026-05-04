@@ -34,7 +34,6 @@ SmartyPants converts ASCII punctuation characters into "smart" typographic punct
 
 |             Comando            |           Descripción                |
 |--------------------------------|--------------------------------------|
-|git remote add origin "URL_GIT" | Setear el repsitorio git             |
 |git init                        | Inicaliza un repositorio             |
 |git status                      | Estado del repo local                |
 |git add .                       | Sube todos los archivos repo local   |
