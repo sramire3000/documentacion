@@ -26,6 +26,24 @@ git config --global credential.helper manager
 git config --global credential.helper manager-core
 ```
 
+## Branch
+
+### Muestra la rama donde estoy parado
+```
+git branch
+```
+
+### Clona la rama apartir de donde estoy parado y crea la nueva
+```
+git branch [rama_nueva]
+ngit push -u origin ramita1 
+````
+
+### Cambiar el nombre a una rama
+```
+git branch -m [rama_old] [rama_new]
+```
+
 ## Repositorio 
 
 ### …or create a new repository on the command line
@@ -63,9 +81,8 @@ git push -u origin master
 |git push                         | Guarda los cambios                                 |
 |git pull origin master           | Actualiza los cambios de git alocal                |
 |git reset --hard origin/master   | Actualiza la rama a ultimo estado(pierden cambios) |
-|git branch                       | Muestra la rama donde estoy parado                 |
-|git branch [rama_nueva] /ngit push -u origin ramita1 | Clona la rama apartir de donde estoy parado y crea la nueva |
-|git branch -m [rama_old] [rama_new] | Cambiar el nombre a una rama |
+
+
 |git checkout [nombre de la rama] | cambiarse de rama |
 |git branch -d [nombre de la rama] | Eliminar una rama |
 
