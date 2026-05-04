@@ -131,7 +131,7 @@ git push -u origin master
 |git push                         | Guarda los cambios                                 |
 |git pull origin master           | Actualiza los cambios de git alocal                |
 |git reset --hard origin/master   | Actualiza la rama a ultimo estado(pierden cambios) |
-|git diff master [tu_brach_trabajo]   | busca las diferencias |
+|git diff master [tu_branch_trabajo]   | busca las diferencias |
 
 
 
