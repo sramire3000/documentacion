@@ -64,7 +64,9 @@ git push -u origin master
 |git pull origin master           | Actualiza los cambios de git alocal                |
 |git reset --hard origin/master   | Actualiza la rama a ultimo estado(pierden cambios) |
 
-## Resolver un conflicto pero quieres que tu cambio prevalezca totalmente con el archivo "README.md"
+## Solución de conflictos
+
+### Resolver un conflicto pero quieres que tu cambio prevalezca totalmente con el archivo "README.md"
 ```
 # Traer los cambios del servidor (Fetch)
 git fetch origin
