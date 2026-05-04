@@ -28,15 +28,12 @@ git config --global credential.helper manager-core
 
 ## Repositorio
 
-### Clonar un repositorio
-```
-git clone [url_git]
-```
+|                 Comando               |           Descripción                 |
+|---------------------------------------|---------------------------------------|
+|git clone [url_git]                    | Clonar un repositorio                 |
+|git clone -b [nombre_branch] [url_git] | Clonar un repositorio rama especigica |               |
 
-### Clonar un repositorio rama especigica
-```
-git clone -b [nombre_branch] [url_git]
-```
+
 
 ### …or create a new repository on the command line
 ```
