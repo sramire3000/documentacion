@@ -66,7 +66,7 @@ git push -u origin master
 
 ## Solución de conflictos
 
-### Resolver un conflicto pero quieres que tu cambio prevalezca totalmente con el archivo "README.md"
+### Resolver un conflicto pero quieres que tu cambio prevalezca totalmente tu cambio "README.md"
 ```
 # Traer los cambios del servidor (Fetch)
 git fetch origin
