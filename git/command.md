@@ -1,12 +1,17 @@
 # COMANDOS DE GIT
 
-### Version de git
+## Version de git
 ```
 git --version
 ```
 
-### Git config
+## Git config
 ```
 git config --global user.name "John Doe"
 git config --global user.email johndoe@example.com
+```
+
+## Guarda las credenciales
+```
+git config --global credential.helper cache
 ```
