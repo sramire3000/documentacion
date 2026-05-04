@@ -64,7 +64,8 @@ git push -u origin master
 |git pull origin master           | Actualiza los cambios de git alocal                |
 |git reset --hard origin/master   | Actualiza la rama a ultimo estado(pierden cambios) |
 |git barnch                       | Muestra la rama donde estoy parado                 |
-|git barnch rama1                 | Clona la rama apartir de donde estoy parado y crea la nueva |
+|git barnch [rama_nueva]          | Clona la rama apartir de donde estoy parado y crea la nueva |
+|git barnch -m [rama_old] [rama_new] | Cambiar el nombre a una rama |
 
 ## Solución de conflictos
 
