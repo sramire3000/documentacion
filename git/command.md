@@ -61,6 +61,7 @@ git push -u origin master
 |git add .                        | Sube todos los archivos repo local                 |
 |git comit -m "Texto del cambio"  | Comitea los cambios                                |
 |git push                         | Guarda los cambios                                 |
+|git pull origin master           | Actualiza los cambios de git alocal                |
 |git reset --hard origin/master   | Actualiza la rama a ultimo estado(pierden cambios) |
 
 
