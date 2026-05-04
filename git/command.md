@@ -26,7 +26,7 @@ git config --global credential.helper manager
 git config --global credential.helper manager-core
 ```
 
-## Repositorio
+## Repositorio clonar
 
 |                 Comando               |           Descripción                 |
 |---------------------------------------|---------------------------------------|
