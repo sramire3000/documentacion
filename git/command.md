@@ -82,4 +82,42 @@ git commit -m "Solucionando conflicto: prevalece mi versión de README.md"
 git push origin tu-rama --force
 ```
 
+### Resolver el conflicto pero quieres hacer un merge
+```
+# Guardar cambios en local
+git add README.md
+git commit -m "Mis cambios temporales antes del merge"
+
+# Sincroniza tu repositorio
+git fetch origin
+
+# Intenta el Merge
+git merge origin/master
+
+#. Resuelve el conflicto manualmente
+Como ambos tocaron el mismo archivo (README.md), Git se detendrá y te dirá: "Automatic merge failed; fix conflicts and then commit the result".
+
+Abre el archivo README.md en tu editor (puedes usar nano que recién instalamos). Verás unas marcas extrañas que dividen ambos cambios:
+
+<<<<<<< HEAD: Todo lo que esté debajo de esto es tu cambio local.
+
+=======: Esta es la línea divisoria.
+
+>>>>>>> origin/master: Todo lo que esté arriba de esto es el cambio que estaba en GitHub.
+
+Lo que debes hacer:
+
+Borra las marcas (<<<<, ====, >>>>).
+
+Acomoda el texto para que ambos cambios queden como tú quieras (uno arriba del otro, o mezclados).
+
+Guarda el archivo.
+
+
+# Finaliza el proceso
+git add README.md
+git commit -m "Merge de cambios en README: integrando ambas versiones"
+git push origin master
+```
+
 -[Stack Edit](https://stackedit.io/app#)
