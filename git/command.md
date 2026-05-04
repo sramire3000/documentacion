@@ -43,7 +43,7 @@ git push -u origin master
 |                 Comando               |           Descripción                 |
 |---------------------------------------|---------------------------------------|
 |git clone [url_git]                    | Clonar un repositorio                 |
-|git clone -b [nombre_branch] [url_git] | Clonar un repositorio rama especigica |               |
+|git clone -b [nombre_branch] [url_git] | Clonar un repositorio rama especifico |               |
 
 
 ### …or push an existing repository from the command line
