@@ -15,3 +15,8 @@ git config --global user.email johndoe@example.com
 ```
 git config --global credential.helper manager
 ```
+
+## Guarda las credenciales en el gestor de linnux
+```
+git config --global credential.helper manager-core
+```
