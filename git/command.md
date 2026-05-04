@@ -105,9 +105,7 @@ for branch in $(git branch -r | grep -v 'HEAD'); do
 done
 ```
 
-
-
-## Repositorio 
+## REPOSITORIO 
 
 ### …or create a new repository on the command line
 ```
@@ -133,7 +131,7 @@ git branch -M master
 git push -u origin master
 ```
 
-## Comandos
+## COMANDOS
 
 |             Comando             |           Descripción                              |
 |---------------------------------|----------------------------------------------------|
@@ -149,7 +147,7 @@ git push -u origin master
 
 
 
-## Solución de conflictos
+## SOLUCIÓN DE CONFLICTOS
 
 ### Resolver un conflicto pero quieres que tu cambio prevalezca totalmente tu cambio "README.md"
 ```
@@ -228,7 +226,7 @@ git config user. password [token_gerado]
 git remote add origin [url_git]
 ```
 
-## View Configuration
+## VIEW CONFIGURATION
 
 ### Ver toda la configuración activa
 ```
