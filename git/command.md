@@ -120,25 +120,6 @@ git commit -m "Merge de cambios en README: integrando ambas versiones"
 git push origin master
 ```
 
-### Merge automatico
-```
-# Guarda tus cambios
-git add README.md
-git commit -m "Preparando para merge"
-git merge origin/master
 
-# El comando "Auto-Resolver" (Aceptar ambos)
-# Esto intentará mezclar y, si hay conflicto, tú decides quién tiene prioridad 
-# pero manteniendo la estructura del merge.
-git merge -X ours origin/master
-
-# Usando git pull --rebase (El favorito de los desarrolladores)
-git pull --rebase origin master
-
-# ¿Cómo saber si funcionó?
-nano README.md
-git status
-
-```
 
 -[Stack Edit](https://stackedit.io/app#)
