@@ -59,7 +59,13 @@ git checkout master
 
 # Merge
 git merge [ramaOrigen] [ramaDestino]
+
+# Adicionar los cambios
+git add .
+git commit -m "Cambios de ramita1 => master"
+git push
 ```
+
 ### Respaldo de rama
 ```
 git archive --format zip --output respaldo_rama.zip nombre_de_tu_rama
