@@ -44,6 +44,16 @@ ngit push -u origin ramita1
 git branch -m [rama_old] [rama_new]
 ```
 
+### cambiarse de rama
+```
+git checkout [nombre de la rama]
+```
+
+### Eliminar una rama
+```
+|git branch -d [nombre de la rama]
+```
+
 ## Repositorio 
 
 ### …or create a new repository on the command line
@@ -83,8 +93,6 @@ git push -u origin master
 |git reset --hard origin/master   | Actualiza la rama a ultimo estado(pierden cambios) |
 
 
-|git checkout [nombre de la rama] | cambiarse de rama |
-|git branch -d [nombre de la rama] | Eliminar una rama |
 
 ## Solución de conflictos
 
