@@ -35,7 +35,7 @@ git branch
 ### Clona la rama apartir de donde estoy parado y crea la nueva
 ```
 git branch [rama_nueva]
-ngit push -u origin ramita1 
+git push -u origin ramita1 
 ````
 
 ### Cambiar el nombre a una rama
