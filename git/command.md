@@ -209,11 +209,18 @@ git push origin master
 
 ### crear un Token en tu cuenta
 -[generate Token](https://github.com/settings/tokens)
-
 ```
 Note          : nombre_token
 Expiration    : No Expiration
 Select Scopes : repo mark
 ```
+### Configurar
+```
+git init
+git config user.name "nombre usuario git"
+git config user.email "email"
+git config user. password [token_gerado]
+```
+
 
 -[Stack Edit](https://stackedit.io/app#)
