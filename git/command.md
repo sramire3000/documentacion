@@ -34,10 +34,13 @@ SmartyPants converts ASCII punctuation characters into "smart" typographic punct
 
 |             Comando            |           Descripción                |
 |--------------------------------|--------------------------------------|
+|git remote add origin "URL_GIT" | Setear el repsitorio git             |
 |git init                        | Inicaliza un repositorio             |
 |git status                      | Estado del repo local                |
-|git add .                       | Guarda todos los archivos repo local |
-|git remote add origin "URL_GIT" | Setear el repsitorio git             |
+|git add .                       | Sube todos los archivos repo local   |
+|git comit-m "Texto del cambio"  | Comitea los cambios                  |
+|git push                        | Guarda los cambios                   |
+
 
 
 You can render UML diagrams using [Mermaid](https://mermaidjs.github.io/). For example, this will produce a sequence diagram:
