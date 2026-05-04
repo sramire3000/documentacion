@@ -26,11 +26,28 @@ git config --global credential.helper manager
 git config --global credential.helper manager-core
 ```
 
+## Repositorio
+
+### …or create a new repository on the command line
+```
+echo "# prueba" >> README.md
+git init
+git add README.md
+git commit -m "first commit"
+git branch -M master
+git remote add origin [url_git]
+git push -u origin master
+```
+
+### …or push an existing repository from the command line
+```
+git remote add origin [url_git]
+git branch -M master
+git push -u origin master
+```
+
 
 ## Comandos
-
-SmartyPants converts ASCII punctuation characters into "smart" typographic punctuation HTML entities. For example:
-
 
 |             Comando            |           Descripción                |
 |--------------------------------|--------------------------------------|
