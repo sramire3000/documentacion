@@ -67,6 +67,7 @@ git push -u origin master
 |git branch [rama_nueva]          | Clona la rama apartir de donde estoy parado y crea la nueva |
 |git branch -m [rama_old] [rama_new] | Cambiar el nombre a una rama |
 |git checkout [nombre de la rama] | cambiarse de rama |
+|git branch -d [nombre de la rama] | Eliminar una rama |
 
 ## Solución de conflictos
 
