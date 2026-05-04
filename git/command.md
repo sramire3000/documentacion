@@ -54,6 +54,9 @@ git branch -d [nombre de la rama]
 ```
 ### Hacer un merge entre ramas
 ```
+# Ubicarse en la rama que va recibir los cambios
+git checkout master
+
 # Merge
 git merge [ramaOrigen] [ramaDestino]
 ```
