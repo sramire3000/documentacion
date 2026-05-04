@@ -38,7 +38,7 @@ SmartyPants converts ASCII punctuation characters into "smart" typographic punct
 |git status                      | Estado del repo local                |
 |git add .                       | Guarda todos los archivos repo local |
 |git remote add origin "URL_GIT" | Setear el repsitorio git             |
-------------------------------------------------------------------------|
+
 
 You can render UML diagrams using [Mermaid](https://mermaidjs.github.io/). For example, this will produce a sequence diagram:
 
