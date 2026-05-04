@@ -64,6 +64,20 @@ git push -u origin master
 |git pull origin master           | Actualiza los cambios de git alocal                |
 |git reset --hard origin/master   | Actualiza la rama a ultimo estado(pierden cambios) |
 
+## Resolver un conflicto pero quieres que tu cambio prevalezca totalmente con el archivo "README.md"
+```
+# Traer los cambios del servidor (Fetch)
+git fetch origin
 
+# Sobrescribir el archivo con tu versión (Checkout)
+git checkout --ours README.md
+
+# Luego marcas el conflicto como resuelto
+git add README.md
+git commit -m "Solucionando conflicto: prevalece mi versión de README.md"
+
+# Subir tus cambios cambia "tu-rama" por tu rama
+git push origin tu-rama --force
+```
 
 -[Stack Edit](https://stackedit.io/app#)
