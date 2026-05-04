@@ -54,13 +54,13 @@ git push -u origin master
 
 ## Comandos
 
-|             Comando            |           Descripción                |
-|--------------------------------|--------------------------------------|
-|git init                        | Inicaliza un repositorio             |
-|git status                      | Estado del repo local                |
-|git add .                       | Sube todos los archivos repo local   |
-|git comit-m "Texto del cambio"  | Comitea los cambios                  |
-|git push                        | Guarda los cambios                   |
+|             Comando             |           Descripción                |
+|---------------------------------|--------------------------------------|
+|git init                         | Inicaliza un repositorio             |
+|git status                       | Estado del repo local                |
+|git add .                        | Sube todos los archivos repo local   |
+|git comit -m "Texto del cambio"  | Comitea los cambios                  |
+|git push                         | Guarda los cambios                   |
 
 
 
