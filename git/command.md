@@ -66,7 +66,8 @@ Ejecuta esto en tu consola:
 git bundle create respaldo_total.bundle --all
 ```
 
-### Respaldar todas las ramas en archivos ZIP individuales
+### Respaldar todas las ramas en archivos ZIP individuales 
+PowerShell
 ```
 git branch -r | ForEach-Object { 
     $branch = $_.Trim().Replace("origin/", ""); 
