@@ -214,13 +214,55 @@ Note          : nombre_token
 Expiration    : No Expiration
 Select Scopes : repo mark
 ```
-### Configurar
+
+### Configurar por primera vez
 ```
 git init
 git config user.name "nombre usuario git"
 git config user.email "email"
 git config user. password [token_gerado]
 ```
+
+### Configurar si ya existe
+```
+git remote add origin [url_git]
+```
+
+## View Configuration
+
+### Ver toda la configuración activa
+```
+git config --list
+```
+
+### Ver el origen de cada configuración
+```
+git config --list --show-origin
+```
+
+### Ver niveles específicos
+```
+# Local (solo del proyecto actual):
+git config --list --local
+
+# Global (de tu usuario de Windows):
+git config --list --global
+
+# System (de toda la máquina):
+git config --list --system
+```
+
+### Consultar un valor específico
+```
+git config user.email
+```
+
+### Tip Pro: Editar la configuración
+```
+git config --global --edit
+```
+
+
 
 
 -[Stack Edit](https://stackedit.io/app#)
