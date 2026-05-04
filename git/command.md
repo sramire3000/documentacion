@@ -30,8 +30,10 @@ git config --global credential.helper manager-core
 
 SmartyPants converts ASCII punctuation characters into "smart" typographic punctuation HTML entities. For example:
 
-|    Comando     |  Descripción                  |
-|----------------|-------------------------------|
-|git init        | Inicaliza un repositorio      |
-|Quotes          |`"Isn't this fun?"`            |
-|Dashes          |`-- is en-dash, --- is em-dash`|
+|    Comando                     |  Descripción                  |
+|--------------------------------|-------------------------------|
+|git init                        | Inicaliza un repositorio      |
+|Quotes                          |`"Isn't this fun?"`            |
+|Dashes                          |`-- is en-dash, --- is em-dash`|
+|git remote add origin "URL_GIT" |`-- is en-dash, --- is em-dash`|
+------------------------------------------------------------------
