@@ -1,5 +1,9 @@
 # COMANDOS DE GIT
 
+# Download
+-[Download Windows](https://git-scm.com/)
+
+
 ## Version de git
 ```
 git --version
