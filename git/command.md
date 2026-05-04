@@ -2,7 +2,7 @@
 
 # Download
 -[Download Windows](https://git-scm.com/)
--[Stack Edit](https://stackedit.io/app#)
+
 
 
 ## Version de git
@@ -64,3 +64,4 @@ git push -u origin master
 
 
 
+-[Stack Edit](https://stackedit.io/app#)
