@@ -51,7 +51,7 @@ git checkout [nombre de la rama]
 
 ### Eliminar una rama
 ```
-|git branch -d [nombre de la rama]
+git branch -d [nombre de la rama]
 ```
 
 ## Repositorio 
