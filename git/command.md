@@ -78,6 +78,19 @@ git branch -r | ForEach-Object {
 }
 ```
 
+Linux
+```
+for branch in $(git branch -r | grep -v 'HEAD'); do
+    # Limpiamos el nombre de la rama (quitamos 'origin/')
+    clean_name=$(echo $branch | sed 's/origin\///')
+    
+    # Reemplazamos barras inclinadas por guiones bajos para el nombre del archivo
+    file_name=$(echo $clean_name | tr '/' '_')
+    
+    echo "Respaldando rama: $clean_name..."
+    git archive --format zip --output "backup_${file_name}.zip" "$branch"
+done
+```
 
 
 
