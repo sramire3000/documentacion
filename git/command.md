@@ -39,3 +39,12 @@ SmartyPants converts ASCII punctuation characters into "smart" typographic punct
 |git add .                       | Guarda todos los archivos repo local |
 |git remote add origin "URL_GIT" | Setear el repsitorio git             |
 ------------------------------------------------------------------------|
+
+
+```mermaid
+graph LR
+A[Square Rect] -- Link text --> B((Circle))
+A --> C(Round Rect)
+B --> D{Rhombus}
+C --> D
+```
