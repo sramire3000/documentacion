@@ -53,6 +53,33 @@ git checkout [nombre de la rama]
 git branch -d [nombre de la rama]
 ```
 
+### Respaldo de rama
+```
+git archive --format zip --output respaldo_rama.zip nombre_de_tu_rama
+```
+
+###Crear un "Bundle" (El respaldo profesional de Git)
+Si quieres un solo archivo que contenga absolutamente todo (todas las ramas, todos los commits y todo el historial) para poder restaurarlo después en otra computadora como un repositorio completo, lo ideal es usar un bundle.
+
+Ejecuta esto en tu consola:
+```
+git bundle create respaldo_total.bundle --all
+```
+
+### Respaldar todas las ramas en archivos ZIP individuales
+```
+git branch -r | ForEach-Object { 
+    $branch = $_.Trim().Replace("origin/", ""); 
+    if ($branch -notmatch "HEAD") {
+        git archive --format zip --output "backup_$($branch.Replace('/', '_')).zip" "origin/$branch"
+        Write-Host "Respaldada rama: $branch"
+    }
+}
+```
+
+
+
+
 ## Repositorio 
 
 ### …or create a new repository on the command line
