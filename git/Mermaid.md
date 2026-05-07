@@ -22,7 +22,7 @@ erDiagram
     CUSTOMER }|..|{ DELIVERY-ADDRESS : uses
 ```
 
-### Flowchart
+## Flowchart
 ```mermaid
 graph LR
 A[Square Rect] -- Link text --> B((Circle))
