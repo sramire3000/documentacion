@@ -1,7 +1,7 @@
 # EKEMPLOS DE DIAGRAMAS mermaid
 
 
-### Grafico
+## Grafico
 ```mermaid
 graph LR;
     A--> B & C & D
