@@ -105,7 +105,7 @@ config:
         treeView:
             labelFontSize: '20px'
             labelColor: '#FF0000'
-            lineColor: '#00FF00'
+            lineColor: '#FFFFFF'
 ---
 treeView-beta
     "packages"
