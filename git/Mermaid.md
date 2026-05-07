@@ -103,8 +103,8 @@ config:
         lineThickness: 3
     themeVariables:
         treeView:
-            labelFontSize: '20px'
-            labelColor: '#FF0000'
+            labelFontSize: '14px'
+            labelColor: '#FFFFFF'
             lineColor: '#FFFFFF'
 ---
 treeView-beta
