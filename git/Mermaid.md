@@ -99,8 +99,8 @@ kanban
 ---
 config:
     treeView:
-        rowIndent: 80
-        lineThickness: 2
+        rowIndent: 20
+        lineThickness: 3
     themeVariables:
         treeView:
             labelFontSize: '14px'
