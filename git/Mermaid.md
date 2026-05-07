@@ -95,7 +95,7 @@ kanban
 ```
 
 ## Treeview
-```
+```mermaid
 treeView-beta
             "docs"
                 "build"
