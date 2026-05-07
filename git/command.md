@@ -264,7 +264,7 @@ git config --global --edit
 architecture-beta
     group api(cloud)[API]
 
-    service db(database)[Database] in api
+    service db(database)[CORE] in api
     service disk1(disk)[Storage] in api
     service disk2(disk)[Storage] in api
     service server(server)[Server] in api
