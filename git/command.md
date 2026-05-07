@@ -262,7 +262,7 @@ git config --global --edit
 
 ```mermaid
 graph LR;
-    Login--> msc-auth 
+    A--> B & C & D 
     B--> A & E
     C--> A & E
     D--> A & E
