@@ -96,15 +96,21 @@ kanban
 
 ## Treeview
 ```mermaid
+---
+config:
+    treeView:
+        rowIndent: 80
+        lineThickness: 3
+    themeVariables:
+        treeView:
+            labelFontSize: '20px'
+            labelColor: '#FF0000'
+            lineColor: '#00FF00'
+---
 treeView-beta
-            "docs"
-                "build"
-                "make.bat"
-                "Makefile"
-                "out"
-                "source"
-                    "build"
-                    "static"
-                        "_templates"
-                        "div. Files"
+    "packages"
+        "mermaid"
+            "src"
+        "parser"
+
 ```
