@@ -109,8 +109,13 @@ config:
 ---
 treeView-beta
     "app"
-        "domain"
+        "application"
             "src"
-        "infraestructure"
+        "bootstrap"
+        "domain"
+            "color"
+            "departamento"
+        "infrastructure"
+        "shared"
 
 ```
