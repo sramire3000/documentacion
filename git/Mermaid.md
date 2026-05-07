@@ -157,6 +157,8 @@ treeView-beta
                     "entity"
                     "repository"
             "web"
+                "controller"
+                "exception"
         "shared"
             "BusinessException.java"
             "DatabaseOperationException.java"
