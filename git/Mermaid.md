@@ -108,9 +108,9 @@ config:
             lineColor: '#FFFFFF'
 ---
 treeView-beta
-    "packages"
-        "mermaid"
+    "app"
+        "domain"
             "src"
-        "parser"
+        "infraestructure"
 
 ```
