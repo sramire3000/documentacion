@@ -99,7 +99,7 @@ kanban
 ---
 config:
     treeView:
-        rowIndent: 20
+        rowIndent: 30
         lineThickness: 3
     themeVariables:
         treeView:
