@@ -1,4 +1,5 @@
 # EKEMPLOS DE DIAGRAMAS MERMAID
+-ss   (https://mermaid.js.org/syntax/examples.html)
 
 
 ## Grafico
