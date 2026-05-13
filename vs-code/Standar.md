@@ -70,7 +70,7 @@
   // Habilita el zoom con la rueda del mouse para ajustar rápidamente el tamaño de fuente según tus necesidades
   "editor.mouseWheelZoom": true,
   // Establece el tamaño de tabulación a 2 espacios para un código más compacto y legible
-  "editor.tabSize": 2,
+  "editor.tabSize": 3,
   // Usa espacios en lugar de tabulaciones para mantener la consistencia en diferentes entornos
   "editor.insertSpaces": true,
   // Permite que el editor detecte automáticamente la configuración de indentación del proyecto para mantener la coherencia
