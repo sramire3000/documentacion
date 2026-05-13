@@ -3,101 +3,135 @@
 ### Configuracion
 ```bash
 {
-  "folders": [
-    {
-      "path": "../fuentes-arreconsa/angular-proyect",
-      "name": "Proyecto Angular",
-    },
-    {
-      "path": "../fuentes-arreconsa/demo",
-      "name": "Demo",
-    },
-    {
-      "path": ".",
-      "name": "Workspace",
-    },
-  ],
-  "settings": {
-    "window.zoomLevel": 0, // Ajusta el nivel de zoom a tu preferencia
-    "workbench.startupEditor": "none", // Evita que se abra un editor al iniciar
-    "breadcrumbs.enabled": false, // Desactiva las migas de pan
+  // WINDOWS
+  "window.zoomLevel": 0,
 
-    //Configuración del editor para mejorar la legibilidad y reducir el desorden visual
-    "editor.minimap.enabled": false, // Desactiva el minimapa
-    "editor.scrollbar.vertical": "hidden", // Oculta la barra de desplazamiento vertical
-    "editor.overviewRulerBorder": false, // Elimina el borde del visor general
-    "editor.hideCursorInOverviewRuler": true, // Oculta el cursor en el visor general
-    "editor.guides.indentation": true, // Desactiva las guías de indentación
-    "editor.glyphMargin": false, // Desactiva el margen de glifos
-    "editor.fontSize": 14, // Ajusta el tamaño de fuente a tu preferencia  (Ojo, esto puede afectar la legibilidad si es demasiado pequeño o grande)
-    "editor.lineHeight": 1.3, // Ajusta la altura de línea a tu preferencia
-    "editor.wordWrap": "off", // Activa el ajuste de línea
-    "editor.matchBrackets": "never", // Desactiva el resaltado de corchetes coincidentes
-    "editor.mouseWheelZoom": true, // Permite hacer zoom con la rueda del ratón
-    "editor.tabSize": 2, // Ajusta el tamaño de tabulación a tu preferencia
-    "editor.insertSpaces": true, // Usa espacios en lugar de tabulaciones
-    "editor.detectIndentation": true, // Detecta automáticamente la indentación del archivo
-    "editor.fontFamily": "Fira Code, Consolas, 'Courier New', monospace", // Cambia la fuente a tu preferencia (Fira Code es una fuente de programación con ligaduras)
-    "editor.fontLigatures": true, // Habilita las ligaduras de fuente
-    "editor.bracketPairColorization.enabled": true, // Habilita la colorización de pares de corchetes
-    "editor.guides.bracketPairs": true, // Habilita las guías de pares de corchetes
-    "editor.semanticHighlighting.enabled": true, // Habilita el resaltado semántico
-    "editor.inlineSuggest.enabled": true, // Habilita las sugerencias en línea
-    "editor.suggest.snippetsPreventQuickSuggestions": false, // Permite sugerencias rápidas incluso cuando hay fragmentos
-    "editor.renderLineHighlight": "gutter", // Resalta la línea actual en el margen
-    "editor.selectionHighlight": false, // Desactiva el resaltado de selección
-
-    // Git settings
-    "git.openRepositoryInParentFolders": "never", // Evita que se abra el repositorio en carpetas padre
-    "git.confirmSync": false, // Desactiva la confirmación al sincronizar
-    "git.enableSmartCommit": true, // Habilita el commit inteligente
-    "gitlens.ai.model": "vscode", // Configura el modelo de IA para GitLens (si estás usando GitLens)
-    "gitlens.ai.vscode.model": "copilot:gpt-4.1", // Configura el modelo de IA específico para Visual Studio Code (si estás usando GitLens)
-    "github.copilot.nextEditSuggestions.enabled": true, // Habilita las sugerencias de edición de Copilot
-
-    // Workbench mejorado
-    "workbench.iconTheme": "material-icon-theme", // Cambia el tema de íconos a Material Icon Theme
-    "vsicons.dontShowNewVersionMessage": true, // Evita el mensaje de nueva versión de los íconos
-    "workbench.sideBar.location": "left", // Mantiene la barra lateral a la izquierda
-    "workbench.editor.showTabs": "multiple", // Muestra las pestañas solo cuando hay más de una
-    "workbench.statusBar.visible": true, // Mantiene la barra de estado visible
-    "workbench.colorCustomizations": {
-      // Personaliza los colores del tema para mejorar la legibilidad y reducir el desorden visual
-      "statusBar.background": "#121016", // Color de fondo de la barra de estado
-      "statusBar.debuggingBackground": "#121016", // Color de fondo de la barra de estado en modo depuración
-      "statusBar.debuggingForeground": "#525156", // Color de primer plano de la barra de estado en modo depuración
-      "debugToolBar.background": "#121016", // Color de fondo de la barra de herramientas de depuración
-      "activityBar.background": "#1a1620", // Color de fondo de la barra de actividad
-      "titleBar.activeBackground": "#1a1620", // Color de fondo de la barra de título activa
-      "editor.lineHighlightBackground": "#1e1a25", // Color de fondo del resaltado de línea
-      "editor.lineHighlightBorder": "#1e1a25", // Color del borde del resaltado de línea
-      "selection.background": "#2a2438", // Color de fondo de la selección en todo el editor
-      "editor.selectionBackground": "#302f34", // Color de fondo de la selección en el editor
-      "editor.background": "#000000", // Color de fondo del editor
-    },
-
-    // Terminal optimizado
-    "terminal.integrated.fontSize": 12, // Ajusta el tamaño de fuente del terminal a tu preferencia
-    "terminal.integrated.cursorBlinking": true, // Habilita el parpadeo del cursor para mejorar la visibilidad
-    "terminal.integrated.defaultProfile.windows": "PowerShell", // Establece PowerShell como el perfil predeterminado en Windows
-
-    // Formato y Organización de Código
-    "editor.formatOnSave": true, // Formatea el código automáticamente al guardar
-    "editor.formatOnPaste": true, // Formatea el código automáticamente al pegar
-    "editor.formatOnType": true, // Formatea el código automáticamente al escribir
-    "editor.codeActionsOnSave": {
-      // Aplica acciones de código al guardar
-      "source.organizeImports": "always", // Organiza las importaciones automáticamente al guardar
-      "source.fixAll.eslint": "always", // Aplica las correcciones de ESLint automáticamente al guardar
-      "source.fixAll": "always", // Aplica todas las correcciones disponibles automáticamente al guardar
-      "source.sortMembers": "always", // Ordena los miembros de las clases automáticamente al guardar
-    },
-
-    // Files y Explorador
-    "files.autoSave": "afterDelay", // Guarda automáticamente los archivos después de un retraso
-    "files.autoSaveDelay": 1000, // Establece el retraso para el guardado automático a 1 segundo
-    "explorer.confirmDelete": false, // Evita la confirmación al eliminar archivos
-    "explorer.confirmDragAndDrop": false, // Evita la confirmación al arrastrar y soltar archivos
+  // WORKBENCH MEJORADO
+  "workbench.colorCustomizations": {
+    // Color de fondo de la barra de estado
+    "statusBar.background": "#121016",
+    // Color de fondo de la barra de estado en modo depuración
+    "statusBar.debuggingBackground": "#121016",
+    // Color de primer plano de la barra de estado en modo depuración
+    "statusBar.debuggingForeground": "#525156",
+    // Color de fondo de la barra de herramientas de depuración
+    "debugToolBar.background": "#121016",
+    // Color de fondo de la barra de actividad
+    "activityBar.background": "#1a1620",
+    // Color de fondo de la barra de título activa
+    "titleBar.activeBackground": "#1a1620",
+    // Color de fondo del resaltado de línea
+    "editor.lineHighlightBackground": "#1e1a25",
+    // Color del borde del resaltado de línea
+    "editor.lineHighlightBorder": "#1e1a25",
+    // Color de fondo de la selección en todo el editor
+    "selection.background": "#2a2438",
+    // Color de fondo de la selección en el editor
+    "editor.selectionBackground": "#302f34",
+    // Color de fondo del editor
+    "editor.background": "#000000",
   },
+  // No mostrar la página de bienvenida al iniciar VS Code
+  "workbench.startupEditor": "none",
+  // Mantener la barra lateral a la izquierda para una navegación más rápida
+  "workbench.sideBar.location": "left",
+  // Mostrar pestañas solo cuando hay más de un editor abierto para reducir el desorden visual
+  "workbench.editor.showTabs": "multiple",
+  // Mantener la barra de estado visible para información rápida sin ocupar espacio innecesario
+  "workbench.statusBar.visible": true,
+  // Cambia el tema de iconos a tu preferencia (puedes probar con "material-icon-theme" para un estilo moderno o elegir otro tema que te guste)
+  "workbench.iconTheme": "material-icon-theme",
+  // Cambia el tema de color a tu preferencia (puedes probar con "Default High Contrast" para un contraste máximo o elegir otro tema que te guste)
+  "workbench.colorTheme": "Default High Contrast",
+  // Desactiva el desplazamiento pegajoso en los árboles para una navegación más fluida
+  "workbench.tree.enableStickyScroll": false,
+
+  // EDITOR OPTIMIZADO PARA FLUTTER/DART
+  // Desactiva el minimapa para reducir distracciones
+  "editor.minimap.enabled": false,
+  // Oculta la barra de desplazamiento vertical para una apariencia más limpia
+  "editor.scrollbar.vertical": "hidden",
+  // Elimina el borde del área de la regla de visión general para un diseño más minimalista
+  "editor.overviewRulerBorder": false,
+  // Oculta el cursor en la regla de visión general para reducir distracciones
+  "editor.hideCursorInOverviewRuler": true,
+  // Desactiva las guías de indentación para un aspecto más limpio
+  "editor.guides.indentation": false,
+  // Desactiva el margen de glifos para reducir el desorden visual
+  "editor.glyphMargin": false,
+  // Ajusta el tamaño de fuente a tu preferencia para una mejor legibilidad
+  "editor.fontSize": 14,
+  // Ajusta la altura de línea para mejorar la legibilidad sin ocupar demasiado espacio
+  "editor.lineHeight": 1.3,
+  // Activa el ajuste de línea para evitar desplazamientos horizontales y mejorar la legibilidad
+  "editor.wordWrap": "on",
+  // Desactiva el resaltado de corchetes para reducir distracciones visuales
+  "editor.matchBrackets": "never",
+  // Habilita el zoom con la rueda del mouse para ajustar rápidamente el tamaño de fuente según tus necesidades
+  "editor.mouseWheelZoom": true,
+  // Establece el tamaño de tabulación a 2 espacios para un código más compacto y legible
+  "editor.tabSize": 2,
+  // Usa espacios en lugar de tabulaciones para mantener la consistencia en diferentes entornos
+  "editor.insertSpaces": true,
+  // Permite que el editor detecte automáticamente la configuración de indentación del proyecto para mantener la coherencia
+  "editor.detectIndentation": true,
+  // Usa una fuente con ligaduras para mejorar la legibilidad del código
+  "editor.fontFamily": "'Fira Code', 'Cascadia Code', Consolas, 'Courier New', monospace",
+  // Habilita las ligaduras de fuente para mejorar la apariencia de los operadores y símbolos en el código
+  "editor.fontLigatures": true,
+  // Habilita la colorización de pares de corchetes para mejorar la legibilidad del código
+  "editor.bracketPairColorization.enabled": true,
+  // Habilita las guías de pares de corchetes para una mejor visualización de la estructura del código
+  "editor.guides.bracketPairs": true,
+  // Habilita el resaltado semántico para mejorar la legibilidad del código al diferenciar visualmente los elementos según su función
+  "editor.semanticHighlighting.enabled": true,
+  // Habilita las sugerencias en línea para obtener recomendaciones de código sin interrumpir el flujo de escritura
+  "editor.inlineSuggest.enabled": true,
+  // Permite que las sugerencias rápidas se muestren incluso cuando hay fragmentos disponibles para una experiencia de autocompletado más fluida
+  "editor.suggest.snippetsPreventQuickSuggestions": false,
+  // Resalta la línea actual solo en el margen para reducir distracciones visuales
+  "editor.renderLineHighlight": "gutter",
+  // Desactiva el resaltado de selección para reducir distracciones visuales
+  "editor.selectionHighlight": false,
+
+  // FORMATO Y ORGANIZACIÓN
+  // Formatea el código automáticamente al guardar para mantener la consistencia
+  "editor.formatOnSave": true,
+  // Formatea el código automáticamente al pegar para mantener la consistencia
+  "editor.formatOnPaste": true,
+  // Configura las acciones de código para organizar importaciones, aplicar correcciones y ordenar miembros automáticamente al guarda
+  "editor.codeActionsOnSave": {
+    // Organiza las importaciones automáticamente al guardar para mantener el código limpio
+    "source.organizeImports": "always",
+    // Aplica todas las correcciones disponibles al guardar para mantener el código sin errores
+    "source.fixAll": "always",
+    // Ordena los miembros de las clases automáticamente al guardar para mejorar la legibilidad
+    "source.sortMembers": "always",
+  },
+
+  // GIT
+  // Evita que VS Code busque repositorios Git en carpetas superiores para mejorar el rendimiento
+  "git.openRepositoryInParentFolders": "never",
+  // Desactiva la confirmación de sincronización para agilizar el flujo de trabajo de Git
+  "git.confirmSync": false,
+  // Habilita los commits inteligentes para permitir realizar commits sin mensajes cuando no hay cambios o solo cambios sin seguimiento
+  "git.enableSmartCommit": true,
+
+  // BREADCRUMBS
+  // Desactiva los breadcrumbs para una interfaz más limpia
+  "breadcrumbs.enabled": false,
+
+  // TERMINAL OPTIMIZADO
+  // Ajusta el tamaño de fuente del terminal a tu preferencia
+  "terminal.integrated.fontSize": 11.0,
+  // Habilita el parpadeo del cursor para mejorar la visibilidad
+  "terminal.integrated.cursorBlinking": true,
+  // Establece PowerShell como el perfil predeterminado en Windows
+  "terminal.integrated.defaultProfile.windows": "PowerShell",
+
+  // IGNORE RECOMENDACIONES
+  "extensions.ignoreRecommendations": true,
+
 }
+
 ```
