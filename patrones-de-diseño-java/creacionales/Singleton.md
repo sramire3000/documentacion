@@ -8,21 +8,21 @@ Singleton es un patrón de diseño creacional que nos permite asegurarnos de que
 
 ### ConfigurableBean.java en el paquete "config o configuration"
 ```
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
-import com.example.app.configuration.ConfigurableBean;
+@Component // @Scope("singleton") está implícito aquí
+public class ConfigurableBean {
+  private static String message;
 
-@SpringBootApplication
-public class DemoPatronesApplication {
+  public static String getMessage() {
+    return message;
+  }
 
-    public static void main(String[] args) {
-        SpringApplication.run(DemoPatronesApplication.class, args);
-
-        System.out.println("Dato." + ConfigurableBean.getMessage());
-
-    }
-
+  @Value("${myapp.singleton-property: 'Hola desde el singleton!'}")
+  public void setMessage(String msg) {
+    ConfigurableBean.message = msg;
+  }
 }
 ```
 
