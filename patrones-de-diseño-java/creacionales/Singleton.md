@@ -6,7 +6,7 @@ Propósito
 Singleton es un patrón de diseño creacional que nos permite asegurarnos de que una clase tenga una única instancia, a la vez que proporciona un punto de acceso global a dicha instancia.
 
 
-### ConfigurableBean.java en el paquete "config o configuration"
+### La clase "ConfigurableBean.java" en el paquete "config o configuration"
 ```
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
