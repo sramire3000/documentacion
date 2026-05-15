@@ -11,5 +11,6 @@ dart pub global deactivate fvm
 
 # Activa el fvm
 dart pub global activate fvm
+
 echo "✅ ¡Listo!"
 ```
