@@ -21,7 +21,7 @@ public class ConfigurableMsg {
 
   @Value("${myapp.singleton-property: 'Hola desde el singleton!'}")
   public void setMessage(String msg) {
-    ConfigurableBean.message = msg;
+    ConfigurableMsg.message = msg;
   }
 }
 ```
