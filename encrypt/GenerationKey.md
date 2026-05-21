@@ -702,3 +702,14 @@ public class EncryptionController {
   }
 }
 ```
+
+## Ejemplo de Uso
+```
+
+# Injectar el servicio
+@Autowired
+private EncryptionServiceImpl encryptionService;
+
+# Desemcritar
+String decrypted = encryptionService.decrypt(request.getUsuarioCodigo());
+```
