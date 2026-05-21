@@ -698,6 +698,24 @@ public class EncryptionController {
 }
 ```
 
+## Test Ppostman
+```
+#POST ENCRYPT
+http://localhost:8080/encrypt
+#Body
+{
+    "message": "sgomez"
+}
+
+#POST DECRYP
+http://localhost:8080/decrypt
+#Body
+{
+    "encrypted": "RkVWMgQ3q7KePUk4XGriEqNzTGs49e/ZoVat61NI9ze86uGHzAxl68WjJO1iMUEwZFTAU5C0ASSzcnraIrLcdOyZKtQJSQssTGkoGwZuIRFpx5l9ofUrkwYB5a8cr57+Jz80ZAU="
+}
+```
+
+
 ## Ejemplo de Uso
 ```
 
@@ -708,3 +726,6 @@ private EncryptionServiceImpl encryptionService;
 # Desemcritar
 String decrypted = encryptionService.decrypt(request.getUsuarioCodigo());
 ```
+
+
+
