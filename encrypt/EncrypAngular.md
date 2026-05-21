@@ -150,6 +150,19 @@ export class CryptoService {
     return bytes;
   }
 }
-
 ```
 
+## Modo de uso
+```
+//Método Constructor
+constructor(
+private readonly _cryptoService: CryptoService,
+) {}
+
+//Metodo
+//Encriptar el codigo del usuario
+const usuarioCodigoCifrado = await this._cryptoService.encriptar(
+  usuarioCodigo
+);
+
+```
