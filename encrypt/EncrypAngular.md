@@ -159,7 +159,7 @@ constructor(
 private readonly _cryptoService: CryptoService,
 ) {}
 
-//Metodo
+
 //Encriptar el codigo del usuario
 const usuarioCodigoCifrado = await this._cryptoService.encriptar(
   usuarioCodigo
