@@ -1,5 +1,58 @@
 # Generacion de llaves con Spring boot
 
+## Clase "CryptoProperties.java" en el paquete config
+```
+import org.springframework.boot.context.properties.ConfigurationProperties;
+import org.springframework.context.annotation.Configuration;
+
+import lombok.Getter;
+import lombok.Setter;
+
+/**
+ * Configuración de propiedades criptográficas cargadas desde
+ * application.properties.
+ *
+ * Permite almacenar y gestionar las llaves de forma segura a través de
+ * propiedades.
+ *
+ * Ejemplo en application.properties:
+ * crypto.ecc.public-key=BASE64_ENCODED_PUBLIC_KEY
+ * crypto.ecc.private-key=BASE64_ENCODED_PRIVATE_KEY
+ */
+@Configuration
+@ConfigurationProperties(prefix = "crypto")
+@Getter
+@Setter
+public class CryptoProperties {
+
+  @Getter
+  @Setter
+  public static class Ecc {
+    /**
+     * Clave pública ECC en formato Base64.
+     * Se usa para cifrar.
+     */
+    private String publicKey;
+
+    /**
+     * Clave privada ECC en formato Base64.
+     * Se usa para descifrar.
+     * ⚠️ CONFIDENCIAL - nunca compartir o exponer
+     */
+    private String privateKey;
+
+    /**
+     * Nombre descriptivo del keypair (opcional).
+     */
+    private String keyName = "default";
+  }
+
+  private Ecc ecc = new Ecc();
+}
+
+```
+
+
 ## Clase "CryptoUtils.java" en el paquete utils
 ```
 import java.nio.charset.StandardCharsets;
