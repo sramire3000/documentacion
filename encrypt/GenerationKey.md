@@ -389,7 +389,7 @@ public class GenerateKeysApp {
 }
 ```
 
-## Ejecutar la clase "GenerateKeysApp" para que generare el juego de llaves
+Nota : Ejecutar la clase "GenerateKeysApp" para que generare el juego de llaves
 
 ## Ejemplo de configuracion en el application.properties
 ```
