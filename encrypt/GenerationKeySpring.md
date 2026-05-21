@@ -409,9 +409,6 @@ import org.springframework.stereotype.Service;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
-import sv.com.arreconsa.springboot.app.logistica.config.CryptoProperties;
-import sv.com.arreconsa.springboot.app.logistica.utils.CryptoUtils;
-
 /**
  * Servicio de encriptación que integra CryptoUtils con la configuración de
  * Spring.
