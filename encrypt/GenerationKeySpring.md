@@ -702,6 +702,7 @@ public class EncryptionController {
 ```
 #POST ENCRYPT
 http://localhost:8080/encrypt
+
 #Body
 {
     "message": "sgomez"
@@ -709,6 +710,7 @@ http://localhost:8080/encrypt
 
 #POST DECRYP
 http://localhost:8080/decrypt
+
 #Body
 {
     "encrypted": "RkVWMgQ3q7KePUk4XGriEqNzTGs49e/ZoVat61NI9ze86uGHzAxl68WjJO1iMUEwZFTAU5C0ASSzcnraIrLcdOyZKtQJSQssTGkoGwZuIRFpx5l9ofUrkwYB5a8cr57+Jz80ZAU="
