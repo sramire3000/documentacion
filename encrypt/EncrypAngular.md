@@ -2,6 +2,13 @@
 
 ## Archivo "package.json" add librerias
 ```
+"dependencies": {
+    "@noble/ciphers": "^1.1.3",
+    "@noble/curves": "^1.3.0",
+    "@noble/hashes": "^1.3.3",
+    "bcryptjs": "^3.0.2",
+    "crypto-js": "^4.1.1",
+  },
 ```
 
 ## Archivo "nvironment.ts" y "environment.prod.ts"
