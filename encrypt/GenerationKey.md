@@ -2,8 +2,6 @@
 
 ## Clase "CryptoUtils.java" en el paquete utils
 ```
-package sv.com.arreconsa.springboot.app.logistica.utils;
-
 import java.nio.charset.StandardCharsets;
 import java.security.KeyFactory;
 import java.security.KeyPair;
