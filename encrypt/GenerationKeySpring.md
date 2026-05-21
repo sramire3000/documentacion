@@ -399,7 +399,7 @@ crypto.ecc.private-key=[private_key]
 ```
 
 
-## La clase "EncryptionServiceImpl.java" en el paquete de serviceimpl
+## La clase "EncryptionServiceImpl.java" en el paquete de implement
 ```
 import java.security.PrivateKey;
 import java.security.PublicKey;
