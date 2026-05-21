@@ -49,9 +49,7 @@ public class CryptoProperties {
 
   private Ecc ecc = new Ecc();
 }
-
 ```
-
 
 ## Clase "CryptoUtils.java" en el paquete utils
 ```
@@ -390,6 +388,16 @@ public class GenerateKeysApp {
   }
 }
 ```
+
+## Ejecutar la clase "GenerateKeysApp" para que generare el juego de llaves
+
+## Ejemplo de configuracion en el application.properties
+```
+crypto.ecc.key-name=[acc_key]
+crypto.ecc.public-key=[public_key]
+crypto.ecc.private-key=[private_key]
+```
+
 
 ## La clase "EncryptionServiceImpl.java" en el paquete de serviceimpl
 ```
