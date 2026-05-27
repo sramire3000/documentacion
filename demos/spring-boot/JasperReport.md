@@ -106,7 +106,7 @@
 </jasperReport>
 ```
 
-### Entity Cliente.java
+### Entity "Cliente.java"
 ```
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -142,6 +142,26 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface IClienteRepository extends JpaRepository<Cliente, Long> {
 
+}
+```
+
+### Service "IClienteService.java"
+```
+import java.util.List;
+
+public interface IClienteService {
+
+  // Salvar um cliente
+  public Cliente save(Cliente cliente);
+
+  // Listar todos os clientes
+  public List<Cliente> findAll();
+
+  // Buscar um cliente por ID
+  public Cliente findById(Long id);
+
+  // Deletar um cliente por ID
+  public void deleteById(Long id);
 }
 
 ```
