@@ -270,3 +270,34 @@ public class ClienteController {
 
 }
 ```
+
+## Objetos Jaspert Report
+
+### DTO "ReportRequestDto.java"
+```
+import lombok.Data;
+
+@Data
+public class ReportRequestDto {
+
+  private String titulo;
+  private String empresa;
+
+}
+```
+
+### DTO "ReportResponseDto.java"
+```
+import lombok.AllArgsConstructor;
+import lombok.Data;
+
+@Data
+@AllArgsConstructor
+public class ReportResponseDto {
+
+  private String base64;
+
+}
+```
+
+
