@@ -163,5 +163,41 @@ public interface IClienteService {
   // Deletar um cliente por ID
   public void deleteById(Long id);
 }
+```
 
+### Implementacion "ClienteServiceImpl.java"
+```
+import java.util.List;
+
+import org.springframework.stereotype.Service;
+
+import lombok.RequiredArgsConstructor;
+
+@Service
+@RequiredArgsConstructor
+public class ClienteServiceImpl implements IClienteService {
+
+  private final IClienteRepository clienteRepository;
+
+  @Override
+  public Cliente save(Cliente cliente) {
+    return clienteRepository.save(cliente);
+  }
+
+  @Override
+  public List<Cliente> findAll() {
+    return clienteRepository.findAll();
+  }
+
+  @Override
+  public Cliente findById(Long id) {
+    return clienteRepository.findById(id).orElse(null);
+  }
+
+  @Override
+  public void deleteById(Long id) {
+    clienteRepository.deleteById(id);
+  }
+
+}
 ```
