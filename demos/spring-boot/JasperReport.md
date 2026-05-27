@@ -271,6 +271,31 @@ public class ClienteController {
 }
 ```
 
+### la clase "Load.java" en el paquete configuration
+```
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+
+import lombok.RequiredArgsConstructor;
+
+@Configuration
+@RequiredArgsConstructor
+public class Load {
+
+  private final IClienteService clienteService;
+
+  @Bean
+  CommandLineRunner initData() {
+    return args -> {
+      clienteService.save(new Cliente(null, "Hector"));
+      clienteService.save(new Cliente(null, "Walter"));
+    };
+  }
+}
+
+```
+
 ## Objetos Jaspert Report
 
 ### DTO "ReportRequestDto.java"
@@ -300,4 +325,119 @@ public class ReportResponseDto {
 }
 ```
 
+### Interfase "IReportService.java"
+```
+import java.util.List;
+import java.util.Map;
 
+public interface IReportService {
+
+  /**
+   * Genera un PDF a partir de un template JRXML y retorna el resultado en Base64.
+   *
+   * @param templatePath ruta del template dentro de resources (ej:
+   *                     /reports/cliente_report.jrxml)
+   * @param parameters   parámetros enviados al reporte (titulo, empresa, etc.)
+   * @param data         lista de objetos con los datos del reporte
+   * @return PDF codificado en Base64
+   */
+  String generatePdfBase64(String templatePath, Map<String, Object> parameters, List<?> data) throws Exception;
+
+}
+```
+
+### Implementacion "ReportServiceImpl.java"
+```
+import java.io.InputStream;
+import java.util.Base64;
+import java.util.List;
+import java.util.Map;
+
+import org.springframework.stereotype.Service;
+
+import net.sf.jasperreports.engine.JasperCompileManager;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+
+@Service
+public class ReportServiceImpl implements IReportService {
+
+  @Override
+  public String generatePdfBase64(String templatePath, Map<String, Object> parameters, List<?> data) throws Exception {
+    InputStream template = getClass().getResourceAsStream(templatePath);
+    JasperReport jasperReport = JasperCompileManager.compileReport(template);
+    JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(data);
+    JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, dataSource);
+    byte[] pdfBytes = JasperExportManager.exportReportToPdf(jasperPrint);
+    return Base64.getEncoder().encodeToString(pdfBytes);
+  }
+
+}
+```
+
+### Adicionar al Controllador "ClienteController"
+```
+ @PostMapping("/report")
+  public ResponseEntity<ReportResponseDto> generateReport(@RequestBody ReportRequestDto request) {
+    try {
+      List<Cliente> clientes = clienteService.findAll();
+      Map<String, Object> parameters = new HashMap<>();
+      parameters.put("titulo", request.getTitulo());
+      parameters.put("empresa", request.getEmpresa());
+      String base64 = reportService.generatePdfBase64("/reports/cliente_report.jrxml", parameters, clientes);
+      return ResponseEntity.ok(new ReportResponseDto(base64));
+    } catch (Exception e) {
+      e.printStackTrace();
+      return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).build();
+    }
+  }
+```
+
+## Datos iniciales
+
+Al iniciar la aplicación, la clase `Load` inserta automáticamente los siguientes clientes:
+
+| ID | Nombre |
+|----|--------|
+| 1  | Hector |
+| 2  | Walter |
+
+## Endpoints
+
+Base URL: `http://localhost:8080/api/clientes`
+
+### Clientes
+
+| Método   | Ruta              | Descripción                    | Cuerpo (JSON)                  |
+|----------|-------------------|--------------------------------|--------------------------------|
+| `GET`    | `/`               | Lista todos los clientes       | -                              |
+| `GET`    | `/{id}`           | Obtiene un cliente por ID      | -                              |
+| `POST`   | `/`               | Crea un nuevo cliente          | `{ "name": "Juan" }`           |
+| `PUT`    | `/{id}`           | Actualiza un cliente existente | `{ "name": "Juan Actualizado"}`|
+| `DELETE` | `/{id}`           | Elimina un cliente por ID      | -                              |
+
+### Reportes
+
+| Método | Ruta      | Descripción                                   |
+|--------|-----------|-----------------------------------------------|
+| `POST` | `/report` | Genera PDF del listado de clientes en Base64  |
+
+**Request body:**
+```json
+{
+  "titulo": "Listado de Clientes",
+  "empresa": "Mi Empresa S.A."
+}
+```
+
+**Response:**
+```json
+{
+  "base64": "JVBERi0xLjQu..."
+}
+```
+
+> Para visualizar el PDF puedes pegar el valor de `base64` en [base64.guru/converter/decode/pdf](https://base64.guru/converter/decode/pdf).
