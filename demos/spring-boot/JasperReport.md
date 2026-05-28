@@ -380,13 +380,14 @@ public class ReportServiceImpl implements IReportService {
 
 ### Adicionar al Controllador "ClienteController"
 ```
- @PostMapping("/report")
+  @PostMapping("/report")
   public ResponseEntity<ReportResponseDto> generateReport(@RequestBody ReportRequestDto request) {
     try {
       List<Cliente> clientes = clienteService.findAll();
       Map<String, Object> parameters = new HashMap<>();
       parameters.put("titulo", request.getTitulo());
       parameters.put("empresa", request.getEmpresa());
+      parameters.put("LOGO", getClass().getResourceAsStream("/reports/logo.png"));
       String base64 = reportService.generatePdfBase64("/reports/cliente_report.jrxml", parameters, clientes);
       return ResponseEntity.ok(new ReportResponseDto(base64));
     } catch (Exception e) {
