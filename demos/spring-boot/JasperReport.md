@@ -397,6 +397,81 @@ public class ReportServiceImpl implements IReportService {
   }
 ```
 
+# demo-jasper
+
+API REST construida con **Spring Boot 4** que gestiona clientes y genera reportes PDF usando **JasperReports**, retornando el resultado en **Base64**.
+
+---
+
+## Tecnologías
+
+| Tecnología        | Versión  |
+|-------------------|----------|
+| Java              | 17       |
+| Spring Boot       | 4.0.6    |
+| Spring Data JPA   | -        |
+| H2 Database       | en memoria |
+| Lombok            | -        |
+| JasperReports     | 6.21.3   |
+
+---
+
+## Estructura del proyecto
+
+```
+src/main/java/com/example/demo_jasper/
+├── configuration/
+│   └── Load.java               # Carga datos iniciales al arrancar (CommandLineRunner)
+├── controller/
+│   └── ClienteController.java  # Endpoints REST para clientes y reportes
+├── dto/
+│   ├── ReportRequestDto.java   # Parámetros de entrada para el reporte (titulo, empresa)
+│   └── ReportResponseDto.java  # Respuesta del reporte en Base64
+├── entity/
+│   └── Cliente.java            # Entidad JPA mapeada a la tabla "clientes"
+├── implement/
+│   └── ClienteServiceImpl.java # Implementación de IClienteService
+├── report/
+│   ├── IReportService.java     # Interfaz genérica de reportes (reutilizable)
+│   └── ReportServiceImpl.java  # Implementación con JasperReports
+├── repository/
+│   └── IClienteRepository.java # Repositorio JPA (extiende JpaRepository)
+└── services/
+    └── IClienteService.java    # Interfaz de negocio para clientes
+
+src/main/resources/
+├── application.properties      # Configuración de la aplicación
+└── reports/
+    ├── cliente_report.jrxml    # Template JasperReports para el listado de clientes
+    └── logo.png                # Logo que se muestra en el encabezado del reporte PDF
+```
+
+---
+
+## Configuración
+
+```properties
+server.port=8080
+
+# Base de datos H2 en memoria
+spring.datasource.url=jdbc:h2:mem:testdb
+spring.datasource.username=sa
+spring.datasource.password=
+
+# JPA
+spring.jpa.hibernate.ddl-auto=create-drop
+spring.jpa.show-sql=true
+
+# Consola H2
+spring.h2.console.enabled=true
+spring.h2.console.path=/h2-console
+```
+
+> La consola H2 está disponible en: `http://localhost:8080/h2-console`
+> JDBC URL: `jdbc:h2:mem:testdb` | Usuario: `sa` | Contraseña: *(vacía)*
+
+---
+
 ## Datos iniciales
 
 Al iniciar la aplicación, la clase `Load` inserta automáticamente los siguientes clientes:
@@ -405,6 +480,8 @@ Al iniciar la aplicación, la clase `Load` inserta automáticamente los siguient
 |----|--------|
 | 1  | Hector |
 | 2  | Walter |
+
+---
 
 ## Endpoints
 
@@ -442,3 +519,68 @@ Base URL: `http://localhost:8080/api/clientes`
 ```
 
 > Para visualizar el PDF puedes pegar el valor de `base64` en [base64.guru/converter/decode/pdf](https://base64.guru/converter/decode/pdf).
+
+---
+
+## Cómo ejecutar
+
+```bash
+./mvnw spring-boot:run
+```
+
+---
+
+## Generar un nuevo reporte (uso genérico)
+
+El servicio `IReportService` está diseñado para ser reutilizado con cualquier entidad y template.
+
+**Pasos:**
+
+1. Crea un nuevo template `.jrxml` en `src/main/resources/reports/`
+2. Inyecta `IReportService` en tu controlador o servicio:
+
+```java
+private final IReportService reportService;
+```
+
+3. Llama al método con tu propia data y parámetros:
+
+```java
+Map<String, Object> parameters = new HashMap<>();
+parameters.put("titulo", "Mi Reporte");
+parameters.put("empresa", "Mi Empresa");
+parameters.put("LOGO", getClass().getResourceAsStream("/reports/logo.png"));
+
+String base64 = reportService.generatePdfBase64(
+    "/reports/mi_reporte.jrxml",
+    parameters,
+    miListaDeDatos
+);
+```
+
+### Parámetros disponibles en los templates JRXML
+
+| Parámetro  | Tipo              | Descripción                                      |
+|------------|-------------------|--------------------------------------------------|
+| `titulo`   | `String`          | Título del reporte                               |
+| `empresa`  | `String`          | Nombre de la empresa                             |
+| `LOGO`     | `InputStream`     | Logo mostrado en el encabezado (imagen PNG/JPG)  |
+
+Puedes agregar más parámetros en el `Map` y declararlos en el `.jrxml` con:
+```xml
+<parameter name="miParametro" class="java.lang.String"/>
+```
+
+---
+
+## Entidad Cliente
+
+```java
+@Entity
+@Table(name = "clientes")
+public class Cliente {
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String name;
+}
+```
