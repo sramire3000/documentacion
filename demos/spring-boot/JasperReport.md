@@ -496,7 +496,19 @@ public class ReportServiceImpl implements IReportService {
       parameters.put("titulo", request.getTitulo());
       parameters.put("empresa", request.getEmpresa());
       parameters.put("LOGO", getClass().getResourceAsStream("/reports/logo.png"));
-      String base64 = reportService.generatePdfBase64("/reports/cliente_report.jrxml", parameters, clientes);
+
+      // Obtener el formato solicitado (por defecto PDF)
+      String formato = request.getFormato() != null ? request.getFormato() : "PDF";
+
+      // Determinar si debe paginar
+      boolean paginated = true; // Por defecto pagina (para Word y PDF)
+      if ("EXCEL".equalsIgnoreCase(formato)) {
+        // Para Excel, verificar si debe paginar (si no está especificado, no pagina)
+        paginated = request.getPaginated() != null && request.getPaginated();
+      }
+
+      String base64 = reportService.generateReportBase64("/reports/cliente_report.jrxml", parameters, clientes, formato,
+          paginated);
       return ResponseEntity.ok(new ReportResponseDto(base64));
     } catch (Exception e) {
       e.printStackTrace();
@@ -607,17 +619,28 @@ Base URL: `http://localhost:8080/api/clientes`
 
 ### Reportes
 
-| Método | Ruta      | Descripción                                   |
-|--------|-----------|-----------------------------------------------|
-| `POST` | `/report` | Genera PDF del listado de clientes en Base64  |
+| Método | Ruta      | Descripción                                           | Formatos soportados |
+|--------|-----------|-------------------------------------------------------|---------------------|
+| `POST` | `/report` | Genera reportes del listado de clientes en Base64     | PDF, Excel, Word    |
 
 **Request body:**
 ```json
 {
   "titulo": "Listado de Clientes",
-  "empresa": "Mi Empresa S.A."
+  "empresa": "Mi Empresa S.A.",
+  "formato": "PDF",
+  "paginated": true
 }
 ```
+
+**Parámetros:**
+- `titulo` (string): Título del reporte
+- `empresa` (string): Nombre de la empresa
+- `formato` (string, opcional): Formato del reporte. Opciones: `PDF`, `EXCEL`, `WORD`. **Defecto:** `PDF`
+- `paginated` (boolean, opcional):
+  - Para **Excel**: `false` para una sola hoja (defecto), `true` para paginar
+  - Para **Word**: Se respeta el valor especificado (defecto `true`)
+  - Para **PDF**: Siempre pagina
 
 **Response:**
 ```json
@@ -626,7 +649,7 @@ Base URL: `http://localhost:8080/api/clientes`
 }
 ```
 
-> Para visualizar el PDF puedes pegar el valor de `base64` en [base64.guru/converter/decode/pdf](https://base64.guru/converter/decode/pdf).
+> Para visualizar el PDF/Excel/Word puedes pegar el valor de `base64` en [base64.guru](https://base64.guru/converter/decode)
 
 ---
 
@@ -635,6 +658,69 @@ Base URL: `http://localhost:8080/api/clientes`
 ```bash
 ./mvnw spring-boot:run
 ```
+
+---
+
+## Generación de reportes en múltiples formatos
+
+Desde la versión actualizada, el endpoint `/api/clientes/report` soporta tres formatos: **PDF**, **Excel** y **Word**.
+
+### Ejemplos de uso
+
+#### 1. Generar reporte en PDF (defecto)
+```json
+POST /api/clientes/report
+
+{
+  "titulo": "Reporte de Clientes",
+  "empresa": "Mi Empresa",
+  "formato": "PDF"
+}
+```
+
+#### 2. Generar reporte en Excel (sin paginar - una sola hoja)
+```json
+POST /api/clientes/report
+
+{
+  "titulo": "Reporte de Clientes",
+  "empresa": "Mi Empresa",
+  "formato": "EXCEL",
+  "paginated": false
+}
+```
+
+#### 3. Generar reporte en Excel (paginado - múltiples hojas)
+```json
+POST /api/clientes/report
+
+{
+  "titulo": "Reporte de Clientes",
+  "empresa": "Mi Empresa",
+  "formato": "EXCEL",
+  "paginated": true
+}
+```
+
+#### 4. Generar reporte en Word
+```json
+POST /api/clientes/report
+
+{
+  "titulo": "Reporte de Clientes",
+  "empresa": "Mi Empresa",
+  "formato": "WORD",
+  "paginated": true
+}
+```
+
+### Comportamiento por formato
+
+| Formato | Sin `paginated` | Con `paginated: false` | Con `paginated: true` |
+|---------|-----------------|------------------------|----------------------|
+| **PDF** | Pagina (defecto) | Pagina | Pagina |
+| **EXCEL** | Una sola hoja | Una sola hoja | Múltiples hojas (una por página) |
+| **WORD** | Pagina | Respeta config | Respeta config |
 
 ---
 
@@ -651,7 +737,7 @@ El servicio `IReportService` está diseñado para ser reutilizado con cualquier 
 private final IReportService reportService;
 ```
 
-3. Llama al método con tu propia data y parámetros:
+3. **Opción A:** Llama al método clásico para generar PDF:
 
 ```java
 Map<String, Object> parameters = new HashMap<>();
@@ -663,6 +749,32 @@ String base64 = reportService.generatePdfBase64(
     "/reports/mi_reporte.jrxml",
     parameters,
     miListaDeDatos
+);
+```
+
+4. **Opción B:** Llama al método nuevo para generar en múltiples formatos:
+
+```java
+Map<String, Object> parameters = new HashMap<>();
+parameters.put("titulo", "Mi Reporte");
+parameters.put("empresa", "Mi Empresa");
+
+// Generar en Excel sin paginar
+String base64 = reportService.generateReportBase64(
+    "/reports/mi_reporte.jrxml",
+    parameters,
+    miListaDeDatos,
+    "EXCEL",
+    false  // sin paginar
+);
+
+// Generar en Word paginado
+String base64 = reportService.generateReportBase64(
+    "/reports/mi_reporte.jrxml",
+    parameters,
+    miListaDeDatos,
+    "WORD",
+    true  // con paginación
 );
 ```
 
