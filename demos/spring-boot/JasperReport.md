@@ -330,8 +330,12 @@ import lombok.Data;
 @Data
 public class ReportRequestDto {
 
-  private String titulo;
-  private String empresa;
+ private String titulo; // Título del reporte, se puede usar como parámetro en el template JRXML
+  private String empresa; // Nombre de la empresa u organización
+  private String formato; // PDF, EXCEL, WORD
+  private Boolean paginated; // true para Word, configurable para Excel
+
+}
 
 }
 ```
@@ -368,11 +372,28 @@ public interface IReportService {
    */
   String generatePdfBase64(String templatePath, Map<String, Object> parameters, List<?> data) throws Exception;
 
+  /**
+   * Genera un reporte en el formato especificado y retorna el resultado en
+   * Base64.
+   *
+   * @param templatePath ruta del template dentro de resources
+   * @param parameters   parámetros enviados al reporte
+   * @param data         lista de objetos con los datos del reporte
+   * @param formato      formato del reporte (PDF, EXCEL, WORD)
+   * @param paginated    true para paginar, false para no paginar (aplica
+   *                     principalmente a EXCEL)
+   * @return Archivo codificado en Base64
+   */
+  String generateReportBase64(String templatePath, Map<String, Object> parameters, List<?> data,
+      String formato, boolean paginated) throws Exception;
+
+
 }
 ```
 
 ### Implementacion "ReportServiceImpl.java"
 ```
+import java.io.ByteArrayOutputStream;
 import java.io.InputStream;
 import java.util.Base64;
 import java.util.List;
@@ -386,6 +407,12 @@ import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
+import net.sf.jasperreports.engine.export.ooxml.JRDocxExporter;
+import net.sf.jasperreports.engine.export.ooxml.JRXlsxExporter;
+import net.sf.jasperreports.export.SimpleDocxExporterConfiguration;
+import net.sf.jasperreports.export.SimpleExporterInput;
+import net.sf.jasperreports.export.SimpleOutputStreamExporterOutput;
+import net.sf.jasperreports.export.SimpleXlsxExporterConfiguration;
 
 @Service
 public class ReportServiceImpl implements IReportService {
@@ -398,6 +425,62 @@ public class ReportServiceImpl implements IReportService {
     JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, dataSource);
     byte[] pdfBytes = JasperExportManager.exportReportToPdf(jasperPrint);
     return Base64.getEncoder().encodeToString(pdfBytes);
+  }
+
+  @Override
+  public String generateReportBase64(String templatePath, Map<String, Object> parameters, List<?> data,
+      String formato, boolean paginated) throws Exception {
+
+    InputStream template = getClass().getResourceAsStream(templatePath);
+    JasperReport jasperReport = JasperCompileManager.compileReport(template);
+    JRBeanCollectionDataSource dataSource = new JRBeanCollectionDataSource(data);
+    JasperPrint jasperPrint = JasperFillManager.fillReport(jasperReport, parameters, dataSource);
+
+    byte[] reportBytes;
+
+    switch (formato.toUpperCase()) {
+      case "PDF":
+        reportBytes = JasperExportManager.exportReportToPdf(jasperPrint);
+        break;
+      case "EXCEL":
+        reportBytes = exportToExcel(jasperPrint, paginated);
+        break;
+      case "WORD":
+        reportBytes = exportToWord(jasperPrint, paginated);
+        break;
+      default:
+        throw new IllegalArgumentException("Formato no soportado: " + formato);
+    }
+
+    return Base64.getEncoder().encodeToString(reportBytes);
+  }
+
+  private byte[] exportToExcel(JasperPrint jasperPrint, boolean paginated) throws Exception {
+    JRXlsxExporter exporter = new JRXlsxExporter();
+    ByteArrayOutputStream output = new ByteArrayOutputStream();
+
+    SimpleXlsxExporterConfiguration config = new SimpleXlsxExporterConfiguration();
+
+    exporter.setExporterInput(new SimpleExporterInput(jasperPrint));
+    exporter.setExporterOutput(new SimpleOutputStreamExporterOutput(output));
+    exporter.setConfiguration(config);
+    exporter.exportReport();
+
+    return output.toByteArray();
+  }
+
+  private byte[] exportToWord(JasperPrint jasperPrint, boolean paginated) throws Exception {
+    JRDocxExporter exporter = new JRDocxExporter();
+    ByteArrayOutputStream output = new ByteArrayOutputStream();
+
+    SimpleDocxExporterConfiguration config = new SimpleDocxExporterConfiguration();
+
+    exporter.setExporterInput(new SimpleExporterInput(jasperPrint));
+    exporter.setExporterOutput(new SimpleOutputStreamExporterOutput(output));
+    exporter.setConfiguration(config);
+    exporter.exportReport();
+
+    return output.toByteArray();
   }
 
 }
