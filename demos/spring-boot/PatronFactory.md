@@ -30,3 +30,15 @@ src/main/java/com/example/app/
 │   └── TipoDePago.java               ← ENUMERACIÓN
 └── DemoPatronFactoryApplication.java ← BOOTSTRAP
 ```
+
+### Patrones Identificados ✓
+
+| Patrón | Ubicación | Estado |
+|--------|-----------|--------|
+| **Factory Pattern** | `PagoFactory.java` | ✓ Implementado |
+| **Strategy Pattern** | Interfaces de pago (`IPagoService`) | ✓ Implementado |
+| **Spring MVC** | `PagoController.java` | ✓ Implementado |
+| **Dependency Injection** | `PagoService` con `@Service` | ✓ Implementado |
+| **REST API** | `@RestController` | ✓ Implementado |
+
+---
