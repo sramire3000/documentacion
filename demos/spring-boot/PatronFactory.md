@@ -147,4 +147,98 @@ public interface IPagoService {
 
 }
 ```
+### La clase "PagoApplePay.java" de tipo servicio
+```
+package com.example.app.implement;
 
+import org.springframework.stereotype.Service;
+
+import com.example.app.services.IPagoService;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+@Service
+public class PagoApplePay implements IPagoService {
+
+  private static final Logger log = LogManager.getLogger(PagoApplePay.class);
+
+  @Override
+  public void crearPago() {
+    log.info("Procesando pago con APPLE PAY - Autenticación biométrica completada");
+  }
+
+}
+```
+
+### La clase "PagoBitcoint.java" de tipo servicio
+```
+package com.example.app.implement;
+
+import org.springframework.stereotype.Service;
+
+import com.example.app.services.IPagoService;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+@Service
+public class PagoBitcoint implements IPagoService {
+
+  private static final Logger log = LogManager.getLogger(PagoBitcoint.class);
+
+  @Override
+  public void crearPago() {
+    log.info("Procesando pago con BITCOIN - Transacción blockchain registrada");
+  }
+
+}
+```
+
+### La clase "PagoEfectivo.java" de tipo servicio
+```
+package com.example.app.implement;
+
+import org.springframework.stereotype.Service;
+
+import com.example.app.services.IPagoService;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+@Service
+public class PagoEfectivo implements IPagoService {
+
+  private static final Logger log = LogManager.getLogger(PagoEfectivo.class);
+
+  @Override
+  public void crearPago() {
+    log.info("Procesando pago en EFECTIVO - Operación completada");
+  }
+
+}
+```
+
+### La clase "PagoGooglePay.java"
+```
+package com.example.app.implement;
+
+import org.springframework.stereotype.Service;
+
+import com.example.app.services.IPagoService;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+@Service
+public class PagoGooglePay implements IPagoService {
+
+  private static final Logger log = LogManager.getLogger(PagoGooglePay.class);
+
+  @Override
+  public void crearPago() {
+    log.info("Procesando pago con GOOGLE PAY - Autenticación NFC iniciada");
+  }
+
+}
+```
