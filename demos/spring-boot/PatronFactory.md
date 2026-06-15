@@ -1,6 +1,6 @@
 # Patron de diseno Factory
 
-## 1. Estructura del Proyecto
+## Estructura del Proyecto
 
 ### Arquitectura MVC Implementada
 
@@ -43,9 +43,11 @@ src/main/java/com/example/app/
 
 ---
 
-## 2. Ejemplo:
+# Ejemplo:
 
-### La clase "TipoDePago.java" de tipo enums
+## Los ENUMS
+
+### La clase "TipoDePago.java"
 ```
 package com.example.app.enums;
 
@@ -62,7 +64,9 @@ public enum TipoDePago {
 
 ```
 
-### Las clases "PagoRequest.java" de tipo models
+## Los Models
+
+### Las clases "PagoRequest.java" 
 ```
 package com.example.app.models;
 
@@ -88,7 +92,7 @@ public class PagoRequest {
 }
 ```
 
-### La clase "PagoResponse.java" de tipo models
+### La clase "PagoResponse.java" 
 ```
 package com.example.app.models;
 
@@ -119,8 +123,9 @@ public class PagoResponse {
 
 }
 ```
+## Las interfaces
 
-### La clase "IPagoService.java" de tipo interface
+### La clase "IPagoService.java"
 ```
 package com.example.app.services;
 
@@ -147,7 +152,10 @@ public interface IPagoService {
 
 }
 ```
-### La clase "PagoApplePay.java" de tipo servicio
+
+## Los Servicios
+
+### La clase "PagoApplePay.java"
 ```
 package com.example.app.implement;
 
@@ -171,7 +179,7 @@ public class PagoApplePay implements IPagoService {
 }
 ```
 
-### La clase "PagoBitcoint.java" de tipo servicio
+### La clase "PagoBitcoint.java" 
 ```
 package com.example.app.implement;
 
@@ -195,7 +203,7 @@ public class PagoBitcoint implements IPagoService {
 }
 ```
 
-### La clase "PagoEfectivo.java" de tipo servicio
+### La clase "PagoEfectivo.java" 
 ```
 package com.example.app.implement;
 
