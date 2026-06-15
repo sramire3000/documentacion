@@ -87,3 +87,36 @@ public class PagoRequest {
 
 }
 ```
+
+### La clase "PagoResponse.java" de tipo models
+```
+package com.example.app.models;
+
+import java.time.LocalDateTime;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
+import com.example.app.enums.TipoDePago;
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
+public class PagoResponse {
+
+  private String id;
+  private TipoDePago tipoDePago;
+  private Double monto;
+  private String descripcion;
+  private String estado;
+  private LocalDateTime fechaCreacion;
+  private String mensaje;
+
+}
+```
+
