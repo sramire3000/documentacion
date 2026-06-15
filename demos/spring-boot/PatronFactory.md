@@ -42,3 +42,22 @@ src/main/java/com/example/app/
 | **REST API** | `@RestController` | ✓ Implementado |
 
 ---
+
+## 2. Ejemplo:
+
+### La clase "TipoDePago.java" de tipo enums
+```
+package com.example.app.enums;
+
+public enum TipoDePago {
+  PAYPAL,
+  TARJETA_CREDITO,
+  TARJETA_DEBITO,
+  TRANSFERENCIA_BANCARIA,
+  BITCOIN,
+  EFECTIVO,
+  APPLE_PAY,
+  GOOGLE_PAY
+}
+
+```
