@@ -250,3 +250,101 @@ public class PagoGooglePay implements IPagoService {
 
 }
 ```
+
+### La clase "PagoPaypal.java"
+```
+package com.example.app.implement;
+
+import org.springframework.stereotype.Service;
+
+import com.example.app.services.IPagoService;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+@Service
+public class PagoPaypal implements IPagoService {
+
+  private static final Logger log = LogManager.getLogger(PagoPaypal.class);
+
+  @Override
+  public void crearPago() {
+    log.info("Procesando pago con PAYPAL - Transacción iniciada");
+  }
+
+}
+```
+
+### La clase "PagoTarjetaCredito.java"
+```
+package com.example.app.implement;
+
+import org.springframework.stereotype.Service;
+
+import com.example.app.services.IPagoService;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+@Service
+public class PagoTarjetaCredito implements IPagoService {
+
+  private static final Logger log = LogManager.getLogger(PagoTarjetaCredito.class);
+
+  @Override
+  public void crearPago() {
+    log.info("Procesando pago con TARJETA DE CRÉDITO - Autenticación en proceso");
+  }
+
+}
+```
+
+### La clase "PagoTarjetaDebito.java"
+```
+package com.example.app.implement;
+
+import org.springframework.stereotype.Service;
+
+import com.example.app.services.IPagoService;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+@Service
+public class PagoTarjetaDebito implements IPagoService {
+
+  private static final Logger log = LogManager.getLogger(PagoTarjetaDebito.class);
+
+  @Override
+  public void crearPago() {
+    log.info("Procesando pago con TARJETA DE DÉBITO - Descuento de fondos autorizado");
+  }
+
+}
+```
+
+### La clase "PagoTransferenciaBancaria.java"
+```
+package com.example.app.implement;
+
+import org.springframework.stereotype.Service;
+
+import com.example.app.services.IPagoService;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+@Service
+public class PagoTransferenciaBancaria implements IPagoService {
+
+  private static final Logger log = LogManager.getLogger(PagoTransferenciaBancaria.class);
+
+  @Override
+  public void crearPago() {
+    log.info("Procesando TRANSFERENCIA BANCARIA - En cola de procesamiento");
+  }
+
+}
+```
+
+
