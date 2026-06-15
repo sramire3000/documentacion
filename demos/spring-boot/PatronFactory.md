@@ -347,4 +347,109 @@ public class PagoTransferenciaBancaria implements IPagoService {
 }
 ```
 
+## FACTORY
 
+### La clase "PagoFactory.java"
+```
+package com.example.app.factory;
+
+import java.util.HashMap;
+import java.util.Map;
+
+import com.example.app.enums.TipoDePago;
+import com.example.app.implement.PagoApplePay;
+import com.example.app.implement.PagoBitcoint;
+import com.example.app.implement.PagoEfectivo;
+import com.example.app.implement.PagoGooglePay;
+import com.example.app.implement.PagoPaypal;
+import com.example.app.implement.PagoTarjetaCredito;
+import com.example.app.implement.PagoTarjetaDebito;
+import com.example.app.implement.PagoTransferenciaBancaria;
+import com.example.app.services.IPagoService;
+
+public class PagoFactory {
+
+  private final static Map<TipoDePago, IPagoService> pagos = new HashMap<>() {
+
+    private static final long serialVersionUID = 1L;
+
+    {
+      put(TipoDePago.PAYPAL, new PagoPaypal());
+      put(TipoDePago.TARJETA_CREDITO, new PagoTarjetaCredito());
+      put(TipoDePago.TARJETA_DEBITO, new PagoTarjetaDebito());
+      put(TipoDePago.TRANSFERENCIA_BANCARIA, new PagoTransferenciaBancaria());
+      put(TipoDePago.BITCOIN, new PagoBitcoint());
+      put(TipoDePago.EFECTIVO, new PagoEfectivo());
+      put(TipoDePago.APPLE_PAY, new PagoApplePay());
+      put(TipoDePago.GOOGLE_PAY, new PagoGooglePay());
+    }
+  };
+
+  public IPagoService obteterPago(TipoDePago tipoDePago) {
+    return pagos.get(tipoDePago);
+  }
+}
+```
+
+## LA MAIN
+
+### La clase "main.java"
+```
+package com.example.app;
+
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+import com.example.app.enums.TipoDePago;
+import com.example.app.factory.PagoFactory;
+import com.example.app.services.IPagoService;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+@SpringBootApplication
+public class DemoPatronFactoryApplication {
+
+	private static final Logger log = LogManager.getLogger(DemoPatronFactoryApplication.class);
+
+	public static void main(String[] args) {
+		SpringApplication.run(DemoPatronFactoryApplication.class, args);
+
+		// Demostración del patrón Factory
+		mostrarDemostracionFactory();
+	}
+
+	/**
+	 * Demuestra el funcionamiento del patrón Factory
+	 */
+	private static void mostrarDemostracionFactory() {
+		log.info("");
+		log.info("╔═══════════════════════════════════════════════════════════╗");
+		log.info("║  DEMOSTRACIÓN DEL PATRÓN FACTORY CON SPRING BOOT          ║");
+		log.info("║  La API REST está disponible en http://localhost:8080    ║");
+		log.info("║  Endpoints:                                               ║");
+		log.info("║  - POST   /api/pagos                 (Procesar pago)      ║");
+		log.info("║  - GET    /api/pagos/tipos           (Ver tipos)          ║");
+		log.info("║  - GET    /api/pagos/health          (Health check)       ║");
+		log.info("╚═══════════════════════════════════════════════════════════╝");
+
+		// Ejemplo de uso directo del factory
+		log.info("");
+		log.info("Ejemplo de procesamiento directo usando Factory:");
+		PagoFactory pagoFactory = new PagoFactory();
+
+		for (TipoDePago tipo : TipoDePago.values()) {
+			IPagoService pago = pagoFactory.obteterPago(tipo);
+			if (pago != null) {
+				log.info("  → Tipo: {} - {}", tipo, pago.obtenerNombrePago());
+				pago.crearPago();
+			}
+		}
+
+		log.info("");
+		log.info("✓ Aplicación iniciada correctamente con patrón MVC + Factory");
+		log.info("");
+	}
+
+}
+```
