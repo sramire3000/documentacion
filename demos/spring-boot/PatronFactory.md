@@ -61,3 +61,29 @@ public enum TipoDePago {
 }
 
 ```
+
+### Las clases "PagoRequest.java" de tipo models
+```
+package com.example.app.models;
+
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+
+import com.example.app.enums.TipoDePago;
+
+@Getter
+@Setter
+@ToString
+@NoArgsConstructor
+@AllArgsConstructor
+public class PagoRequest {
+
+  private TipoDePago tipoDePago;
+  private Double monto;
+  private String descripcion;
+
+}
+```
