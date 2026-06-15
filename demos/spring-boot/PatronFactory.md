@@ -120,3 +120,31 @@ public class PagoResponse {
 }
 ```
 
+### La clase "IPagoService.java" de tipo interface
+```
+package com.example.app.services;
+
+public interface IPagoService {
+
+  /**
+   * Crea/procesa un pago con el método específico de pago
+   */
+  void crearPago();
+
+  /**
+   * Obtiene el nombre del tipo de pago
+   */
+  default String obtenerNombrePago() {
+    return this.getClass().getSimpleName();
+  }
+
+  /**
+   * Valida si el tipo de pago está disponible
+   */
+  default boolean estaDisponible() {
+    return true;
+  }
+
+}
+```
+
