@@ -45,7 +45,7 @@ src/main/java/com/example/app/
 
 # Ejemplo:
 
-## Los ENUMS
+## LOS ENUMS
 
 ### La clase "TipoDePago.java"
 ```
@@ -64,7 +64,7 @@ public enum TipoDePago {
 
 ```
 
-## Los Models
+## LOS MODELS
 
 ### Las clases "PagoRequest.java" 
 ```
@@ -123,7 +123,7 @@ public class PagoResponse {
 
 }
 ```
-## Las interfaces
+## LAS INTERFACES
 
 ### La clase "IPagoService.java"
 ```
@@ -153,7 +153,7 @@ public interface IPagoService {
 }
 ```
 
-## Los Servicios
+## LOS SERVICIOS
 
 ### La clase "PagoApplePay.java"
 ```
@@ -347,6 +347,94 @@ public class PagoTransferenciaBancaria implements IPagoService {
 }
 ```
 
+### La clase "PagoService.java"
+```
+package com.example.app.implement;
+
+import java.time.LocalDateTime;
+import java.util.UUID;
+
+import org.springframework.stereotype.Service;
+
+import com.example.app.enums.TipoDePago;
+import com.example.app.factory.PagoFactory;
+import com.example.app.models.PagoRequest;
+import com.example.app.models.PagoResponse;
+import com.example.app.services.IPagoService;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+@Service
+public class PagoService {
+
+  private static final Logger log = LogManager.getLogger(PagoService.class);
+  private final PagoFactory pagoFactory;
+
+  public PagoService() {
+    this.pagoFactory = new PagoFactory();
+  }
+
+  /**
+   * Procesa un pago basado en el tipo de pago solicitado
+   */
+  public PagoResponse procesarPago(PagoRequest request) {
+    log.info("Iniciando procesamiento de pago: {}", request.getTipoDePago());
+
+    try {
+      // Obtener la implementación del pago desde la factory
+      IPagoService pagoService = pagoFactory.obteterPago(request.getTipoDePago());
+
+      if (pagoService == null) {
+        log.error("Tipo de pago no soportado: {}", request.getTipoDePago());
+        return construirRespuestaError(request, "Tipo de pago no soportado");
+      }
+
+      // Ejecutar el pago
+      pagoService.crearPago();
+
+      // Construir respuesta exitosa
+      return construirRespuestaExitosa(request);
+
+    } catch (Exception e) {
+      log.error("Error procesando pago: {}", e.getMessage(), e);
+      return construirRespuestaError(request, "Error procesando el pago: " + e.getMessage());
+    }
+  }
+
+  /**
+   * Obtiene los tipos de pago disponibles
+   */
+  public TipoDePago[] obtenerTiposDePagoDisponibles() {
+    log.info("Obteniendo tipos de pago disponibles");
+    return TipoDePago.values();
+  }
+
+  private PagoResponse construirRespuestaExitosa(PagoRequest request) {
+    return new PagoResponse(
+        UUID.randomUUID().toString(),
+        request.getTipoDePago(),
+        request.getMonto(),
+        request.getDescripcion(),
+        "EXITOSO",
+        LocalDateTime.now(),
+        "Pago procesado exitosamente con " + request.getTipoDePago());
+  }
+
+  private PagoResponse construirRespuestaError(PagoRequest request, String mensajeError) {
+    return new PagoResponse(
+        UUID.randomUUID().toString(),
+        request.getTipoDePago(),
+        request.getMonto(),
+        request.getDescripcion(),
+        "ERROR",
+        LocalDateTime.now(),
+        mensajeError);
+  }
+
+}
+```
+
 ## FACTORY
 
 ### La clase "PagoFactory.java"
@@ -388,6 +476,76 @@ public class PagoFactory {
   public IPagoService obteterPago(TipoDePago tipoDePago) {
     return pagos.get(tipoDePago);
   }
+}
+```
+
+## CONTROLLERS
+
+### La clase "PagoController"
+```
+package com.example.app.controller;
+
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
+
+import lombok.RequiredArgsConstructor;
+
+import com.example.app.enums.TipoDePago;
+import com.example.app.implement.PagoService;
+import com.example.app.models.PagoRequest;
+import com.example.app.models.PagoResponse;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+@RestController
+@RequiredArgsConstructor
+@RequestMapping("/api/pagos")
+public class PagoController {
+
+  private static final Logger log = LogManager.getLogger(PagoController.class);
+
+  private final PagoService pagoService;
+
+  /**
+   * POST /api/pagos - Procesa un nuevo pago
+   */
+  @PostMapping
+  public ResponseEntity<PagoResponse> procesarPago(@RequestBody PagoRequest pagoRequest) {
+    log.info("Recibida solicitud de pago: {}", pagoRequest);
+
+    PagoResponse response = pagoService.procesarPago(pagoRequest);
+
+    HttpStatus status = "EXITOSO".equals(response.getEstado())
+        ? HttpStatus.OK
+        : HttpStatus.BAD_REQUEST;
+
+    return new ResponseEntity<>(response, status);
+  }
+
+  /**
+   * GET /api/pagos/tipos - Obtiene los tipos de pago disponibles
+   */
+  @GetMapping("/tipos")
+  public ResponseEntity<TipoDePago[]> obtenerTiposDePago() {
+    log.info("Solicitando tipos de pago disponibles");
+    TipoDePago[] tipos = pagoService.obtenerTiposDePagoDisponibles();
+    return ResponseEntity.ok(tipos);
+  }
+
+  /**
+   * GET /api/pagos/health - Health check
+   */
+  @GetMapping("/health")
+  public ResponseEntity<String> health() {
+    return ResponseEntity.ok("API de Pagos funcionando correctamente");
+  }
+
 }
 ```
 
