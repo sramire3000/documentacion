@@ -15,3 +15,12 @@
     <version>1.5.8</version>
 </dependency>
 ```
+
+### 3. Crear Paquetes
+```
+- config.security
+- cobtrollers
+- mapper
+- persistence
+- service
+```
