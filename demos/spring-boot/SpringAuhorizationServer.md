@@ -19,7 +19,7 @@
 ### 3. Crear Paquetes
 ```
 - config.security
-- cobtrollers
+- controllers
 - mapper
 - persistence
 - service
