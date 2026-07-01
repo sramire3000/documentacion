@@ -8,6 +8,7 @@
 
 ## 2. Add "oauth2" in Pom.xml
 ```
+<!-- oauth2 -->
 <dependency>
     <groupId>org.springframework.security</groupId>
     <artifactId>spring-security-oauth2-authorization-server</artifactId>
