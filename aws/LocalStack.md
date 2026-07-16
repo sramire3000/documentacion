@@ -7,6 +7,56 @@ es un simulador de servicios de nube que se ejecuta localmente en un contenedor 
 * Mensajería e Integración: SQS, SNS, Kinesis.
 * Redes y Seguridad: IAM (simulado para compatibilidad), API Gateway, Route53.
 
+
+## Install AWS CLI
+
+Para instalar la AWS CLI (Interfaz de Línea de Comandos de AWS), el proceso varía un poco según el sistema operativo que utilices. Como tu objetivo es usarlo con tu laboratorio local, no necesitas una cuenta real de AWS para instalarlo ni para dar los primeros pasos.
+
+Aquí tienes la guía paso a paso para los principales sistemas operativos:
+
+1. Instalación por Sistema Operativo
+En Windows
+La forma más sencilla es usar el instalador oficial de Windows (MSI).
+
+Abre tu terminal (PowerShell o CMD) y ejecuta el siguiente comando para descargar e instalar la última versión:
+```
+msiexec.exe /i https://awscli.amazonaws.com/AWSCLIV2.msi
+```
+
+En macOS
+Puedes instalarlo usando el instalador gráfico oficial o mediante la terminal.
+
+Opción recomendada (Terminal):
+```
+curl "https://awscli.amazonaws.com/AWSCLIV2.pkg" -o "AWSCLIV2.pkg"
+sudo installer -pkg AWSCLIV2.pkg -target /
+```
+
+Opción alternativa (Si usas Homebrew):
+```
+brew install awscli
+```
+
+En Linux (Ubuntu, Debian, RedHat, etc.)
+En Linux se recomienda descargar el binario oficial directamente de AWS:
+```
+# 1. Descargar el archivo zip
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+
+# 2. Descomprimirlo (asegúrate de tener instalado 'unzip')
+unzip awscliv2.zip
+
+# 3. Ejecutar el instalador
+sudo ./aws/install
+```
+
+2. Verificar la Instalación
+Una vez que termine la instalación, cierra tu terminal actual y abre una nueva. Ejecuta el siguiente comando para comprobar que todo está en orden:
+```
+aws --version
+```
+
+
 ## Cómo montar tu laboratorio en 3 pasos
 
 ### 1. Install Docker
