@@ -9,3 +9,21 @@ es un simulador de servicios de nube que se ejecuta localmente en un contenedor 
 
 ## Cómo montar tu laboratorio en 3 pasos
 
+### 1. Install Docker
+
+Crear un archivo docker-compose.yml
+```
+version: "3.8"
+
+services:
+  localstack:
+    container_name: localstack_main
+    image: localstack/localstack
+    ports:
+      - "127.0.0.1:4566:4566"            # Puerto único para todos los servicios de LocalStack
+    environment:
+      - DATA_DIR=/tmp/localstack/data
+    volumes:
+      - "./volume:/var/lib/localstack"
+```
+
