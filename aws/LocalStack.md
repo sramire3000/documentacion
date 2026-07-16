@@ -27,3 +27,13 @@ services:
       - "./volume:/var/lib/localstack"
 ```
 
+2. Configurar un perfil falso en AWS CLI
+Como todo es local, no necesitas credenciales reales. Configura un perfil de simulación en tu terminal:
+```
+aws configure --profile localstack
+```
+* AWS Access Key ID: test
+* AWS Secret Access Key: test
+* Default region name: us-east-1
+* Default output format: json
+
