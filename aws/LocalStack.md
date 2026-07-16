@@ -95,8 +95,8 @@ Para apuntar tus comandos a tu laboratorio local en lugar de a internet, solo de
 doskey awslocal=aws --endpoint-url=http://localhost:4566 --profile localstack $*
 
 # Crear un balde (bucket) en S3 local
-aws --endpoint-url=http://localhost:4566 s3 mb s3://mi-bucket-de-prueba
+aws --endpoint-url=http://localhost:4566 s3 mb s3://mi-bucket-de-prueba --profile localstack
 
 # Listar tus buckets locales
-aws --endpoint-url=http://localhost:4566 s3 ls
+aws --endpoint-url=http://localhost:4566 s3 ls --profile localstack
 ```
