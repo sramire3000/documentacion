@@ -91,6 +91,9 @@ aws configure --profile localstack
 3. Interactuar con tu AWS Local
 Para apuntar tus comandos a tu laboratorio local en lugar de a internet, solo debes usar el parámetro --endpoint-url:
 ```
+# En windows como especificar el profile de simulaciòn
+doskey awslocal=aws --endpoint-url=http://localhost:4566 --profile localstack $*
+
 # Crear un balde (bucket) en S3 local
 aws --endpoint-url=http://localhost:4566 s3 mb s3://mi-bucket-de-prueba
 
