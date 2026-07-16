@@ -37,3 +37,12 @@ aws configure --profile localstack
 * Default region name: us-east-1
 * Default output format: json
 
+3. Interactuar con tu AWS Local
+Para apuntar tus comandos a tu laboratorio local en lugar de a internet, solo debes usar el parámetro --endpoint-url:
+```
+# Crear un balde (bucket) en S3 local
+aws --endpoint-url=http://localhost:4566 s3 mb s3://mi-bucket-de-prueba
+
+# Listar tus buckets locales
+aws --endpoint-url=http://localhost:4566 s3 ls
+```
