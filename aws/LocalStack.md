@@ -68,9 +68,10 @@ version: "3.8"
 services:
   localstack:
     container_name: localstack_main
-    image: localstack/localstack
+    # Cambiamos "latest" por la versión 4.4.0
+    image: localstack/localstack:4.4.0
     ports:
-      - "127.0.0.1:4566:4566"            # Puerto único para todos los servicios de LocalStack
+      - "127.0.0.1:4566:4566"
     environment:
       - DATA_DIR=/tmp/localstack/data
     volumes:
