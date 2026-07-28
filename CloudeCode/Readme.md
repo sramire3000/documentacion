@@ -21,3 +21,24 @@ To confirm the installation worked, run:
 ```
 claude --version
 ```
+
+## Login Auth
+
+```
+claude auth login
+```
+
+## Consola claude
+```
+claude
+```
+
+### Ver modelos disponibles
+```
+/model
+```
+
+### Cambiarse de modelo
+```
+/model opusplan
+```
