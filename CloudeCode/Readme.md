@@ -72,3 +72,8 @@ claude
 
 -[Skills](https://www.skills.sh/)
 
+### Install Skills
+
+- [mattpocock] (https://www.skills.sh/mattpocock/skills/caveman)
+- [Julius](https://github.com/JuliusBrussee/caveman)
+
