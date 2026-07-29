@@ -23,7 +23,7 @@ claude --version
 ```
 
 ## Install claude extension VsCode
-- (Claude Code for VS Code)[https://marketplace.visualstudio.com/items?itemName=anthropic.claude-code]
+- [Claude Code for VS Code](https://marketplace.visualstudio.com/items?itemName=anthropic.claude-code)
 
 
 ## Login Auth
@@ -62,4 +62,13 @@ claude
 ```
 /usage
 ```
+
+## Ver Ide en consola
+```
+/ide
+```
+
+### Skills
+
+-[Skills](https://www.skills.sh/)
 
