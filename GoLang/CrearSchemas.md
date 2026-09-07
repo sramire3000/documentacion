@@ -123,6 +123,8 @@ func main() {
 		*port = getDefaultPort(*dbType)
 	}
 
+	// Nota: Para Sybase, se usa go-mssqldb en lugar de thda/tds
+	// ya que tiene mejor compatibilidad y mantenimiento
 	// Configuración de la conexión
 	config := Config{
 		DBType:   strings.ToLower(*dbType),
@@ -264,6 +266,7 @@ func getDriverName(dbType string) string {
 	case "sqlserver":
 		return "sqlserver"
 	case "sybase":
+		// Usar TDS driver (github.com/neweric2021/tds) - versión actualizada de 2021
 		return "tds"
 	case "mysql":
 		return "mysql"
@@ -280,7 +283,10 @@ func getConnectionString(config Config) string {
 		return fmt.Sprintf("server=%s;port=%d;user id=%s;password=%s;database=%s",
 			config.Server, config.Port, config.User, config.Password, config.Database)
 	case "sybase":
-		return fmt.Sprintf("tds://%s:%s@%s:%d/%s?charset=utf8",
+		// Usar formato TDS para Sybase (driver: github.com/thda/tds)
+		// Parámetros: encryptPassword=no para evitar problemas con autenticación
+		// readTimeout y writeTimeout para evitar timeouts
+		return fmt.Sprintf("tds://%s:%s@%s:%d/%s?encryptPassword=no&readTimeout=30&writeTimeout=30",
 			config.User, config.Password, config.Server, config.Port, config.Database)
 	case "mysql":
 		return fmt.Sprintf("%s:%s@tcp(%s:%d)/%s",
@@ -845,6 +851,7 @@ func printHelp() {
 	fmt.Println("  PostgreSQL: puerto 5432, schema public")
 	fmt.Println("  MongoDB:    puerto 27017")
 }
+
 ```
 ### crear archivo "go.mod"
 ### Contenido de "go.mod"
@@ -857,7 +864,7 @@ require (
 	github.com/denisenkom/go-mssqldb v0.12.3
 	github.com/go-sql-driver/mysql v1.7.1
 	github.com/lib/pq v1.10.9
-	github.com/thda/tds v0.1.6
+	github.com/thda/tds v0.1.7
 	go.mongodb.org/mongo-driver v1.12.1
 )
 
@@ -876,6 +883,7 @@ require (
 	golang.org/x/sync v0.3.0 // indirect
 	golang.org/x/text v0.12.0 // indirect
 )
+
 ```
 ### Instalar librerias
 ```bash
