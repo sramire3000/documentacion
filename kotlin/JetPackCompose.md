@@ -19,3 +19,13 @@ Column(
 	verticalArrangement = Arrangement.Center
 ) {}
 ````
+
+### Row
+```
+Row(
+	// Centrado pero espacio entre cada uno
+	horizontalArrangement = Arrangement.SpaceEvenly,
+	// Centrado de Arriba hacia Abajo
+	verticalAlignment = Alignment.CenterVertically
+){}
+```
