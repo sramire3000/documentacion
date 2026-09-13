@@ -104,7 +104,9 @@ fun CurrencyInputField(
     }
 }
 ```
-### Example
+### Ejemplo de uso
+
+import's
 ```
 // El componente propiamente
 import com.example.kmpcurso.components.CurrencyInputField
@@ -124,28 +126,13 @@ import androidx.compose.ui.graphics.Color
 
 // Base de Compose
 import androidx.compose.runtime.Composable
-
-@Composable
-fun ExampleScreen() {
-    var amount by remember { mutableStateOf("") }
-
-    // 1. Uso estándar (con los colores por defecto)
-    CurrencyInputField(
-        value = amount,
-        onValueChange = { amount = it },
-        modifier = Modifier
-            .fillMaxWidth()
-            .padding(16.dp)
-    )
-
-    // 2. Ejemplo personalizando el color si es necesario
-    /*
-    CurrencyInputField(
-        value = amount,
-        onValueChange = { amount = it },
-        primaryColor = Color(0xFF0066CC), // Azul personalizado
-        borderColor = Color.Blue
-    )
-    */
-}
 ```
+
+1. Sin error (Estado normal)
+```
+CurrencyInputField(
+    value = amount,
+    onValueChange = { amount = it }
+)
+```
+   
