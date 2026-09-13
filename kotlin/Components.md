@@ -90,6 +90,24 @@ fun CurrencyInputField(
 ```
 ### Example
 ```
+// El componente propiamente
+import com.example.kmpcurso.components.CurrencyInputField
+
+// Para el manejo de estado (el "by remember")
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
+
+// Para el diseño y modificadores
+import androidx.compose.ui.Modifier
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.padding
+import androidx.compose.ui.unit.dp
+
+// Base de Compose
+import androidx.compose.runtime.Composable
+
 @Composable
 fun ExampleScreen() {
     var amount by remember { mutableStateOf("") }
