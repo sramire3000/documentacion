@@ -30,17 +30,21 @@ fun CurrencyInputField(
     label: String = "Monto",
     currencySymbol: String = "$",
     placeholder: String = "0.00",
-    // Configuración de colores con valores por defecto (modificables)
-    primaryColor: Color = Color(0xFF1B365D), // Azul oscuro similar a la imagen
+    errorMessage: String? = null, // Mensaje de error (opcional)
+    // Configuración de colores con valores estándar
+    primaryColor: Color = Color(0xFF1B365D), // Azul oscuro
     borderColor: Color = Color(0xFFC4C4C4),
+    errorColor: Color = MaterialTheme.colorScheme.error, // Color de error por defecto
     backgroundColor: Color = Color(0xFFFAFAFA)
 ) {
+    val isError = !errorMessage.isNullOrEmpty()
+
     Column(modifier = modifier) {
         // Label superior
         Text(
             text = label,
             fontSize = 14.sp,
-            color = Color.Gray,
+            color = if (isError) errorColor else Color.Gray,
             modifier = Modifier.padding(bottom = 6.dp)
         )
 
@@ -48,16 +52,16 @@ fun CurrencyInputField(
         OutlinedTextField(
             value = value,
             onValueChange = { newValue ->
-                // Permite solo números y hasta un punto decimal con 2 decimales
                 if (newValue.isEmpty() || newValue.matches(Regex("""^\d*\.?\d{0,2}$"""))) {
                     onValueChange(newValue)
                 }
             },
             modifier = Modifier.fillMaxWidth(),
+            isError = isError,
             textStyle = TextStyle(
                 fontSize = 20.sp,
                 fontWeight = FontWeight.Medium,
-                color = primaryColor
+                color = if (isError) errorColor else primaryColor
             ),
             placeholder = {
                 Text(
@@ -71,7 +75,7 @@ fun CurrencyInputField(
                     text = currencySymbol,
                     fontSize = 22.sp,
                     fontWeight = FontWeight.Bold,
-                    color = primaryColor
+                    color = if (isError) errorColor else primaryColor
                 )
             },
             singleLine = true,
@@ -80,11 +84,23 @@ fun CurrencyInputField(
             colors = OutlinedTextFieldDefaults.colors(
                 focusedContainerColor = backgroundColor,
                 unfocusedContainerColor = backgroundColor,
+                errorContainerColor = backgroundColor,
                 focusedBorderColor = primaryColor,
                 unfocusedBorderColor = borderColor,
-                cursorColor = primaryColor
+                errorBorderColor = errorColor,
+                cursorColor = if (isError) errorColor else primaryColor
             )
         )
+
+        // Texto descriptivo del error (si existe)
+        if (isError) {
+            Text(
+                text = errorMessage!!,
+                color = errorColor,
+                fontSize = 12.sp,
+                modifier = Modifier.padding(start = 4.dp, top = 4.dp)
+            )
+        }
     }
 }
 ```
