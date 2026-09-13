@@ -153,3 +153,56 @@ fun StandardTextField(
     }
 }
 ```
+
+## Example
+
+### Input básico (Nombre o Concepto)
+```
+var concept by remember { mutableStateOf("") }
+
+StandardTextField(
+    value = concept,
+    onValueChange = { concept = it },
+    label = "Concepto de pago",
+    placeholder = "Ej. Factura de servicios"
+)
+```
+
+### Input con validación de error y límite de caracteres
+```
+var email by remember { mutableStateOf("") }
+
+val isEmailValid = email.isEmpty() || android.util.Patterns.EMAIL_ADDRESS.matcher(email).matches()
+
+StandardTextField(
+    value = email,
+    onValueChange = { email = it },
+    label = "Correo electrónico",
+    placeholder = "ejemplo@correo.com",
+    errorMessage = if (!isEmailValid) "Ingresa un correo electrónico válido" else null,
+    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Email)
+)
+```
+
+### Input con ícono al final y ocultamiento de contraseña
+```
+var password by remember { mutableStateOf("") }
+var passwordVisible by remember { mutableStateOf(false) }
+
+StandardTextField(
+    value = password,
+    onValueChange = { password = it },
+    label = "Contraseña",
+    placeholder = "Ingresa tu contraseña",
+    visualTransformation = if (passwordVisible) VisualTransformation.None else PasswordVisualTransformation(),
+    trailingIcon = {
+        IconButton(onClick = { passwordVisible = !passwordVisible }) {
+            Icon(
+                imageVector = if (passwordVisible) Icons.Default.Visibility else Icons.Default.VisibilityOff,
+                contentDescription = null
+            )
+        }
+    },
+    keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password)
+)
+```
