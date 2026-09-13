@@ -1,6 +1,8 @@
 # Componentes
 
 ## CurrencyInputField
+
+### Source
 ```
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -84,5 +86,31 @@ fun CurrencyInputField(
             )
         )
     }
+}
+```
+### Example
+```
+@Composable
+fun ExampleScreen() {
+    var amount by remember { mutableStateOf("") }
+
+    // 1. Uso estándar (con los colores por defecto)
+    CurrencyInputField(
+        value = amount,
+        onValueChange = { amount = it },
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(16.dp)
+    )
+
+    // 2. Ejemplo personalizando el color si es necesario
+    /*
+    CurrencyInputField(
+        value = amount,
+        onValueChange = { amount = it },
+        primaryColor = Color(0xFF0066CC), // Azul personalizado
+        borderColor = Color.Blue
+    )
+    */
 }
 ```
