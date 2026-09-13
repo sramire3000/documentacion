@@ -4,6 +4,9 @@
 
 ### Source
 ```
+package com.example.kmpcurso.components
+
+
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -21,26 +24,28 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardType
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import java.text.NumberFormat
+import java.util.Locale
 
 @Composable
 fun CurrencyInputField(
-    value: String,
+    rawInput: String, // String que solo contiene dígitos (ej: "500" para $5.00)
     onValueChange: (String) -> Unit,
     modifier: Modifier = Modifier,
     label: String = "Monto",
     currencySymbol: String = "$",
-    placeholder: String = "0.00",
-    errorMessage: String? = null, // Mensaje de error (opcional)
-    // Configuración de colores con valores estándar
-    primaryColor: Color = Color(0xFF1B365D), // Azul oscuro
+    errorMessage: String? = null,
+    primaryColor: Color = Color(0xFF1B365D),
     borderColor: Color = Color(0xFFC4C4C4),
-    errorColor: Color = MaterialTheme.colorScheme.error, // Color de error por defecto
+    errorColor: Color = MaterialTheme.colorScheme.error,
     backgroundColor: Color = Color(0xFFFAFAFA)
 ) {
     val isError = !errorMessage.isNullOrEmpty()
 
+    // Formatear los dígitos ingresados a moneda decimal
+    val formattedDisplayValue = formatCurrency(rawInput)
+
     Column(modifier = modifier) {
-        // Label superior
         Text(
             text = label,
             fontSize = 14.sp,
@@ -48,12 +53,13 @@ fun CurrencyInputField(
             modifier = Modifier.padding(bottom = 6.dp)
         )
 
-        // Campo de entrada
         OutlinedTextField(
-            value = value,
+            value = formattedDisplayValue,
             onValueChange = { newValue ->
-                if (newValue.isEmpty() || newValue.matches(Regex("""^\d*\.?\d{0,2}$"""))) {
-                    onValueChange(newValue)
+                // Filtrar para conservar solo números y limitar a 9 dígitos max
+                val digitsOnly = newValue.filter { it.isDigit() }
+                if (digitsOnly.length <= 9) {
+                    onValueChange(digitsOnly)
                 }
             },
             modifier = Modifier.fillMaxWidth(),
@@ -63,13 +69,6 @@ fun CurrencyInputField(
                 fontWeight = FontWeight.Medium,
                 color = if (isError) errorColor else primaryColor
             ),
-            placeholder = {
-                Text(
-                    text = placeholder,
-                    fontSize = 20.sp,
-                    color = Color.LightGray
-                )
-            },
             leadingIcon = {
                 Text(
                     text = currencySymbol,
@@ -79,7 +78,7 @@ fun CurrencyInputField(
                 )
             },
             singleLine = true,
-            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Decimal),
+            keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Number),
             shape = RoundedCornerShape(12.dp),
             colors = OutlinedTextFieldDefaults.colors(
                 focusedContainerColor = backgroundColor,
@@ -92,7 +91,6 @@ fun CurrencyInputField(
             )
         )
 
-        // Texto descriptivo del error (si existe)
         if (isError) {
             Text(
                 text = errorMessage!!,
@@ -102,6 +100,18 @@ fun CurrencyInputField(
             )
         }
     }
+}
+
+// Función auxiliar para formatear centavos a String decimal (0.00)
+private fun formatCurrency(rawDigits: String): String {
+    if (rawDigits.isEmpty()) return "0.00"
+    val parsed = rawDigits.toDoubleOrNull() ?: 0.0
+    val amount = parsed / 100.0
+    val formatter = NumberFormat.getNumberInstance(Locale.US).apply {
+        minimumFractionDigits = 2
+        maximumFractionDigits = 2
+    }
+    return formatter.format(amount)
 }
 ```
 ### Ejemplo de uso
@@ -126,31 +136,20 @@ import androidx.compose.ui.graphics.Color
 
 // Base de Compose
 import androidx.compose.runtime.Composable
-```
 
-1. Sin error (Estado normal)
-```
-CurrencyInputField(
-    value = amount,
-    onValueChange = { amount = it }
-)
-```
+var rawAmount by remember { mutableStateOf("") } // Guardará solo dígitos: ej "500"
 
-2. Con mensaje de error activo
-```
-CurrencyInputField(
-    value = amount,
-    onValueChange = { amount = it },
-    errorMessage = "El monto mínimo debe ser $5.00"
-)
-```
+// Convertimos a Double real para las validaciones (500 -> 5.00)
+val numericAmount = (rawAmount.toDoubleOrNull() ?: 0.0) / 100.0
 
-3. Con mensaje de error y color de error personalizado
-```
+val errorMessage = when {
+    rawAmount.isNotEmpty() && numericAmount < 1.0 -> "El monto mínimo es $1.00"
+    else -> null
+}
+
 CurrencyInputField(
-    value = amount,
-    onValueChange = { amount = it },
-    errorMessage = "Fondos insuficientes",
-    errorColor = Color(0xFFD32F2F) // Rojo personalizado
+    rawInput = rawAmount,
+    onValueChange = { rawAmount = it },
+    errorMessage = errorMessage
 )
 ```
