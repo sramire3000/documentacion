@@ -185,6 +185,12 @@ StandardTextField(
 ```
 
 ### Input con ícono al final y ocultamiento de contraseña
+add Dependency
+dependencies {
+    // Iconos extendidos de Material Design
+    implementation("androidx.compose.material:material-icons-extended")
+}
+
 ```
 var password by remember { mutableStateOf("") }
 var passwordVisible by remember { mutableStateOf(false) }
