@@ -189,7 +189,7 @@ StandardTextField(
 ```
 dependencies {
     // Iconos extendidos de Material Design
-    implementation("androidx.compose.material:material-icons-extended")
+    implementation(libs.androidx.compose.material.icons.extended)
 }
 ```
 
