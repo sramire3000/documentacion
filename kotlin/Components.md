@@ -135,4 +135,22 @@ CurrencyInputField(
     onValueChange = { amount = it }
 )
 ```
-   
+
+2. Con mensaje de error activo
+```
+CurrencyInputField(
+    value = amount,
+    onValueChange = { amount = it },
+    errorMessage = "El monto mínimo debe ser $5.00"
+)
+```
+
+3. Con mensaje de error y color de error personalizado
+```
+CurrencyInputField(
+    value = amount,
+    onValueChange = { amount = it },
+    errorMessage = "Fondos insuficientes",
+    errorColor = Color(0xFFD32F2F) // Rojo personalizado
+)
+```
