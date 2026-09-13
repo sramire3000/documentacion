@@ -1,6 +1,4 @@
-# Componentes
-
-## CurrencyInputField
+# CurrencyInputField
 
 ### Source
 ```
