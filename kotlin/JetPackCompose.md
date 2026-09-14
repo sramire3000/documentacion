@@ -55,3 +55,7 @@ Image(
 	contentDescription = "Perfil"
 )
 ```
+
+### Card
+```
+```
