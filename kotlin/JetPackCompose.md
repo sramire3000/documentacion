@@ -2,6 +2,11 @@
 
 ### Modificadores
 ```
+import androidx.compose.ui.graphics.Color
+import androidx.compose.foundation.layout.wrapContentSize
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.background
+
 modifier = Modifier
           .fillMaxSize()       		// Utiliza todo el espacio Ancho como alto
           .wrapContentSize()   		// Ocupe solo el espacio exacto que su contenido necesita
@@ -30,10 +35,23 @@ Column(
 
 ### Row
 ```
+import androidx.compose.foundation.layout.Row
+
 Row(
 	// Centrado pero espacio entre cada uno
 	horizontalArrangement = Arrangement.SpaceEvenly,
 	// Centrado de Arriba hacia Abajo
 	verticalAlignment = Alignment.CenterVertically
 ){}
+```
+
+### Imagen
+```
+import androidx.compose.foundation.Image
+import androidx.compose.ui.res.painterResource
+
+Image(
+	painter = painterResource(id = R.drawable.baseline_person_24),
+	contentDescription = "Perfil"
+)
 ```
