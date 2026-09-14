@@ -10,7 +10,8 @@ import androidx.compose.foundation.background
 modifier = Modifier
           .fillMaxSize()       		// Utiliza todo el espacio Ancho como alto
           .wrapContentSize()   		// Ocupe solo el espacio exacto que su contenido necesita
-          .background(Color.Gray), 	//Color
+          .background(Color.Gray), 	// Color
+          .clickable{},             // Para dar click
 ```
 
 ### Surface
