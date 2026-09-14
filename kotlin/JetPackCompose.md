@@ -58,4 +58,12 @@ Image(
 
 ### Card
 ```
+Card(
+	// redondez de las esquinas del componente (en este caso, de la tarjeta Card).
+	shape = RoundedCornerShape(80),
+	// Sombra o elevación visual que proyecta un componente Card
+	elevation = CardDefaults.cardElevation(15.dp),
+	//Border ancho y color
+	border = BorderStroke(1.dp, Color.Red)
+) {}
 ```
