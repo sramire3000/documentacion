@@ -6,4 +6,4 @@
 - [Awesome Kotlin Multiplatform](https://github.com/terrakok/kmp-awesome?tab=readme-ov-file)
 
 ### Add Librerias Multiplataforma
-.[PreCompose](https://github.com/Tlaster/PreCompose)
+- [PreCompose](https://github.com/Tlaster/PreCompose)
