@@ -1,5 +1,12 @@
 # Jet Pack Compose
 
+### Modificadores
+```
+modifier = Modifier
+          .fillMaxSize()       // Utiliza todo el espacio Ancho como alto
+          .wrapContentSize()   // Ocupe solo el espacio exacto que su contenido necesita
+```
+
 ### Surface
 ```
 Surface(
