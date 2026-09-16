@@ -7,3 +7,15 @@
 
 ### Emulador
 <img width="990" height="722" alt="image" src="https://github.com/user-attachments/assets/da6c1e68-3d90-42e0-935d-89c6703adbc1" />
+
+
+## Add Libs
+
+### En el archivo "\gradle\libs.versions.toml"
+```
+[versions]
+constraintVersion = "1.1.0"
+
+[libraries]
+constraint-layaut = {module = "androidx.contraintlayout:contraintlayaout-compose", version.ref = "constraintVersion" }
+```
