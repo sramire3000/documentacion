@@ -60,6 +60,7 @@ Box(
 ### Column
 ````
 Column(
+    modifier = modifier.fillMaxSize(),
 	// alineado a la Izquiera o derecha
 	horizontalAlignment = Alignment.CenterHorizontally,
 	// Alineado Abajo hacia Arriba
