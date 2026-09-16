@@ -19,14 +19,14 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.background
 
 modifier = Modifier
-          .fillMaxWidth()			// Utiliza todo el ancho
-          .fillMaxHeight()          // Utiliza todo el alto
-          .fillMaxSize()       		// Utiliza todo el espacio Ancho como alto
-          .padding(30.dp)           // Padding al rededor de todo el componente
-          .wrapContentSize()   		// Ocupe solo el espacio exacto que su contenido necesita
-          .background(Color.Gray), 	// Color
-          .clickable{},             // Para dar click
-          ..verticalScroll(rememberScrollState())   //Scroll vertical
+          .fillMaxWidth()							// Utiliza todo el ancho
+          .fillMaxHeight()          				// Utiliza todo el alto
+          .fillMaxSize()       						// Utiliza todo el espacio Ancho como alto
+          .padding(30.dp)           				// Padding al rededor de todo el componente
+          .wrapContentSize()   						// Ocupe solo el espacio exacto que su contenido necesita
+          .background(Color.Gray), 					// Color
+          .clickable{},             				// Para dar click
+          .verticalScroll(rememberScrollState())   	//Scroll vertical
 ```
 
 ### Surface
