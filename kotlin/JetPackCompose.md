@@ -305,7 +305,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.saveable.rememberSaveable
 
 var isTextClicked by remember { mutableStateOf(false) }
-var number = remember{mutableStateOf(0)}
-var number = rememberSaveable{mutableStateOf(0)}
+var number by remember{ mutableStateOf(0) }
+var number by rememberSaveable{ mutableStateOf(0) }
 
 ```
