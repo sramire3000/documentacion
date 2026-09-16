@@ -152,6 +152,12 @@ fun MyExerciseOne(modifier: Modifier = Modifier){
 }
 ```
 
+### Spacer
+```
+Spacer(Modifier.height(20.dp))
+Spacer(Modifier.width(20.dp))
+```
+
 
 ### Imagen
 ```
