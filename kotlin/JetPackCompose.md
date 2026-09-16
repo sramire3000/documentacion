@@ -303,7 +303,8 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 
- var isTextClicked by remember { mutableStateOf(false) }
+var isTextClicked by remember { mutableStateOf(false) }
+var number = remember{mutableStateOf(0)}
 
 
 ```
