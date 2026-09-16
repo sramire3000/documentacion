@@ -18,11 +18,16 @@ constraintVersion = "1.1.0"
 
 [libraries]
 constraint-layaut = {module = "androidx.constraintlayout:constraintlayout-compose", version.ref = "constraintVersion" }
+androidx-compose-material-icons-core = { group = "androidx.compose.material", name = "material-icons-core" }
+androidx-compose-material-icons-extended = { group = "androidx.compose.material", name = "material-icons-extended" }
+
 ```
 
 ### En el archivo "\app\build.gradle.kts" add
 ```
 dependencies {
+    implementation(libs.androidx.compose.material.icons.core)
+    implementation(libs.androidx.compose.material.icons.extended)
     implementation(libs.constraint.layaut)
 }
  ```
