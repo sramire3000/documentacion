@@ -19,6 +19,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.background
 
 modifier = Modifier
+          .fillMaxWidth()			// Utiliza todo el ancho
+          .fillMaxHeight()          // Utiliza todo el alto
           .fillMaxSize()       		// Utiliza todo el espacio Ancho como alto
           .wrapContentSize()   		// Ocupe solo el espacio exacto que su contenido necesita
           .background(Color.Gray), 	// Color
