@@ -158,6 +158,47 @@ Spacer(Modifier.height(20.dp))
 Spacer(Modifier.width(20.dp))
 ```
 
+### MyBasicConstraintLayout
+<img width="238" height="530" alt="image" src="https://github.com/user-attachments/assets/9a71146c-efc6-4481-a7c9-76e6de3afefb" />
+
+```
+@Preview(showBackground = true)
+@Composable
+fun MyBasicConstraintLayout(modifier: Modifier = Modifier){
+
+    ConstraintLayout(modifier = modifier.fillMaxSize()) {
+        // Id para el layaout
+        val(boxRed, boxGray, boxGreen, boxMagenta, boxYellow) = createRefs()
+
+        Box(Modifier.size(150.dp).background(Color.Red).constrainAs(boxRed){
+            top.linkTo(boxYellow.bottom)
+            start.linkTo(boxYellow.end)
+        }) { }
+
+        Box(Modifier.size(150.dp).background(Color.Gray).constrainAs(boxGray){
+            top.linkTo(boxYellow.bottom)
+            end.linkTo(boxYellow.start)
+        }){}
+
+        Box(Modifier.size(150.dp).background(Color.Green).constrainAs(boxGreen){
+            bottom.linkTo(boxYellow.top)
+            start.linkTo(boxYellow.end)
+        }) { }
+
+        Box(Modifier.size(150.dp).background(Color.Magenta).constrainAs(boxMagenta){
+            bottom.linkTo(boxYellow.top)
+            end.linkTo(boxYellow.start)
+        }) { }
+        Box(Modifier.size(150.dp).background(Color.Yellow).constrainAs(boxYellow){
+            bottom.linkTo(parent.bottom)
+            end.linkTo(parent.end)
+            top.linkTo(parent.top)
+            start.linkTo(parent.start)
+        }) { }
+    }
+}
+```
+
 
 ### Imagen
 ```
