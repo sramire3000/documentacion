@@ -199,6 +199,9 @@ fun MyBasicConstraintLayout(modifier: Modifier = Modifier){
 }
 ```
 
+### Tarea 2
+```
+```
 
 ### Imagen
 ```
