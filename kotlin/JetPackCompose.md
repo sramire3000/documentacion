@@ -38,6 +38,24 @@ Surface(
 ){}
 ```
 
+### Box
+```
+Box(
+	modifier = Modifier
+		.fillMaxSize(),
+	contentAlignment = Alignment.Center
+){
+	Box(
+		modifier = Modifier
+			.size(50.dp)
+			.background(Color.Red),
+		contentAlignment = Alignment.Center
+	){
+		Text("Hola")
+	}
+}
+```
+
 ### Column
 ````
 Column(
