@@ -1,5 +1,16 @@
 # Jet Pack Compose
 
+### Preview
+```
+@Preview(showBackground = true)
+@Composable
+fun GreetingPreview() {
+    MyFirstComposeAppTheme {
+        Greeting("Android")
+    }
+}
+```
+
 ### Modificadores
 ```
 import androidx.compose.ui.graphics.Color
