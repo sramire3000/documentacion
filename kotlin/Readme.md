@@ -19,3 +19,10 @@ constraintVersion = "1.1.0"
 [libraries]
 constraint-layaut = {module = "androidx.contraintlayout:contraintlayaout-compose", version.ref = "constraintVersion" }
 ```
+
+### En el archivo "\app\build.gradle.kts" add
+```
+dependencies {
+    implementation(libs.constraint.layaut)
+}
+ ```
