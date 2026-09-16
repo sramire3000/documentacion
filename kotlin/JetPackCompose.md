@@ -298,13 +298,14 @@ Card(
 
 ### Variables recomposición
 ```
+import androidx.compose.runtime.setValue
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.setValue
+import androidx.compose.runtime.saveable.rememberSaveable
 
 var isTextClicked by remember { mutableStateOf(false) }
 var number = remember{mutableStateOf(0)}
-
+var number = rememberSaveable{mutableStateOf(0)}
 
 ```
