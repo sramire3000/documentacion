@@ -83,6 +83,30 @@ Row(
 ){}
 ```
 
+### My Complex Layout
+```
+Column(modifier = Modifier) {
+	Box(Modifier.weight(1f).fillMaxWidth().background(Color.Red)) { }
+	Box(Modifier.weight(1f).fillMaxWidth().background(Color.Cyan)) {
+		Row() {
+			Box(
+				modifier = Modifier
+					.weight(1f)
+					.height(125.dp)
+					.background(Color.Gray)
+			) { }
+			Box(
+				modifier = Modifier
+					.weight(1f)
+					.height(125.dp)
+					.background(Color.Green)
+			) { }
+		}
+	}
+	Box(Modifier.weight(1f).fillMaxWidth().background(Color.Green)) { }
+}
+```
+
 ### Imagen
 ```
 import androidx.compose.foundation.Image
