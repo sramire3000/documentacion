@@ -26,6 +26,7 @@ modifier = Modifier
           .wrapContentSize()   		// Ocupe solo el espacio exacto que su contenido necesita
           .background(Color.Gray), 	// Color
           .clickable{},             // Para dar click
+          ..verticalScroll(rememberScrollState())   //Scroll vertical
 ```
 
 ### Surface
