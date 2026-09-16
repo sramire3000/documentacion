@@ -25,8 +25,9 @@ modifier = Modifier
           .padding(30.dp)           				// Padding al rededor de todo el componente
           .wrapContentSize()   						// Ocupe solo el espacio exacto que su contenido necesita
           .background(Color.Gray), 					// Color
-          .clickable{},             				// Para dar click
-          .verticalScroll(rememberScrollState())   	//Scroll vertical
+          .clickable{},             				// Para hacer click
+          .verticalScroll(rememberScrollState())   	// Scroll vertical
+          .horizontalScroll(rememberScrollState())  // Scroll horizotal
 ```
 
 ### Surface
