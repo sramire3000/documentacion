@@ -109,6 +109,50 @@ Column(modifier = Modifier) {
 }
 ```
 
+### Layaout Tarea 1
+<img width="236" height="513" alt="image" src="https://github.com/user-attachments/assets/e687563d-3964-421b-91eb-66704f1866db" />
+
+```
+@Preview(showBackground = true)
+@Composable
+fun MyExerciseOne(modifier: Modifier = Modifier){
+    Column(modifier = Modifier) {
+        Box(Modifier
+            .weight(1f)
+            .fillMaxWidth()
+            .background(Color.Cyan),
+            contentAlignment = Alignment.Center
+        ) {
+            Text("Ejemplo 1")
+        }
+        Box(Modifier.weight(1f).fillMaxWidth()) {
+            Row() {
+                Box(modifier = Modifier
+                    .weight(1f)
+                    .fillMaxHeight()
+                    .background(Color.Red)
+                    , contentAlignment = Alignment.Center
+                ) {
+                    Text("Ejemplo 2")
+                }
+                Box(Modifier
+                    .weight(1f)
+                    .background(Color.Green)
+                    .fillMaxHeight()
+                    , contentAlignment = Alignment.Center
+                ) {
+                    Text("Ejemplo 3")
+                }
+            }
+        }
+        Box(Modifier.weight(1f).fillMaxWidth().background(Color.Magenta), contentAlignment = Alignment.BottomCenter) {
+            Text("Ejemplo 3")
+        }
+    }
+}
+```
+
+
 ### Imagen
 ```
 import androidx.compose.foundation.Image
