@@ -1,9 +1,6 @@
 # KOTLIN
 
-- [Compose Multiplataforma](https://kotlinlang.org/compose-multiplatform/)
-- [Kotlin Multiplatform quickstart﻿](https://kotlinlang.org/docs/multiplatform/quickstart.html)
-- [Kotlin Multiplatform Wizard](https://kmp.jetbrains.com/?android=true&ios=true&iosui=compose&includeTests=true)
-- [Awesome Kotlin Multiplatform](https://github.com/terrakok/kmp-awesome?tab=readme-ov-file)
+## Settings
 
-### Add Librerias Multiplataforma
-- [PreCompose](https://github.com/Tlaster/PreCompose)
+### Refresh automatic
+<img width="981" height="717" alt="image" src="https://github.com/user-attachments/assets/82146d35-ed37-464f-8b23-1fb60d6447db" />
