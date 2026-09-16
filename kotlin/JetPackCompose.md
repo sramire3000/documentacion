@@ -84,6 +84,8 @@ Row(
 ```
 
 ### My Complex Layout
+<img width="228" height="530" alt="image" src="https://github.com/user-attachments/assets/4610ea24-ce63-47bf-8af3-88b64969b4db" />
+
 ```
 Column(modifier = Modifier) {
 	Box(Modifier.weight(1f).fillMaxWidth().background(Color.Red)) { }
