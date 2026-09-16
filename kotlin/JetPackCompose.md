@@ -199,8 +199,78 @@ fun MyBasicConstraintLayout(modifier: Modifier = Modifier){
 }
 ```
 
-### Tarea 2
+### MyBasicConstraintLayoutChallenge
+<img width="391" height="843" alt="image" src="https://github.com/user-attachments/assets/445911f6-d662-4382-bf78-ed74f3417a15" />
+
 ```
+@Preview(showBackground = true)
+@Composable
+fun MyBasicConstraintLayoutChallenge(modifier: Modifier = Modifier){
+    ConstraintLayout(modifier = modifier.fillMaxSize()) {
+        // Id para el layaout
+        val(boxRed, boxGray, boxGreen, boxMagenta, boxYellow, boxCyan, boxBlack, boxDarkGray, boxBlue) = createRefs()
+
+        //Azul
+        Box(Modifier.size(175.dp).background(Color.Blue).constrainAs(boxBlue){
+            top.linkTo(boxYellow.bottom)
+            start.linkTo(parent.start)
+            end.linkTo(parent.end)
+        })
+
+        //Cyan
+        Box(Modifier.size(175.dp).background(Color.Cyan).constrainAs(boxCyan){
+            end.linkTo(boxMagenta.end)
+            bottom.linkTo(boxMagenta.top)
+        })
+
+        //Dark Gris
+        Box(Modifier.size(175.dp).background(Color.DarkGray).constrainAs(boxDarkGray){
+            bottom.linkTo(boxGreen.top)
+            start.linkTo(boxGreen.start)
+        })
+
+        //Negra
+        Box(Modifier.size(75.dp).background(Color.Black).constrainAs(boxBlack){
+            start.linkTo(boxCyan.end)
+            top.linkTo(boxCyan.top)
+            bottom.linkTo(boxCyan.bottom)
+        })
+
+        //Rosado
+        Box(Modifier.size(75.dp).background(Color.Magenta).constrainAs(boxMagenta){
+            bottom.linkTo(boxYellow.top)
+            end.linkTo(boxYellow.start)
+        }) { }
+
+        //Verde
+        Box(Modifier.size(75.dp).background(Color.Green).constrainAs(boxGreen){
+            bottom.linkTo(boxYellow.top)
+            start.linkTo(boxYellow.end)
+        }) { }
+
+        //Amarillo
+        Box(Modifier.size(75.dp).background(Color.Yellow).constrainAs(boxYellow){
+            bottom.linkTo(parent.bottom)
+            end.linkTo(parent.end)
+            top.linkTo(parent.top)
+            start.linkTo(parent.start)
+        }) { }
+
+        //Gris
+        Box(Modifier.size(75.dp).background(Color.Gray).constrainAs(boxGray){
+            top.linkTo(boxYellow.bottom)
+            end.linkTo(boxYellow.start)
+        }){}
+
+        //Rojo
+        Box(Modifier.size(75.dp).background(Color.Red).constrainAs(boxRed){
+            top.linkTo(boxYellow.bottom)
+            start.linkTo(boxYellow.end)
+        }) { }
+
+
+    }
+}
 ```
 
 ### Imagen
