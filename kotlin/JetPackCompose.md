@@ -337,6 +337,10 @@ fun MyTextFieldParent(modifier : Modifier){
     Column(modifier = modifier){
         MyTextField(user = user){ user = it }
         MyTextFieldSecond(value = value){ value = it }
+        MyAdvanceTextField(value = value){ value = it }
+        MyPasswordTextField(value = value){ value = it }
+        Spacer(Modifier.height(20.dp))
+        MyOutLinedTextField(value = value){ value = it }
     }
 }
 
@@ -356,4 +360,55 @@ fun MyTextFieldSecond(value: String, onValueChange: (String) -> Unit){
         }
     )
 }
+
+@Composable
+fun MyAdvanceTextField(value: String, onValueChange: (String) -> Unit){
+    TextField(
+        value
+        , onValueChange = {
+            if(it.contains("a")){
+                onValueChange(it.replace("a", ""))
+            }else{
+                onValueChange(it)
+            }
+
+        }
+    )
+}
+
+@Composable
+fun MyPasswordTextField(value: String, onValueChange: (String) -> Unit){
+    var passwordHiden: Boolean by remember { mutableStateOf(true) }
+    TextField(
+        value,
+        onValueChange = { onValueChange(it)},
+        singleLine = true,
+        label = { Text("Introduce tu contraseña") },
+        keyboardOptions = KeyboardOptions(keyboardType = KeyboardType.Password),
+        visualTransformation = if (passwordHiden) PasswordVisualTransformation() else VisualTransformation.None,
+        trailingIcon = {
+            Text(text = if(passwordHiden) "Mostrar" else "Ocultar", modifier = Modifier.clickable{
+                passwordHiden = !passwordHiden
+            } )
+        }
+    )
+}
+
+@Composable
+fun MyOutLinedTextField(value: String, onValueChange: (String) -> Unit){
+    OutlinedTextField(
+        value,
+        onValueChange = { onValueChange(it)}
+    )
+    // bien basico
+    //BasicTextField(value, onValueChange = { onValueChange(it)})
+}
 ```
+
+### Button
+```
+```
+
+
+
+
