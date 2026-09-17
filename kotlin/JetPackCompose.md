@@ -329,11 +329,31 @@ fun MyText(modifier : Modifier){
 ### TextField
 ```
 @Composable
-fun MyTextField(modifier : Modifier){
+fun MyTextFieldParent(modifier : Modifier){
+
+    var user: String by remember { mutableStateOf("Pepe") }
+    var value: String by remember { mutableStateOf("") }
 
     Column(modifier = modifier){
-        var text by remember { mutableStateOf("") }
-        TextField(text, onValueChange = { text = it })
+        MyTextField(user = user){ user = it }
+        MyTextFieldSecond(value = value){ value = it }
     }
+}
+
+@Composable
+fun MyTextField(user: String, onUserChange: (String) -> Unit){
+    TextField(user, onValueChange = { onUserChange(it) })
+}
+
+@Composable
+fun MyTextFieldSecond(value: String, onValueChange: (String) -> Unit){
+    TextField(
+        value
+        , onValueChange = { onValueChange(it) }
+        , label = { Text("Introduce tu email") }
+        , placeholder = {
+            Box(Modifier.size(40.dp).background(Color.Red))
+        }
+    )
 }
 ```
