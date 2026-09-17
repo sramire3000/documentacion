@@ -309,3 +309,31 @@ var number by remember{ mutableStateOf(0) }
 var number by rememberSaveable{ mutableStateOf(0) }
 
 ```
+
+### Text
+```
+@Composable
+fun MyText(modifier : Modifier){
+    Column(modifier = modifier){
+        Text("Pepe")
+        Text("Pepe rojo", color = Color.Red)
+        Text("Pepe", fontSize = 25.sp)
+        Text("FontStyle", fontStyle = FontStyle.Italic)
+        Text("LetterSpacing", letterSpacing = 20.sp)
+        Text("TextDecoration", textDecoration = TextDecoration.Underline)
+    }
+
+}
+```
+
+### TextField
+```
+@Composable
+fun MyTextField(modifier : Modifier){
+
+    Column(modifier = modifier){
+        var text by remember { mutableStateOf("") }
+        TextField(text, onValueChange = { text = it })
+    }
+}
+```
