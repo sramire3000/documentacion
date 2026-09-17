@@ -407,6 +407,31 @@ fun MyOutLinedTextField(value: String, onValueChange: (String) -> Unit){
 
 ### Button
 ```
+@Composable
+fun MyButtons(modifier : Modifier){
+    Column(modifier = modifier) {
+
+        Button(
+            onClick = {Log.i("Aris","Boton Pulsado")},
+            enabled = true,
+            shape = RoundedCornerShape(20),
+            border = BorderStroke(3.dp, Color.Red),
+            colors = ButtonDefaults.buttonColors(
+                contentColor = Color.Red,
+                containerColor = Color.White,
+                disabledContentColor = Color.Yellow,
+                disabledContainerColor = Color.Green
+            )
+        ) {
+            Text("Pulsame")
+        }
+
+        OutlinedButton(onClick = {}) {Text("Pulsame")}
+        TextButton(onClick = {}) {Text("Pulsame")}
+        ElevatedButton( onClick = {}) {Text("Pulsame") }
+        FilledTonalButton(onClick = {}) {Text("Pulsame")  }
+    }
+}
 ```
 
 
