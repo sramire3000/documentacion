@@ -273,16 +273,6 @@ fun MyBasicConstraintLayoutChallenge(modifier: Modifier = Modifier){
 }
 ```
 
-### Imagen
-```
-import androidx.compose.foundation.Image
-import androidx.compose.ui.res.painterResource
-
-Image(
-	painter = painterResource(id = R.drawable.baseline_person_24),
-	contentDescription = "Perfil"
-)
-```
 
 ### Card
 ```
@@ -434,6 +424,16 @@ fun MyButtons(modifier : Modifier){
 }
 ```
 
+### Image
+```
+import androidx.compose.foundation.Image
+import androidx.compose.ui.res.painterResource
+
+Image(
+	painter = painterResource(id = R.drawable.baseline_person_24),
+	contentDescription = "Perfil"
+)
+```
 
 
 
