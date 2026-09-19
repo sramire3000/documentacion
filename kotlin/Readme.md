@@ -23,11 +23,29 @@ androidx-compose-material-icons-extended = { group = "androidx.compose.material"
 
 ```
 
+### Permisos "AndroidManifest.xml"
+```
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <application
+        ......
+        <!-- Tus Permisos -->
+        <uses-permission android:name="android.permission.INTERNET" />
+    </application>
+
+</manifest>
+```
+
 ### En el archivo "\app\build.gradle.kts" add
 ```
 dependencies {
+    //Layaout
+    implementation(libs.constraint.layaut)
+    
+    //Icons
     implementation(libs.androidx.compose.material.icons.core)
     implementation(libs.androidx.compose.material.icons.extended)
-    implementation(libs.constraint.layaut)
 }
  ```
