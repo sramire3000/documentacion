@@ -47,5 +47,11 @@ dependencies {
     //Icons
     implementation(libs.androidx.compose.material.icons.core)
     implementation(libs.androidx.compose.material.icons.extended)
+
+    //Retrofit
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    
+    //Gson
+    implementation("com.squareup.retrofit2:converter-gson:2.9.0")
 }
  ```
