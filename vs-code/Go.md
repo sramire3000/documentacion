@@ -1,15 +1,16 @@
 # Go
 
 ### Theme
-- [vscode-icons](https://marketplace.visualstudio.com/items?itemName=vscode-icons-team.vscode-icons)
+- [Material-icons](https://marketplace.visualstudio.com/items?itemName=PKief.material-icon-theme)
 - [Dracula Theme](https://marketplace.visualstudio.com/items?itemName=dracula-theme.theme-dracula)
 
 ### GIT default
 - [GitHub Copilot Chat](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot-chat)
 - [GitHub Copilot](https://marketplace.visualstudio.com/items?itemName=GitHub.copilot)
+- [Go Team at Goole](https://marketplace.visualstudio.com/items?itemName=golang.Go)
+- [Go Template-syntax](https://marketplace.visualstudio.com/items?itemName=casualjim.gotemplate)
 
-
-### Profile Go
+### Profile Settings
 ```
 {
   // Windows
@@ -51,7 +52,7 @@
   // Workbench mejorado
   //"workbench.iconTheme": "material-icon-theme",
   "vsicons.dontShowNewVersionMessage": true,
-  "workbench.iconTheme": "vscode-icons",
+  "workbench.iconTheme": "material-icon-theme",
   "workbench.sideBar.location": "left",
   "workbench.editor.showTabs": "multiple",
   "workbench.statusBar.visible": true,
@@ -87,5 +88,10 @@
   "explorer.confirmDelete": false,
   "explorer.confirmDragAndDrop": false,
   "github.copilot.nextEditSuggestions.enabled": true,
+  "go.lintTool": "golangci-lint-v2",
+  "go.lintOnSave": "workspace",
+  "workbench.colorTheme": "Dracula Theme"
 }
 ```
+
+  
