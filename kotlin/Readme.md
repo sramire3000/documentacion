@@ -31,9 +31,11 @@ androidx-compose-material-icons-extended = { group = "androidx.compose.material"
 
     <application
         ......
-        <!-- Tus Permisos -->
-        <uses-permission android:name="android.permission.INTERNET" />
+
     </application>
+
+    <!-- Permiso de acceso al internet -->
+    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>
 ```
