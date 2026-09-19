@@ -50,7 +50,7 @@ dependencies {
     implementation(libs.androidx.compose.material.icons.core)
     implementation(libs.androidx.compose.material.icons.extended)
 
-    //Retrofit
+    //Retrofit peticiones (POST, GET, PUT)
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     
     //Gson
