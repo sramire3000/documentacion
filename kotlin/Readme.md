@@ -5,7 +5,8 @@
 - [Constraint Layaut](https://developer.android.com/develop/ui/views/layout/constraint-layout)
 - [Retrofit (GET,POST, DELETE, PUT)](https://lysine.dev/retrofit/)
 - [Coil images network](https://github.com/coil-kt/coil)
-- [Lottie Animation](https://lottie.airbnb.tech/#/)
+- [Lottie Animation lib](https://lottie.airbnb.tech/#/)
+- [Bajar Animaciones LottieFile](https://lottiefiles.com/)
 
 ## Settings
 
