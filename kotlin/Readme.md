@@ -69,7 +69,7 @@ dependencies {
     implementation("io.coil-kt.coil3:coil-network-okhttp:3.1.0")
 
     //animaciones
-    implementation "com.airbnb.android:lottie:6.6.6"
+    implementation "com.airbnb.android:lottie-compose:6.6.6"
 }
  ```
 
