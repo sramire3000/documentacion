@@ -61,3 +61,12 @@ dependencies {
     implementation("io.coil-kt.coil3:coil-network-okhttp:3.1.0")
 }
  ```
+
+### Preview
+```
+@Preview(showSystemUi = true)
+@Composable
+fun MyProgressPreview(modifier: Modifier = Modifier.padding(top = 30.dp)) {
+    MyProgress(modifier = modifier)
+}
+```
