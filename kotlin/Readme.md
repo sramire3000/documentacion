@@ -70,9 +70,6 @@ dependencies {
 
     //animaciones
     implementation "com.airbnb.android:lottie-compose:6.6.6"
-
-    //Icons Material3
-     implementation("androidx.compose.material3:material3:1.4.0")
 }
  ```
 
