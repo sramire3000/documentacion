@@ -51,7 +51,7 @@
 ### En el archivo "\app\build.gradle.kts" add
 ```
 dependencies {
-    /* Adiconar librerias */
+    /* Adicionar librerias */
     //Icons
     implementation("androidx.compose.material:material-icons-core")
     implementation("androidx.compose.material:material-icons-extended")
