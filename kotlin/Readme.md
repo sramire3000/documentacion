@@ -91,8 +91,12 @@ fun MyProgressPreview(modifier: Modifier = Modifier.padding(top = 30.dp)) {
 }
 ```
 
-### Platilla Composabe
+### Platilla Composable
 ```
+# Invoca
+MyName(modifier = Modifier.padding(innerPadding))
+
+# Composable
 @Composable
 fun My[Nombre](modifier: Modifier = Modifier){
 
