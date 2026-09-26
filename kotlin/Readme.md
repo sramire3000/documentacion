@@ -115,7 +115,7 @@ My[Nombre](modifier = Modifier.padding(innerPadding))
 ## Drawable
 
 ### Archivo "baseline_account_circle_24.xml"
-<img width="187" height="179" alt="image" src="https://github.com/user-attachments/assets/79c59524-bbed-4f93-a0ac-59e7384c722c" />
+<img width="87" height="79" alt="image" src="https://github.com/user-attachments/assets/79c59524-bbed-4f93-a0ac-59e7384c722c" />
 
 ```
 <!--
