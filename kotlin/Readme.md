@@ -51,6 +51,10 @@ androidx-compose-material-icons-extended = { group = "androidx.compose.material"
 ### En el archivo "\app\build.gradle.kts" add
 ```
 dependencies {
+
+    // Bavigation
+    implementation("androidx.navigation:navigation-compose:2.10.2")
+
     //Layaout
     implementation(libs.constraint.layaut)
     
