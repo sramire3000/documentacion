@@ -168,6 +168,7 @@ My[Nombre](modifier = Modifier.padding(innerPadding))
 
 ### Archivo "baseline_circle_notifications_24.xml"
 <img width="67" height="59" alt="image" src="https://github.com/user-attachments/assets/49de046b-bf0e-4b1c-958a-cfd1d99c085a" />
+
 ```
 <!--
   ~ Copyright (C) 2026 The Android Open Source Project
