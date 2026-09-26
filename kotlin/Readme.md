@@ -93,10 +93,12 @@ fun MyProgressPreview(modifier: Modifier = Modifier.padding(top = 30.dp)) {
 
 ### Platilla Composable
 ```
-# Invoca
-My[Nombre](modifier = Modifier.padding(innerPadding))
+import androidx.compose.foundation.layout.padding
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 
-# Composable
 @Composable
 fun My[Nombre](modifier: Modifier = Modifier){
 
@@ -105,6 +107,11 @@ fun My[Nombre](modifier: Modifier = Modifier){
 @Preview(showSystemUi = true)
 @Composable
 fun My[Nombre]Preview(modifier: Modifier = Modifier.padding(top = 30.dp)){
-    MyBadge(modifier)
+    My[Nombre](modifier)
 }
+```
+
+### Invocacion Composable
+```
+My[Nombre](modifier = Modifier.padding(innerPadding))
 ```
