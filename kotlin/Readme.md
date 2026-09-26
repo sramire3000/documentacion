@@ -63,29 +63,25 @@ androidx-compose-material-icons-extended = { group = "androidx.compose.material"
 ### En el archivo "\app\build.gradle.kts" add
 ```
 dependencies {
-
-    // Bavigation
-    implementation("androidx.navigation:navigation-compose:2.10.2")
-
-    //Layaout
-    implementation(libs.constraint.layaut)
-    
     //Icons
-    implementation(libs.androidx.compose.material.icons.core)
-    implementation(libs.androidx.compose.material.icons.extended)
+    implementation("androidx.compose.material:material-icons-core")
+    implementation("androidx.compose.material:material-icons-extended")
 
-    //Retrofit peticiones (POST, GET, PUT)
+    //consumir APIs REST Retrofit peticiones (POST, GET, PUT)
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
-    
-    //Gson
+
+    //Convert Gson
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
 
-    //Coil-kt (imagenes por URL)
+    // cargar y mostrar imágenes
     implementation("io.coil-kt.coil3:coil-compose:3.1.0")
+
+    // Se encarga de la comunicación HTTP para descargar las imágenes.
+    // Permite personalizar timeouts, headers, autenticación, interceptores, etc.
     implementation("io.coil-kt.coil3:coil-network-okhttp:3.1.0")
 
-    //animaciones
-    implementation "com.airbnb.android:lottie-compose:6.6.6"
+    // Navegaciom diferentes pantallas
+    implementation("androidx.navigation:navigation-compose:2.10.2")
 }
  ```
 
