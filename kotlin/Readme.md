@@ -71,6 +71,9 @@ dependencies {
 
     // Navegaciom diferentes pantallas
     implementation("androidx.navigation:navigation-compose:2.10.2")
+
+    // Animaciones
+    implementation("com.airbnb.android:lottie-compose:6.6.6")
 }
  ```
 
