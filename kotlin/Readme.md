@@ -66,6 +66,9 @@ dependencies {
 
     // Animaciones
     implementation("com.airbnb.android:lottie-compose:6.6.6")
+
+    //Go Rutinas
+    implementation("androidx.lifecycle.lifecycle-runtime-ktx:lifecycle-runtime-ktx")
 }
  ```
 
