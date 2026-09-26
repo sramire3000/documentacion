@@ -103,7 +103,7 @@ fun My[Nombre](modifier: Modifier = Modifier){
 
 }
 
-@Preview(showSystemUi = true)
+@Preview(showBackground = true, showSystemUi = true)
 @Composable
 fun My[Nombre]Preview(modifier: Modifier = Modifier.padding(top = 30.dp)){
     My[Nombre](modifier)
