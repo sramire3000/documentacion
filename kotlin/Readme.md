@@ -115,6 +115,8 @@ My[Nombre](modifier = Modifier.padding(innerPadding))
 ## Drawable
 
 ### Archivo "baseline_account_circle_24.xml"
+<img width="197" height="189" alt="image" src="https://github.com/user-attachments/assets/79c59524-bbed-4f93-a0ac-59e7384c722c" />
+
 ```
 <!--
   ~ Copyright (C) 2026 The Android Open Source Project
