@@ -19,6 +19,18 @@
 
 ## Add Libs
 
+### Adicionar en settings.gradle
+```
+    repositories {
+        google {
+            content {
+                includeGroupByRegex("com\\.google.*")
+            }
+        }
+        mavenCentral()
+    }
+```
+
 ### En el archivo "\gradle\libs.versions.toml"
 ```
 [versions]
