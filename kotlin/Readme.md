@@ -19,18 +19,6 @@
 
 ## Add Libs
 
-### Adicionar en settings.gradle
-```
-    repositories {
-        google {
-            content {
-                includeGroupByRegex("com\\.google.*")
-            }
-        }
-        mavenCentral()
-    }
-```
-
 ### Permisos "AndroidManifest.xml"
 ```
 <?xml version="1.0" encoding="utf-8"?>
