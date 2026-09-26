@@ -90,3 +90,17 @@ fun MyProgressPreview(modifier: Modifier = Modifier.padding(top = 30.dp)) {
     MyProgress(modifier = modifier)
 }
 ```
+
+### Platilla Composabe
+```
+@Composable
+fun My[Nombre](modifier: Modifier = Modifier){
+
+}
+
+@Preview(showSystemUi = true)
+@Composable
+fun My[Nombre]Preview(modifier: Modifier = Modifier.padding(top = 30.dp)){
+    MyBadge(modifier)
+}
+```
