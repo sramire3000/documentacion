@@ -132,6 +132,58 @@
 </vector>
 ```
 
+### Archivo "outline_manage_accounts_24.xml"
+<img width="67" height="59" alt="image" src="https://github.com/user-attachments/assets/afce2cc2-fdf7-407c-a42d-b3a328753476" />
+
+```
+<!--
+  ~ Copyright (C) 2026 The Android Open Source Project
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~      http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android" android:height="24dp" android:tint="#000000" android:viewportHeight="960" android:viewportWidth="960" android:width="24dp">
+      
+    <path android:fillColor="@android:color/white" android:pathData="M287,433Q240,386 240,320Q240,254 287,207Q334,160 400,160Q466,160 513,207Q560,254 560,320Q560,386 513,433Q466,480 400,480Q334,480 287,433ZM80,800L80,688Q80,655 97,626Q114,597 144,582Q195,556 259,538Q323,520 400,520Q408,520 414,520Q420,520 426,522Q418,540 412.5,559.5Q407,579 404,600L400,600Q329,600 272.5,618Q216,636 180,654Q171,659 165.5,668Q160,677 160,688L160,720L412,720Q418,741 428,761.5Q438,782 450,800L80,800ZM640,840L628,780Q616,775 605.5,769.5Q595,764 584,756L526,774L486,706L532,666Q530,652 530,640Q530,628 532,614L486,574L526,506L584,524Q595,516 605.5,510.5Q616,505 628,500L640,440L720,440L732,500Q744,505 754.5,511Q765,517 776,526L834,506L874,576L828,616Q830,628 830,641Q830,654 828,666L874,706L834,774L776,756Q765,764 754.5,769.5Q744,775 732,780L720,840L640,840ZM736.5,696.5Q760,673 760,640Q760,607 736.5,583.5Q713,560 680,560Q647,560 623.5,583.5Q600,607 600,640Q600,673 623.5,696.5Q647,720 680,720Q713,720 736.5,696.5ZM456.5,376.5Q480,353 480,320Q480,287 456.5,263.5Q433,240 400,240Q367,240 343.5,263.5Q320,287 320,320Q320,353 343.5,376.5Q367,400 400,400Q433,400 456.5,376.5ZM400,320Q400,320 400,320Q400,320 400,320Q400,320 400,320Q400,320 400,320Q400,320 400,320Q400,320 400,320Q400,320 400,320Q400,320 400,320ZM412,720L412,720L412,720Q412,720 412,720Q412,720 412,720Q412,720 412,720Q412,720 412,720L412,720Q412,720 412,720Q412,720 412,720Z"/>
+    
+</vector>
+```
+
+### Archivo "outline_no_accounts_24"
+<img width="67" height="59" alt="image" src="https://github.com/user-attachments/assets/4715bcf4-cfba-4981-afa6-161cc7ef89ec" />
+
+```
+<!--
+  ~ Copyright (C) 2026 The Android Open Source Project
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~      http://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android" android:height="24dp" android:tint="#000000" android:viewportHeight="960" android:viewportWidth="960" android:width="24dp">
+      
+    <path android:fillColor="@android:color/white" android:pathData="M608,438L422,252Q436,246 450.5,243Q465,240 480,240Q539,240 579.5,280.5Q620,321 620,380Q620,395 617,409.5Q614,424 608,438ZM234,684Q285,645 348,622.5Q411,600 480,600Q498,600 514.5,601.5Q531,603 549,606L461,518Q414,512 380.5,478.5Q347,445 341,398L227,284Q195,325 177.5,374.5Q160,424 160,480Q160,539 179.5,591Q199,643 234,684ZM732,676Q764,635 782,585.5Q800,536 800,480Q800,347 706.5,253.5Q613,160 480,160Q424,160 374.5,178Q325,196 284,228L732,676ZM325,848.5Q252,817 197.5,762.5Q143,708 111.5,635Q80,562 80,479.5Q80,397 111.5,324.5Q143,252 197.5,197.5Q252,143 325,111.5Q398,80 480.5,80Q563,80 635.5,111.5Q708,143 762.5,197.5Q817,252 848.5,324.5Q880,397 880,479.5Q880,562 848.5,635Q817,708 762.5,762.5Q708,817 635.5,848.5Q563,880 480.5,880Q398,880 325,848.5ZM480,800Q533,800 580,784.5Q627,769 666,740Q627,711 580,695.5Q533,680 480,680Q427,680 380,695.5Q333,711 294,740Q333,769 380,784.5Q427,800 480,800ZM480,740Q480,740 480,740Q480,740 480,740Q480,740 480,740Q480,740 480,740Q480,740 480,740Q480,740 480,740Q480,740 480,740Q480,740 480,740Z"/>
+    
+</vector>
+```
+
 ## Carrito de compras
 
 ### Archivo "baseline_shopping_cart_24.xml"
