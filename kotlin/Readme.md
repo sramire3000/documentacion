@@ -31,18 +31,6 @@
     }
 ```
 
-### En el archivo "\gradle\libs.versions.toml"
-```
-[versions]
-constraintVersion = "1.1.0"
-
-[libraries]
-constraint-layaut = {module = "androidx.constraintlayout:constraintlayout-compose", version.ref = "constraintVersion" }
-androidx-compose-material-icons-core = { group = "androidx.compose.material", name = "material-icons-core" }
-androidx-compose-material-icons-extended = { group = "androidx.compose.material", name = "material-icons-extended" }
-
-```
-
 ### Permisos "AndroidManifest.xml"
 ```
 <?xml version="1.0" encoding="utf-8"?>
