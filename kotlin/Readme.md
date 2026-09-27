@@ -115,5 +115,53 @@ fun My[Nombre]Preview(modifier: Modifier = Modifier.padding(top = 30.dp)){
 My[Nombre](modifier = Modifier.padding(innerPadding))
 ```
 
+```
+package com.example.myfirstbankingapp.screens.product.model
 
+data class ProductFormUiState(
+        val idProduct: Int = 0,
+        val name: String = "",
+        val price: String = "",
+        val category: String = "",
+        val nameError: String? = null,
+        val priceError: String? = null,
+        val categoryError: String? = null
+) {
+    fun validate(): ProductFormUiState {
+        return copy(
+                nameError = if (name.isBlank()) "El nombre es requerido" else null,
+                categoryError = if (category.isBlank()) "La categoría es requerida" else null,
+                priceError =
+                        when {
+                            price.isBlank() -> "El precio es requerido"
+                            price.toDoubleOrNull() == null ->
+                                    "Precio debe ser un número decimal válido"
+                            price.toDouble() < 0 -> "El precio no puede ser negativo"
+                            else -> null
+                        }
+        )
+    }
+
+    companion object {
+        fun validatePriceInput(value: String): String {
+            // Permitir solo números y un punto decimal
+            val filtered = StringBuilder()
+            var hasDecimal = false
+
+            for (char in value) {
+                when {
+                    char.isDigit() -> filtered.append(char)
+                    char == '.' && !hasDecimal && filtered.isNotEmpty() -> {
+                        filtered.append(char)
+                        hasDecimal = true
+                    }
+                }
+            }
+
+            return filtered.toString()
+        }
+    }
+}
+
+```
 
