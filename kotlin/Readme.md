@@ -115,57 +115,5 @@ fun My[Nombre]Preview(modifier: Modifier = Modifier.padding(top = 30.dp)){
 My[Nombre](modifier = Modifier.padding(innerPadding))
 ```
 
-```
-package com.example.myfirstbankingapp.components
 
-import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
-import androidx.compose.material3.Button
-import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.CircularProgressIndicator
-import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.unit.dp
-
-@Composable
-fun PrimaryButton(
-    text: String,
-    isEnabled: Boolean = true,
-    modifier: Modifier = Modifier,
-    loading: Boolean = false,
-    containerColor: Color = MaterialTheme.colorScheme.primary,
-    contentColor: Color = MaterialTheme.colorScheme.onPrimary,
-    onClick: () -> Unit,
-) {
-    Button(
-        onClick = onClick,
-        enabled = isEnabled && !loading,
-        modifier = modifier
-            .fillMaxWidth()
-            .height(52.dp),
-        colors = ButtonDefaults.buttonColors(
-            containerColor = containerColor,
-            contentColor = contentColor
-        ),
-        shape = MaterialTheme.shapes.large
-    ) {
-
-        if (loading) {
-            CircularProgressIndicator(
-                color = contentColor,
-                strokeWidth = 2.dp
-            )
-        } else {
-            Text(
-                text = text,
-                style = MaterialTheme.typography.titleMedium
-            )
-        }
-    }
-}
-
-```
 
