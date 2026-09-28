@@ -10,6 +10,11 @@
 - Gruntfuggly.activitusbar
 - Tyriar.lorem-ipsum
 
+### IA Id
+- google.geminicodeassist
+- Anthropic.claude-code
+- tunakite03.codebase-memory-mcp
+
 ### Configuracion
 ```bash
 {
