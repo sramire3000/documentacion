@@ -3,7 +3,7 @@
 ### Plugins standar Id
 - MermaidChart.vscode-mermaid-chart
 - vstirbu.vscode-mermaid-preview
-- DotJoshJohnson.xml
+- redhat.vscode-xml
 - PKief.material-icon-theme
 - quicktype.quicktype
 - dracula-theme.theme-dracula
