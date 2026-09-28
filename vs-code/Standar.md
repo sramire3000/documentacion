@@ -3,6 +3,10 @@
 ### Plugins standar Id
 - MermaidChart.vscode-mermaid-chart
 - vstirbu.vscode-mermaid-preview
+- shd101wyy.markdown-preview-enhanced
+- yzane.markdown-pdf
+- pomdtr.excalidraw-editor
+- nadomani.excalidraw-copilot
 - redhat.vscode-xml
 - PKief.material-icon-theme
 - quicktype.quicktype
