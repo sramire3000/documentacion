@@ -18,6 +18,10 @@
 ### Docker Id
 - ms-azuretools.vscode-containers
 - ms-vscode-remote.remote-containers
+- ms-azuretools.vscode-docker
+- p1c2u.docker-compose
+- formulahendry.docker-explorer
+
 
 ### Configuracion
 ```bash
