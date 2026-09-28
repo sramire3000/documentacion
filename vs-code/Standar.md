@@ -15,6 +15,10 @@
 - Anthropic.claude-code
 - tunakite03.codebase-memory-mcp
 
+### Docker Id
+- ms-azuretools.vscode-containers
+- ms-vscode-remote.remote-containers
+
 ### Configuracion
 ```bash
 {
