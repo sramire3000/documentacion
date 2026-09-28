@@ -1,5 +1,15 @@
 # Configuración para WORKSPACE
 
+### Plugins standar Id
+- MermaidChart.vscode-mermaid-chart
+- vstirbu.vscode-mermaid-preview
+- DotJoshJohnson.xml
+- PKief.material-icon-theme
+- quicktype.quicktype
+- dracula-theme.theme-dracula
+- Gruntfuggly.activitusbar
+- Tyriar.lorem-ipsum
+
 ### Configuracion
 ```bash
 {
