@@ -64,7 +64,7 @@
 - ms-vscode.vscode-typescript-next
 - esbenp.prettier-vscode
 - jeroen-meijer.pubspec-assist
-- 
+  
 
 ### Configuracion
 ```bash
