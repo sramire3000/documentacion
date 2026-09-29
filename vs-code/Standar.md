@@ -14,8 +14,10 @@
 - christian-kohler.path-intellisense
 - wayou.vscode-todo-highlight
 - formulahendry.auto-rename-tag
+- formulahendry.auto-close-tag
 - BracketPairColorDLW.bracket-pair-color-dlw
 - aaron-bond.better-comments
+
 
 ## GIT
 - mhutchie.git-graph
@@ -71,9 +73,25 @@
 ## Golang
 - golang.go
 - casualjim.gotemplate
-- 
 
-### Configuracion
+## Angulat
+- Angular.ng-template
+- cyrilletuzi.angular-schematics
+- JMGomes.angular-latest-snippets
+- natewallace.angular2-inline
+- steoates.autoimport
+- usernamehw.errorlens
+- dbaeumer.vscode-eslint
+- xabikos.JavaScriptSnippets
+- AykutSarac.jsoncrack-vscode
+- esbenp.prettier-vscode
+- YoavBls.pretty-ts-errors
+- jeroen-meijer.pubspec-assist
+- bradlc.vscode-tailwindcss
+- pmneo.tsimporter
+
+
+## Configuracion
 ```bash
 {
   // Windows
