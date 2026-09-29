@@ -1,8 +1,6 @@
 # Configuración para WORKSPACE
 
 ### Plugins standar Id
-- MermaidChart.vscode-mermaid-chart
-- vstirbu.vscode-mermaid-preview
 - shd101wyy.markdown-preview-enhanced
 - yzane.markdown-pdf
 - pomdtr.excalidraw-editor
