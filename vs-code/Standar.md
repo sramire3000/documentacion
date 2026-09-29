@@ -64,7 +64,11 @@
 - ms-vscode.vscode-typescript-next
 - esbenp.prettier-vscode
 - jeroen-meijer.pubspec-assist
-  
+
+## Golang
+- golang.go
+- casualjim.gotemplate
+- 
 
 ### Configuracion
 ```bash
