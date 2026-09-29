@@ -74,7 +74,7 @@
 - golang.go
 - casualjim.gotemplate
 
-## Angulat
+## Angular
 - Angular.ng-template
 - cyrilletuzi.angular-schematics
 - JMGomes.angular-latest-snippets
