@@ -14,6 +14,8 @@
 - christian-kohler.path-intellisense
 - wayou.vscode-todo-highlight
 - formulahendry.auto-rename-tag
+- BracketPairColorDLW.bracket-pair-color-dlw
+- aaron-bond.better-comments
 
 ## IA Id
 - google.geminicodeassist
