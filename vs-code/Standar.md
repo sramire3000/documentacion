@@ -18,7 +18,7 @@
 - aaron-bond.better-comments
 
 ## GIT
-- eamodio.gitlens
+- mhutchie.git-graph
 
 ## IA Id
 - google.geminicodeassist
