@@ -1,6 +1,6 @@
 # Configuración para WORKSPACE
 
-### Plugins standar Id
+## Plugins standar Id
 - shd101wyy.markdown-preview-enhanced
 - yzane.markdown-pdf
 - pomdtr.excalidraw-editor
@@ -11,17 +11,39 @@
 - dracula-theme.theme-dracula
 - Gruntfuggly.activitusbar
 - Tyriar.lorem-ipsum
+- christian-kohler.path-intellisense
+- wayou.vscode-todo-highlight
 
-### IA Id
+## IA Id
 - google.geminicodeassist
 - Anthropic.claude-code
 - tunakite03.codebase-memory-mcp
 
-### Docker Id
+## Docker Id
 - ms-azuretools.vscode-containers
 - ms-vscode-remote.remote-containers
 - ms-azuretools.vscode-docker
 - formulahendry.docker-explorer
+
+### Sprint Boot
+- shengchen.vscode-checkstyle
+- naumovs.color-highlight
+- ryanluker.vscode-coverage-gutters
+- vscjava.vscode-java-debug
+- usernamehw.errorlens
+- vscjava.vscode-java-pack
+- vscjava.vscode-gradle
+- oderwat.indent-rainbow
+- redhat.java
+- vscjava.vscode-lombok
+- vscjava.vscode-maven
+- vscjava.vscode-java-dependency
+- vscjava.vscode-spring-boot-dashboard
+- vmware.vscode-boot-dev-pack
+- vmware.vscode-spring-boot
+- vscjava.vscode-spring-initializr
+- vscjava.vscode-java-test
+- redhat.vscode-yaml
 
 ### Configuracion
 ```bash
