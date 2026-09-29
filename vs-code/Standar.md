@@ -17,6 +17,9 @@
 - BracketPairColorDLW.bracket-pair-color-dlw
 - aaron-bond.better-comments
 
+## GIT
+- eamodio.gitlens
+
 ## IA Id
 - google.geminicodeassist
 - Anthropic.claude-code
