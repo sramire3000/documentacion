@@ -13,6 +13,7 @@
 - Tyriar.lorem-ipsum
 - christian-kohler.path-intellisense
 - wayou.vscode-todo-highlight
+- formulahendry.auto-rename-tag
 
 ## IA Id
 - google.geminicodeassist
