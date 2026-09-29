@@ -48,6 +48,24 @@
 - vscjava.vscode-java-test
 - redhat.vscode-yaml
 
+## Flutter
+- gornivv.vscode-flutter-files
+- steoates.autoimport
+- Nash.awesome-flutter-snippets
+- FelixAngelov.bloc
+- Dart-Code.dart-code
+- aziznal.dart-import-sorter
+- usernamehw.errorlens
+- Dart-Code.flutter
+- circlecodesolution.ccs-flutter-color
+- robert-brunhage.flutter-riverpod-snippets
+- marcelovelasquez.flutter-tree
+- alexisvt.flutter-snippets
+- ms-vscode.vscode-typescript-next
+- esbenp.prettier-vscode
+- jeroen-meijer.pubspec-assist
+- 
+
 ### Configuracion
 ```bash
 {
