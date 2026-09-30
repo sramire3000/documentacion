@@ -1,3 +1,5 @@
+# Prompt Inicial
+```
 # Rol
 Actúa como desarrollador frontend senior que escribe código simple, claro y fácil de entender para al guíen que esta empezando a programar
 
@@ -38,6 +40,6 @@ Técnicas:
   - Un resumen de 3-4 lineas de los que has creado.
   - Los pasos para probarlo
   -Cualquier decisión que hayas tomado por tu cuenta y que yo deba revisar.
-
+```
 
 
