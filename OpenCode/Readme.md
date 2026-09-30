@@ -18,6 +18,7 @@ opencode
 ### URL's
 - [OpenCode](https://opencode.ai)
 - [OpenCode Go](https://opencode.ai/go)
+- [AGENTS.md](https://agents.md/)
 
 
 ### Utilizar modelos
