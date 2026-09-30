@@ -25,3 +25,10 @@
   
 ## Verificación
 - Cómo comprobar que un cambio funciona antes de darlo por terminado.
+
+# Crear un AGGENTS
+
+## Comando crear agente en base al contexto base
+```
+/init 
+```
