@@ -31,3 +31,7 @@ Técnicas: - HTML, CSS y JavaScript, sin frameworks, sin librerías y sin compil
    - Los pasos para probarlo. 
    - Cualquier decisión que hayas tomado por tu cuenta y que yo deba revisar.
 ```
+
+## Archivo "AGENTS.md"
+```
+```
