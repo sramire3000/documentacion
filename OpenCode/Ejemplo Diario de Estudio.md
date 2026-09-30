@@ -70,6 +70,10 @@ Web estática para registrar sesiones de estudio y motivarse viendo la racha de 
 - ⚠ Pregunta antes: crear archivos nuevos, cambiar el formato de los datos guardados. - 
 - 🚫 Nunca: añadir dependencias, frameworks o un paso de build.
 
+## Verificación
+- No hay tests ni lint. Probar abriendo `index.html` en el navegador.
+- Para empezar de cero: DevTools → Application → Local Storage → borrar la clave `diario-estudio-sesiones`.
+
 ```
 
 
