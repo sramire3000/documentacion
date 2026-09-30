@@ -19,7 +19,7 @@ opencode
 - [OpenCode](https://opencode.ai)
 - [OpenCode Go](https://opencode.ai/go)
 - [AGENTS.md](https://agents.md/)
-- [SKILLS](https://skill.sh/)
+- [Skills](https://www.skills.sh/)
 
 
 ### Utilizar modelos
