@@ -14,3 +14,8 @@ opencode --version
 ```
 opencode
 ```
+
+### Utilizar modelos
+```
+/connect
+```
