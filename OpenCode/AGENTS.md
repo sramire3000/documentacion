@@ -25,9 +25,10 @@ datos…
 ## Forma de trabajar - Cuándo planificar antes de tocar código, tamaño de los cambios, qué explicar al
 
 terminar.
-- ✅  Siempre: lo que debe hacer sin preguntar. - 
+- ✅ Siempre: lo que debe hacer sin preguntar. - 
 - ⚠  Pregunta antes: dependencias nuevas, archivos nuevos, cambios en el formato de
 - 🚫 Nunca: lo que no debe tocar bajo ningún concepto.
 
-## Verificación - Cómo comprobar que un cambio funciona antes de darlo por terminado. 
+## Verificación - Cómo comprobar que un cambio funciona antes de darlo por terminado.
+
 ```
