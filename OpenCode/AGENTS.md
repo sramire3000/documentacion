@@ -1,4 +1,5 @@
 # AGENTS.md - [Nombre del proyecto]
+[Una o dos frases: qué es, para quién y cúal es su objetivo]
 
 ## Stack y estructura
 - Tecnologías y versiones claves.
