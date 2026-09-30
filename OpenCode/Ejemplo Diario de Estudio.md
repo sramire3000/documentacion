@@ -76,6 +76,7 @@ Web estática para registrar sesiones de estudio y motivarse viendo la racha de 
 - ✅ siempre: respetar las reglas de fechas y racha, mantener los textos en español. - 
 - ⚠ Pregunta antes: crear archivos nuevos, cambiar el formato de los datos guardados. - 
 - 🚫 Nunca: añadir dependencias, frameworks o un paso de build.
+- ✅ Siempre: actualizar `MEMORY.md` al terminar cada tarea.
 
 ## Verificación
 - No hay tests ni lint. Probar abriendo `index.html` en el navegador.
