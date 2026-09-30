@@ -22,3 +22,5 @@
 - ⚠ Preguntar antes: dependencias nuevas, archivos nuevos, cambios en el formato de datos.
 - 🚫 Nunca: lo que no debe tocar bajo ningún concepto
   
+## Verificación
+- Cómo comprobar que un cambio funciona antes de darlo por terminado.
