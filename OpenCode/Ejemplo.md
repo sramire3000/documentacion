@@ -1,6 +1,6 @@
 # Ejemplo
 
-## Prompt
+## Prompt inicial
 ```
 ## Rol 
 Actúa como desarrollador frontend senior que escribe código simple, claro y fácil de 
