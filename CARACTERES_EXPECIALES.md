@@ -3,13 +3,13 @@
 
 ## Caracteres especiales
 
-• á: &aacute;
-• é: &eacute;
-• í: &iacute;
-• ó: &oacute;
-• ú: &uacute;
-• ñ: &ntilde;
-• Ñ: &Ntilde;
+- á: &aacute;
+- é: &eacute;
+- í: &iacute;
+- ó: &oacute;
+- ú: &uacute;
+- ñ: &ntilde;
+- Ñ: &Ntilde;
 
 ## Caracteres Unicode Json / Java / JavaScript y TypeScript / CSS (Hojas de Estilo)
 á: \u00e1
