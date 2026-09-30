@@ -60,5 +60,16 @@ Web estática para registrar sesiones de estudio y motivarse viendo la racha de 
 - Racha = días consecutivos con al menos 1 sesión que terminan hoy. Si hoy no hay sesión pero ayer sí, la racha sigue viva y se cuenta desde ayer.
 - Varias sesiones el mismo día cuentan como un solo día. Las fechas futuras no suman. 
 
+## Forma de trabajar
+- Haz solo lo que se pide: no añadas funcionalidades por tu cuenta.
+- Cambios pequeños y enfocados; no reescribas lo que ya funciona.
+- Al terminar, resume qué has cambiado y cualquier decisión que deba revisar.
+
+## Límites
+- siempre: respetar las reglas de fechas y racha, mantener los textos en español. - 
+- ⚠ Pregunta antes: crear archivos nuevos, cambiar el formato de los datos guardados. - 
+-  Nunca: añadir dependencias, frameworks o un paso de build.
 
 ```
+
+
