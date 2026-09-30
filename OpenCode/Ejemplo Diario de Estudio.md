@@ -40,24 +40,25 @@ Técnicas: - HTML, CSS y JavaScript, sin frameworks, sin librerías y sin compil
 ```
 # AGENTS.md — Diario de Estudio
 
-Web estática para registrar sesiones de estudio y motivarse viendo la racha de días 
-seguidos. Proyecto didáctico: el código debe poder entenderlo alguien que empieza a 
-programar.
+Web estática para registrar sesiones de estudio y motivarse viendo la racha de días seguidos. Proyecto didáctico: el código debe poder entenderlo alguien que empieza a programar.
 
 ## Stack y estructura
 - HTML, CSS y JavaScript puros: sin frameworks, librerías, npm, bundler ni build.
 - `index.html` (estructura), `styles.css` (estilos), `app.js` (lógica y datos).
-- Debe funcionar abriendo `index.html` con doble clic (`file://`): nada de módulos ES 
-(`type="module"`), `fetch` a archivos locales ni nada que requiera servidor.
+- Debe funcionar abriendo `index.html` con doble clic (`file://`): nada de módulos ES (`type="module"`), `fetch` a archivos locales ni nada que requiera servidor.
 
 ## Convenciones - Textos de la interfaz en español.
 - Código simple, nombres descriptivos y comentarios solo donde aporten.
 - Diseño limpio y responsive; cualquier pantalla nueva debe verse bien en el móvil. 
 
 ## Datos
-- localStorage, clave `diario-estudio-sesiones`: array de `{ date: "AAAA-MM-DD", topic, 
-minutes }`.
-- Si cambias la forma de los datos, mantén compatibilidad con lo ya guardado o el usuario 
-perderá sus sesiones.
+- localStorage, clave `diario-estudio-sesiones`: array de `{ date: "AAAA-MM-DD", topic, minutes }`.
+- Si cambias la forma de los datos, mantén compatibilidad con lo ya guardado o el usuario perderá sus sesiones.
+
+## Fechas y racha (fácil equivocarse)
+- Trabaja siempre con la fecha local del usuario. Nunca uses `toISOString()` ni `new Date("AAAA-MM-DD")`: se interpretan en UTC y desplazan el día.
+- Racha = días consecutivos con al menos 1 sesión que terminan hoy. Si hoy no hay sesión pero ayer sí, la racha sigue viva y se cuenta desde ayer.
+- Varias sesiones el mismo día cuentan como un solo día. Las fechas futuras no suman. 
+
 
 ```
