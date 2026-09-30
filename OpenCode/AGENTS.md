@@ -26,7 +26,7 @@ datos…
 
 terminar.
 - ✅ Siempre: lo que debe hacer sin preguntar. - 
-- ⚠  Pregunta antes: dependencias nuevas, archivos nuevos, cambios en el formato de
+- ⚠ Pregunta antes: dependencias nuevas, archivos nuevos, cambios en el formato de
 - 🚫 Nunca: lo que no debe tocar bajo ningún concepto.
 
 ## Verificación - Cómo comprobar que un cambio funciona antes de darlo por terminado.
