@@ -1,4 +1,4 @@
-# Ejemplo
+# Ejemplo Diario de Estudio
 
 ## Prompt inicial
 ```
