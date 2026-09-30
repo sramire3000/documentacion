@@ -68,7 +68,7 @@ Web estática para registrar sesiones de estudio y motivarse viendo la racha de 
 ## Límites
 - ✅ siempre: respetar las reglas de fechas y racha, mantener los textos en español. - 
 - ⚠ Pregunta antes: crear archivos nuevos, cambiar el formato de los datos guardados. - 
--  Nunca: añadir dependencias, frameworks o un paso de build.
+- 🚫 Nunca: añadir dependencias, frameworks o un paso de build.
 
 ```
 
