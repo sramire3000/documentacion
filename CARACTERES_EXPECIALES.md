@@ -21,6 +21,8 @@
 ú: \u00fa
 ñ: \u00f1
 Ñ: \u00d1
+Salto de linea Unicode: \u000A
+Salto de linea: \n
 ```
 
 ## Para XML 
