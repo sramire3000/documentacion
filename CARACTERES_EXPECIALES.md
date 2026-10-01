@@ -1,7 +1,7 @@
 # Caracteres especiales
 
 
-## Caracteres especiales
+## Caracteres especiales para HTML
 ```
 á: &aacute;
 é: &eacute;
