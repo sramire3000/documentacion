@@ -34,6 +34,7 @@ Salto de linea: \n
 ú: &#xfa;
 ñ: &#xf1;
 Ñ: &#xd1;
+Salto de linea: &#x0a
 ```
 
 
