@@ -13,3 +13,7 @@ Eres un agente de codificación experto en clean code.
 - Sin magia: evita expresiones crípticas, prefiere claridad.
 - Buenas prácticas de seguridad cuando corresponda.
 ```
+# Configuración proyecto
+
+## Crear archivo ".ignore" para que escanee archivos inecesarios.
+
