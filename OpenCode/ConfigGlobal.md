@@ -1,6 +1,6 @@
 # Configuracion global
 
-## Archivo "instructions.md"
+## Archivo ".config/opencode/instructions.md"
 ```
 Eres un agente de codificación experto en clean code.
 
