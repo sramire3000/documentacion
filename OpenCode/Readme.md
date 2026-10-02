@@ -33,4 +33,4 @@ opencode
 - README.md (Objetivo del proyecto)
 - AGENTS.md (Instrucciones princiaples)
 - ideas-revision.md (Nuevas ideas)
-- file-system.md (Estructura deseada)
+- references/file-system.md (Estructura deseada)
