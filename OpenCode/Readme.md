@@ -28,3 +28,9 @@ opencode
 ```
 
 ### IA MAI-Code-1.1-Flash
+
+## Listado de Ficheros
+- README.md (Objetivo del proyecto)
+- AGENTS.md (Instrucciones princiaples)
+- ideas-revision.md (Nuevas ideas)
+- file-system.md (Estructura deseada)
