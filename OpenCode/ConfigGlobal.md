@@ -15,5 +15,5 @@ Eres un agente de codificación experto en clean code.
 ```
 # Configuración proyecto
 
-## Crear archivo ".ignore" para que escanee archivos inecesarios.
+## Crear archivo ".ignore" para que es canee archivos innecesarios.
 
