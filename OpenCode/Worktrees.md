@@ -12,6 +12,20 @@ git worktree add .worktrees/<nombre-del-worktree>
 - implementemos un **sistema de skins**: Poder cambiar la apariencia de la nave.
 - implementemos un **escudo**: Un escudo que protege a la nave de los proyectiles enemigos.
 
+
+## Unir a la rama principal o otra
+```
+# Cambiarse de rama
+git checkout main
+
+# Hacer el merge
+git merge <nombre-de-la-rama>
+
+# Subir los cambios
+git push origin main
+
+```
+
 ## Otros comandos
 
 ### Listar
