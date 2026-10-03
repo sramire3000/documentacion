@@ -24,6 +24,11 @@ git worktree list
 git worktree remove .worktrees/<nombre-del-worktree>
 ```
 
+### Nota: Si Git te da un error de que hay cambios sin guardar o archivos modificados y estás seguro de que no los necesitas, puedes forzar la eliminación agregando la bandera --force:
+```
+git worktree remove --force .worktrees/<nombre-del-worktree>
+```
+
 ### Limpiar referencias obsoletas (Opcional):
 Si la carpeta del worktree fue borrada manualmente desde el explorador de archivos o la terminal (usando rm -rf) en lugar de usar git worktree remove, Git mantendrá una referencia huérfana. Puedes limpiarla ejecutando:
 ```
