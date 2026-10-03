@@ -16,9 +16,9 @@ opencode
 ```
 
 ## Run the following command in a project that is in a GitHub repo:
-```
-opencode github install
-```
+
+[opencode github install](https://github.com/apps/opencode-agent)
+
 
 ### URL's
 - [OpenCode](https://opencode.ai)
