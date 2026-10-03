@@ -15,20 +15,20 @@ No hagas nada más. no te cambies de directorio. No hagas nada adicional. Simple
 ## Archivo ".opencode/commands/worktree.md"
 ```
 ---
-description: Crea un git worktree en.worktress/ con un nombre derivado del contexto dado.
+description: Crea un git worktree en .worktress/ con un nombre derivado del contexto dado.
 agent: build
 ---
-# /worktree
 
-Uso:
-`/worktree <nombre-del-worktree>`
+El usuario invocó `/worktree` con el siguiente argumento:
 
-Ejemplo:
-`/worktree feature-login`
+$ARGUMENTS
 
-Ejecuta exactamente:
-`git worktree add ".worktrees/$ARGUMENTS"`
+Instrucciones:
 
-git worktree add ".worktrees/$ARGUMENTS"
-
+1. Analiza el argumento (puede contener espacion) y deriva un nombre corto en kebab-case (minúscula, sin espacios ni acentetos) que represente el contesto.
+2. Ejecuta exactamente este comando con la tool bash, sin cambiar de directori y sin pasos adicionales:
+git worktree add .worktrees/<nombre-derivado>
+3. No hagas nada más: no uses `cd`, no corras otros comando, no edites archivos, no confirmes con el usuario, no hagas commit ni push.
+4 Reporta únicamente el resultado del comando (stdout/stderr y código de salida).
+5. Si el argumento es muy largo, simplifícalo a un nombre significativo.
 ```
