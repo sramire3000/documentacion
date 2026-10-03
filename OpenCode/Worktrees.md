@@ -11,3 +11,21 @@ git worktree add .worktrees/<nombre-del-worktree>
 - implementemos un **triple shot**: Por 5 segundos, el personaje dispara 3 veces en línea recta.
 - implementemos un **sistema de skins**: Poder cambiar la apariencia de la nave.
 - implementemos un **escudo**: Un escudo que protege a la nave de los proyectiles enemigos.
+
+## Otros comandos
+
+### Listar
+```
+git worktree list
+```
+
+### Eliminar
+```
+git worktree remove .worktrees/<nombre-del-worktree>
+```
+
+### Limpiar referencias obsoletas (Opcional):
+Si la carpeta del worktree fue borrada manualmente desde el explorador de archivos o la terminal (usando rm -rf) en lugar de usar git worktree remove, Git mantendrá una referencia huérfana. Puedes limpiarla ejecutando:
+```
+git worktree prune
+```
