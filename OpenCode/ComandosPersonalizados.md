@@ -30,5 +30,5 @@ Instrucciones:
 git worktree add .worktrees/<nombre-derivado>
 3. No hagas nada más: no uses `cd`, no corras otros comando, no edites archivos, no confirmes con el usuario, no hagas commit ni push.
 4 Reporta únicamente el resultado del comando (stdout/stderr y código de salida).
-5. Si el argumento es muy largo, simplifícalo a un nombre significativo.
+5. Si los argumentos son muy largo, simplifícalo a un nombre significativo.
 ```
