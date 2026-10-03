@@ -25,7 +25,7 @@ $ARGUMENTS
 
 Instrucciones:
 
-1. Analiza el argumento (puede contener espacion) y deriva un nombre corto en kebab-case (minúscula, sin espacios ni acentetos) que represente el contesto.
+1. Analiza el argumento (puede contener espacios) y deriva un nombre corto en kebab-case (minúscula, sin espacios ni acentetos) que represente el contesto.
 2. Ejecuta exactamente este comando con la tool bash, sin cambiar de directori y sin pasos adicionales:
 git worktree add .worktrees/<nombre-derivado>
 3. No hagas nada más: no uses `cd`, no corras otros comando, no edites archivos, no confirmes con el usuario, no hagas commit ni push.
