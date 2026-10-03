@@ -14,6 +14,10 @@ No hagas nada más. no te cambies de directorio. No hagas nada adicional. Simple
 
 ## Archivo ".opencode/commands/worktree.md"
 ```
+---
+description: Crea un git worktree en.worktress/ con un nombre derivado del contexto dado.
+agent: build
+---
 # /worktree
 
 Uso:
