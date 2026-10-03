@@ -10,3 +10,21 @@ git worktree add .worktrees/<nombre-del-worktree>
 
 No hagas nada más. no te cambies de directorio. No hagas nada adicional. Simplemente ejecuta el comando de la creación del World drink
 ```
+
+
+## Archivo ".opencode/commands/worktree.md"
+```
+# /worktree
+
+Uso:
+`/worktree <nombre-del-worktree>`
+
+Ejemplo:
+`/worktree feature-login`
+
+Ejecuta exactamente:
+`git worktree add ".worktrees/$ARGUMENTS"`
+
+git worktree add ".worktrees/$ARGUMENTS"
+
+```
