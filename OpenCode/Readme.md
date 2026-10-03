@@ -15,6 +15,11 @@ opencode --version
 opencode
 ```
 
+## Run the following command in a project that is in a GitHub repo:
+```
+opencode github install
+```
+
 ### URL's
 - [OpenCode](https://opencode.ai)
 - [OpenCode Go](https://opencode.ai/go)
