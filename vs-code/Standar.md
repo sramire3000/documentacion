@@ -1,6 +1,6 @@
 # Configuración para WORKSPACE
 
-## Plugins standar Id
+## Plugins standar x Id 
 - shd101wyy.markdown-preview-enhanced
 - yzane.markdown-pdf
 - pomdtr.excalidraw-editor
@@ -17,6 +17,9 @@
 - formulahendry.auto-close-tag
 - BracketPairColorDLW.bracket-pair-color-dlw
 - aaron-bond.better-comments
+  
+Nota: en la tuerquita marcar para todos los perfiles
+
 
 
 ## GIT
