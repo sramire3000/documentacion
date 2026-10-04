@@ -25,4 +25,9 @@ Reglas que nadie casi sigue:
 - En el paso 5 pide pausas entre fases del plan, revisa diffs pequeños.
 - Si a la mitad del 5 quieres cambiar algo, vuelve al paso 2 no improvises
 
-   
+# Inicio
+
+## Paso 01 en opencode
+```
+/init
+```
