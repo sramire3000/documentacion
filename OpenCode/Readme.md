@@ -53,7 +53,7 @@ jobs:
         env:
           OPENCODE_API_KEY: ${{ secrets.OPENCODE_API_KEY }}
         with:
-          model: opencode-go/glm-5.2
+          model: opencode-go/glm-5.3
 ```
 
 
