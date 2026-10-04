@@ -4,6 +4,7 @@
 ```mermaid
 graph LR
 A((Describir)) --> B((Plan Mode))
+B --> C((Refinar))
 ```
 
 ## Pasos
