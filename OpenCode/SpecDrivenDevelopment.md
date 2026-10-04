@@ -5,7 +5,6 @@
 A((Describir)) --> B((Plan Mode))
 B --> C((Refinar))
 C --> A
-C --> B
 ```
 
 ## Pasos
