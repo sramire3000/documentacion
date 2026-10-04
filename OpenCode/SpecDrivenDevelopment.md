@@ -1,6 +1,6 @@
 # Spec Driven Development
 
-## Flowchart
+## Diagrama
 ```mermaid
 graph LR
 A((Describir)) --> B((Plan Mode))
