@@ -25,6 +25,13 @@ Reglas que nadie casi sigue:
 - En el paso 5 pide pausas entre fases del plan, revisa diffs pequeños.
 - Si a la mitad del 5 quieres cambiar algo, vuelve al paso 2 no improvises
 
+# Bloquear rama en la opcion branch
+- Branch name pattern = main
+- [X] Require a pull request before merging
+   - [X] Require approvals (2)
+- [X] Require status checks to pass before merging
+- [X] Do not allow bypassing the above settings 
+
 # Inicio
 
 ## Paso 01 en opencode
