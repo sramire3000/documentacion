@@ -2,11 +2,10 @@
 
 ```mermaid
 graph LR;
-    A--> B & C & D
-    B--> A & E
-    C--> A & E
-    D--> A & E
-    E--> B & C & D
+    1--> B
+    2--> C 
+    3--> A 
+
 ```
 
 ## Pasos
