@@ -3,7 +3,7 @@
 ## Flowchart
 ```mermaid
 graph LR
-A[Describir] -- Link text --> B((Plan Mode))
+A(Describir)) --> B((Plan Mode))
 A --> C(Round Rect)
 B --> D{Rhombus}
 C --> D
