@@ -1,6 +1,7 @@
 # Configuración para WORKSPACE
 
 ## Plugins standar x Id 
+
 - shd101wyy.markdown-preview-enhanced
 - yzane.markdown-pdf
 - pomdtr.excalidraw-editor
@@ -8,8 +9,9 @@
 - redhat.vscode-xml
 - PKief.material-icon-theme
 - quicktype.quicktype
-- dracula-theme.theme-dracula
 - Gruntfuggly.activitusbar
+- NarasimaPandiyan.jetbrainsmono
+- enkia.tokyo-night
 - Tyriar.lorem-ipsum
 - christian-kohler.path-intellisense
 - wayou.vscode-todo-highlight
