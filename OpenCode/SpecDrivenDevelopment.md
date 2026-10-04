@@ -3,7 +3,7 @@
 ## Flowchart
 ```mermaid
 graph LR
-A ((Describir))--> B
+A((Circle)) -- Link text --> B((Circle))
 A --> C(Round Rect)
 B --> D{Rhombus}
 C --> D
