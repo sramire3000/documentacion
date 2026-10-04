@@ -3,7 +3,7 @@
 ## Diagrama
 ```mermaid
 graph LR
-A{1. Describir} --> B((2. Plan Mode))
+A(1. Describir) --> B((2. Plan Mode))
 B --> C((3. Refinar))
 C -- Iteracion hasta que se apruebe --> A
 C --> B
