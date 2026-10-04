@@ -1,5 +1,14 @@
 # Spec Driven Development
 
+```mermaid
+graph LR;
+    A--> B & C & D
+    B--> A & E
+    C--> A & E
+    D--> A & E
+    E--> B & C & D
+```
+
 ## Pasos
 1. Describir (El problema no la solución)
 2. Plan mode (OpenCode propone no edita)
