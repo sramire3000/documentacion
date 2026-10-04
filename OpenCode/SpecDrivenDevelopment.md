@@ -3,10 +3,10 @@
 ## Flowchart
 ```mermaid
 graph LR
-A((Circle)) -- Link text --> B((Circle))
-A --> C(Round Rect)
-B --> D{Rhombus}
-C --> D
+1((Circle)) -- Link text --> 2((Circle))
+1 --> 3(Round Rect)
+2 --> 4{Rhombus}
+5 --> 6
 ```
 
 ## Pasos
