@@ -3,7 +3,7 @@
 ## Flowchart
 ```mermaid
 graph LR
-A((Circle)) --> B((Plan Mode))
+A((Describir)) --> B((Plan Mode))
 ```
 
 ## Pasos
