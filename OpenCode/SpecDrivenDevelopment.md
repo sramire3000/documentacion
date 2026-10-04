@@ -5,7 +5,7 @@
 graph LR
 A((Describir)) --> B((Plan Mode))
 B --> C((Refinar))
-C -- Iteracion hasta Aprobar--> A
+C -- Iteracion hasta que se apruebe --> A
 C --> B
 C --> D((Guardar))
 D --> E((Ejecutar))
