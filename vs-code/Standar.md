@@ -19,13 +19,9 @@
 - formulahendry.auto-close-tag
 - BracketPairColorDLW.bracket-pair-color-dlw
 - aaron-bond.better-comments
+- mhutchie.git-graph
   
 Nota: en la tuerquita marcar para todos los perfiles
-
-
-
-## GIT
-- mhutchie.git-graph
 
 ## IA Id
 - google.geminicodeassist
