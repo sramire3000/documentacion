@@ -41,7 +41,13 @@ Reglas que nadie casi sigue:
 
 ## Configuracion
 
-## Ejemplo de creacion de spec
+## Ejemplos
+### Creacion de spec
 ```
 /spec Ocupamos 4 fantasmas en el juego cd pacman, cada uno debe de temer su propia forma de actuar pata qye se comporte de forma diferente y uno de ellos debe perseguir agresivamente a pacman
+```
+
+### Ejecucion
+```
+/spec-impl @01-test
 ```
