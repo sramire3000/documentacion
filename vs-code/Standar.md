@@ -172,6 +172,6 @@ Nota: en la tuerquita marcar para todos los perfiles
   "explorer.confirmDelete": false,
   "explorer.confirmDragAndDrop": false,
   "github.copilot.nextEditSuggestions.enabled": true,
-  "workbench.colorTheme": "Dracula Theme",
+  "workbench.colorTheme": "Tokyo Night",
 }
 ```
