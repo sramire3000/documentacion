@@ -3,7 +3,7 @@
 ## Flowchart
 ```mermaid
 graph LR
-A --> B
+A (Describir)--> B
 A --> C(Round Rect)
 B --> D{Rhombus}
 C --> D
