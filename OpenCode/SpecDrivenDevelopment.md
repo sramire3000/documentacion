@@ -3,9 +3,9 @@
 ```mermaid
 graph LR;
     Describir
-    1--> 2
+    1. Describir --> 2
     2--> 3 
-    3--> 1 & 2
+    3--> 1. Describir & 2
     3--> 4
     4--> 5
 ```
