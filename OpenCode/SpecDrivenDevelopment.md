@@ -1,6 +1,13 @@
 # Spec Driven Development
 
-
+## Flowchart
+```mermaid
+graph LR
+A[Describir] -- Link text --> B((Plan Mode))
+A --> C(Round Rect)
+B --> D{Rhombus}
+C --> D
+```
 
 ## Pasos
 1. Describir (El problema no la solución)
