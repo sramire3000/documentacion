@@ -8,6 +8,8 @@ B --> C((Refinar))
 C -- Iteracion hasta Aprobar--> A
 C --> B
 C --> D((Guardar))
+D --> E((Ejecutar))
+E --> F((Revisar))
 ```
 
 ## Pasos
