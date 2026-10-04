@@ -3,10 +3,7 @@
 ## Flowchart
 ```mermaid
 graph LR
-1((Circle)) --> 2((Plan Mode))
-1 --> 3(Round Rect)
-2 --> 4{Rhombus}
-5 --> 6
+A((Circle)) --> B((Plan Mode))
 ```
 
 ## Pasos
