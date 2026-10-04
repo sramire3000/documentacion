@@ -1,14 +1,6 @@
 # Spec Driven Development
 
-```mermaid
-graph LR;
-    Describir
-    1. Describir --> 2
-    2--> 3 
-    3--> 1 & 2
-    3--> 4
-    4--> 5
-```
+
 
 ## Pasos
 1. Describir (El problema no la solución)
