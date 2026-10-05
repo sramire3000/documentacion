@@ -11,7 +11,6 @@
 - quicktype.quicktype
 - Gruntfuggly.activitusbar
 - NarasimaPandiyan.jetbrainsmono
-- enkia.tokyo-night
 - Tyriar.lorem-ipsum
 - christian-kohler.path-intellisense
 - wayou.vscode-todo-highlight
@@ -96,7 +95,7 @@ Nota: en la tuerquita marcar para todos los perfiles
 ```bash
 {
   // Windows
-  "window.zoomLevel": 1,
+  "window.zoomLevel": 0,
   // ignore recomendaciones
   "extensions.ignoreRecommendations": true,
   // Deshabilitar la pantalla de inicio
