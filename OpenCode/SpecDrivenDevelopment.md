@@ -1,34 +1,5 @@
 # Spec Driven Development SDD
 
-## Play wright
-
-### URL
-- [Playwright Test](https://playwright.dev)
-
-### Abrir opencode
-```
-Necesitamos instalar el MCP de Playwright localmente
-{
-  "mcpServers": {
-    "playwright": {
-      "command": "npx",
-      "args": ["@playwright/mcp@latest"]
-    }
-  }
-}
-```
-
-### Add a .gitignore
-```
-# Playwright
-.playwright-mcp/*
-```
-
-### Add a AGENTS.md
-```
-## MCPs
-- Playwright Screenshots y cualquier cosa relacionada a Playwright tiene qu estar en la carpeta .playwright-mcp
-```
 
 ## Diagrama
 ```mermaid
@@ -68,6 +39,38 @@ Reglas que nadie casi sigue:
 - [.agents/skills/spec-impl/SKILL.md](https://github.com/sramire3000/documentacion/blob/master/OpenCode/InstallSkillSpec/.agents/skills/spec-impl/SKILL.md)
 - [.agents/skills/spec/template.md](https://github.com/sramire3000/documentacion/blob/master/OpenCode/InstallSkillSpec/.agents/skills/spec/template.md)
 - [.agents/skills/spec/SKILL.md](https://github.com/sramire3000/documentacion/blob/master/OpenCode/InstallSkillSpec/.agents/skills/spec/SKILL.md)
+
+## Play wright
+
+### URL
+- [Playwright Test](https://playwright.dev)
+
+### Abrir opencode
+```
+Necesitamos instalar el MCP de Playwright localmente
+{
+  "mcpServers": {
+    "playwright": {
+      "command": "npx",
+      "args": ["@playwright/mcp@latest"]
+    }
+  }
+}
+```
+
+### Add a .gitignore
+```
+# Playwright
+.playwright-mcp/*
+```
+
+### Add a AGENTS.md
+```
+## MCPs
+- Playwright Screenshots y cualquier cosa relacionada a Playwright tiene qu estar en la carpeta .playwright-mcp
+```
+
+
 
 ## Paso 01 en opencode
 ```
