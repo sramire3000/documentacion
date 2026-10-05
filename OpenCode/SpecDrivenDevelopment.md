@@ -35,7 +35,7 @@ Reglas que nadie casi sigue:
 # Inicio
 
 ## Install Skill
-- [.agents/skills/spec-impl]([http](https://github.com/sramire3000/documentacion/blob/master/OpenCode/InstallSkillSpec/.agents/skills/spec-impl/SKILL.md))
+- [.agents/skills/spec-impl](http](https://github.com/sramire3000/documentacion/blob/master/OpenCode/InstallSkillSpec/.agents/skills/spec-impl/SKILL.md)
 
 ## Paso 01 en opencode
 ```
