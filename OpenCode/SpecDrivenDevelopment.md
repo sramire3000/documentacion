@@ -87,6 +87,11 @@ npx ctx7 setup
 ```
 Nota: hacer login para que genere el api key
 
+### Example in opencode
+```
+Necesito que investigues cual es la manera de proteccion de rutas en Next.js usa context7 MCP
+```
+
 ## Paso 01 en opencode
 ```
 /init
