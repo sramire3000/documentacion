@@ -18,6 +18,18 @@ Necesitamos instalar el MCP de Playwright localmente
 }
 ```
 
+### Add a .gitignore
+```
+# Playwright
+.playwright-mcp/*
+```
+
+### Add a AGENTS.md
+```
+## MCPs
+- Playwright Screenshots y cualquier cosa relacionada a Playwright tiene qu estar en la carpeta .playwright-mcp
+```
+
 ## Diagrama
 ```mermaid
 graph LR
