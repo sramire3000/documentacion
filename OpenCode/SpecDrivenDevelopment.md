@@ -34,6 +34,9 @@ Reglas que nadie casi sigue:
 
 # Inicio
 
+## Install Skill
+- [xxx](http)
+
 ## Paso 01 en opencode
 ```
 /init
