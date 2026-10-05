@@ -1,6 +1,6 @@
 # Configuración para WORKSPACE
 
-## Plugins standar x Id 
+## Plugins standar x Id (No requiere tema)
 
 - shd101wyy.markdown-preview-enhanced
 - yzane.markdown-pdf
