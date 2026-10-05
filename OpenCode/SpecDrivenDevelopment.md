@@ -76,6 +76,10 @@ Necesitamos instalar el MCP de Playwright localmente
 Puedes tomar una Screeshot?
 ```
 
+## Install MCP Conext7
+
+### URL
+-[Context7](https://context7.com)
 
 
 ## Paso 01 en opencode
