@@ -92,24 +92,6 @@ Necesito que investigues cual es la manera de proteccion de rutas en Next.js usa
 /init
 ```
 
-## Adicionar al archivo "AGENTS.md"
-```
-## Flujo de specs (features grandes)
-
-Las skills `/spec` y `/spec-impl` viven en `.agents/skills/`.
-`/spec` diseña la spec y la guarda en `specs/` (todavía no existe); `/spec-impl <NN-nombre>` implementa una spec en estado Approved.
-Respeta sus fases: no escribas código antes de que la spec esté aprobada.
-`AutoCreateBranch` en `specs/.spec-config.yml` (por defecto `true`) controla la creación de rama.
-
-## MCPs
-
-- Playwright está configurado en `opencode.json`. Cualquier screenshot o salida relacionada con Playwright debe ir en `.playwright-mcp/` (ignorada por git).
-- Usa Context7 MCP para traer la documentación actualizada del framework en vez de fiarte del entrenamiento.
-
-## Reglas de codigo
-- Usar codigo limpio, nombres, funciones, variables, ect. en ingles.
-```
-
 ## Crear un agente perosnalizado
 Opencode => Necesito crear un agente perosnalizado
 ```
@@ -124,6 +106,31 @@ Usa el MCP de Playwright para verificar cuando tiene que ver con pantallas cread
 Debe de funcionar a nivel de proyecto y usar el modelo con visión [ejemplo: Qwen3.6 Plus], ya que soporta visión para comparar screenshots.
 
 Este agente tiene que estar a nivel de proyecto, no global.
+```
+
+## Adicionar al archivo "AGENTS.md"
+```
+## Flujo de specs (features grandes)
+
+Las skills `/spec` y `/spec-impl` viven en `.agents/skills/`.
+`/spec` diseña la spec y la guarda en `specs/` (todavía no existe); `/spec-impl <NN-nombre>` implementa una spec en estado Approved.
+Respeta sus fases: no escribas código antes de que la spec esté aprobada.
+`AutoCreateBranch` en `specs/.spec-config.yml` (por defecto `true`) controla la creación de rama.
+
+El comando `/verify-spec` (`.opencode/commands/verify-spec.md`) delega en el subagente `spec-verifier`
+(`.opencode/agents/spec-verifier.md`, modo `all`). Ese agente clasifica cada criterio (código,
+comando, Next.js o UI), valida las recomendaciones del framework con Context7, compara las pantallas
+contra los prototipos con Playwright + visión y marca los checks solo con evidencia. Si todos pasan,
+actualiza el `**Status:**` del spec (en este repo, `Implementado`); si alguno falla, no lo cambia y
+lista los bloqueos.
+
+## MCPs
+
+- Playwright está configurado en `opencode.json`. Cualquier screenshot o salida relacionada con Playwright debe ir en `.playwright-mcp/` (ignorada por git).
+- Usa Context7 MCP para traer la documentación actualizada del framework en vez de fiarte del entrenamiento.
+
+## Reglas de codigo
+- Usar codigo limpio, nombres, funciones, variables, ect. en ingles.
 ```
 
 ## Configuracion
