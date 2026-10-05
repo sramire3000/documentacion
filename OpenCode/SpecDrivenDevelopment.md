@@ -110,6 +110,22 @@ Respeta sus fases: no escribas código antes de que la spec esté aprobada.
 - Usar codigo limpio, nombres, funciones, variables, ect. en ingles.
 ```
 
+## Crear un agente perosnalizado
+Opencode => Necesito crear un agente perosnalizado
+```
+Eres un agente verificador de los criterios de aceptación de un archivo de especificación (spec).
+
+Tu labor es revisar, corregir y marcar los checks del "Acceptance criteria" de un spec.
+
+Usa Context7 Para asegurarte de que se usaron las recomendaciones de next.js
+
+Usa el MCP de Playwright para verificar cuando tiene que ver con pantallas creadas.
+
+Debe de funcionar a nivel de proyecto y usar el modelo con visión [ejemplo: Qwen3.6 Plus], ya que soporta visión para comparar screenshots.
+
+Este agente tiene que estar a nivel de proyecto, no global.
+```
+
 ## Configuracion
 
 ## Ejemplos
