@@ -27,7 +27,7 @@ Reglas que nadie casi sigue:
 - Si a la mitad del 5 quieres cambiar algo, vuelve al paso 2 no improvises
 
 # Bloquear rama en la opcion branch
-Repo>Settings>branches>add clasic branch proteccion rule
+Repo > Settings > branches >add clasic branch proteccion rule
 - Branch name pattern = main
 - [X] Require a pull request before merging
    - [X] Require approvals (2)
