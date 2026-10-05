@@ -40,7 +40,7 @@ Reglas que nadie casi sigue:
 - [.agents/skills/spec/template.md](https://github.com/sramire3000/documentacion/blob/master/OpenCode/InstallSkillSpec/.agents/skills/spec/template.md)
 - [.agents/skills/spec/SKILL.md](https://github.com/sramire3000/documentacion/blob/master/OpenCode/InstallSkillSpec/.agents/skills/spec/SKILL.md)
 
-## Play wright
+## Install MCP Play wright
 
 ### URL
 - [Playwright Test](https://playwright.dev)
