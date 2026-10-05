@@ -68,7 +68,7 @@ Necesitamos instalar el MCP de Playwright localmente
 ### Add a AGENTS.md
 ```
 ## MCPs
-- Playwright Screenshots y cualquier cosa relacionada a Playwright tiene qu estar en la carpeta .playwright-mcp
+- Playwright Screenshots y cualquier cosa relacionada a Playwright tiene qu estar en la carpeta .playwright-mcp.
 ```
 
 ### Abrir opencode
