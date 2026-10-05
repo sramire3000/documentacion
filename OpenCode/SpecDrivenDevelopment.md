@@ -99,6 +99,12 @@ Necesito que investigues cual es la manera de proteccion de rutas en Next.js usa
 - Usaremos ese MCP para traer la documentacion atualizada del framework. 
 ```
 
+## add AGENTS
+```
+## Reglas de codigo
+- Usar codigo limpio, nombres, funciones, variables, ect. en ingles.
+```
+
 ## Paso 01 en opencode
 ```
 /init
