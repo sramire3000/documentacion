@@ -85,7 +85,7 @@ Puedes tomar una Screeshot?
 ```
 npx ctx7 setup
 ```
-Nota: Logearse
+Nota: hacer login para que genere el api key
 
 ## Paso 01 en opencode
 ```
