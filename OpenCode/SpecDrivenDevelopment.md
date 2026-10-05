@@ -34,9 +34,10 @@ Reglas que nadie casi sigue:
 
 # Inicio
 
-## Install Skill
+## Install Skill formato Raw
 - [.agents/skills/spec-impl](https://github.com/sramire3000/documentacion/blob/master/OpenCode/InstallSkillSpec/.agents/skills/spec-impl/SKILL.md)
 - [.agents/skills/spec/template.md](https://github.com/sramire3000/documentacion/blob/master/OpenCode/InstallSkillSpec/.agents/skills/spec/template.md)
+- [.agents/skills/spec/SKILL.md](https://github.com/sramire3000/documentacion/blob/master/OpenCode/InstallSkillSpec/.agents/skills/spec/SKILL.md)
 
 ## Paso 01 en opencode
 ```
