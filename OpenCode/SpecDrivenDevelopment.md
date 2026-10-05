@@ -81,6 +81,11 @@ Puedes tomar una Screeshot?
 ### URL
 -[Context7](https://context7.com)
 
+### install
+```
+npx ctx7 setup
+```
+Nota: Logearse
 
 ## Paso 01 en opencode
 ```
