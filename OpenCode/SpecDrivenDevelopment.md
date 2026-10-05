@@ -61,6 +61,7 @@ Necesitamos instalar el MCP de Playwright localmente
 ### Add a .gitignore
 ```
 # Playwright
+.playwright-mcp
 .playwright-mcp/*
 ```
 
