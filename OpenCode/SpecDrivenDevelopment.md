@@ -92,6 +92,12 @@ Nota: hacer login para que genere el api key
 Necesito que investigues cual es la manera de proteccion de rutas en Next.js usa context7 MCP
 ```
 
+### add in AGENTS
+```
+## Conext7
+- Usaremos ese MCP para traer la documentacion atualizada del framework. 
+```
+
 ## Paso 01 en opencode
 ```
 /init
