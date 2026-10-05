@@ -1,7 +1,22 @@
 # Spec Driven Development SDD
 
-## Urls
+## Play wright
+
+### URL
 - [Playwright Test](https://playwright.dev)
+
+### Abrir opencode
+```
+Necesitamos instalar el MCP de Playwright localmente
+{
+  "mcpServers": {
+    "playwright": {
+      "command": "npx",
+      "args": ["@playwright/mcp@latest"]
+    }
+  }
+}
+```
 
 ## Diagrama
 ```mermaid
