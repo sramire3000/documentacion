@@ -71,6 +71,11 @@ Necesitamos instalar el MCP de Playwright localmente
 - Playwright Screenshots y cualquier cosa relacionada a Playwright tiene qu estar en la carpeta .playwright-mcp
 ```
 
+### Abrir opencode
+```
+Puedes tomar una Screeshot?
+```
+
 
 
 ## Paso 01 en opencode
