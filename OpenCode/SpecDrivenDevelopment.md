@@ -94,6 +94,13 @@ Necesito que investigues cual es la manera de proteccion de rutas en Next.js usa
 
 ## Adicionar al archivo "AGENTS.md"
 ```
+## Flujo de specs (features grandes)
+
+Las skills `/spec` y `/spec-impl` viven en `.agents/skills/`.
+`/spec` diseña la spec y la guarda en `specs/` (todavía no existe); `/spec-impl <NN-nombre>` implementa una spec en estado Approved.
+Respeta sus fases: no escribas código antes de que la spec esté aprobada.
+`AutoCreateBranch` en `specs/.spec-config.yml` (por defecto `true`) controla la creación de rama.
+
 ## MCPs
 
 - Playwright está configurado en `opencode.json`. Cualquier screenshot o salida relacionada con Playwright debe ir en `.playwright-mcp/` (ignorada por git).
