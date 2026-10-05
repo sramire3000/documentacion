@@ -66,12 +66,6 @@ Necesitamos instalar el MCP de Playwright localmente
 .playwright-mcp/*
 ```
 
-### Add a AGENTS.md
-```
-## MCPs
-- Playwright Screenshots y cualquier cosa relacionada a Playwright tiene qu estar en la carpeta .playwright-mcp.
-```
-
 ### Abrir opencode
 ```
 Puedes tomar una Screeshot?
@@ -93,21 +87,20 @@ Nota: hacer login para que genere el api key
 Necesito que investigues cual es la manera de proteccion de rutas en Next.js usa context7 MCP
 ```
 
-### add in AGENTS
-```
-## MCPs
-- Usaremos ese MCP para traer la documentacion atualizada del framework. 
-```
-
-## add AGENTS
-```
-## Reglas de codigo
-- Usar codigo limpio, nombres, funciones, variables, ect. en ingles.
-```
-
 ## Paso 01 en opencode
 ```
 /init
+```
+
+## Adicionar al archivo "AGENTS.md"
+```
+## MCPs
+
+- Playwright está configurado en `opencode.json`. Cualquier screenshot o salida relacionada con Playwright debe ir en `.playwright-mcp/` (ignorada por git).
+- Usa Context7 MCP para traer la documentación actualizada del framework en vez de fiarte del entrenamiento.
+
+## Reglas de codigo
+- Usar codigo limpio, nombres, funciones, variables, ect. en ingles.
 ```
 
 ## Configuracion
