@@ -94,7 +94,7 @@ Necesito que investigues cual es la manera de proteccion de rutas en Next.js usa
 
 ### add in AGENTS
 ```
-## Conext7
+## MCPs
 - Usaremos ese MCP para traer la documentacion atualizada del framework. 
 ```
 
