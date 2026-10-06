@@ -23,3 +23,9 @@ Necesito que investigues cual es la manera de proteccion de rutas en Next.js usa
 ```
 
 
+## Add file configuration "AGENTS.md"
+```
+## MCPs
+- Playwright está configurado en `opencode.json`. Cualquier screenshot o salida relacionada con Playwright debe ir en `.playwright-mcp/` (ignorada por git).
+- Usa Context7 MCP para traer la documentación actualizada del framework en vez de fiarte del entrenamiento.
+```
