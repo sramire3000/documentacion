@@ -30,3 +30,31 @@ Necesito que investigues cual es la manera de proteccion de rutas en Next.js usa
 
 ## Playwright
 Playwright Test es un marco de pruebas integral para aplicaciones web modernas. Incluye ejecutor de pruebas, aserciones, aislamiento, paralelización y herramientas avanzadas. Playwright es compatible con Chromium, WebKit y Firefox en Windows, Linux y macOS, tanto localmente como en integración continua (CI), con o sin interfaz gráfica, y ofrece emulación móvil nativa para Chrome (Android) y Mobile Safari.
+
+- [Playwright Test](https://playwright.dev)
+
+
+### Install Abrir opencode y colocar
+```
+Necesitamos instalar el MCP de Playwright localmente
+{
+  "mcpServers": {
+    "playwright": {
+      "command": "npx",
+      "args": ["@playwright/mcp@latest"]
+    }
+  }
+}
+```
+
+### Add a .gitignore
+```
+# Playwright
+.playwright-mcp
+.playwright-mcp/*
+```
+
+### Abrir opencode
+```
+Puedes tomar una Screeshot?
+```
