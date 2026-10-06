@@ -87,6 +87,21 @@ Nota: hacer login para que genere el api key
 Necesito que investigues cual es la manera de proteccion de rutas en Next.js usa context7 MCP
 ```
 
+### Add opencode.json
+```
+"command": {
+  "spec": {
+    "description": "Crea especificaciones de pantallas y funcionalidades",
+    "template": "Carga y sigue la skill spec en .agents/skills/spec/SKILL.md.\n\nFeature: $ARGUMENTS"
+  },
+  "spec-impl": {
+    "description": "Implementa especificaciones de pantallas y funcionalidades",
+    "template": "Carga y sigue la skill spec-impl en .agents/skills/spec-impl/SKILL.md.\n\nFeature: $ARGUMENTS"
+  }
+}
+```
+
+
 ## Paso 01 en opencode
 ```
 /init
