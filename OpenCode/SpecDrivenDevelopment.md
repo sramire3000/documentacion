@@ -52,36 +52,6 @@ Repo > Settings > branches >add clasic branch proteccion rule
 }
 ```
 
-## Install MCP Play wright
-
-### URL
-- [Playwright Test](https://playwright.dev)
-
-### Abrir opencode
-```
-Necesitamos instalar el MCP de Playwright localmente
-{
-  "mcpServers": {
-    "playwright": {
-      "command": "npx",
-      "args": ["@playwright/mcp@latest"]
-    }
-  }
-}
-```
-
-### Add a .gitignore
-```
-# Playwright
-.playwright-mcp
-.playwright-mcp/*
-```
-
-### Abrir opencode
-```
-Puedes tomar una Screeshot?
-```
-
 
 ## Paso 01 en opencode
 ```
@@ -119,10 +89,6 @@ comando, Next.js o UI), valida las recomendaciones del framework con Context7, c
 contra los prototipos con Playwright + visión y marca los checks solo con evidencia. Si todos pasan,
 actualiza el `**Status:**` del spec (en este repo, `Implementado`); si alguno falla, no lo cambia y
 lista los bloqueos.
-
-## MCPs
-
-- Playwright está configurado en `opencode.json`. Cualquier screenshot o salida relacionada con Playwright debe ir en `.playwright-mcp/` (ignorada por git).
 
 ## Reglas de codigo
 - Usar codigo limpio, nombres, funciones, variables, ect. en ingles.
