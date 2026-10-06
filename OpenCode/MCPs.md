@@ -17,7 +17,7 @@ Pasos:
 - OpenCode
 - Autorizar browser
 
-### Example in opencode
+### Example in open opencode test
 ```
 Necesito que investigues cual es la manera de proteccion de rutas en Next.js usa context7 MCP
 ```
