@@ -9,6 +9,8 @@ Context7 incorpora documentación actualizada y ejemplos de código específicos
 ```
 npx ctx7 setup
 ```
-Seleccionar MCP Server
-Seleccionar OpenCode
+Pasos:
+- MCP Server
+- OpenCode
+- Autorizar browser
 
