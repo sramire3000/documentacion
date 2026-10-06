@@ -82,23 +82,6 @@ Necesitamos instalar el MCP de Playwright localmente
 Puedes tomar una Screeshot?
 ```
 
-## Install MCP Conext7
-
-### URL
--[Context7](https://context7.com)
-
-### install
-```
-npx ctx7 setup
-```
-Nota: hacer login para que genere el api key
-
-### Example in opencode
-```
-Necesito que investigues cual es la manera de proteccion de rutas en Next.js usa context7 MCP
-```
-
-
 
 ## Paso 01 en opencode
 ```
@@ -140,7 +123,6 @@ lista los bloqueos.
 ## MCPs
 
 - Playwright está configurado en `opencode.json`. Cualquier screenshot o salida relacionada con Playwright debe ir en `.playwright-mcp/` (ignorada por git).
-- Usa Context7 MCP para traer la documentación actualizada del framework en vez de fiarte del entrenamiento.
 
 ## Reglas de codigo
 - Usar codigo limpio, nombres, funciones, variables, ect. en ingles.
