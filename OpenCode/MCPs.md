@@ -69,3 +69,9 @@ Puedes tomar una Screeshot?
 ## MCPs
 - Playwright está configurado en `opencode.json`. Cualquier screenshot o salida relacionada con Playwright debe ir en `.playwright-mcp/` (ignorada por git).
 ```
+
+### Install chromium
+```
+npx playwright install chromium
+npx playwright test
+```
