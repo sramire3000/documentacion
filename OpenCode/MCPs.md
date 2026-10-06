@@ -63,3 +63,9 @@ npx playwright --version
 ```
 Puedes tomar una Screeshot?
 ```
+
+### Add file configuration "AGENTS.md" in proyect
+```
+## MCPs
+- Playwright está configurado en `opencode.json`. Cualquier screenshot o salida relacionada con Playwright debe ir en `.playwright-mcp/` (ignorada por git).
+```
