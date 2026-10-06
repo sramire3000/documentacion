@@ -54,6 +54,11 @@ Necesitamos instalar el MCP de Playwright localmente
 .playwright-mcp/*
 ```
 
+### Version
+```
+npx playwright --version
+```
+
 ### Abrir opencode
 ```
 Puedes tomar una Screeshot?
