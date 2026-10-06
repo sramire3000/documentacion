@@ -28,4 +28,5 @@ Necesito que investigues cual es la manera de proteccion de rutas en Next.js usa
 - Usa Context7 MCP para traer la documentación actualizada del framework en vez de fiarte del entrenamiento.
 ```
 
-
+## Playwright
+Playwright Test es un marco de pruebas integral para aplicaciones web modernas. Incluye ejecutor de pruebas, aserciones, aislamiento, paralelización y herramientas avanzadas. Playwright es compatible con Chromium, WebKit y Firefox en Windows, Linux y macOS, tanto localmente como en integración continua (CI), con o sin interfaz gráfica, y ofrece emulación móvil nativa para Chrome (Android) y Mobile Safari.
