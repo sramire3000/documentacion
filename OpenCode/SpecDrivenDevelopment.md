@@ -41,6 +41,21 @@ Repo > Settings > branches >add clasic branch proteccion rule
 - [.agents/skills/spec/template.md](https://github.com/sramire3000/documentacion/blob/master/OpenCode/InstallSkillSpec/.agents/skills/spec/template.md)
 - [.agents/skills/spec/SKILL.md](https://github.com/sramire3000/documentacion/blob/master/OpenCode/InstallSkillSpec/.agents/skills/spec/SKILL.md)
 
+
+### Add opencode.json
+```
+"command": {
+  "spec": {
+    "description": "Crea especificaciones de pantallas y funcionalidades",
+    "template": "Carga y sigue la skill spec en .agents/skills/spec/SKILL.md.\n\nFeature: $ARGUMENTS"
+  },
+  "spec-impl": {
+    "description": "Implementa especificaciones de pantallas y funcionalidades",
+    "template": "Carga y sigue la skill spec-impl en .agents/skills/spec-impl/SKILL.md.\n\nFeature: $ARGUMENTS"
+  }
+}
+```
+
 ## Install MCP Play wright
 
 ### URL
@@ -87,19 +102,6 @@ Nota: hacer login para que genere el api key
 Necesito que investigues cual es la manera de proteccion de rutas en Next.js usa context7 MCP
 ```
 
-### Add opencode.json
-```
-"command": {
-  "spec": {
-    "description": "Crea especificaciones de pantallas y funcionalidades",
-    "template": "Carga y sigue la skill spec en .agents/skills/spec/SKILL.md.\n\nFeature: $ARGUMENTS"
-  },
-  "spec-impl": {
-    "description": "Implementa especificaciones de pantallas y funcionalidades",
-    "template": "Carga y sigue la skill spec-impl en .agents/skills/spec-impl/SKILL.md.\n\nFeature: $ARGUMENTS"
-  }
-}
-```
 
 
 ## Paso 01 en opencode
