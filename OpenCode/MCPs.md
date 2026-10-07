@@ -77,12 +77,11 @@ npx playwright test
 ```
 
 
-## opencode.json 
+## opencode.json Global
 
 ### Fedora 44
 ```
 {
-  "$schema": "https://opencode.ai/config.json",
   "command": {
     "spec": {
       "description": "Crea especificaciones de pantallas y funcionalidades",
@@ -100,6 +99,14 @@ npx playwright test
           "--executable-path",
           "/home/hsr/.cache/ms-playwright/chromium-1243/chrome-linux64/chrome"
         ]
+      },
+      "context7": {
+        "type": "remote",
+        "url": "https://mcp.context7.com/mcp",
+        "enabled": true,
+        "headers": {
+          "Authorization": "Bearer ctx7sk-0ecf9a75-ed00-4c21-b346-644427ae5b42"
+        }
       }
     }
   }
