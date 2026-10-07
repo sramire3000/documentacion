@@ -75,3 +75,52 @@ Puedes tomar una Screeshot?
 npx playwright install chromium
 npx playwright test
 ```
+
+
+## opencode.json 
+
+### Fedora 44
+```
+{
+  "$schema": "https://opencode.ai/config.json",
+  "mcp": {
+    "servers": {
+      "playwright": {
+        "type": "local",
+        "command": [
+          "npx",
+          "-y",
+          "@playwright/mcp@0.0.83",
+          "--executable-path",
+          "/home/hsr/.cache/ms-playwright/chromium-1243/chrome-linux64/chrome"
+        ]
+      }
+    }
+  }
+}
+```
+
+### Windows
+```
+{
+  "$schema": "https://opencode.ai/config.json",
+  "command": {
+    "spec": {
+      "description": "Crea especificaciones de pantallas y funcionalidades",
+      "template": "Carga y sigue la skill spec en .agents/skills/spec/SKILL.md.\n\nFeature: $ARGUMENTS"
+    }
+  },
+  "mcp": {
+    "servers": {
+      "playwright": {
+        "type": "local",
+        "command": [
+          "npx",
+          "-y",
+          "@playwright/mcp@0.0.83"
+        ]
+      }
+    }
+  }
+}
+```
