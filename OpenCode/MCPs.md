@@ -83,6 +83,13 @@ npx playwright test
 ```
 {
   "$schema": "https://opencode.ai/config.json",
+  "command": {
+    "spec": {
+      "description": "Crea especificaciones de pantallas y funcionalidades",
+      "template": "Carga y sigue la skill spec en .agents/skills/spec/SKILL.md.\n\nFeature: $ARGUMENTS"
+    }
+  },
+  "$schema": "https://opencode.ai/config.json",
   "mcp": {
     "servers": {
       "playwright": {
