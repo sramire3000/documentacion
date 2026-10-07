@@ -89,7 +89,6 @@ npx playwright test
       "template": "Carga y sigue la skill spec en .agents/skills/spec/SKILL.md.\n\nFeature: $ARGUMENTS"
     }
   },
-  "$schema": "https://opencode.ai/config.json",
   "mcp": {
     "servers": {
       "playwright": {
