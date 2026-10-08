@@ -223,6 +223,15 @@ func processSQLDatabase(config Config) {
 	}
 
 	fmt.Printf("✅ Esquema guardado en: %s\n", config.Output)
+
+	// Generar archivo Markdown
+	markdownOutput := generateMarkdownFilename(config.Database, config.DBType)
+	err = saveToMarkdownFile(schema, markdownOutput)
+	if err != nil {
+		log.Fatal("Error al guardar el archivo Markdown:", err)
+	}
+
+	fmt.Printf("✅ Documentación guardada en: %s\n", markdownOutput)
 	fmt.Printf("📊 Total de tablas procesadas: %d\n", len(schema.Tables))
 }
 
@@ -258,6 +267,15 @@ func processMongoDB(config Config) {
 	}
 
 	fmt.Printf("✅ Esquema de MongoDB guardado en: %s\n", config.Output)
+
+	// Generar archivo Markdown
+	markdownOutput := generateMarkdownFilename(config.Database, config.DBType)
+	err = saveMongoDBToMarkdownFile(schema, markdownOutput)
+	if err != nil {
+		log.Fatal("Error al guardar el archivo Markdown de MongoDB:", err)
+	}
+
+	fmt.Printf("✅ Documentación de MongoDB guardada en: %s\n", markdownOutput)
 	fmt.Printf("📊 Total de colecciones procesadas: %d\n", len(schema.Collections))
 }
 
@@ -816,6 +834,190 @@ func saveToJSONFile(data interface{}, filename string) error {
 	}
 
 	return nil
+}
+
+// generateMarkdownFilename genera el nombre del archivo markdown basado en el tipo de BD
+func generateMarkdownFilename(databaseName, dbType string) string {
+	// Capitalizar el tipo de BD para el nombre del archivo
+	dbTypeFormatted := capitalizeDBType(dbType)
+	return fmt.Sprintf("Db%s.md", dbTypeFormatted)
+}
+
+// capitalizeDBType convierte el tipo de BD a formato de nombre de archivo
+func capitalizeDBType(dbType string) string {
+	switch strings.ToLower(dbType) {
+	case "sqlserver":
+		return "SQLServer"
+	case "sybase":
+		return "Sybase"
+	case "mysql":
+		return "MySQL"
+	case "postgres":
+		return "PostgreSQL"
+	case "mongodb":
+		return "MongoDB"
+	default:
+		return dbType
+	}
+}
+
+// saveToMarkdownFile guarda el esquema SQL en un archivo markdown
+func saveToMarkdownFile(schema *DatabaseSchema, filename string) error {
+	file, err := os.Create(filename)
+	if err != nil {
+		return fmt.Errorf("error al crear archivo markdown: %v", err)
+	}
+	defer file.Close()
+
+	// Encabezado del documento
+	fmt.Fprintf(file, "# Documentación de Base de Datos: %s\n\n", schema.DatabaseName)
+	fmt.Fprintf(file, "**Tipo de Base de Datos:** %s  \n", capitalizeDBType(schema.DBType))
+	fmt.Fprintf(file, "**Schema:** %s  \n", schema.Schema)
+	fmt.Fprintf(file, "**Total de Tablas:** %d  \n\n", len(schema.Tables))
+
+	// Índice de tablas
+	fmt.Fprintf(file, "## Índice de Tablas\n\n")
+	for _, table := range schema.Tables {
+		fmt.Fprintf(file, "- [%s.%s](#%s)\n", table.Schema, table.TableName, generateTableAnchor(table.TableName))
+	}
+	fmt.Fprintf(file, "\n---\n\n")
+
+	// Documentación de cada tabla
+	for _, table := range schema.Tables {
+		writeTableDocumentation(file, &table)
+	}
+
+	return nil
+}
+
+// writeTableDocumentation escribe la documentación de una tabla en formato markdown
+func writeTableDocumentation(file *os.File, table *Table) {
+	// Encabezado de la tabla
+	fmt.Fprintf(file, "## %s.%s\n\n", table.Schema, table.TableName)
+	fmt.Fprintf(file, "**Columnas:** %d\n\n", len(table.Columns))
+
+	// Tabla de columnas
+	fmt.Fprintf(file, "| Nombre | Tipo Datos | Nuleable | PK | Identity | Default |\n")
+	fmt.Fprintf(file, "|--------|------------|----------|----|-----------|---------|\n")
+
+	for _, col := range table.Columns {
+		pk := "❌"
+		if col.IsPrimaryKey {
+			pk = "✅"
+		}
+
+		identity := "❌"
+		if col.IsIdentity {
+			identity = "✅"
+		}
+
+		defaultValue := col.DefaultValue
+		if defaultValue == "" {
+			defaultValue = "-"
+		}
+
+		maxLength := ""
+		if col.MaxLength > 0 {
+			maxLength = fmt.Sprintf("(%d)", col.MaxLength)
+		}
+
+		precision := ""
+		if col.Precision > 0 {
+			precision = fmt.Sprintf("(%d", col.Precision)
+			if col.Scale > 0 {
+				precision += fmt.Sprintf(",%d", col.Scale)
+			}
+			precision += ")"
+		}
+
+		dataType := col.DataType + maxLength + precision
+
+		fmt.Fprintf(file, "| %s | %s | %s | %s | %s | %s |\n",
+			col.ColumnName,
+			dataType,
+			col.IsNullable,
+			pk,
+			identity,
+			defaultValue,
+		)
+	}
+
+	fmt.Fprintf(file, "\n\n")
+}
+
+// generateTableAnchor genera un ancla para la tabla (para los links en el índice)
+func generateTableAnchor(tableName string) string {
+	return strings.ToLower(strings.ReplaceAll(tableName, "_", ""))
+}
+
+// saveMongoDBToMarkdownFile guarda el esquema de MongoDB en un archivo markdown
+func saveMongoDBToMarkdownFile(schema *MongoSchema, filename string) error {
+	file, err := os.Create(filename)
+	if err != nil {
+		return fmt.Errorf("error al crear archivo markdown de MongoDB: %v", err)
+	}
+	defer file.Close()
+
+	// Encabezado del documento
+	fmt.Fprintf(file, "# Documentación de Base de Datos MongoDB: %s\n\n", schema.DatabaseName)
+	fmt.Fprintf(file, "**Tipo de Base de Datos:** MongoDB  \n")
+	fmt.Fprintf(file, "**Total de Colecciones:** %d  \n\n", len(schema.Collections))
+
+	// Índice de colecciones
+	fmt.Fprintf(file, "## Índice de Colecciones\n\n")
+	for _, collection := range schema.Collections {
+		fmt.Fprintf(file, "- [%s](#%s)\n", collection.CollectionName, generateTableAnchor(collection.CollectionName))
+	}
+	fmt.Fprintf(file, "\n---\n\n")
+
+	// Documentación de cada colección
+	for _, collection := range schema.Collections {
+		writeMongoCollectionDocumentation(file, &collection)
+	}
+
+	return nil
+}
+
+// writeMongoCollectionDocumentation escribe la documentación de una colección MongoDB
+func writeMongoCollectionDocumentation(file *os.File, collection *MongoCollection) {
+	fmt.Fprintf(file, "## %s\n\n", collection.CollectionName)
+	fmt.Fprintf(file, "**Nombre de Colección:** %s  \n", collection.CollectionName)
+	fmt.Fprintf(file, "**Base de Datos:** %s  \n", collection.DatabaseName)
+	fmt.Fprintf(file, "**Total de Índices:** %d  \n\n", len(collection.Indexes))
+
+	if len(collection.Indexes) > 0 {
+		fmt.Fprintf(file, "### Índices\n\n")
+		fmt.Fprintf(file, "| Nombre | Campos | Único |\n")
+		fmt.Fprintf(file, "|--------|--------|-------|\n")
+
+		for _, idx := range collection.Indexes {
+			fields := ""
+			for _, key := range idx.Keys {
+				if fields != "" {
+					fields += ", "
+				}
+				fields += key.Field
+			}
+
+			unique := "❌"
+			if idx.Unique {
+				unique = "✅"
+			}
+
+			fmt.Fprintf(file, "| %s | %s | %s |\n", idx.Name, fields, unique)
+		}
+		fmt.Fprintf(file, "\n")
+	}
+
+	if len(collection.SampleDocument) > 0 {
+		fmt.Fprintf(file, "### Documento de Muestra\n\n")
+		fmt.Fprintf(file, "```json\n")
+		sampleJSON, _ := json.MarshalIndent(collection.SampleDocument, "", "  ")
+		fmt.Fprintf(file, "%s\n", string(sampleJSON))
+		fmt.Fprintf(file, "```\n\n")
+	}
+
+	fmt.Fprintf(file, "\n")
 }
 
 func printHelp() {
