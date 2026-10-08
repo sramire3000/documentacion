@@ -107,6 +107,11 @@ npx playwright test
         "headers": {
           "Authorization": "Bearer ctx7sk-0ecf9a75-ed00-4c21-b346-644427ae5b42"
         }
+      },
+      "codebase-memo": {
+        "type": "local",
+        "command": ["/home/hsr/.local/bin/codebase-memory-mcp"],
+        "enabled": true
       }
     }
   }
