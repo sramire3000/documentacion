@@ -49,11 +49,20 @@ type Column struct {
 	DefaultValue string `json:"defaultValue,omitempty"`
 }
 
+// Estructura para almacenar información de relaciones (Foreign Keys)
+type ForeignKey struct {
+	ConstraintName      string `json:"constraintName"`
+	ColumnName          string `json:"columnName"`
+	ReferencedTableName string `json:"referencedTableName"`
+	ReferencedColumnName string `json:"referencedColumnName"`
+}
+
 // Estructura para almacenar la información de una tabla
 type Table struct {
-	TableName string   `json:"tableName"`
-	Schema    string   `json:"schema"`
-	Columns   []Column `json:"columns"`
+	TableName    string       `json:"tableName"`
+	Schema       string       `json:"schema"`
+	Columns      []Column     `json:"columns"`
+	ForeignKeys  []ForeignKey `json:"foreignKeys,omitempty"`
 }
 
 // Estructura principal que contiene todas las tablas
@@ -225,7 +234,7 @@ func processSQLDatabase(config Config) {
 	fmt.Printf("✅ Esquema guardado en: %s\n", config.Output)
 
 	// Generar archivo Markdown
-	markdownOutput := generateMarkdownFilename(config.Database, config.DBType)
+	markdownOutput := generateMarkdownFilename(config.Database, config.DBType, config.Schema)
 	err = saveToMarkdownFile(schema, markdownOutput)
 	if err != nil {
 		log.Fatal("Error al guardar el archivo Markdown:", err)
@@ -269,7 +278,7 @@ func processMongoDB(config Config) {
 	fmt.Printf("✅ Esquema de MongoDB guardado en: %s\n", config.Output)
 
 	// Generar archivo Markdown
-	markdownOutput := generateMarkdownFilename(config.Database, config.DBType)
+	markdownOutput := generateMarkdownFilename(config.Database, config.DBType, "")
 	err = saveMongoDBToMarkdownFile(schema, markdownOutput)
 	if err != nil {
 		log.Fatal("Error al guardar el archivo Markdown de MongoDB:", err)
@@ -359,14 +368,23 @@ func extractDatabaseSchema(db *sql.DB, config Config) (*DatabaseSchema, error) {
 			return nil, fmt.Errorf("error al extraer columnas para tabla %s: %v", tableName, err)
 		}
 
+		// Obtener Foreign Keys para esta tabla
+		foreignKeys, err := extractForeignKeys(db, config.DBType, tableSchema, tableName)
+		if err != nil {
+			// Registrar warning pero continuar
+			fmt.Printf("  ⚠️  No se pudieron extraer Foreign Keys para %s: %v\n", tableName, err)
+			foreignKeys = []ForeignKey{}
+		}
+
 		table := Table{
-			TableName: tableName,
-			Schema:    tableSchema,
-			Columns:   columns,
+			TableName:   tableName,
+			Schema:      tableSchema,
+			Columns:     columns,
+			ForeignKeys: foreignKeys,
 		}
 
 		schema.Tables = append(schema.Tables, table)
-		fmt.Printf("  📋 Tabla procesada: %s.%s (%d columnas)\n", tableSchema, tableName, len(columns))
+		fmt.Printf("  📋 Tabla procesada: %s.%s (%d columnas, %d relaciones)\n", tableSchema, tableName, len(columns), len(foreignKeys))
 	}
 
 	if err = rowsTables.Err(); err != nil {
@@ -567,80 +585,71 @@ func extractSybaseTableColumns(db *sql.DB, tableName string) ([]Column, error) {
 func getSybasePrimaryKeys(db *sql.DB, tableName string) (map[string]bool, error) {
 	primaryKeys := make(map[string]bool)
 
-	// Consulta alternativa para obtener claves primarias en Sybase
+	// Método 1: Usar sysindexkeys (más confiable)
+	// El índice 1 (indid=1) típicamente es la clave primaria en Sybase
 	query := fmt.Sprintf(`
-		SELECT 
-			sc.name as column_name
+		SELECT DISTINCT
+			c.name
 		FROM sysindexes i
-		JOIN syscolumns sc ON i.id = sc.id AND sc.colid IN (i.key1, i.key2, i.key3, i.key4, i.key5, i.key6, i.key7, i.key8)
-		JOIN sysobjects o ON i.id = o.id
-		WHERE o.name = '%s'
-		AND i.status & 2 = 2  -- Índice único
-		AND EXISTS (
-			SELECT 1 
-			FROM sysconstraints ct 
-			WHERE ct.tableid = i.id 
-			AND ct.constrid = i.indid 
-			AND ct.status & 1 = 1  -- Clave primaria
-		)
+		JOIN sysindexkeys ik ON i.id = ik.id AND i.indid = ik.indid
+		JOIN syscolumns c ON ik.id = c.id AND ik.colid = c.colid
+		WHERE i.id = object_id('%s')
+		AND i.indid = 1
 	`, tableName)
 
 	rows, err := db.Query(query)
-	if err != nil {
-		// Si esta consulta falla, intentamos una más simple
-		return getSybasePrimaryKeysSimple(db, tableName)
-	}
-	defer rows.Close()
-
-	for rows.Next() {
-		var columnName string
-		err := rows.Scan(&columnName)
-		if err != nil {
-			return nil, err
+	if err == nil {
+		defer rows.Close()
+		for rows.Next() {
+			var columnName string
+			err := rows.Scan(&columnName)
+			if err == nil && columnName != "" {
+				primaryKeys[columnName] = true
+			}
 		}
-		primaryKeys[columnName] = true
+	}
+
+	if len(primaryKeys) > 0 {
+		return primaryKeys, nil
+	}
+
+	// Método 2: Alternativa si sysindexkeys falla
+	query2 := fmt.Sprintf(`
+		SELECT DISTINCT
+			c.name
+		FROM sysindexes i
+		JOIN syscolumns c ON i.id = c.id
+		WHERE i.id = object_id('%s')
+		AND i.indid = 1
+		AND (c.colid = i.key1 OR c.colid = i.key2 OR c.colid = i.key3)
+	`, tableName)
+
+	rows2, err := db.Query(query2)
+	if err == nil {
+		defer rows2.Close()
+		for rows2.Next() {
+			var columnName string
+			err := rows2.Scan(&columnName)
+			if err == nil && columnName != "" {
+				primaryKeys[columnName] = true
+			}
+		}
 	}
 
 	return primaryKeys, nil
 }
 
-// Consulta alternativa más simple para claves primarias
+// Método alternativo para obtener PKs (mantenerlo para compatibilidad)
+func getSybasePrimaryKeysAlternative(db *sql.DB, tableName string) (map[string]bool, error) {
+	primaryKeys := make(map[string]bool)
+	// Esta función es mantenida pero ya no se utiliza
+	return primaryKeys, nil
+}
+
+// Consulta alternativa más simple para claves primarias (DEPRECATED)
 func getSybasePrimaryKeysSimple(db *sql.DB, tableName string) (map[string]bool, error) {
 	primaryKeys := make(map[string]bool)
-
-	query := fmt.Sprintf(`
-		SELECT 
-			col_name(i.id, k.keyno) as column_name
-		FROM sysindexes i, syskeys k
-		WHERE i.id = object_id('%s')
-		AND i.id = k.id
-		AND i.indid = k.indid
-		AND i.status & 2 = 2  -- Índice único
-		AND EXISTS (
-			SELECT 1 
-			FROM sysconstraints ct 
-			WHERE ct.tableid = i.id 
-			AND ct.constrid = i.indid 
-			AND ct.status & 1 = 1  -- Clave primaria
-		)
-	`, tableName)
-
-	rows, err := db.Query(query)
-	if err != nil {
-		// Si también falla, retornamos mapa vacío
-		return primaryKeys, nil
-	}
-	defer rows.Close()
-
-	for rows.Next() {
-		var columnName string
-		err := rows.Scan(&columnName)
-		if err != nil {
-			return nil, err
-		}
-		primaryKeys[columnName] = true
-	}
-
+	// Esta función es mantenida pero ya no se utiliza
 	return primaryKeys, nil
 }
 
@@ -726,6 +735,192 @@ func getColumnsQuery(dbType string) string {
 	default:
 		return ""
 	}
+}
+
+// extractForeignKeys extrae las claves foráneas de una tabla
+func extractForeignKeys(db *sql.DB, dbType, schemaName, tableName string) ([]ForeignKey, error) {
+	var fks []ForeignKey
+	
+	switch dbType {
+	case "sqlserver":
+		return extractForeignKeysSQLServer(db, schemaName, tableName)
+	case "mysql":
+		return extractForeignKeysMySQL(db, schemaName, tableName)
+	case "postgres":
+		return extractForeignKeysPostgreSQL(db, schemaName, tableName)
+	case "sybase":
+		return extractForeignKeysSybase(db, tableName)
+	default:
+		return fks, nil
+	}
+}
+
+// extractForeignKeysSQLServer extrae Foreign Keys para SQL Server
+func extractForeignKeysSQLServer(db *sql.DB, schemaName, tableName string) ([]ForeignKey, error) {
+	query := `
+		SELECT 
+			rc.CONSTRAINT_NAME,
+			kcu.COLUMN_NAME,
+			ccu.TABLE_NAME as REFERENCED_TABLE_NAME,
+			ccu.COLUMN_NAME as REFERENCED_COLUMN_NAME
+		FROM INFORMATION_SCHEMA.REFERENTIAL_CONSTRAINTS rc
+		JOIN INFORMATION_SCHEMA.KEY_COLUMN_USAGE kcu 
+			ON rc.CONSTRAINT_NAME = kcu.CONSTRAINT_NAME
+		JOIN INFORMATION_SCHEMA.CONSTRAINT_COLUMN_USAGE ccu 
+			ON rc.UNIQUE_CONSTRAINT_NAME = ccu.CONSTRAINT_NAME
+		WHERE kcu.TABLE_SCHEMA = @schema
+			AND kcu.TABLE_NAME = @table
+	`
+	
+	rows, err := db.Query(query, sql.Named("schema", schemaName), sql.Named("table", tableName))
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	
+	var fks []ForeignKey
+	for rows.Next() {
+		var fk ForeignKey
+		err := rows.Scan(&fk.ConstraintName, &fk.ColumnName, &fk.ReferencedTableName, &fk.ReferencedColumnName)
+		if err != nil {
+			return nil, err
+		}
+		fks = append(fks, fk)
+	}
+	
+	return fks, rows.Err()
+}
+
+// extractForeignKeysMySQL extrae Foreign Keys para MySQL
+func extractForeignKeysMySQL(db *sql.DB, schemaName, tableName string) ([]ForeignKey, error) {
+	query := `
+		SELECT 
+			CONSTRAINT_NAME,
+			COLUMN_NAME,
+			REFERENCED_TABLE_NAME,
+			REFERENCED_COLUMN_NAME
+		FROM INFORMATION_SCHEMA.KEY_COLUMN_USAGE
+		WHERE TABLE_SCHEMA = ? 
+			AND TABLE_NAME = ?
+			AND REFERENCED_TABLE_NAME IS NOT NULL
+	`
+	
+	rows, err := db.Query(query, schemaName, tableName)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	
+	var fks []ForeignKey
+	for rows.Next() {
+		var fk ForeignKey
+		err := rows.Scan(&fk.ConstraintName, &fk.ColumnName, &fk.ReferencedTableName, &fk.ReferencedColumnName)
+		if err != nil {
+			return nil, err
+		}
+		fks = append(fks, fk)
+	}
+	
+	return fks, rows.Err()
+}
+
+// extractForeignKeysPostgreSQL extrae Foreign Keys para PostgreSQL
+func extractForeignKeysPostgreSQL(db *sql.DB, schemaName, tableName string) ([]ForeignKey, error) {
+	query := `
+		SELECT 
+			tc.constraint_name,
+			kcu.column_name,
+			ccu.table_name as referenced_table_name,
+			ccu.column_name as referenced_column_name
+		FROM information_schema.table_constraints tc
+		JOIN information_schema.key_column_usage kcu 
+			ON tc.constraint_name = kcu.constraint_name
+		JOIN information_schema.constraint_column_usage ccu 
+			ON ccu.constraint_name = tc.constraint_name
+		WHERE tc.constraint_type = 'FOREIGN KEY'
+			AND tc.table_schema = $1
+			AND tc.table_name = $2
+	`
+	
+	rows, err := db.Query(query, schemaName, tableName)
+	if err != nil {
+		return nil, err
+	}
+	defer rows.Close()
+	
+	var fks []ForeignKey
+	for rows.Next() {
+		var fk ForeignKey
+		err := rows.Scan(&fk.ConstraintName, &fk.ColumnName, &fk.ReferencedTableName, &fk.ReferencedColumnName)
+		if err != nil {
+			return nil, err
+		}
+		fks = append(fks, fk)
+	}
+	
+	return fks, rows.Err()
+}
+
+// extractForeignKeysSybase extrae Foreign Keys para Sybase
+func extractForeignKeysSybase(db *sql.DB, tableName string) ([]ForeignKey, error) {
+	var fks []ForeignKey
+
+	// Método 1: Usar sysreferences con sintaxis correcta (evitar 'key' como palabra reservada)
+	query := fmt.Sprintf(`
+		SELECT DISTINCT
+			o.name as constraint_name,
+			c.name as column_name,
+			object_name(r.reftabid) as referenced_table_name,
+			col_name(r.reftabid, r.refcol) as referenced_column_name
+		FROM sysreferences r
+		JOIN sysobjects o ON r.constrid = o.id
+		JOIN syscolumns c ON r.tableid = c.id
+		WHERE object_name(r.tableid) = '%s'
+		AND (c.colid = r.keyno1 OR c.colid = r.keyno2 OR c.colid = r.keyno3)
+	`, tableName)
+
+	rows, err := db.Query(query)
+	if err == nil {
+		defer rows.Close()
+		for rows.Next() {
+			var fk ForeignKey
+			err := rows.Scan(&fk.ConstraintName, &fk.ColumnName, &fk.ReferencedTableName, &fk.ReferencedColumnName)
+			if err == nil {
+				fks = append(fks, fk)
+			}
+		}
+	}
+
+	if len(fks) > 0 {
+		return fks, nil
+	}
+
+	// Método 2: Alternativa usando sysconstraints
+	query2 := fmt.Sprintf(`
+		SELECT DISTINCT
+			ct.constraint_name,
+			c.name as column_name,
+			object_name(r.reftabid) as referenced_table_name,
+			col_name(r.reftabid, r.refcol) as referenced_column_name
+		FROM sysconstraints ct
+		JOIN sysreferences r ON ct.constrid = r.constrid
+		JOIN syscolumns c ON r.tableid = c.id
+		WHERE object_name(r.tableid) = '%s'
+	`, tableName)
+
+	rows2, err := db.Query(query2)
+	if err == nil {
+		defer rows2.Close()
+		for rows2.Next() {
+			var fk ForeignKey
+			err := rows2.Scan(&fk.ConstraintName, &fk.ColumnName, &fk.ReferencedTableName, &fk.ReferencedColumnName)
+			if err == nil {
+				fks = append(fks, fk)
+			}
+		}
+	}
+
+	return fks, nil
 }
 
 func scanColumn(rows *sql.Rows, dbType string) (Column, error) {
@@ -836,10 +1031,15 @@ func saveToJSONFile(data interface{}, filename string) error {
 	return nil
 }
 
-// generateMarkdownFilename genera el nombre del archivo markdown basado en el tipo de BD
-func generateMarkdownFilename(databaseName, dbType string) string {
+// generateMarkdownFilename genera el nombre del archivo markdown basado en el tipo de BD y schema
+func generateMarkdownFilename(databaseName, dbType, schema string) string {
 	// Capitalizar el tipo de BD para el nombre del archivo
 	dbTypeFormatted := capitalizeDBType(dbType)
+	
+	// Incluir schema en el nombre si está disponible
+	if schema != "" {
+		return fmt.Sprintf("Db%s_%s.md", dbTypeFormatted, schema)
+	}
 	return fmt.Sprintf("Db%s.md", dbTypeFormatted)
 }
 
@@ -887,6 +1087,10 @@ func saveToMarkdownFile(schema *DatabaseSchema, filename string) error {
 		writeTableDocumentation(file, &table)
 	}
 
+	// Mapa de Relaciones
+	fmt.Fprintf(file, "\n---\n\n")
+	writeRelationshipsMap(file, schema)
+
 	return nil
 }
 
@@ -897,8 +1101,8 @@ func writeTableDocumentation(file *os.File, table *Table) {
 	fmt.Fprintf(file, "**Columnas:** %d\n\n", len(table.Columns))
 
 	// Tabla de columnas
-	fmt.Fprintf(file, "| Nombre | Tipo Datos | Nuleable | PK | Identity | Default |\n")
-	fmt.Fprintf(file, "|--------|------------|----------|----|-----------|---------|\n")
+	fmt.Fprintf(file, "| Nombre | Tipo Datos | Nuleable | PK | Identity | FK | Default |\n")
+	fmt.Fprintf(file, "|--------|------------|----------|----|-----------|----|----------|\n")
 
 	for _, col := range table.Columns {
 		pk := "❌"
@@ -932,12 +1136,22 @@ func writeTableDocumentation(file *os.File, table *Table) {
 
 		dataType := col.DataType + maxLength + precision
 
-		fmt.Fprintf(file, "| %s | %s | %s | %s | %s | %s |\n",
+		// Verificar si esta columna es parte de un Foreign Key
+		fkInfo := "-"
+		for _, fk := range table.ForeignKeys {
+			if fk.ColumnName == col.ColumnName {
+				fkInfo = fmt.Sprintf("%s(%s)", fk.ReferencedTableName, fk.ReferencedColumnName)
+				break
+			}
+		}
+
+		fmt.Fprintf(file, "| %s | %s | %s | %s | %s | %s | %s |\n",
 			col.ColumnName,
 			dataType,
 			col.IsNullable,
 			pk,
 			identity,
+			fkInfo,
 			defaultValue,
 		)
 	}
@@ -948,6 +1162,64 @@ func writeTableDocumentation(file *os.File, table *Table) {
 // generateTableAnchor genera un ancla para la tabla (para los links en el índice)
 func generateTableAnchor(tableName string) string {
 	return strings.ToLower(strings.ReplaceAll(tableName, "_", ""))
+}
+
+// writeRelationshipsMap genera la sección de Mapa de Relaciones
+func writeRelationshipsMap(file *os.File, schema *DatabaseSchema) {
+	fmt.Fprintf(file, "## Mapa de Relaciones\n\n")
+
+	// Recopilar todas las relaciones
+	relations := make(map[string][]string)
+	hasRelations := false
+
+	for _, table := range schema.Tables {
+		if len(table.ForeignKeys) > 0 {
+			hasRelations = true
+			tableName := table.TableName
+
+			for _, fk := range table.ForeignKeys {
+				// Crear relación: tabla_origen (1) --< tabla_destino (muchos)
+				// Considerando que la FK apunta a la tabla destino
+				relation := fmt.Sprintf("%s --< %s", fk.ReferencedTableName, tableName)
+				relations[tableName] = append(relations[tableName], relation)
+			}
+		}
+	}
+
+	if !hasRelations {
+		fmt.Fprintf(file, "*No hay relaciones de Foreign Keys detectadas en esta base de datos.*\n\n")
+		return
+	}
+
+	// Escribir relaciones en formato ERD simplificado
+	for tableName, rels := range relations {
+		if len(rels) > 0 {
+			fmt.Fprintf(file, "### Relaciones de %s\n\n", tableName)
+			fmt.Fprintf(file, "```\n")
+			for _, rel := range rels {
+				fmt.Fprintf(file, "%s\n", rel)
+			}
+			fmt.Fprintf(file, "```\n\n")
+		}
+	}
+
+	// Resumen de todas las relaciones
+	fmt.Fprintf(file, "### Resumen de Relaciones\n\n")
+	fmt.Fprintf(file, "| Tabla Origen | Tabla Destino | Columna FK | Columna Ref |\n")
+	fmt.Fprintf(file, "|---|---|---|---|\n")
+
+	for _, table := range schema.Tables {
+		for _, fk := range table.ForeignKeys {
+			fmt.Fprintf(file, "| %s | %s | %s | %s |\n",
+				table.TableName,
+				fk.ReferencedTableName,
+				fk.ColumnName,
+				fk.ReferencedColumnName,
+			)
+		}
+	}
+
+	fmt.Fprintf(file, "\n")
 }
 
 // saveMongoDBToMarkdownFile guarda el esquema de MongoDB en un archivo markdown
