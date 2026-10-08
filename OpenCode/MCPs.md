@@ -122,6 +122,7 @@ npx playwright test
 ```
 {
   "$schema": "https://opencode.ai/config.json",
+{
   "command": {
     "spec": {
       "description": "Crea especificaciones de pantallas y funcionalidades",
@@ -129,15 +130,28 @@ npx playwright test
     }
   },
   "mcp": {
-    "servers": {
-      "playwright": {
+    "playwright": {
         "type": "local",
         "command": [
           "npx",
           "-y",
           "@playwright/mcp@0.0.83"
         ]
+    },      
+    "context7": {
+      "type": "remote",
+      "url": "https://mcp.context7.com/mcp",
+      "enabled": true,
+      "headers": {
+        "Authorization": "Bearer ctx7sk-c8074cce-5499-4ac6-87f1-7506c91e61a2"
       }
+    },
+    "codebase-memo": {
+      "type": "local",
+      "command": [
+        "C:\\Users\\HSR\\.local\\bin\\codebase-memory-mcp.exe"
+      ],
+      "enabled": true
     }
   }
 }
