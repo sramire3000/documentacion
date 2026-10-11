@@ -62,6 +62,7 @@ jobs:
 - [OpenCode Go](https://opencode.ai/go)
 - [AGENTS.md](https://agents.md/)
 - [Skills](https://www.skills.sh/)
+- [Resend](https://resend.com/home)
 
 
 ### Utilizar modelos
