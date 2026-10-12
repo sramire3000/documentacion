@@ -63,6 +63,7 @@ jobs:
 - [AGENTS.md](https://agents.md/)
 - [Skills](https://www.skills.sh/)
 - [Resend](https://resend.com/home)
+- [grill-me](https://www.aihero.dev/skills-grill-me)
 
 
 ### Utilizar modelos
