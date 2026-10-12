@@ -58,9 +58,10 @@ Repo > Configuración > ramas > agregar regulación clínica de protección de r
 /init
 ```
 
- Desarrollo impulsado por especificaciones SDD
-##
- Diagrama
+## Desarrollo impulsado por especificaciones SDD
+
+### Diagrama
+```
 Eres un agente verificador de los criterios de aceptación de un archivo de especificidad (spec).
 
 Tu trabajo es revisar, corregir y marcar los cheques del "Criterios de aceptación" de un spec.
@@ -83,8 +84,7 @@ Las habilidades `/spec` y `/spec-impl` viven en `.agentes/habilidades/`.
 Respeta sus fases: no escribas código antes de que la spec esté aprobada.
  Desarrollo impulsado por especificaciones SDD
 
-##
- Diagrama
+## Diagrama
  En el paso 1 describe el problema, deja que tu LLM propone la solución.
 contra los prototipos con Dramaturgo + visión y marca los cheques solo con evidencia. Si todos pasan,
  Exigir que se pasan las compras de estado antes de fusionarse`**Estado:**` del spec (en este repo, `Implementado`); si alguno falla, no lo cambia y
