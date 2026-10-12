@@ -115,5 +115,5 @@ Vamos a crear un nuevo agente
 
 react-best-pactices:
 
-Va a aplicar las mejores prácticas de React entodos los archivos que nostros le indígenas y vas a usar contexto-7 para verificar si está siguiendo las buenas prácticas y las últimas recomendaciones de la documentación
+Va a aplicar las mejores prácticas de React entodos los archivos que nostros le indiquemos y vas a usar context-7 para verificar si está siguiendo las buenas prácticas y las últimas recmendaciones de la documentación
 ```
