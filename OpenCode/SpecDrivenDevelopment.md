@@ -109,11 +109,16 @@ lista los bloques.
 
 ## Agentes
 
-## Crear un Agente para las mejores precticas
+## Crear un Agente para las mejores prácticas
 ```
 Vamos a crear un nuevo agente
 
 react-best-pactices:
 
 Va a aplicar las mejores prácticas de React entodos los archivos que nostros le indiquemos y vas a usar context-7 para verificar si está siguiendo las buenas prácticas y las últimas recmendaciones de la documentación
+```
+
+## Crear un Agente para asegurar las migraciones y aplicarlar
+```
+Ocuparemos crearnos un agente db-migrator este es un agente que se va encargar de asegurar de que existan las migraciones y de aplicarlar
 ```
