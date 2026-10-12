@@ -124,6 +124,7 @@ Ocuparemos crearnos un agente db-migrator este es un agente que se va encargar d
 ```
 
 ### Agente de chequeo
+- [WCAG 2.2 AA](https://www.w3.org/TR/WCAG22/)
 ```
 Vamos a crear el siguiente agente @accessibility-checker la idea es que nos ayude con la accesibilidad y seguir las buenas prácticas de WCAG 2.2 AA. to te voy a indicar qué archivo es el que debes de revisar.
 ```
