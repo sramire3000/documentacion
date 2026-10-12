@@ -65,6 +65,10 @@ jobs:
 - [Resend](https://resend.com/home)
 - [grill-me](https://www.aihero.dev/skills-grill-me)
 
+### Install grill-me
+```
+npx skills add https://github.com/mattpocock/skills --skill grill-me
+```
 
 ### Utilizar modelos
 ```
