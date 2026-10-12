@@ -117,8 +117,12 @@ react-best-pactices:
 
 Va a aplicar las mejores prácticas de React entodos los archivos que nostros le indiquemos y vas a usar context-7 para verificar si está siguiendo las buenas prácticas y las últimas recmendaciones de la documentación
 ```
-
 ## Crear un Agente para asegurar las migraciones y aplicarlar
+```
+
+## Agente de chequeo
+```
+Vamos a crear el siguiente agente @accessibility-checker la idea es que nos ayude con la accesibilidad y seguir las buenas prácticas de WCAG 2.2 AA. to te voy a indicar qué archivo es el que debes de revisar.
 ```
 Ocuparemos crearnos un agente db-migrator este es un agente que se va encargar de asegurar de que existan las migraciones y de aplicarlar
 ```
