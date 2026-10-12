@@ -60,7 +60,7 @@ Repo > Configuración > ramas > agregar regulación clínica de protección de r
 
 ## Desarrollo impulsado por especificaciones SDD
 
-### Diagrama
+### Agente verificador
 ```
 Eres un agente verificador de los criterios de aceptación de un archivo de especificidad (spec).
 
@@ -75,7 +75,7 @@ Debe de funcionar a nivel de proyecto y usar el modelo con visión [ejemplo: Qwe
 Este agente tiene que estar a nivel de proyecto, no global.
 ```
 
-## Adicionar al archivo "AGENTES.md"
+### Adicionar al archivo "AGENTES.md"
 ```
 ## Flujo de especies (características grandes)
 
