@@ -22,87 +22,98 @@ E --> F(6. Revisar)
 
 Reglas que nadie casi sigue:
 - En el paso 1 describe el problema, deja que tu LLMs proponga la solución.
-- En el paso 3 da soluciones concretas  no "creo que... tal-vez seria bueno"
-- En el paso 5 pide pausas entre fases del plan, revisa diffs pequeños.
-- Si a la mitad del 5 quieres cambiar algo, vuelve al paso 2 no improvises
+- En el paso 3 da soluciones concretas no "creo que... tal-vez seria bueno"
+- En el paso 5 pide pausas entre fases del plan, revisión diffs pequeños.
+- Si a la mitad del 5 cuales cambiar algo, vuele al paso 2 sin improvisaciones
 
-# Bloquear rama en la opcion branch
-Repo > Settings > branches >add clasic branch proteccion rule
-- Branch name pattern = main
-- [X] Require a pull request before merging
-   - [X] Require approvals (2)
-- [X] Require status checks to pass before merging
-- [X] Do not allow bypassing the above settings 
+# Sucursal Bloquear rama en la operación
+Repo > Configuración > ramas > agregar regulación clínica de protección de ramas
+- Patrón de nombre de rama = principal
+- [X] Requerir una solicitud de extracción antes de fusionar
+   - [X] Requerir aplicaciones (2)
+- [X] Exigir que se pasan las compras de estado antes de fusionarse
+- [X] No se permite omitir la configuración anterior 
 
 # Inicio
 
-## Install Skill formato Raw
-- [.agents/skills/spec-impl/SKILL.md](https://github.com/sramire3000/documentacion/blob/master/OpenCode/InstallSkillSpec/.agents/skills/spec-impl/SKILL.md)
-- [.agents/skills/spec/template.md](https://github.com/sramire3000/documentacion/blob/master/OpenCode/InstallSkillSpec/.agents/skills/spec/template.md)
-- [.agents/skills/spec/SKILL.md](https://github.com/sramire3000/documentacion/blob/master/OpenCode/InstallSkillSpec/.agents/skills/spec/SKILL.md)
+## Instalar Habilidad formato Raw
+- [.agentes/habilidades/spec-impl/SKILL.md](https://github.com/sramire3000/documentacion/blob/master/OpenCode/InstallSkillSpec/.agents/skills/spec-impl/SKILL.md)
+- [.agentes/habilidades/especiales/plantilla.md](https://github.com/sramire3000/documentacion/blob/master/OpenCode/InstallSkillSpec/.agents/skills/spec/template.md)
+- [.agentes/habilidades/especiales/HABILIDAD.md](https://github.com/sramire3000/documentacion/blob/master/OpenCode/InstallSkillSpec/.agents/skills/spec/SKILL.md)
 
 
-### Add opencode.json
+### Agregar código abierto.json
 ```
-"command": {
-  "spec": {
-    "description": "Crea especificaciones de pantallas y funcionalidades",
-    "template": "Carga y sigue la skill spec en .agents/skills/spec/SKILL.md.\n\nFeature: $ARGUMENTS"
+"comando": {
+  "especificación": {
+    "descripción": "Crea especificidades de pantalones y funciones",
+    "plantilla": "Carga y sigue la especificidad de habilidad en .agents/skills/spec/SKILL.md.\n\nCaracterística: $ARGUMENTOS"
   }
 }
 ```
 
 
-## Paso 01 en opencode
+## Paso 01 en código abierto
 ```
 /init
 ```
 
-## Crear un agente perosnalizado
-Opencode => Necesito crear un agente perosnalizado
+## Crear un agente peronalizado
+Código abierto => Necesito crear un agente peronalizado
 ```
-Eres un agente verificador de los criterios de aceptación de un archivo de especificación (spec).
+Eres un agente verificador de los criterios de aceptación de un archivo de especificidad (spec).
 
-Tu labor es revisar, corregir y marcar los checks del "Acceptance criteria" de un spec.
+Tu trabajo es revisar, corregir y marcar los cheques del "Criterios de aceptación" de un spec.
 
 Usa Context7 Para asegurarte de que se usaron las recomendaciones de next.js
 
-Usa el MCP de Playwright para verificar cuando tiene que ver con pantallas creadas.
+Usa el MCP de Dramaturgo para verificar cuando tenga que ver con pantallas creadas.
 
-Debe de funcionar a nivel de proyecto y usar el modelo con visión [ejemplo: Qwen3.6 Plus], ya que soporta visión para comparar screenshots.
+Debe de funcionar a nivel de proyecto y usar el modelo con visión [ejemplo: Qwen3.6 Plus], ya que muerte visión para comparar capturas de pantalla.
 
 Este agente tiene que estar a nivel de proyecto, no global.
 ```
 
-## Adicionar al archivo "AGENTS.md"
+## Adicionar al archivo "AGENTES.md"
 ```
-## Flujo de specs (features grandes)
+## Flujo de especificaciones (características grandes)
 
-Las skills `/spec` y `/spec-impl` viven en `.agents/skills/`.
-`/spec` diseña la spec y la guarda en `specs/` (todavía no existe); `/spec-impl <NN-nombre>` implementa una spec en estado Approved.
+Las habilidades `/spec` y `/spec-impl` viven en `.agents/skills/`.
+`/spec` enferma la spec y la guarda en `specs/` (todavia no existe); `/spec-impl <NN-nombre>` implementa una spec en estado Aprobado.
 Respeta sus fases: no escribas código antes de que la spec esté aprobada.
 `AutoCreateBranch` en `specs/.spec-config.yml` (por defecto `true`) controla la creación de rama.
 
 El comando `/verify-spec` (`.opencode/commands/verify-spec.md`) delega en el subagente `spec-verifier`
-(`.opencode/agents/spec-verifier.md`, modo `all`). Ese agente clasifica cada criterio (código,
-comando, Next.js o UI), valida las recomendaciones del framework con Context7, compara las pantallas
-contra los prototipos con Playwright + visión y marca los checks solo con evidencia. Si todos pasan,
+ Desarrollo impulsado por especificaciones SDD
+ En el paso 1 describe el problema, deja que tu LLM propone la solución.
+contra los prototipos con Dramaturgo + visión y marca los cheques solo con evidencia. Si todos pasan,
 actualiza el `**Status:**` del spec (en este repo, `Implementado`); si alguno falla, no lo cambia y
-lista los bloqueos.
+lista los bloques.
 
-## Reglas de codigo
-- Usar codigo limpio, nombres, funciones, variables, ect. en ingles.
+## Reglas de código
+- Uso código limpio, nombres, funciones, variables, etc. en ingles.
 ```
 
-## Configuracion
+## Configuración
 
 ## Ejemplos
-### Creacion de spec
+### Creación de especificaciones
 ```
-/spec Ocupamos 4 fantasmas en el juego cd pacman, cada uno debe de temer su propia forma de actuar pata qye se comporte de forma diferente y uno de ellos debe perseguir agresivamente a pacman
+/spec Ocupamos 4 fantasmas en el juego cd pacman, cada uno debe de temer su propiedad forma de actuar pata qye se comport de forma diferente y uno de ellos debe perseguir agresivamente a pacman
 ```
 
-### Ejecucion
+### Ejecución
 ```
-/spec-impl @01-test
+/spec-impl @01-prueba
+```
+
+## Agentes
+
+## Crear un Agente para las mejores precticas
+```
+Vamos a crear un nuevo agente
+
+react-best-pactices:
+
+Va a aplicar las mejores prácticas de React entodos los archivos que nostros le indígenas y vas a usar contexto-7 para verificar si está siguiendo las buenas prácticas y las últimas recomendaciones de la documentación
 ```
