@@ -156,3 +156,49 @@ npx playwright test
   }
 }
 ```
+
+## PostgresSQL
+
+### Add user Readonly
+
+```
+-- 1. Crear el usuario (reemplaza 'ia_reader' y tu contraseña segura)
+CREATE USER ia_reader WITH PASSWORD 'tu_contrasena_super_segura';
+
+-- 2. Dar permisos para conectarse a la base de datos FamilyDB
+GRANT CONNECT ON DATABASE "FamilyDB" TO ia_reader;
+
+-- 3. Cambiar al esquema 'family' (o asegurarte de darle permisos sobre él)
+-- Dar permisos de uso sobre el esquema
+GRANT USAGE ON SCHEMA family TO ia_reader;
+
+-- 4. Dar permisos para leer (SELECT) todas las tablas existentes en el esquema 'family'
+GRANT SELECT ON ALL TABLES IN SCHEMA family TO ia_reader;
+
+-- 5. Asegurar que las futuras tablas que crees en este esquema también puedan ser leídas automáticamente por el usuario
+ALTER DEFAULT PRIVILEGES FOR ROLE postgres IN SCHEMA family 
+GRANT SELECT ON TABLES TO ia_reader;
+```
+
+### Add file "opencode.json"
+````
+{
+  "$schema": "https://opencode.ai/config.json",
+  "mcp": {
+    "postgres": {
+      "type": "local",
+      "command": ["npx", "-y", "mcp-postgres-server"],
+      "env": {
+        "PG_HOST": "localhost",
+        "PG_PORT": "5432",
+        "PG_USER": "tu_usuario",
+        "PG_PASSWORD": "tu_contraseña",
+        "PG_DATABASE": "tu_base_de_datos"
+      },
+      "enabled": true
+    }
+  }
+}
+````
+
+
