@@ -186,6 +186,20 @@ ALTER DEFAULT PRIVILEGES FOR ROLE postgres IN SCHEMA family
 GRANT USAGE, SELECT, UPDATE ON SEQUENCES TO ia_writer;
 ```
 
+### Delete user
+```
+-- 1. Conéctate a la base de datos FamilyDB y revoca los privilegios
+REVOKE ALL PRIVILEGES ON DATABASE "FamilyDB" FROM ia_writer;
+REVOKE ALL PRIVILEGES ON SCHEMA family FROM ia_writer;
+
+-- 2. Si el usuario llegó a crear objetos (tablas/secuencias) en el esquema 'family', 
+-- reasigna la propiedad al superusuario (ej. postgres) para evitar errores de dependencia:
+REASSIGN OWNED BY ia_writer TO postgres;
+
+-- 3. Elimina cualquier otro privilegio remanente que tenga asignado
+DROP OWNED BY ia_writer;
+```
+
 ### Add file "opencode.json"
 ````
 {
