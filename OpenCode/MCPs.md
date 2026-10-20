@@ -265,3 +265,28 @@ DROP OWNED BY ia_writer;
 - MSSQL_TRUST_SERVER_CERTIFICATE: Se coloca en "true" para entornos de desarrollo local, evitando errores si tu SQL Server utiliza certificados autofirmados.
 - MSSQL_READONLY: Si lo pones en "true", el servidor bloqueará cualquier intento de la IA por ejecutar comandos de escritura (INSERT, UPDATE, DELETE, DDL), dejándolo estrictamente en modo de consulta (SELECT). Si lo dejas en "false", le permitiras operar con total flexibilidad.
 - Instancia con nombre (Opcional): Si en vez de un puerto usas una instancia con nombre (por ejemplo, localhost\SQLEXPRESS), puedes añadir la variable "MSSQL_INSTANCE": "SQLEXPRESS" dentro del bloque env.
+
+### Mysql
+```
+{
+  "$schema": "https://opencode.ai/config.json",
+  "mcp": {
+    "mysql": {
+      "type": "local",
+      "command": ["npx", "-y", "mcp-mysql-server"],
+      "env": {
+        "MYSQL_HOST": "localhost",
+        "MYSQL_PORT": "3306",
+        "MYSQL_USER": "tu_usuario",
+        "MYSQL_PASSWORD": "tu_contraseña",
+        "MYSQL_DATABASE": "FamilyDB"
+      },
+      "enabled": true
+    }
+  }
+}
+```
+🔧 Notas adicionales para MySQL:
+- URL de conexión (Alternativa): Algunos conectores de MySQL también aceptan una variable del tipo DATABASE_URL (similar a mysql://usuario:contraseña@localhost:3306/FamilyDB), por lo que puedes adaptarlo según el paquete específico que estés utilizando.
+
+- Permisos del usuario: Al igual que en las otras bases de datos, si deseas que la IA interactúe con total libertad o de forma restringida, puedes configurar un usuario específico en MySQL con los permisos correspondientes (ej. usando GRANT SELECT, INSERT, UPDATE, DELETE ON FamilyDB.* TO 'tu_usuario'@'localhost';).
