@@ -238,3 +238,30 @@ DROP OWNED BY ia_writer;
   }
 }
 ```
+
+## SQLServer
+```
+{
+  "$schema": "https://opencode.ai/config.json",
+  "mcp": {
+    "sqlserver": {
+      "type": "local",
+      "command": ["npx", "-y", "@warnyin/mssql-mcp"],
+      "env": {
+        "MSSQL_SERVER": "localhost",
+        "MSSQL_PORT": "1433",
+        "MSSQL_USER": "tu_usuario",
+        "MSSQL_PASSWORD": "tu_contraseña",
+        "MSSQL_DATABASE": "FamilyDB",
+        "MSSQL_TRUST_SERVER_CERTIFICATE": "true",
+        "MSSQL_READONLY": "false"
+      },
+      "enabled": true
+    }
+  }
+}
+```
+⚙️ Detalles clave de los parámetros:
+- MSSQL_TRUST_SERVER_CERTIFICATE: Se coloca en "true" para entornos de desarrollo local, evitando errores si tu SQL Server utiliza certificados autofirmados.
+- MSSQL_READONLY: Si lo pones en "true", el servidor bloqueará cualquier intento de la IA por ejecutar comandos de escritura (INSERT, UPDATE, DELETE, DDL), dejándolo estrictamente en modo de consulta (SELECT). Si lo dejas en "false", le permitiras operar con total flexibilidad.
+- Instancia con nombre (Opcional): Si en vez de un puerto usas una instancia con nombre (por ejemplo, localhost\SQLEXPRESS), puedes añadir la variable "MSSQL_INSTANCE": "SQLEXPRESS" dentro del bloque env.
