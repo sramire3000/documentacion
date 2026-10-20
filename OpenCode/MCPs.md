@@ -162,22 +162,28 @@ npx playwright test
 ### Add user Readonly
 
 ```
--- 1. Crear el usuario (reemplaza 'ia_reader' y tu contraseña segura)
-CREATE USER ia_reader WITH PASSWORD 'tu_contrasena_super_segura';
+-- 1. Crear el usuario (si no lo habías creado antes)
+CREATE USER ia_writer WITH PASSWORD 'tu_contrasena_super_segura';
 
 -- 2. Dar permisos para conectarse a la base de datos FamilyDB
-GRANT CONNECT ON DATABASE "FamilyDB" TO ia_reader;
+GRANT CONNECT ON DATABASE "FamilyDB" TO ia_writer;
 
--- 3. Cambiar al esquema 'family' (o asegurarte de darle permisos sobre él)
--- Dar permisos de uso sobre el esquema
-GRANT USAGE ON SCHEMA family TO ia_reader;
+-- 3. Dar permisos de uso y creación dentro del esquema 'family'
+-- (USAGE permite ver el esquema, CREATE permite crear objetos si fuera necesario)
+GRANT USAGE, CREATE ON SCHEMA family TO ia_writer;
 
--- 4. Dar permisos para leer (SELECT) todas las tablas existentes en el esquema 'family'
-GRANT SELECT ON ALL TABLES IN SCHEMA family TO ia_reader;
+-- 4. Dar permisos completos (SELECT, INSERT, UPDATE, DELETE) sobre todas las tablas EXISTENTES en el esquema 'family'
+GRANT SELECT, INSERT, UPDATE, DELETE ON ALL TABLES IN SCHEMA family TO ia_writer;
 
--- 5. Asegurar que las futuras tablas que crees en este esquema también puedan ser leídas automáticamente por el usuario
+-- 5. Dar permisos sobre secuencias (muy importante para los campos ID autoincrementables / SERIAL / IDENTITY al hacer INSERT)
+GRANT USAGE, SELECT, UPDATE ON ALL SEQUENCES IN SCHEMA family TO ia_writer;
+
+-- 6. Automatizar para que las FUTURAS tablas y secuencias que crees también tengan estos permisos automáticamente
 ALTER DEFAULT PRIVILEGES FOR ROLE postgres IN SCHEMA family 
-GRANT SELECT ON TABLES TO ia_reader;
+GRANT SELECT, INSERT, UPDATE, DELETE ON TABLES TO ia_writer;
+
+ALTER DEFAULT PRIVILEGES FOR ROLE postgres IN SCHEMA family 
+GRANT USAGE, SELECT, UPDATE ON SEQUENCES TO ia_writer;
 ```
 
 ### Add file "opencode.json"
