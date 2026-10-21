@@ -41,11 +41,44 @@ MONGO_MEMORY_RESERVATION=256M
 # Caché de WiredTiger en GB (debe ser menor que MONGO_MEMORY_LIMIT).
 MONGO_WIREDTIGER_CACHE_GB=0.25
 
-# ---------- Healthcheck ----------
+# ---------- Healthcheck MongoDB ----------
 HEALTHCHECK_INTERVAL=10s
 HEALTHCHECK_TIMEOUT=5s
 HEALTHCHECK_RETRIES=10
 HEALTHCHECK_START_PERIOD=20s
+
+# ============================================================
+# Mongo Express (interfaz web)
+# ============================================================
+
+# ---------- Imagen / contenedor ----------
+ME_VERSION=1.0.2
+ME_CONTAINER_NAME=mongo-express-dev
+
+# ---------- Red / puerto ----------
+ME_BIND_IP=127.0.0.1
+ME_PORT=8081
+ME_SITE_BASEURL=/
+
+# ---------- Login de la interfaz ----------
+ME_BASICAUTH_USERNAME=devadmin
+ME_BASICAUTH_PASSWORD=dev_express_123
+
+# Secretos de sesión/cookies de la interfaz (cambiar en entornos compartidos).
+ME_COOKIE_SECRET=dev_cookie_secret_change_me
+ME_SESSION_SECRET=dev_session_secret_change_me
+
+# ---------- Límites de recursos (dev) ----------
+ME_CPU_LIMIT=0.5
+ME_MEMORY_LIMIT=256M
+ME_CPU_RESERVATION=0.1
+ME_MEMORY_RESERVATION=64M
+
+# ---------- Healthcheck Mongo Express ----------
+ME_HEALTHCHECK_INTERVAL=15s
+ME_HEALTHCHECK_TIMEOUT=5s
+ME_HEALTHCHECK_RETRIES=10
+ME_HEALTHCHECK_START_PERIOD=20s
 
 # ---------- Logs ----------
 LOG_MAX_SIZE=10m
@@ -99,6 +132,55 @@ services:
         reservations:
           cpus: "${MONGO_CPU_RESERVATION:-0.25}"
           memory: ${MONGO_MEMORY_RESERVATION:-256M}
+    logging:
+      driver: json-file
+      options:
+        max-size: ${LOG_MAX_SIZE:-10m}
+        max-file: "${LOG_MAX_FILES:-3}"
+    networks:
+      - mongo-net
+
+  mongo-express:
+    image: mongo-express:${ME_VERSION:-1.0.2}
+    container_name: ${ME_CONTAINER_NAME:-mongo-express-dev}
+    restart: ${RESTART_POLICY:-unless-stopped}
+    depends_on:
+      mongo:
+        condition: service_healthy
+    environment:
+      # Conexión interna al servicio "mongo" (misma red de Compose).
+      ME_CONFIG_MONGODB_URL: mongodb://${MONGO_ROOT_USERNAME}:${MONGO_ROOT_PASSWORD}@mongo:27017/?authSource=admin
+      ME_CONFIG_MONGODB_ENABLE_ADMIN: "true"
+      # Login de la interfaz web (no confundir con las credenciales de Mongo).
+      ME_CONFIG_BASICAUTH: "true"
+      ME_CONFIG_BASICAUTH_USERNAME: ${ME_BASICAUTH_USERNAME}
+      ME_CONFIG_BASICAUTH_PASSWORD: ${ME_BASICAUTH_PASSWORD}
+      ME_CONFIG_SITE_BASEURL: ${ME_SITE_BASEURL:-/}
+      ME_CONFIG_SITE_COOKIESECRET: ${ME_COOKIE_SECRET}
+      ME_CONFIG_SITE_SESSIONSECRET: ${ME_SESSION_SECRET}
+      TZ: ${TZ:-UTC}
+    ports:
+      - "${ME_BIND_IP:-127.0.0.1}:${ME_PORT:-8081}:8081"
+    healthcheck:
+      test:
+        - CMD-SHELL
+        # mongo-express responde 401 sin credenciales; cualquier respuesta HTTP
+        # (200/302/401) confirma que el servidor está escuchando.
+        - >-
+          wget -S -O /dev/null http://127.0.0.1:8081/
+          2>&1 | grep -qE "HTTP/[0-9.]+ (200|302|401)"
+      interval: ${ME_HEALTHCHECK_INTERVAL:-15s}
+      timeout: ${ME_HEALTHCHECK_TIMEOUT:-5s}
+      retries: ${ME_HEALTHCHECK_RETRIES:-10}
+      start_period: ${ME_HEALTHCHECK_START_PERIOD:-20s}
+    deploy:
+      resources:
+        limits:
+          cpus: "${ME_CPU_LIMIT:-0.5}"
+          memory: ${ME_MEMORY_LIMIT:-256M}
+        reservations:
+          cpus: "${ME_CPU_RESERVATION:-0.1}"
+          memory: ${ME_MEMORY_RESERVATION:-64M}
     logging:
       driver: json-file
       options:
