@@ -133,6 +133,7 @@ sudo apt install util-linux-extra
 sudo usermod -aG docker $USER
 newgrp docker
 sudo usermod -aG docker $USER
+docker logs portainer
 ```
 
 
