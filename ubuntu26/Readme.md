@@ -136,4 +136,26 @@ sudo usermod -aG docker $USER
 docker logs portainer
 ```
 
+## Install NVM
 
+Paso 1: Instalar dependencias previas (curl)
+```
+sudo apt update
+sudo apt install curl -y
+```
+
+Paso 2: Ejecutar el script de instalación de NVM
+```
+curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.8/install.sh | bash
+```
+
+Paso 3: Cargar NVM en tu sesión actual
+```
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"
+```
+
+Paso 4: Verificar la instalación
+```
+command -v nvm
+```
