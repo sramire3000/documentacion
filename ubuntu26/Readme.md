@@ -1,5 +1,11 @@
 # Ubutnu Versión 26
 
+
+## Cambiar Password root
+```
+sudo passwd root
+```
+
 ## Install ananicy-cpp
 
 1. Instalar las dependencias de compilación y librerías necesarias:
