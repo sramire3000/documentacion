@@ -129,6 +129,7 @@ docker compose version
 
 ### Paso 4: (Opcional) Permisos de usuario sin sudo
 ```
+sudo apt install util-linux-extra
 sudo usermod -aG docker $USER
 newgrp docker
 ```
