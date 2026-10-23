@@ -39,4 +39,41 @@ sudo git clone https://github.com/CachyOS/ananicy-rules.git /etc/ananicy.d/rules
 ```
 sudo systemctl enable --now ananicy-cpp
 ```
+
 Aunque requiere esos pasitos extra de compilación en comparación con Fedora, una vez instalado en Ubuntu funciona exactamente igual, ofreciendo la misma gestión ligera de prioridades para evitar que los equipos con pocos núcleos se Congelen.
+
+## Install SDKMAN! (Recomendado para desarrolladores Multiples JDK)
+
+### Install unzip
+```
+sudo apt update && sudo apt install curl zip unzip
+```
+
+### Ejecuta el script oficial de instalación en tu terminal:
+```
+curl -s "https://get.sdkman.io" | bash
+```
+
+### Una vez termine, inicializa SDKMAN! ejecutando:
+```
+source "$HOME/.sdkman/bin/sdkman-init.sh"
+```
+
+### Comandos
+```
+# Lista todos los jdk
+sdk list java
+
+# Install jdk
+sdk install java 17.0.11.tem
+sdk install java 21.0.3.tem
+
+# Usar un jdk
+sdk use java 17.0.11.tem
+
+# Default jdk
+sdk default java 21.0.3.tem
+
+# Jdk en uso
+sdk current java
+```
