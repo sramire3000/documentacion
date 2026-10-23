@@ -64,6 +64,9 @@ source "$HOME/.sdkman/bin/sdkman-init.sh"
 # Lista todos los jdk online
 sdk list java
 
+# Lista los instalados
+sdk list java | grep -E "installed|local"
+
 # Install jdk
 sdk install java 27.0.0.0+35-tem
 sdk install java 26.0.2+1.1-tem
