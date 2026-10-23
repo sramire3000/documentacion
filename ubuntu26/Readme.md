@@ -159,3 +159,22 @@ Paso 4: Verificar la instalación
 ```
 command -v nvm
 ```
+
+Paso 5: Instalar Node.js usando NVM
+```
+# Imstala la version mas reciente recoemndada
+nvm install --lts
+
+# Instala la mas reciente
+nvm install node
+
+# Instala una version especifica
+nvm install 22
+nvm use 22
+
+# Listado de las instaladas
+nvm list
+
+# Eliminar
+nvm uninstall <version>
+```
