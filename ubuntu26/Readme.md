@@ -61,7 +61,7 @@ source "$HOME/.sdkman/bin/sdkman-init.sh"
 
 ### Comandos
 ```
-# Lista todos los jdk
+# Lista todos los jdk online
 sdk list java
 
 # Install jdk
