@@ -82,4 +82,7 @@ sdk default java 21.0.3.tem
 
 # Jdk en uso
 sdk current java
+
+# Eliminar un jdk
+sdk uninstall java 17.0.11.tem
 ```
