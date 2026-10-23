@@ -65,8 +65,11 @@ source "$HOME/.sdkman/bin/sdkman-init.sh"
 sdk list java
 
 # Install jdk
-sdk install java 17.0.11.tem
-sdk install java 21.0.3.tem
+sdk install java 27.0.0.0+35-tem
+sdk install java 26.0.2+1.1-tem
+sdk install java 25.0.4.1+1-tem
+sdk install java 21.0.12+1.1-tem
+sdk install java 17.0.20-tem
 
 # Usar un jdk
 sdk use java 17.0.11.tem
