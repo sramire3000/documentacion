@@ -86,3 +86,43 @@ sdk current java
 # Eliminar un jdk
 sdk uninstall java 17.0.11.tem
 ```
+
+## Instalar Docker
+
+### Paso 1: Instalar dependencias y configurar el repositorio de Docker
+
+1. Actualiza el sistema e instala prerrequisitos:
+```
+sudo apt update
+sudo apt install ca-certificates curl
+```
+
+2. Añade la clave GPG oficial de Docker:
+```
+sudo install -m 0755 -d /etc/apt/keyrings
+sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+sudo chmod a+r /etc/apt/keyrings/docker.asc
+```
+
+3. Configura el repositorio oficial:
+```
+sudo tee /etc/apt/sources.list.d/docker.sources <<EOF
+Types: deb
+URIs: https://download.docker.com/linux/ubuntu
+Suites: $(. /etc/os-release && echo "${UBUNTU_CODENAME:-$VERSION_CODENAME}")
+Components: stable
+Architectures: $(dpkg --print-architecture)
+Signed-By: /etc/apt/keyrings/docker.asc
+EOF
+```
+
+### Paso 2: Instalar Docker Engine y Docker Compose
+```
+sudo apt update
+sudo apt install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+```
+
+### Paso 3: Verificar la instalación de Docker Compose
+```
+docker compose version
+```
