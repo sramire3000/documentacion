@@ -126,3 +126,11 @@ sudo apt install docker-ce docker-ce-cli containerd.io docker-buildx-plugin dock
 ```
 docker compose version
 ```
+
+### Paso 4: (Opcional) Permisos de usuario sin sudo
+```
+sudo usermod -aG docker $USER
+newgrp docker
+```
+
+
