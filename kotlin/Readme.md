@@ -56,12 +56,13 @@ dependencies {
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
 
-    // cargar y mostrar imágenes
-    implementation("io.coil-kt.coil3:coil-compose:3.1.0")
+    // okhttp3
+    implementation("com.squareup.okhttp3:okhttp:4.12.0")
+    implementation("com.squareup.okhttp3:logging-interceptor:4.12.0")
 
-    // Se encarga de la comunicación HTTP para descargar las imágenes.
-    // Permite personalizar timeouts, headers, autenticación, interceptores, etc.
-    implementation("io.coil-kt.coil3:coil-network-okhttp:3.1.0")
+    //Coil cargar y mostrar imágenes
+    implementation("io.coil-kt.coil3:coil-compose:3.6.3")
+    implementation("io.coil-kt.coil3:coil-network-okhttp:3.6.3")
 
     // Navegaciom diferentes pantallas
     implementation("androidx.navigation:navigation-compose:2.10.2")
