@@ -41,9 +41,6 @@
 dependencies {
     /* Adicionar librerias */
 
-    //Layaout
-    implementation("androidx.constraintlayout:constraintlayout-compose:1.1.0")
-
     //Icons
     implementation("androidx.compose.material:material-icons-core")
     implementation("androidx.compose.material:material-icons-extended")
@@ -63,6 +60,18 @@ dependencies {
     //Coil cargar y mostrar imágenes
     implementation("io.coil-kt.coil3:coil-compose:3.6.3")
     implementation("io.coil-kt.coil3:coil-network-okhttp:3.6.3")
+
+
+    // Koin for dependency injection
+    implementation(platform("io.insert-koin:koin-bom:4.2.2"))
+    implementation("io.insert-koin:koin-android")
+    implementation("io.insert-koin:koin-compose")
+    implementation("io.insert-koin:koin-compose-viewmodel")
+
+    // Extras
+
+    //Layaout
+    implementation("androidx.constraintlayout:constraintlayout-compose:1.1.0")
 
     // Navegaciom diferentes pantallas
     implementation("androidx.navigation:navigation-compose:2.10.2")
