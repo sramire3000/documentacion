@@ -48,10 +48,12 @@ dependencies {
     implementation("androidx.compose.material:material-icons-core")
     implementation("androidx.compose.material:material-icons-extended")
 
-    //consumir APIs REST Retrofit peticiones (POST, GET, PUT)
-    implementation("com.squareup.retrofit2:retrofit:2.9.0")
+    // Retrofit + Gson ver. 3.0
+    implementation("com.squareup.retrofit2:retrofit:3.0.0")
+    implementation("com.squareup.retrofit2:converter-gson:3.0.0")
 
-    //Convert Gson
+    // Retrofit + Gson ver. 2.9.0
+    implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
 
     // cargar y mostrar imágenes
