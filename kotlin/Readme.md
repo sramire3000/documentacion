@@ -80,6 +80,9 @@ dependencies {
     implementation("androidx.room:room-ktx:2.6.0")
     ksp("androidx.room:room-compiler:2.6.0")
 
+    // SharedPreferences for storing user data
+    implementation("androidx.datastore:datastore-preferences:1.3.0")
+
     // Extras
 
     //Layaout
