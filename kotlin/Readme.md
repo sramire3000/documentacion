@@ -38,6 +38,13 @@
 
 ### En el archivo "\app\build.gradle.kts" add
 ```
+plugins {
+    alias(libs.plugins.ksp)
+}
+
+ksp {
+    arg("room.schemaLocation", "$projectDir/schemas")
+}
 dependencies {
     /* Adicionar librerias */
 
