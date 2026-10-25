@@ -83,6 +83,10 @@ dependencies {
     // SharedPreferences for storing user data
     implementation("androidx.datastore:datastore-preferences:1.3.0")
 
+    // Coroutines
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.11.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.11.0")
+
     // Extras
 
     //Layaout
