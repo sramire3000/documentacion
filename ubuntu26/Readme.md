@@ -155,3 +155,14 @@ sudo sh -c 'echo "deb [arch=amd64 signed-by=/usr/share/keyrings/mwt-desktop.gpg]
 ```
 sudo apt update && sudo apt install github-desktop
 ```
+## Setup GIT
+```
+# Update
+sudo apt update
+# Install
+sudo apt install git
+# Config
+git config --global user.name "Hector Ramirez"
+git config --global user.email "sramire3000@gmail.com"
+git config --global credential.helper store
+```
