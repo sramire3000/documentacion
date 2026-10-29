@@ -272,7 +272,21 @@ graph LR;
 
 -[Stack Edit](https://stackedit.io/app#)
 
-## Trabajar con git
+# Trabajar con git
+
+## Proteger rama "main"
+Para proteger la rama main en un repositorio de GitHub y asegurarte de que nadie pueda hacer push directo (forzando a que cualquier cambio pase obligatoriamente por un Pull Request y cumpla con las revisiones que elijas), debes configurar una Branch Protection Rule (Regla de protección de rama).
+
+Sigue estos pasos desde la interfaz web de GitHub:
+
+## Pasos para configurar la protección de la rama main
+Entra a tu repositorio en GitHub.
+
+1. En la barra de pestañas superior, haz clic en Settings (Configuración). (Nota: Debes tener permisos de Administrador o Owner del repositorio).
+2. En el menú lateral izquierdo, busca la sección Code and automation y haz clic en Branches.
+3. En la sección Branch protection rules, haz clic en el botón verde Add branch protection rule.
+
+
 
 ## Actualizar la rama al estado original sin importar perder los cambios
 ```
