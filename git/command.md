@@ -305,17 +305,15 @@ Una vez dentro del formulario de creación de reglas, configura los siguientes p
 
 
 2. Requerir Pull Request antes de fusionar (Merge)
-Marca la casilla Require a pull request before merging.
-<img width="942" height="489" alt="image" src="https://github.com/user-attachments/assets/8941bdc6-0650-404d-aa07-3c4fb8985d3b" />
+   
+   Dentro de esta opción, te recomiendo marcar:
+   * Marca la casilla Require a pull request before merging.
+   * Require approvals (Requerir aprobaciones): Selecciona cuántas aprobaciones de otros colaboradores se necesitan antes de poder hacer el merge (por ejemplo, 1).
+   * Dismiss stale pull request approvals when new commits are pushed (Opcional): Si alguien sube nuevos cambios a la rama del PR, borra las aprobaciones anteriores para obligar a una re-revisión.
+     
+<img width="950" height="493" alt="image" src="https://github.com/user-attachments/assets/d35654ab-b483-47d6-8cca-beb0c9f43901" />
 
 
-Dentro de esta opción, te recomiendo marcar:
-
-Require approvals (Requerir aprobaciones): Selecciona cuántas aprobaciones de otros colaboradores se necesitan antes de poder hacer el merge (por ejemplo, 1).
-
-Dismiss stale pull request approvals when new commits are pushed (Opcional): Si alguien sube nuevos cambios a la rama del PR, borra las aprobaciones anteriores para obligar a una re-revisión.
-
-Require review from Code Owners (Opcional): Si tienes un archivo CODEOWNERS, exige revisión de los dueños específicos del código.
 
 3. Bloquear Push Directo (El objetivo principal)
 Al activar el requisito de Pull Request, automáticamente se bloquea el push directo (git push origin main) para todos los usuarios que no sean administradores con permisos de bypass.
