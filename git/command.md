@@ -302,9 +302,8 @@ Entra a tu repositorio en GitHub.
 Una vez dentro del formulario de creación de reglas, configura los siguientes parámetros clave:
 
 1. Nombre de la rama
-```
-main
-```
+<img width="972" height="161" alt="image" src="https://github.com/user-attachments/assets/c6428fb5-93de-4c91-9296-3becb21e82ce" />
+
 
 2. Requerir Pull Request antes de fusionar (Merge)
 Marca la casilla Require a pull request before merging.
