@@ -5,3 +5,6 @@ Paso 1. En el repositorio a restringir
 
 Paso 2. Branches
 <img width="1858" height="424" alt="image" src="https://github.com/user-attachments/assets/e18bd011-887d-441d-a28e-b928df502e44" />
+
+Paso 3.
+<img width="1021" height="293" alt="image" src="https://github.com/user-attachments/assets/c9f873ee-b9a2-4a13-9e36-0e9a610cafa4" />
