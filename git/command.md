@@ -274,6 +274,13 @@ graph LR;
 
 ## Trabajar con git
 
+## Actualizar la rama al estado original sin importar perder los cambios
+```
+git fetch origin
+git reset --hard nombre-de-la-rama
+git clean -fd
+```
+
 ### Crear la rama y cambiarte a ella en un solo paso
 ```
 git checkout -b nombre-de-la-rama
