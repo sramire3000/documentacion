@@ -306,7 +306,8 @@ Una vez dentro del formulario de creación de reglas, configura los siguientes p
 
 2. Requerir Pull Request antes de fusionar (Merge)
    
-<img width="945" height="496" alt="image" src="https://github.com/user-attachments/assets/3427cc59-e6ba-4f7b-824d-46b9451bc868" />
+<img width="932" height="482" alt="image" src="https://github.com/user-attachments/assets/94e6fd9e-ce37-4677-a30b-583af8e4fcd7" />
+
 
 
 
