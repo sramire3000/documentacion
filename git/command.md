@@ -286,6 +286,36 @@ Entra a tu repositorio en GitHub.
 2. En el menú lateral izquierdo, busca la sección Code and automation y haz clic en Branches.
 3. En la sección Branch protection rules, haz clic en el botón verde Add branch protection rule.
 
+### Configuración de la regla
+Una vez dentro del formulario de creación de reglas, configura los siguientes parámetros clave:
+
+1. Nombre de la rama
+```
+main
+```
+
+2. Requerir Pull Request antes de fusionar (Merge)
+Marca la casilla Require a pull request before merging.
+
+Dentro de esta opción, te recomiendo marcar:
+
+Require approvals (Requerir aprobaciones): Selecciona cuántas aprobaciones de otros colaboradores se necesitan antes de poder hacer el merge (por ejemplo, 1).
+
+Dismiss stale pull request approvals when new commits are pushed (Opcional): Si alguien sube nuevos cambios a la rama del PR, borra las aprobaciones anteriores para obligar a una re-revisión.
+
+Require review from Code Owners (Opcional): Si tienes un archivo CODEOWNERS, exige revisión de los dueños específicos del código.
+
+3. Bloquear Push Directo (El objetivo principal)
+Al activar el requisito de Pull Request, automáticamente se bloquea el push directo (git push origin main) para todos los usuarios que no sean administradores con permisos de bypass.
+
+4. Opciones adicionales recomendadas (Buenas prácticas)
+Require status checks to pass before merging: Si usas integración continua (CI/CD) como GitHub Actions, tests automatizados o linters, marca esta opción para que el PR no se pueda fusionar si las pruebas fallan.
+
+Require linear history: Evita commits de tipo "merge" innecesarios, manteniendo un historial limpio basado en rebase o squash.
+
+Do not allow bypassing the above settings: Marca esta casilla si quieres que incluso los administradores del repositorio tengan que pasar obligatoriamente por un Pull Request y no puedan saltarse las reglas.
+
+
 
 
 ## Actualizar la rama al estado original sin importar perder los cambios
