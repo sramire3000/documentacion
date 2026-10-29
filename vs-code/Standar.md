@@ -18,7 +18,11 @@
 - formulahendry.auto-close-tag
 - BracketPairColorDLW.bracket-pair-color-dlw
 - aaron-bond.better-comments
+
+## Git
+- eamodio.gitlens
 - mhutchie.git-graph
+
   
 Nota: en la tuerquita marcar para todos los perfiles
 
