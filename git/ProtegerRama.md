@@ -8,3 +8,6 @@ Paso 2. Branches
 
 Paso 3.
 <img width="1021" height="293" alt="image" src="https://github.com/user-attachments/assets/c9f873ee-b9a2-4a13-9e36-0e9a610cafa4" />
+
+Paso 4. Patron
+<img width="965" height="160" alt="image" src="https://github.com/user-attachments/assets/8a0f1848-c3ef-486c-932c-c3585415ca18" />
