@@ -18,3 +18,5 @@ Paso 5. Protect matching branches
 <img width="923" height="82" alt="image" src="https://github.com/user-attachments/assets/92bb9e7a-c0f1-49ab-9e84-f5f6f3d7d537" />
 
 <img width="950" height="80" alt="image" src="https://github.com/user-attachments/assets/cfa4c737-c7a8-4d07-8164-b21532a03c25" />
+
+<img width="953" height="72" alt="image" src="https://github.com/user-attachments/assets/f3e0ca88-c854-40b2-ad18-b3d7eb5aa0cf" />
