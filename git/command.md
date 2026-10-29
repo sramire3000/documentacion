@@ -282,7 +282,9 @@ Sigue estos pasos desde la interfaz web de GitHub:
 ## Pasos para configurar la protección de la rama main
 Entra a tu repositorio en GitHub.
 
-1. En la barra de pestañas superior, haz clic en Settings (Configuración). (Nota: Debes tener permisos de Administrador o Owner del repositorio).
+1. Ir a Seettings del repositorio
+<img width="1661" height="302" alt="image" src="https://github.com/user-attachments/assets/a8995d3e-3445-43f3-a130-ef5b513d4a20" />
+
 2. En el menú lateral izquierdo, busca la sección Code and automation y haz clic en Branches.
 3. En la sección Branch protection rules, haz clic en el botón verde Add branch protection rule.
 
