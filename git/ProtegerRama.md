@@ -5,3 +5,9 @@ Paso 1.
 
 Paso 2.
 <img width="993" height="417" alt="image" src="https://github.com/user-attachments/assets/c7bc628b-49bf-4cc3-9243-1cc44966dc28" />
+
+Paso 3.
+<img width="983" height="338" alt="image" src="https://github.com/user-attachments/assets/241d6b26-2498-4314-879e-c0fc55ba4e2c" />
+
+
+
