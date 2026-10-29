@@ -22,6 +22,7 @@
 ## Git
 - eamodio.gitlens
 - mhutchie.git-graph
+- donjayamanne.githistory
 
   
 Nota: en la tuerquita marcar para todos los perfiles
