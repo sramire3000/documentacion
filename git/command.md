@@ -297,7 +297,6 @@ Entra a tu repositorio en GitHub.
 <img width="1054" height="260" alt="image" src="https://github.com/user-attachments/assets/f8e749b5-c793-46e1-8038-4cdf1603c841" />
 
 
-
 ### Configuración de la regla
 Una vez dentro del formulario de creación de reglas, configura los siguientes parámetros clave:
 
@@ -307,6 +306,8 @@ Una vez dentro del formulario de creación de reglas, configura los siguientes p
 
 2. Requerir Pull Request antes de fusionar (Merge)
 Marca la casilla Require a pull request before merging.
+<img width="942" height="489" alt="image" src="https://github.com/user-attachments/assets/8941bdc6-0650-404d-aa07-3c4fb8985d3b" />
+
 
 Dentro de esta opción, te recomiendo marcar:
 
