@@ -9,5 +9,6 @@ Paso 2.
 Paso 3.
 <img width="983" height="338" alt="image" src="https://github.com/user-attachments/assets/241d6b26-2498-4314-879e-c0fc55ba4e2c" />
 
+<img width="963" height="177" alt="image" src="https://github.com/user-attachments/assets/f7097909-78b6-4737-b38c-f963636586c8" />
 
 
