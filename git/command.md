@@ -283,9 +283,13 @@ Sigue estos pasos desde la interfaz web de GitHub:
 Entra a tu repositorio en GitHub.
 
 1. Ir a Seettings del repositorio
+   
 <img width="1400" height="302" alt="image" src="https://github.com/user-attachments/assets/a8995d3e-3445-43f3-a130-ef5b513d4a20" />
 
 2. En el menú lateral izquierdo, busca la sección Code and automation y haz clic en Branches.
+
+<img width="709" height="528" alt="image" src="https://github.com/user-attachments/assets/029720c3-124b-4746-911a-770e417e818e" />
+
 3. En la sección Branch protection rules, haz clic en el botón verde Add branch protection rule.
 
 ### Configuración de la regla
