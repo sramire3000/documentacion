@@ -11,3 +11,6 @@ Paso 3.
 
 Paso 4. Patron
 <img width="965" height="160" alt="image" src="https://github.com/user-attachments/assets/8a0f1848-c3ef-486c-932c-c3585415ca18" />
+
+Paso 5.
+<img width="944" height="456" alt="image" src="https://github.com/user-attachments/assets/b17f4318-16f5-414c-8a15-c79b3ce84dde" />
