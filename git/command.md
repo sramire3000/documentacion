@@ -270,6 +270,17 @@ graph LR;
 
 ```
 
-
-
 -[Stack Edit](https://stackedit.io/app#)
+
+## Trabajar con git
+
+### Crear la rama y cambiarte a ella en un solo paso
+```
+git checkout -b nombre-de-la-rama
+```
+
+### Pasar a la Rama main y actualizar
+```
+git checkout main
+git pull
+```
