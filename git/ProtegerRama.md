@@ -14,3 +14,5 @@ Paso 4. Patron
 
 Paso 5. Protect matching branches 
 <img width="944" height="456" alt="image" src="https://github.com/user-attachments/assets/b17f4318-16f5-414c-8a15-c79b3ce84dde" />
+
+<img width="923" height="82" alt="image" src="https://github.com/user-attachments/assets/92bb9e7a-c0f1-49ab-9e84-f5f6f3d7d537" />
