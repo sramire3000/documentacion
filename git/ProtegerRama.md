@@ -11,4 +11,7 @@ Paso 3.
 
 <img width="963" height="177" alt="image" src="https://github.com/user-attachments/assets/f7097909-78b6-4737-b38c-f963636586c8" />
 
+Paso 4.
+<img width="978" height="647" alt="image" src="https://github.com/user-attachments/assets/8259bdb5-acc4-467f-8216-b115df95724c" />
+
 
