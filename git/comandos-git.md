@@ -4,19 +4,20 @@
 
 ### Basicos
 
-| Comando          															| Description										|	 
-| :---                  															|    :----             										|
-| git --version      															| Version de git       								|
-| git --help commit															| Ayuda para el comando commit			|
-| git config --global user.name "nombre del usuario" 	| Configuracion del usuario 					|
-| git config --global user.email "email del usuario"			| Configuracion del email						|
-| git config --global  core.editor "nano"                      	| Editor en uso nano								|
-| git config --global  core.editor "code --wait"            		| Editor en uso VsCode							|
-| git config --global -e                                               		| Editar configuracion							|
-| git config --global init.defaultBranch main             		| Define por default la rama main			|
-| git config --global core.autocrlf input                       	| Convierte los CRLF a LF					|
-| git config --global alias.s "status -sb"							| Creando un alias "s" uso => "git s"		|
-| git config --global alias.lg "log --oneline --graph --all --decorate"	| Creando un alias "lg"uso => "git lg"	|
+| Comando          																			| Description											|	 
+| :---                  																			|    :----             										|
+| git --version      																			| Version de git       								|
+| git --help commit																			| Ayuda para el comando commit			|
+| git config --global user.name "nombre del usuario" 					| Configuracion del usuario 					|
+| git config --global user.email "email del usuario"							| Configuracion del email						|
+| git config --global  core.editor "nano"                      					| Editor en uso nano								|
+| git config --global  core.editor "code --wait"            						| Editor en uso VsCode							|
+| git config --global -e                                               						| Editar configuracion							|
+| git config --global init.defaultBranch main             						| Define por default la rama main			|
+| git config --global core.autocrlf input                       					| Convierte los CRLF a LF					|
+| git config --global alias.s 'status -sb'											| Creando un alias "s" uso => "git s"		|
+| git config --global alias.lg 'log --oneline --graph --all --decorate'	| Creando un alias "lg"uso => "git lg"	|
+| git config --global alias.ast '!git add . && git status -sb'				| Comandos encadenados 					|
 
 
 ### Repositorios
