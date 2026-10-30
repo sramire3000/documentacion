@@ -44,3 +44,11 @@
 | git log --grep="chore"                                            	| Busca todos los chore												|
 | git log oneline                                                        	| Forma corta																|
 
+Git diff – cómo ver los cambios exactos entre archivos antes de
+Git commit --amend – actualizar mensajes de commits ya realizados
+Git reset – cómo retroceder y deshacer cambios de forma segura
+Git reflog – recuperar el historial de cambios incluso después de un reset
+Git rm y git mv – eliminar y renombrar archivos manualmente dentro de Git
+
+### Archivo ".gitignore"
+
