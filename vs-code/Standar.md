@@ -23,7 +23,7 @@
 - eamodio.gitlens
 - mhutchie.git-graph
 - donjayamanne.githistory
-- felipecaputo.git-project-manager
+
 
   
 Nota: en la tuerquita marcar para todos los perfiles
