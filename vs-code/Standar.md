@@ -136,10 +136,6 @@ Nota: en la tuerquita marcar para todos los perfiles
   "git.openRepositoryInParentFolders": "never",
   "git.confirmSync": false,
   "git.enableSmartCommit": true,
-  // Workbench mejorado
-  //"workbench.iconTheme": "material-icon-theme",
-  "vsicons.dontShowNewVersionMessage": true,
-  "workbench.iconTheme": "material-icon-theme",
   "workbench.sideBar.location": "left",
   "workbench.editor.showTabs": "multiple",
   "workbench.statusBar.visible": true,
@@ -174,7 +170,7 @@ Nota: en la tuerquita marcar para todos los perfiles
   "files.autoSaveDelay": 1000,
   "explorer.confirmDelete": false,
   "explorer.confirmDragAndDrop": false,
-  "github.copilot.nextEditSuggestions.enabled": true,
-  "workbench.colorTheme": "Tokyo Night",
+  "flow-icons.licenseKey": "",
+  "workbench.iconTheme": "flow-deep",
 }
 ```
