@@ -10,6 +10,7 @@
 | git --help commit																			| Ayuda para el comando commit			|
 | git config --global user.name "nombre del usuario" 					| Configuracion del usuario 					|
 | git config --global user.email "email del usuario"							| Configuracion del email						|
+| git config --global credential.helper store                                   	| Habilita el storage local para passw  	|
 | git config --global  core.editor "nano"                      					| Editor en uso nano								|
 | git config --global  core.editor "code --wait"            						| Editor en uso VsCode							|
 | git config --global -e                                               						| Editar configuracion							|
