@@ -101,7 +101,7 @@ Nota: en la tuerquita marcar para todos los perfiles
 ```bash
 {
   // Windows
-  "window.zoomLevel": 0,
+  "window.zoomLevel": 0.5,
   // ignore recomendaciones
   "extensions.ignoreRecommendations": true,
   // Deshabilitar la pantalla de inicio
