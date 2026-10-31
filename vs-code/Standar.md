@@ -20,7 +20,6 @@
 - aaron-bond.better-comments
 
 ## Git
-- eamodio.gitlens
 - mhutchie.git-graph
 
 
