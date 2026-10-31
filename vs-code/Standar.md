@@ -22,7 +22,7 @@
 ## Git
 - eamodio.gitlens
 - mhutchie.git-graph
-- donjayamanne.githistory
+
 
 
   
