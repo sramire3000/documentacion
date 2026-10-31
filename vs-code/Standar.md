@@ -7,7 +7,7 @@
 - pomdtr.excalidraw-editor
 - nadomani.excalidraw-copilot
 - redhat.vscode-xml
-- PKief.material-icon-theme
+- thang-nm.flow-icons
 - quicktype.quicktype
 - Gruntfuggly.activitusbar
 - NarasimaPandiyan.jetbrainsmono
