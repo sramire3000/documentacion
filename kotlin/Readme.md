@@ -75,9 +75,6 @@ dependencies {
     implementation("io.insert-koin:koin-compose")
     implementation("io.insert-koin:koin-compose-viewmodel")
 
-    // SharedPreferences for storing user data ver. 1.3.0
-    implementation("androidx.datastore:datastore-preferences:1.3.0")
-
     // Coroutines ver. 1.11.0
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.11.0")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.11.0")
