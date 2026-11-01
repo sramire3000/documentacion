@@ -60,33 +60,38 @@ dependencies {
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
 
-    // okhttp3
+    // okhttp3 ver. 4.12.0
     implementation("com.squareup.okhttp3:okhttp:4.12.0")
     implementation("com.squareup.okhttp3:logging-interceptor:4.12.0")
 
-    //Coil cargar y mostrar imágenes
+    //Coil cargar y mostrar imágenes ver. 3.6.3
     implementation("io.coil-kt.coil3:coil-compose:3.6.3")
     implementation("io.coil-kt.coil3:coil-network-okhttp:3.6.3")
 
 
-    // Koin for dependency injection
+    // Koin for dependency injection ver. 4.2.2
     implementation(platform("io.insert-koin:koin-bom:4.2.2"))
     implementation("io.insert-koin:koin-android")
     implementation("io.insert-koin:koin-compose")
     implementation("io.insert-koin:koin-compose-viewmodel")
 
-    //Room
+    //Room ver. 2.6.0
     implementation("androidx.room:room-runtime:2.6.0")
     implementation("androidx.room:room-ktx:2.6.0")
     ksp("androidx.room:room-compiler:2.6.0")
 
-    // SharedPreferences for storing user data
+    // SharedPreferences for storing user data ver. 1.3.0
     implementation("androidx.datastore:datastore-preferences:1.3.0")
 
-    // Coroutines
+    // Coroutines ver. 1.11.0
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.11.0")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.11.0")
     testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.11.0")
+
+    // Room ver. 2.8.5
+    implementation("androidx.room:room-runtime:2.8.5")
+    implementation("androidx.room:room-ktx:2.8.5")
+    ksp("androidx.room:room-compiler:2.8.5")
 
     // Extras
 
