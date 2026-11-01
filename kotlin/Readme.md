@@ -93,6 +93,9 @@ dependencies {
     implementation("androidx.room:room-ktx:2.8.5")
     ksp("androidx.room:room-compiler:2.8.5")
 
+    // Datastore ver. 1.3.0
+    implementation("androidx.datastore:datastore-preferences:1.3.0")
+
     // Extras
 
     //Layaout
