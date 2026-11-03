@@ -35,4 +35,13 @@ go.work
 
 go.sum
 
+### Playwright ###
+.playwright-mcp
+.playwright-mcp/*
+
+### Codebase Memory ###
+.codebase-memory/
+
+### SDKMAN ###
+.sdkmanrc
 ```
