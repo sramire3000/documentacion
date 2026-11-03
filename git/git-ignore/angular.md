@@ -66,7 +66,7 @@ typings/
 e2e/*.js
 e2e/*.map
 
-# Playwright
+### Playwright ###
 .playwright-mcp
 .playwright-mcp/*
 
