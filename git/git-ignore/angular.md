@@ -66,5 +66,19 @@ typings/
 e2e/*.js
 e2e/*.map
 
+### Playwright ###
+.playwright-mcp
+.playwright-mcp/*
+
+### Codebase Memory ###
+.codebase-memory/
+
+### SDKMAN ###
+.sdkmanrc
+
 ```
+
+
+
+
 
