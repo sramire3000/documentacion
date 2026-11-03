@@ -62,4 +62,14 @@ build/
 **/android/gradlew
 **/android/gradlew.bat
 
+### Playwright ###
+.playwright-mcp
+.playwright-mcp/*
+
+### Codebase Memory ###
+.codebase-memory/
+
+### SDKMAN ###
+.sdkmanrc
+
 ```
