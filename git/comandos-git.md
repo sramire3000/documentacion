@@ -22,32 +22,35 @@
 
 
 ### Repositorios
-| Comando          														| Description																	| 
-| :---                  														|    :----             																|
-| git branch -M main 													| Renombra la rama														|
-| git init      	      														| Inicializa el repo local  												|
-| git status                                                          		| Estado del repositorio													|
-| git add index.html													| Adiciona al stage el archivo index.html						|
-| git add .																	| Adiciona al stage el todos los archivos						|
-| git rm --cached index.html										| Eliminar del stage														|
-| git commit -m "Initial code"										| Comprometer con los cambios									|
-| git commit -m "feat:"												| Funcionalidad nueva													|
-| git commit -m "fix:"													| Correccion de un bug													|
-| git commit -m "docs:"												| Cambios en documentacion										|
-| git commit -m "refactor:"											| Cambios que no agrega funcion ni corrige bug			|
-| git commit -m "test:"												| Adicion o correccion de pruebas									|
-| git commit -m "chore:"											| Mantenimiento (dependencias, config)						|
-| git restore .                                                            	| descartar los cambios al ultimo commit						|
-| git restore index.html                                             	| descartar los cambios sobre el archivo index.html		|
-| git log                                                                    	| Historial de commits													|
-| git log -p                                                                	| Historial de commits con detalle de cambios				|
-| git log --stat                                                           	| Historial de cambios con respectos como estabamos	|
-| git log --grep="chore"                                            	| Busca todos los chore												|
-| git log oneline                                                        	| Forma corta																|
+| Comando          														| Description																					| 
+| :---                  														|    :----             																				|
+| git branch -M main 													| Renombra la rama																		|
+| git init      	      														| Inicializa el repo local  																|
+| git status                                                          		| Estado del repositorio																	|
+| git add index.html													| Adiciona al stage el archivo index.html										|
+| git add .																	| Adiciona al stage el todos los archivos										|
+| git rm --cached index.html										| Eliminar del stage																		|
+| git commit -m "Initial code"										| Comprometer con los cambios													|
+| git commit -m "feat:"												| Funcionalidad nueva																	|
+| git commit -m "fix:"													| Correccion de un bug																	|
+| git commit -m "docs:"												| Cambios en documentacion														|
+| git commit -m "refactor:"											| Cambios que no agrega funcion ni corrige bug							|
+| git commit -m "test:"												| Adicion o correccion de pruebas													|
+| git commit -m "chore:"											| Mantenimiento (dependencias, config)										|
+| git restore .                                                            	| descartar los cambios al ultimo commit										|
+| git restore index.html                                             	| descartar los cambios sobre el archivo index.html						|
+| git log                                                                    	| Historial de commits																	|
+| git log -p                                                                	| Historial de commits con detalle de cambios								|
+| git log --stat                                                           	| Historial de cambios con respectos como estabamos					|
+| git log --grep="chore"                                            	| Busca todos los chore																|
+| git log oneline                                                        	| Forma corta																				|
+| git diff																		| Cómo ver los cambios exactos entre archivos antes despues		|
+| git diff --staged 														| Cómo ver los cambios en el stage												|
+| git reset --soft HEAD^                                           	| cómo retroceder y deshacer cambios de forma segura				|
 
-Git diff – cómo ver los cambios exactos entre archivos antes de
-Git commit --amend – actualizar mensajes de commits ya realizados
-Git reset – cómo retroceder y deshacer cambios de forma segura
+
+
+
 Git reflog – recuperar el historial de cambios incluso después de un reset
 Git rm y git mv – eliminar y renombrar archivos manualmente dentro de Git
 
