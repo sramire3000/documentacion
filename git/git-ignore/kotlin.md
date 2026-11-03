@@ -30,4 +30,14 @@
 /build/
 /out/
 
+### Playwright ###
+.playwright-mcp
+.playwright-mcp/*
+
+### Codebase Memory ###
+.codebase-memory/
+
+### SDKMAN ###
+.sdkmanrc
+
 ```
