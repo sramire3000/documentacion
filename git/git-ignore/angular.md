@@ -70,6 +70,12 @@ e2e/*.map
 .playwright-mcp
 .playwright-mcp/*
 
+### Codebase Memory ###
+.codebase-memory/
+
+### SDKMAN ###
+.sdkmanrc
+
 ```
 
 
