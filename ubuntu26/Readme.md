@@ -167,7 +167,7 @@ git config --global user.email "sramire3000@gmail.com"
 git config --global credential.helper store
 ```
 
-## Setup Notepad++ Grapichs (216 dpi)
+## Setup Notepad++ Graphics (216 dpi)
 ```
 notepad-plus-plus.wine winecfg
 ```
