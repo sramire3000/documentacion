@@ -88,6 +88,9 @@ logging.logback.rollingpolicy.max-file-size=10MB
 # Historico
 logging.logback.rollingpolicy.max-history=30
 
+# Formato de los logs
+logging.pattern.console=%d{HH:mm:ss.SSS} %-5level --- [%15.15t] %-30.30logger{30} : %msg%n
+
 # =============================================
 # JASYPT
 # =============================================
