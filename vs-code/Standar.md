@@ -183,12 +183,6 @@ Nota: en la tuerquita marcar para todos los perfiles
   "terminal.integrated.defaultProfile.windows": "Git Bash",
   "terminal.integrated.defaultProfile.linux": "bash",
   // ---------- Por lenguaje ----------
-  "[java]": {
-    "editor.tabSize": 4,
-    "editor.insertSpaces": true,
-    "editor.wordWrap": "off",
-    "editor.defaultFormatter": "redhat.java"
-  },
   "[xml]": {
     "editor.tabSize": 4
   },
