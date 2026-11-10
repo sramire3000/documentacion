@@ -142,7 +142,7 @@ Nota: en la tuerquita marcar para todos los perfiles
   "editor.stickyScroll.enabled": true,
   "editor.wordWrap": "off",
   "editor.wordWrapColumn": 120,
-  "editor.matchBrackets": "nearby",
+  "editor.matchBrackets": "always",
   "editor.mouseWheelZoom": true,
   "editor.tabSize": 2,
   "editor.insertSpaces": true,
