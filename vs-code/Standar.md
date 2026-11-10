@@ -196,10 +196,6 @@ Nota: en la tuerquita marcar para todos los perfiles
     "editor.wordWrap": "on",
     "editor.tabSize": 2
   },
-  // ---------- Java / Spring ----------
-  "java.configuration.updateBuildConfiguration": "automatic",
-  "redhat.telemetry.enabled": false,
-  "telemetry.telemetryLevel": "off",
   // ---------- Colores ----------
   "workbench.colorCustomizations": {
     // Base
