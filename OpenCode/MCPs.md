@@ -227,13 +227,19 @@ DROP OWNED BY ia_writer;
   "$schema": "https://opencode.ai/config.json",
   "mcp": {
     "sybase": {
-      "type": "local",
-      "command": ["uv", "run", "--directory", "/ruta/absoluta/a/cdata-mcp-python", "main.py"],
-      "env": {
-        "CONNECTOR_MOD": "cdata.sybase",
-        "CONNECTION_STRING": "User=tu_usuario; Password=tu_contraseña; Server=localhost; Port=5000; Database=FamilyDB; Charset=utf8;"
-      },
-      "enabled": true
+        "type": "local",
+        "command": [
+            "C:\\Users\\HSR\\.config\\opencode\\mcp\\sybase\\.venv\\Scripts\\python.exe",
+            "C:\\Users\\HSR\\.config\\opencode\\mcp\\sybase\\server.py"
+        ],
+        "environment": {
+            "SYBASE_HOST": "127.0.0.1",
+            "SYBASE_PORT": "5000",
+            "SYBASE_DB": "dev_db",
+            "SYBASE_USER": "",
+            "SYBASE_PASSWORD": ""
+        },
+        "enabled": false
     }
   }
 }
