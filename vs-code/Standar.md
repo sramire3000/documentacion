@@ -181,7 +181,20 @@ Nota: en la tuerquita marcar para todos los perfiles
   "terminal.integrated.cursorBlinking": true,
   "terminal.integrated.scrollback": 10000,
   "terminal.integrated.defaultProfile.windows": "Git Bash",
-  "terminal.integrated.defaultProfile.linux": "bash",
+  // --------- Terminal Fedora Sanbox ---------
+  "terminal.integrated.defaultProfile.linux": "bash-host",
+  "terminal.integrated.profiles.linux": {
+    "bash-host": {
+      "path": "/usr/bin/flatpak-spawn",
+      "args": [
+        "--host",
+        "--env=TERM=xterm-256color",
+        "bash"
+      ],
+      "icon": "terminal-bash",
+      "overrideName": true
+    }
+  },
   // ---------- Por lenguaje ----------
   "[xml]": {
     "editor.tabSize": 4
